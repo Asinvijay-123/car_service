@@ -16,7 +16,7 @@
             overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
-        /* Video background container */
+        /* Video background container (now an image background) */
         .video-background {
             position: fixed;
             top: 0;
@@ -24,31 +24,27 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: -1; /* Places video behind content */
-            /* Fallback background color in case video doesn't load */
-            background-color: #000;
-            /* Fallback background image if video fails to load */
+            z-index: -1; /* Places background behind content */
+            background-image: url('Gemini_Generated_Image_uvgm0ruvgm0ruvgm.jpg'); /* New background image */
             background-size: cover;
-            background-position: center;
+            background-position: center center; /* Start position for animation */
+            animation: carMove 20s linear infinite alternate; /* Animation for car movement */
         }
 
-        /* Video element within the container */
-        .video-background video {
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            object-fit: cover; /* Ensures video covers the entire area without distortion */
+        /* Keyframes for the car movement animation */
+        @keyframes carMove {
+            0% {
+                background-position: center center;
+            }
+            100% {
+                background-position: center 10%; /* Adjust this value to control movement */
+            }
         }
 
         /* Main content overlay */
         .content {
             position: relative;
-            z-index: 1; /* Ensures content is above the video */
+            z-index: 1; /* Ensures content is above the background */
             color: white;
             text-align: center;
             display: flex;
@@ -56,8 +52,7 @@
             justify-content: flex-start; /* Aligns content to the top */
             align-items: center;
             height: 100vh; /* Full viewport height */
-            /* Adjusted opacity for a brighter background - now fully transparent */
-            background-color: rgba(0, 0, 0, 0); /* Fully transparent overlay for text readability */
+            background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent overlay for text readability */
             padding-top: 15vh; /* Initial padding from the top, adjusted for navbar */
             gap: 0.5rem; /* Space between the two text elements */
         }
@@ -137,7 +132,6 @@
         /* Dropdown arrow for 'PACKAGES' */
         .navbar-links .dropdown-arrow {
             margin-left: 0.25rem;
-            /* vertical-align: middle; Removed as flexbox handles alignment now */
         }
 
         /* Dropdown specific styles */
@@ -154,10 +148,10 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 0.375rem;
-            top: 100%; /* Position below the button */
-            left: 50%; /* Center dropdown with button */
-            transform: translateX(-50%); /* Adjust for centering */
-            overflow: hidden; /* Ensures rounded corners apply to content */
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
         }
 
         .dropdown-content a {
@@ -166,7 +160,7 @@
             text-decoration: none;
             display: block;
             text-align: left;
-            font-weight: normal; /* Override bold from navbar links */
+            font-weight: normal;
         }
 
         .dropdown-content a:hover {
@@ -180,22 +174,22 @@
 
         /* Responsive adjustments for text content */
         .content p {
-            font-size: 1.125rem; /* text-xl */
+            font-size: 1.125rem;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .content p {
-                font-size: 1.5rem; /* md:text-2xl */
+                font-size: 1.5rem;
             }
         }
 
         .content h1 {
-            font-size: 3rem; /* text-5xl */
+            font-size: 3rem;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .content h1 {
-                font-size: 4.5rem; /* md:text-7xl */
+                font-size: 4.5rem;
             }
         }
 
@@ -207,18 +201,18 @@
 
         /* New styles for the Packages section */
         .packages-section {
-            background-color: #f8f8f8; /* Light background for the packages section */
+            background-color: #f8f8f8;
             padding: 4rem 1rem;
             text-align: center;
-            position: relative; /* Needed for z-index to be above video */
-            z-index: 2; /* Ensure this section is above the video background */
-            color: #333; /* Dark text for readability */
+            position: relative;
+            z-index: 2;
+            color: #333;
         }
 
         .packages-header {
-            background-color: #e53e3e; /* Red background for the header */
+            background-color: #e53e3e;
             color: white;
-            padding: 4rem 1rem; /* Increased padding-top and padding-bottom */
+            padding: 4rem 1rem;
             text-align: left;
             position: relative;
         }
@@ -237,9 +231,9 @@
         .tire-track {
             position: absolute;
             top: 0;
-            right: -10%; /* Adjust to position the image */
+            right: -10%;
             height: 100%;
-            opacity: 0.2; /* Make it subtle */
+            opacity: 0.2;
             z-index: -1;
         }
 
@@ -260,23 +254,22 @@
 
         .package-card-container {
             display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
+            grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 1.5rem;
             max-width: 1200px;
-            /* Adjusted margin-top to create the overlapping effect like the image */
-            margin: -4rem auto 0 auto; /* Adjusted to a less negative value */
+            margin: -4rem auto 0 auto;
             padding: 0 1rem;
         }
 
-        @media (min-width: 640px) { /* sm breakpoint */
+        @media (min-width: 640px) {
             .package-card-container {
-                grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns on small screens */
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
-        @media (min-width: 1024px) { /* lg breakpoint */
+        @media (min-width: 1024px) {
             .package-card-container {
-                grid-template-columns: repeat(4, minmax(0, 1fr)); /* Four columns on large screens */
+                grid-template-columns: repeat(4, minmax(0, 1fr));
             }
         }
 
@@ -284,12 +277,12 @@
             background-color: white;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            padding: 1.5rem; /* Adjusted padding */
+            padding: 1.5rem;
             text-align: left;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 300px; /* Ensure cards have a consistent minimum height */
+            min-height: 300px;
         }
 
         .package-card .icon {
@@ -308,7 +301,7 @@
             font-size: 0.95rem;
             color: #555;
             margin-bottom: 1rem;
-            flex-grow: 1; /* Allows description to take available space */
+            flex-grow: 1;
         }
 
         .package-card .time-price {
@@ -319,15 +312,15 @@
         }
 
         .package-card .price {
-            color: #e53e3e; /* Red color for price */
+            color: #e53e3e;
         }
 
         .package-card-actions {
             display: flex;
-            justify-content: flex-start; /* Align items to the start */
+            justify-content: flex-start;
             align-items: center;
             margin-top: 1rem;
-            gap: 1rem; /* Space between buttons */
+            gap: 1rem;
         }
 
         .package-card-actions .book-now-btn {
@@ -338,7 +331,7 @@
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            font-size: 0.875rem; /* Adjusted font size */
+            font-size: 0.875rem;
         }
 
         .package-card-actions .book-now-btn:hover {
@@ -346,26 +339,26 @@
         }
 
         .package-card-actions .more-link {
-            color: #4CAF50; /* Green color for 'More' link */
+            color: #4CAF50;
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
-            font-size: 0.875rem; /* Adjusted font size */
+            font-size: 0.875rem;
         }
 
         .package-card-actions .more-link:hover {
-            color: #45a049; /* Darker green on hover */
+            color: #45a049;
         }
 
         /* Contact Us button at the bottom */
         .contact-us-float {
             position: fixed;
             bottom: 1.5rem;
-            left: 1.5rem; /* Reverted to original left position */
-            background-color: #4CAF50; /* Green background */
+            left: 1.5rem;
+            background-color: #4CAF50;
             color: white;
             padding: 0.75rem 1.5rem;
-            border-radius: 9999px; /* Fully rounded */
+            border-radius: 9999px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
@@ -393,7 +386,7 @@
             margin: 0 auto;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .why-choose-us-section {
                 flex-direction: row;
                 text-align: left;
@@ -447,14 +440,14 @@
         }
 
         .progress-fill {
-            background-color: #e53e3e; /* Red fill color */
+            background-color: #e53e3e;
             height: 100%;
             border-radius: 4px;
         }
 
         /* Testimonials Section */
         .testimonials-section {
-            background-color: #222; /* Dark background for testimonials */
+            background-color: #222;
             color: white;
             padding: 4rem 1rem;
             position: relative;
@@ -480,7 +473,7 @@
 
         .testimonial-cards-container {
             display: flex;
-            flex-direction: column; /* Stack vertically on small screens */
+            flex-direction: column;
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -488,7 +481,7 @@
             align-items: center;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .testimonial-cards-container {
                 flex-direction: row;
                 justify-content: space-around;
@@ -496,12 +489,12 @@
         }
 
         .testimonial-card {
-            background-color: #333; /* Slightly lighter dark background for cards */
+            background-color: #333;
             border-radius: 0.75rem;
             padding: 2rem;
             position: relative;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-            max-width: 500px; /* Limit card width */
+            max-width: 500px;
             text-align: left;
         }
 
@@ -532,21 +525,21 @@
 
         /* New Extended Footer Section */
         .extended-footer-section {
-            background-color: #1a1a1a; /* Dark background */
+            background-color: #1a1a1a;
             color: white;
             padding: 4rem 1.5rem;
             display: grid;
-            grid-template-columns: repeat(1, 1fr); /* Single column on small screens */
+            grid-template-columns: repeat(1, 1fr);
             gap: 3rem;
-            width: 100%; /* Ensure it covers full width */
-            box-sizing: border-box; /* Include padding in the width calculation */
-            text-align: center; /* Center content for mobile */
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .extended-footer-section {
-                grid-template-columns: repeat(3, 1fr); /* Three columns on larger screens */
-                text-align: left; /* Align text left for desktop */
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
             }
         }
 
@@ -554,7 +547,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
-            color: #e53e3e; /* Red accent for headers */
+            color: #e53e3e;
         }
 
         .extended-footer-column p {
@@ -587,29 +580,29 @@
         .phone-contact {
             display: flex;
             align-items: center;
-            justify-content: center; /* Center for mobile */
+            justify-content: center;
             gap: 0.75rem;
             background-color: #333;
             padding: 1rem 1.5rem;
             border-radius: 0.5rem;
             margin-top: 1.5rem;
             width: fit-content;
-            margin-left: auto; /* Center for mobile */
-            margin-right: auto; /* Center for mobile */
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .phone-contact {
-                justify-content: flex-start; /* Align left for desktop */
-                margin-left: 0; /* Reset margin for desktop */
-                margin-right: 0; /* Reset margin for desktop */
+                justify-content: flex-start;
+                margin-left: 0;
+                margin-right: 0;
             }
         }
 
         .phone-contact svg {
             width: 24px;
             height: 24px;
-            fill: #4CAF50; /* Green phone icon */
+            fill: #4CAF50;
         }
 
         .phone-contact span {
@@ -639,7 +632,7 @@
         }
 
         .subscribe-form button {
-            background-color: #4CAF50; /* Green send button */
+            background-color: #4CAF50;
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 0.375rem;
@@ -655,14 +648,14 @@
 
         .social-icons {
             display: flex;
-            justify-content: center; /* Center for mobile */
+            justify-content: center;
             gap: 1rem;
             margin-top: 1.5rem;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .social-icons {
-                justify-content: flex-start; /* Align left for desktop */
+                justify-content: flex-start;
             }
         }
 
@@ -679,7 +672,7 @@
 
         /* Final Copyright Footer */
         .copyright-footer {
-            background-color: #111; /* Even darker background */
+            background-color: #111;
             color: #aaa;
             padding: 1rem 1.5rem;
             text-align: center;
@@ -691,7 +684,7 @@
             gap: 0.5rem;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .copyright-footer {
                 flex-direction: row;
             }
@@ -733,11 +726,11 @@
                 <div class="dropdown-content">
                     <a href="quick-shine-page.html">Quick Shine</a>
                     <a href="deep-cleaning-page.html">Deep Cleaning</a>
-                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a> <!-- Link to new page -->
-                    <a href="windshield-polish-page.html">Windshield Polish</a> <!-- Link to new page -->
+                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
+                    <a href="windshield-polish-page.html">Windshield Polish</a>
                 </div>
             </div>
-            <a href="#" class="nav-button">CONTACT US</a>
+            <a href="booking-form.html" class="nav-button">CONTACT US</a>
         </div>
     </nav>
 
@@ -760,7 +753,7 @@
                     <p class="text-sm font-semibold uppercase mb-1">OUR PACKAGES</p>
                     <h2 class="text-white text-4xl md:text-5xl">Packages for Every Ride//</h2>
                 </div>
-                <a href="#" class="book-now-header-btn mt-4 md:mt-0">BOOK NOW</a>
+                <a href="booking-form.html" class="book-now-header-btn mt-4 md:mt-0">BOOK NOW</a>
             </div>
         </div>
 
@@ -775,8 +768,8 @@
                     <span class="price">₹349/-</span>
                 </div>
                 <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
+                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                    <a href="quick-shine-page.html" class="more-link">More</a>
                 </div>
             </div>
 
@@ -790,14 +783,14 @@
                     <span class="price">₹799/-</span>
                 </div>
                 <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
+                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                    <a href="deep-cleaning-page.html" class="more-link">More</a>
                 </div>
             </div>
 
             <!-- Card 3: Rubbing & Polishing -->
             <div class="package-card">
-                <img src="https://placehold.co/50x50/E53E3E/FFFFFF?text=POLISH" alt="Rubbing & Polishing Icon" class="icon">
+                <img src="https://placehold.co/50x50/E53E3E/FFFFFF?text=POLISH" alt="Rubbing & Polishing Icon">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
                 <div class="time-price">
@@ -805,14 +798,14 @@
                     <span class="price">₹1399/-</span>
                 </div>
                 <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
+                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                    <a href="rubbing-polishing-page.html" class="more-link">More</a>
                 </div>
             </div>
 
             <!-- Card 4: Windshield Polish -->
             <div class="package-card">
-                <img src="https://placehold.co/50x50/E53E3E/FFFFFF?text=GLASS" alt="Windshield Polish Icon" class="icon">
+                <img src="https://placehold.co/50x50/E53E3E/FFFFFF?text=GLASS" alt="Windshield Polish Icon">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
                 <div class="time-price">
@@ -820,8 +813,8 @@
                     <span class="price">₹799/-</span>
                 </div>
                 <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
+                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                    <a href="windshield-polish-page.html" class="more-link">More</a>
                 </div>
             </div>
         </div>
@@ -934,19 +927,19 @@
                 <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram"></a>
                 <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook"></a>
             </div>
-        </div>s
+        </div>
     </section>
 
     <!-- Final Copyright Footer -->
     <footer class="copyright-footer">
         <p>© Copyright Swassh. All right reserved.</p>
         <div>
-            <a href="#">Home</a> / <a href="#">Booking</a>
+            <a href="car.html">Home</a> / <a href="booking-form.html">Booking</a>
         </div>
     </footer>
 
     <!-- Contact Us Floating Button -->
-    <a href="#" class="contact-us-float">
+    <a href="booking-form.html" class="contact-us-float">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.5-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
         </svg>
