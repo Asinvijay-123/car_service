@@ -1,1070 +1,354 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Care Services</title>
-    <!-- Tailwind CSS CDN for utility classes -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter for clean typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Base styles for the body */
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-        }
-
-        /* Video background container */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1; /* Places video behind content */
-            /* Fallback background color in case video doesn't load */
-            background-color: #000;
-            /* Fallback background image if video fails to load */
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Video element within the container - ensures it fills the entire area */
-        .video-background video {
-            width: 100%; /* Fill the container width */
-            height: 100%; /* Fill the container height */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            /* Reverted to 'cover' to ensure the video fills the entire background for the scroll-over effect */
-            object-fit: cover;
-        }
-
-        /* Main content overlay */
-        .content {
-            position: relative;
-            z-index: 1; /* Ensures content is above the video */
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            /* Aligns content to the center of the remaining viewport height */
-            justify-content: center;
-            align-items: center;
-            /* Calculate height to fill remaining viewport after navbar */
-            min-height: calc(100vh - 64px); /* Assuming navbar height is 64px (4rem) */
-            background-color: rgba(0, 0, 0, 0); /* Fully transparent overlay for text readability */
-            padding-top: 0; /* Removed fixed padding as justify-content handles vertical spacing */
-            padding-bottom: 0; /* Removed extra padding */
-            gap: 0.5rem; /* Space between the two text elements */
-        }
-
-        /* Animation for continuous text movement (bounce effect) */
-        @keyframes bounceText {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px); /* Move slightly up */
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        .animated-text {
-            animation: bounceText 2s ease-in-out infinite alternate; /* Continuous bounce effect */
-        }
-
-        .animated-text.delay-1 {
-            animation-delay: 0.5s; /* Delay for the second text element */
-        }
-
-        /* Navigation bar styling */
-        .navbar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 64px; /* Explicitly set navbar height for accurate calc() */
-            display: flex;
-            justify-content: space-between; /* Space between logo and menu toggle/links */
-            align-items: center;
-            padding: 1rem; /* Reduced padding for mobile */
-            z-index: 10; /* Ensures navbar is on top of other content */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white line */
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .navbar {
-                padding: 1rem 2rem; /* Original padding for desktop */
-            }
-        }
-
-        /* Logo styling */
-        .navbar-logo {
-            height: 40px; /* Fixed height for the logo */
-        }
-
-        /* Navigation links container (for desktop) */
-        .navbar-links {
-            display: flex;
-            gap: 1rem; /* Default gap between navigation links */
-            align-items: center; /* Aligns items vertically in the middle */
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .navbar-links {
-                gap: 2rem;
-            }
-        }
-
-        /* Individual navigation link styling */
-        .navbar-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0.5rem 0.75rem; /* Padding for clickable area */
-            transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transitions for hover effects */
-            border-radius: 0.375rem; /* rounded-lg equivalent */
-            display: flex; /* Use flex to align text and arrow */
-            align-items: center; /* Vertically align text and arrow */
-        }
-
-        .navbar-links a:hover {
-            color: #a0aec0; /* Lighter gray on hover */
-            background-color: transparent; /* Changed to transparent */
-        }
-
-        /* Dropdown arrow for 'PACKAGES' */
-        .navbar-links .dropdown-arrow {
-            margin-left: 0.25rem;
-        }
-
-        /* Dropdown specific styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 0.375rem;
-            top: 100%; /* Position below the button */
-            left: 50%; /* Center dropdown with button */
-            transform: translateX(-50%); /* Adjust for centering */
-            overflow: hidden; /* Ensures rounded corners apply to content */
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-            font-weight: normal; /* Override bold from navbar links */
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-            color: #333;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Mobile Menu Specific Styles */
-        .menu-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            display: flex; /* Ensure it's a flex container for centering SVG */
-            align-items: center;
-            justify-content: center;
-        }
-
-        #mobile-menu {
-            transition: transform 0.3s ease-in-out;
-            transform: translateX(100%); /* Start off-screen to the right */
-            justify-content: flex-start; /* Align content to the top */
-            padding-top: 4rem; /* Padding from the top */
-        }
-
-        #mobile-menu.flex {
-            transform: translateX(0); /* Slide in */
-        }
-
-        .close-menu {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 2.5rem; /* Larger 'X' */
-            line-height: 1;
-            padding: 0.5rem;
-        }
-
-        .dropdown-mobile .nav-button {
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .dropdown-mobile .nav-button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .dropdown-content-mobile {
-            width: 100%; /* Full width within the mobile menu */
-            box-sizing: border-box; /* Include padding in width */
-            padding: 0 1rem; /* Add horizontal padding */
-        }
-
-        /* Responsive adjustments for text content */
-        .content p {
-            font-size: 1.125rem; /* text-xl */
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .content p {
-                font-size: 1.5rem; /* md:text-2xl */
-            }
-        }
-
-        .content h1 {
-            font-size: 3rem; /* text-5xl */
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .content h1 {
-                font-size: 4.5rem; /* md:text-7xl */
-            }
-        }
-
-        /* Responsive adjustment for logo position */
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        /* Styles for the Packages section */
-        .packages-section {
-            background-color: #f8f8f8; /* Light background for the packages section */
-            padding: 4rem 1rem;
-            text-align: center;
-            position: relative; /* Needed for z-index to be above video */
-            z-index: 2; /* Ensure this section is above the video background */
-            color: #333; /* Dark text for readability */
-            margin-top: 0; /* Ensure it starts flush after the content section */
-        }
-
-        .packages-header {
-            background-color: #e53e3e; /* Red background for the header */
-            color: white;
-            padding: 4rem 1rem; /* Increased padding-top and padding-bottom */
-            text-align: left;
-            position: relative;
-        }
-
-        .packages-header h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .packages-header p {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tire-track {
-            position: absolute;
-            top: 0;
-            right: -10%; /* Adjust to position the image */
-            height: 100%;
-            opacity: 0.2; /* Make it subtle */
-            z-index: -1;
-        }
-
-        .book-now-header-btn {
-            background-color: white;
-            color: #e53e3e;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .book-now-header-btn:hover {
-            background-color: #f0f0f0;
-            color: #c53030;
-        }
-
-        .package-card-container {
-            display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
-            gap: 1.5rem;
-            max-width: 1200px;
-            /* Adjusted margin-top to create the overlapping effect like the image */
-            margin: -8rem auto 0 auto; /* Adjusted for more overlap */
-            padding: 0 1rem;
-        }
-
-        @media (min-width: 640px) { /* sm breakpoint */
-            .package-card-container {
-                grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns on small screens */
-            }
-        }
-
-        @media (min-width: 1024px) { /* lg breakpoint */
-            .package-card-container {
-                grid-template-columns: repeat(4, minmax(0, 1fr)); /* Four columns on large screens */
-            }
-        }
-
-        .package-card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            padding: 1.5rem; /* Adjusted padding */
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 300px; /* Ensure cards have a consistent minimum height */
-        }
-
-        .package-card .icon {
-            height: 50px;
-            width: 50px;
-            margin-bottom: 1rem;
-        }
-
-        .package-card h3 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .package-card p {
-            font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 1rem;
-            flex-grow: 1; /* Allows description to take available space */
-        }
-
-        .package-card .time-price {
-            font-size: 1.125rem;
-            font-weight: bold;
-            margin-top: 1rem;
-            color: #333;
-        }
-
-        .package-card .price {
-            color: #e53e3e; /* Red color for price */
-        }
-
-        .package-card-actions {
-            display: flex;
-            justify-content: flex-start; /* Align items to the start */
-            align-items: center;
-            margin-top: 1rem;
-            gap: 1rem; /* Space between buttons */
-        }
-
-        .package-card-actions .book-now-btn {
-            background-color: #e53e3e;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            font-size: 0.875rem; /* Adjusted font size */
-        }
-
-        .package-card-actions .book-now-btn:hover {
-            background-color: #c53030;
-        }
-
-        .package-card-actions .more-link {
-            color: #4CAF50; /* Green color for 'More' link */
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-            font-size: 0.875rem; /* Adjusted font size */
-        }
-
-        .package-card-actions .more-link:hover {
-            color: #45a049; /* Darker green on hover */
-        }
-
-        /* Contact Us button at the bottom */
-        .contact-us-float {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem; /* Reverted to original left position */
-            background-color: #4CAF50; /* Green background */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px; /* Fully rounded */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            z-index: 20;
-        }
-
-        .contact-us-float:hover {
-            background-color: #45a049;
-        }
-
-        /* Styles for Why Choose Us section */
-        .why-choose-us-section {
-            background-color: white;
-            padding: 4rem 1rem;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .why-choose-us-section {
-                flex-direction: row;
-                text-align: left;
-                justify-content: center;
-            }
-        }
-
-        .why-choose-us-image {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .why-choose-us-content {
-            flex: 1;
-            padding: 1rem;
-        }
-
-        .why-choose-us-content h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .why-choose-us-content p {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .progress-bar-container {
-            margin-bottom: 1rem;
-        }
-
-        .progress-bar-label {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .progress-bar {
-            background-color: #e0e0e0;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background-color: #e53e3e; /* Red fill color */
-            height: 100%;
-            border-radius: 4px;
-        }
-
-        /* Testimonials Section */
-        .testimonials-section {
-            background-color: #222; /* Dark background for testimonials */
-            color: white;
-            padding: 4rem 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonials-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .testimonials-header p {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            color: #a0aec0;
-            margin-bottom: 0.5rem;
-        }
-
-        .testimonials-header h2 {
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-
-        .testimonial-cards-container {
-            display: flex;
-            flex-direction: column; /* Stack vertically on small screens */
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .testimonial-cards-container {
-                flex-direction: row;
-                justify-content: space-around;
-            }
-        }
-
-        .testimonial-card {
-            background-color: #333; /* Slightly lighter dark background for cards */
-            border-radius: 0.75rem;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-            max-width: 500px; /* Limit card width */
-            text-align: left;
-        }
-
-        .testimonial-card p {
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .testimonial-author img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid white;
-        }
-
-        .testimonial-author span {
-            font-weight: bold;
-            font-size: 1.125rem;
-        }
-
-        /* Extended Footer Section */
-        .extended-footer-section {
-            background-color: #1a1a1a; /* Dark background */
-            color: white;
-            padding: 4rem 1.5rem;
-            display: grid;
-            grid-template-columns: repeat(1, 1fr); /* Single column on small screens */
-            gap: 3rem;
-            width: 100%; /* Ensure it covers full width */
-            box-sizing: border-box; /* Include padding in the width calculation */
-            text-align: center; /* Center content for mobile */
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .extended-footer-section {
-                grid-template-columns: repeat(3, 1fr); /* Three columns on larger screens */
-                text-align: left; /* Align text left for desktop */
-            }
-        }
-
-        .extended-footer-column h3 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            color: #e53e3e; /* Red accent for headers */
-        }
-
-        .extended-footer-column p {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-            color: #ccc;
-        }
-
-        .extended-footer-column ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .extended-footer-column ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .extended-footer-column ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .extended-footer-column ul li a:hover {
-            color: white;
-        }
-
-        .phone-contact {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Center for mobile */
-            gap: 0.75rem;
-            background-color: #333;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            margin-top: 1.5rem;
-            width: fit-content;
-            margin-left: auto; /* Center for mobile */
-            margin-right: auto; /* Center for mobile */
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .phone-contact {
-                justify-content: flex-start; /* Align left for desktop */
-                margin-left: 0; /* Reset margin for desktop */
-                margin-right: 0; /* Reset margin for desktop */
-            }
-        }
-
-        .phone-contact svg {
-            width: 24px;
-            height: 24px;
-            fill: #4CAF50; /* Green phone icon */
-        }
-
-        .phone-contact span {
-            font-size: 1.125rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        .subscribe-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .subscribe-form input[type="email"] {
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
-            border: 1px solid #555;
-            background-color: #333;
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        .subscribe-form input[type="email"]::placeholder {
-            color: #999;
-        }
-
-        .subscribe-form button {
-            background-color: #4CAF50; /* Green send button */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .subscribe-form button:hover {
-            background-color: #45a049;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center; /* Center for mobile */
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .social-icons {
-                justify-content: flex-start; /* Align left for desktop */
-            }
-        }
-
-        .social-icons a img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            transition: transform 0.2s ease;
-        }
-
-        .social-icons a img:hover {
-            transform: scale(1.1);
-        }
-
-        /* Final Copyright Footer */
-        .copyright-footer {
-            background-color: #111; /* Even darker background */
-            color: #aaa;
-            padding: 1rem 1.5rem;
-            text-align: center;
-            font-size: 0.8rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.5rem;
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .copyright-footer {
-                flex-direction: row;
-            }
-        }
-
-        .copyright-footer a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .copyright-footer a:hover {
-            color: white;
-        }
-    </style>
-</head>
-<body>
-    <div class="video-background">
-        <video autoplay muted loop playsinline onerror="this.parentNode.style.backgroundImage='url(https://placehold.co/1920x1080/000000/FFFFFF?text=Video+Not+Available)'; this.style.display='none';">
-            <!-- Video source updated to Car_Rotation_Video_Generated (1).mp4 -->
-            <source src="car_image.mp4" type="video/mp4">
-            Your browser does not support the video tag. Please update your browser.
+import React, { useState, useEffect } from 'react';
+import swasshLogo from '@/assets/swassh-logo.png';
+import tireTrack from '@/assets/tire-track.png';
+import carCleaning from '@/assets/car-cleaning.png';
+import carVideoPlaceholder from '@/assets/car-video-placeholder.png';
+
+const Index = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    // Prevent body scroll when mobile menu is open
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsMobileDropdownOpen(false);
+  };
+
+  return (
+    <div className="min-h-screen">
+      {/* Video Background */}
+      <div className="video-background">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          onError={(e) => {
+            const target = e.target as HTMLVideoElement;
+            const parent = target.parentNode as HTMLElement;
+            parent.style.backgroundImage = `url(${carVideoPlaceholder})`;
+            parent.style.backgroundSize = 'cover';
+            parent.style.backgroundPosition = 'center';
+            target.style.display = 'none';
+          }}
+        >
+          <source src="/car_image.mp4" type="video/mp4" />
+          Your browser does not support the video tag. Please update your browser.
         </video>
-    </div>
+      </div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo-container">
-            <!-- Logo placeholder updated -->
-            <img src="https://placehold.co/150x40/000000/FFFFFF?text=SWASSH+LOGO" alt="Car Care Logo" class="navbar-logo">
+      {/* Navigation Bar */}
+      <nav className="navbar">
+        <div className="flex items-center">
+          <img src={swasshLogo} alt="SWASSH Car Care Logo" className="navbar-logo" />
         </div>
 
-        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
-        <button class="menu-toggle md:hidden">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        {/* Hamburger Icon for Mobile */}
+        <button 
+          className="menu-toggle"
+          onClick={() => setIsMobileMenuOpen(true)}
+        >
+          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
         </button>
 
-        <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
-        <div class="navbar-links hidden md:flex">
-            <a href="car.html" class="nav-button">HOME</a>
-            <div class="dropdown">
-                <a href="#" class="nav-button">
-                    PACKAGES
-                    <span class="dropdown-arrow">&#9660;</span> <!-- Unicode for down arrow -->
-                </a>
-                <div class="dropdown-content">
-                    <a href="quick-shine-page.html">Quick Shine</a>
-                    <a href="deep-cleaning-page.html">Deep Cleaning</a>
-                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
-                    <a href="windshield-polish-page.html">Windshield Polish</a>
-                </div>
+        {/* Desktop Navigation Links */}
+        <div className="navbar-links">
+          <a href="#home" className="nav-button">HOME</a>
+          <div className="dropdown">
+            <a href="#packages" className="nav-button">
+              PACKAGES
+              <span className="ml-1">▼</span>
+            </a>
+            <div className="dropdown-content">
+              <a href="#quick-shine">Quick Shine</a>
+              <a href="#deep-cleaning">Deep Cleaning</a>
+              <a href="#rubbing-polishing">Rubbing & Polishing</a>
+              <a href="#windshield-polish">Windshield Polish</a>
             </div>
-            <a href="#" class="nav-button">CONTACT US</a>
+          </div>
+          <a href="#contact" className="nav-button">CONTACT US</a>
         </div>
 
-        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
-            <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
-            <div class="flex flex-col gap-6 text-xl">
-                <a href="car.html" class="nav-button text-white">HOME</a>
-                <div class="dropdown-mobile">
-                    <a href="#" class="nav-button text-white flex items-center">
-                        PACKAGES <span class="dropdown-arrow ml-2">&#9660;</span>
-                    </a>
-                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
-                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Quick Shine</a>
-                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Deep Cleaning</a>
-                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Rubbing & Polishing</a>
-                        <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
-                    </div>
-                </div>
-                <a href="#" class="nav-button text-white">CONTACT US</a>
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div className="mobile-menu active">
+            <button 
+              className="close-menu"
+              onClick={closeMobileMenu}
+            >
+              ×
+            </button>
+            <div className="flex flex-col gap-6 text-xl">
+              <a href="#home" className="text-white font-bold" onClick={closeMobileMenu}>HOME</a>
+              <div className="dropdown-mobile">
+                <button 
+                  className="text-white font-bold flex items-center"
+                  onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+                >
+                  PACKAGES <span className="ml-2">▼</span>
+                </button>
+                {isMobileDropdownOpen && (
+                  <div className="dropdown-content-mobile mt-2 bg-gray-800 rounded-lg py-2">
+                    <a href="#quick-shine" className="block px-4 py-2 text-gray-200 hover:bg-gray-700" onClick={closeMobileMenu}>Quick Shine</a>
+                    <a href="#deep-cleaning" className="block px-4 py-2 text-gray-200 hover:bg-gray-700" onClick={closeMobileMenu}>Deep Cleaning</a>
+                    <a href="#rubbing-polishing" className="block px-4 py-2 text-gray-200 hover:bg-gray-700" onClick={closeMobileMenu}>Rubbing & Polishing</a>
+                    <a href="#windshield-polish" className="block px-4 py-2 text-gray-200 hover:bg-gray-700" onClick={closeMobileMenu}>Windshield Polish</a>
+                  </div>
+                )}
+              </div>
+              <a href="#contact" className="text-white font-bold" onClick={closeMobileMenu}>CONTACT US</a>
             </div>
-        </div>
-    </nav>
+          </div>
+        )}
+      </nav>
 
-    <div class="content">
-        <p class="mb-2 animated-text text-green-400">
-            // DOORSTEP CAR CLEANING SERVICES //
+      {/* Hero Content */}
+      <div className="content-overlay">
+        <p className="animated-text text-green-400 hero-subtitle">
+          // DOORSTEP CAR CLEANING SERVICES //
         </p>
-        <h1 class="font-bold animated-text delay-1">
-            CAR CARE
+        <h1 className="animated-text delay-1 hero-title">
+          CAR CARE
         </h1>
-    </div>
+      </div>
 
-    <!-- Packages Section -->
-    <section class="packages-section">
-        <div class="packages-header">
-            <!-- Tire track image placeholder updated -->
-            <img src="https://placehold.co/200x100/E53E3E/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track">
-            <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
-                <div>
-                    <p class="text-sm font-semibold uppercase mb-1">OUR PACKAGES</p>
-                    <h2 class="text-white text-4xl md:text-5xl">Packages for Every Ride//</h2>
-                </div>
-                <a href="#" class="book-now-header-btn mt-4 md:mt-0">BOOK NOW</a>
+      {/* Packages Section */}
+      <section id="packages" className="bg-car-light-gray py-16 relative z-2">
+        <div className="packages-header">
+          <img src={tireTrack} alt="Tire Track" className="tire-track" />
+          <div className="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
+            <div>
+              <p className="text-sm font-semibold uppercase mb-1">OUR PACKAGES</p>
+              <h2 className="text-white text-4xl md:text-5xl">Packages for Every Ride//</h2>
             </div>
+            <a href="#book" className="bg-white text-car-red px-6 py-3 rounded-lg font-bold mt-4 md:mt-0 hover:bg-gray-100 transition-colors">BOOK NOW</a>
+          </div>
         </div>
 
-        <div class="package-card-container">
-            <!-- Card 1: Quick Shine -->
-            <div class="package-card">
-                <img src="https://placehold.co/50x50/E53E3E/FFFFFF?text=SHINE" alt="Quick Shine Icon" class="icon">
-                <h3>QUICK SHINE</h3>
-                <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
-                <div class="time-price">
-                    Time :- Around 1hr<br>
-                    <span class="price">₹349/-</span>
-                </div>
-                <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
-                </div>
+        <div className="packages-grid">
+          {/* Quick Shine Package */}
+          <div className="package-card">
+            <div className="w-12 h-12 bg-car-red rounded-lg flex items-center justify-center mb-4">
+              <span className="text-white font-bold text-lg">✨</span>
             </div>
+            <h3>QUICK SHINE</h3>
+            <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
+            <div className="time-price">
+              Time :- Around 1hr<br />
+              <span className="price">₹349/-</span>
+            </div>
+            <div className="package-card-actions">
+              <a href="#book" className="book-now-btn">BOOK NOW</a>
+              <a href="#quick-shine" className="more-link">More</a>
+            </div>
+          </div>
 
-            <!-- Card 2: Deep Cleaning -->
-            <div class="package-card">
-                <img src="https://placehold.co/50x50/E53E3E/FFFFFF?text=DEEP" alt="Deep Cleaning Icon" class="icon">
-                <h3>DEEP CLEANING</h3>
-                <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
-                <div class="time-price">
-                    Time :- Around 2-3hrs<br>
-                    <span class="price">₹799/-</span>
-                </div>
-                <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
-                </div>
+          {/* Deep Cleaning Package */}
+          <div className="package-card">
+            <div className="w-12 h-12 bg-car-red rounded-lg flex items-center justify-center mb-4">
+              <span className="text-white font-bold text-lg">🧽</span>
             </div>
+            <h3>DEEP CLEANING</h3>
+            <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
+            <div className="time-price">
+              Time :- Around 2-3hrs<br />
+              <span className="price">₹799/-</span>
+            </div>
+            <div className="package-card-actions">
+              <a href="#book" className="book-now-btn">BOOK NOW</a>
+              <a href="#deep-cleaning" className="more-link">More</a>
+            </div>
+          </div>
 
-            <!-- Card 3: Rubbing & Polishing -->
-            <div class="package-card">
-                <img src="https://placehold.co/50x50/E53E3E/FFFFFF?text=POLISH" alt="Rubbing & Polishing Icon" class="icon">
-                <h3>RUBBING & POLISHING</h3>
-                <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
-                <div class="time-price">
-                    Time :- Around 2-3hrs<br>
-                    <span class="price">₹1399/-</span>
-                </div>
-                <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
-                </div>
+          {/* Rubbing & Polishing Package */}
+          <div className="package-card">
+            <div className="w-12 h-12 bg-car-red rounded-lg flex items-center justify-center mb-4">
+              <span className="text-white font-bold text-lg">🚗</span>
             </div>
+            <h3>RUBBING & POLISHING</h3>
+            <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
+            <div className="time-price">
+              Time :- Around 2-3hrs<br />
+              <span className="price">₹1399/-</span>
+            </div>
+            <div className="package-card-actions">
+              <a href="#book" className="book-now-btn">BOOK NOW</a>
+              <a href="#rubbing-polishing" className="more-link">More</a>
+            </div>
+          </div>
 
-            <!-- Card 4: Windshield Polish -->
-            <div class="package-card">
-                <img src="https://placehold.co/50x50/E53E3E/FFFFFF?text=GLASS" alt="Windshield Polish Icon" class="icon">
-                <h3>WINDSHIELD POLISH</h3>
-                <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
-                <div class="time-price">
-                    Time :- Around 2hrs<br>
-                    <span class="price">₹799/-</span>
-                </div>
-                <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
-                </div>
+          {/* Windshield Polish Package */}
+          <div className="package-card">
+            <div className="w-12 h-12 bg-car-red rounded-lg flex items-center justify-center mb-4">
+              <span className="text-white font-bold text-lg">🪟</span>
             </div>
+            <h3>WINDSHIELD POLISH</h3>
+            <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
+            <div className="time-price">
+              Time :- Around 2hrs<br />
+              <span className="price">₹799/-</span>
+            </div>
+            <div className="package-card-actions">
+              <a href="#book" className="book-now-btn">BOOK NOW</a>
+              <a href="#windshield-polish" className="more-link">More</a>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Why Choose Us Section -->
-    <section class="why-choose-us-section">
-        <div class="why-choose-us-image-container">
-            <!-- Why Choose Us image placeholder updated -->
-            <img src="https://placehold.co/500x350/E53E3E/FFFFFF?text=CAR+CLEANING" alt="Green Car Cleaning" class="why-choose-us-image">
+      {/* Why Choose Us Section */}
+      <section className="bg-white why-choose-section flex flex-col md:flex-row items-center gap-8 max-w-7xl mx-auto">
+        <div className="w-full max-w-md">
+          <img src={carCleaning} alt="Green Car Cleaning" className="w-full h-auto rounded-xl shadow-lg" />
         </div>
-        <div class="why-choose-us-content">
-            <p class="text-sm font-semibold uppercase text-gray-600 mb-1">SWASSH</p>
-            <h2 class="text-4xl md:text-5xl">WHY CHOOSE US//</h2>
-            <p>SWASSH provides professional car cleaning services at your doorstep whenever you want, so you can spend your time doing the things you love.</p>
+        <div className="flex-1 why-choose-content">
+          <p className="text-sm font-semibold uppercase text-gray-600 mb-1">SWASSH</p>
+          <h2 className="font-bold text-gray-800">WHY CHOOSE US//</h2>
+          <p className="text-gray-600">SWASSH provides professional car cleaning services at your doorstep whenever you want, so you can spend your time doing the things you love.</p>
 
-            <div class="progress-bar-container">
-                <div class="progress-bar-label">
-                    <span>QUALITY SERVICES</span>
-                    <span>90%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 90%;"></div>
-                </div>
+          <div className="progress-bar-container">
+            <div className="progress-bar-label">
+              <span>QUALITY SERVICES</span>
+              <span>90%</span>
             </div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{ width: '90%' }}></div>
+            </div>
+          </div>
 
-            <div class="progress-bar-container">
-                <div class="progress-bar-label">
-                    <span>EXPERIENCED TECHNICIANS</span>
-                    <span>85%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 85%;"></div>
-                </div>
+          <div className="progress-bar-container">
+            <div className="progress-bar-label">
+              <span>EXPERIENCED TECHNICIANS</span>
+              <span>85%</span>
             </div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{ width: '85%' }}></div>
+            </div>
+          </div>
 
-            <div class="progress-bar-container">
-                <div class="progress-bar-label">
-                    <span>CUSTOMER SATISFACTION</span>
-                    <span>95%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 95%;"></div>
-                </div>
+          <div className="progress-bar-container">
+            <div className="progress-bar-label">
+              <span>CUSTOMER SATISFACTION</span>
+              <span>95%</span>
             </div>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{ width: '95%' }}></div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="testimonials-header">
-            <p>TESTIMONIAL</p>
-            <h2>WHAT CLIENTS SAY //</h2>
+      {/* Testimonials Section */}
+      <section className="testimonials-section">
+        <div className="testimonials-header">
+          <p className="text-sm uppercase text-gray-400 mb-2">TESTIMONIAL</p>
+          <h2 className="font-bold">WHAT CLIENTS SAY //</h2>
         </div>
-        <div class="testimonial-cards-container">
-            <!-- Testimonial Card 1 -->
-            <div class="testimonial-card">
-                <p>"If you want quality service for car detailing. Then Swassh is the one where they offer high-quality services, without stressing their budget at the same time."</p>
-                <div class="testimonial-author">
-                    <img src="https://placehold.co/50x50/A0AEC0/FFFFFF?text=USER" alt="Geeta Kumari">
-                    <span>-Geeta Kumari</span>
-                </div>
+        <div className="testimonials-grid">
+          {/* Testimonial Card 1 */}
+          <div className="testimonial-card">
+            <p>"If you want quality service for car detailing. Then Swassh is the one where they offer high-quality services, without stressing their budget at the same time."</p>
+            <div className="testimonial-author">
+              <div className="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold">G</span>
+              </div>
+              <span className="font-bold">-Geeta Kumari</span>
             </div>
-            <!-- Testimonial Card 2 -->
-            <div class="testimonial-card">
-                <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
-                <div class="testimonial-author">
-                    <img src="https://placehold.co/50x50/A0AEC0/FFFFFF?text=USER" alt="Rahul Sherewala">
-                    <span>-Rahul Sherewala</span>
-                </div>
+          </div>
+          {/* Testimonial Card 2 */}
+          <div className="testimonial-card">
+            <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
+            <div className="testimonial-author">
+              <div className="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold">R</span>
+              </div>
+              <span className="font-bold">-Rahul Sherewala</span>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Extended Footer Section -->
-    <section class="extended-footer-section">
-        <div class="extended-footer-column">
-            <h3>COMPANY //</h3>
-            <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
-            <div class="phone-contact">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.832 1.442l.636 2.017a.75.75 0 01-.092.836l-2.007 1.604a8.596 8.596 0 004.286 4.286l1.604-2.007a.75.75 0 01.836-.092l2.017.636c.856.222 1.442.972 1.442 1.832V19.5a3 3 0 01-3 3h-1.372c-.86 0-1.61-.586-1.832-1.442l-.636-2.017a.75.75 0 01.092-.836l2.007-1.604a8.596 8.596 0 00-4.286-4.286l-1.604 2.007a.75.75 0 01-.836.092L3.04 5.918A.75.75 0 011.5 4.5zm10.5 6a.75.75 0 01.75.75v.5a.75.75 0 01-1.5 0v-.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
-                </svg>
-                <span>Talk To Our Support<br>9982210776</span>
-            </div>
-            <p class="mt-4">3 K Shivpure Kota (Raj.),</p>
-            <p>near Saras Dairy Shivpura</p>
-            <p>Pincode : 324010</p>
-        </div>
-
-        <div class="extended-footer-column">
-            <h3>OUR SOLUTIONS //</h3>
-            <ul>
-                <li><a href="quick-shine-page.html">Quick Shine</a></li>
-                <li><a href="deep-cleaning-page.html">Deep Cleaning</a></li>
-                <li><a href="rubbing-polishing-page.html">Rubbing & Polishing</a></li>
-                <li><a href="windshield-polish-page.html">Windshield Polish</a></li>
-            </ul>
+      {/* Extended Footer Section */}
+      <section className="extended-footer-section">
+        <div className="extended-footer-column">
+          <h3>COMPANY //</h3>
+          <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
+          <div className="phone-contact">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-car-green">
+              <path fillRule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.832 1.442l.636 2.017a.75.75 0 01-.092.836l-2.007 1.604a8.596 8.596 0 004.286 4.286l1.604-2.007a.75.75 0 01.836-.092l2.017.636c.856.222 1.442.972 1.442 1.832V19.5a3 3 0 01-3 3h-1.372c-.86 0-1.61-.586-1.832-1.442l-.636-2.017a.75.75 0 01.092-.836l2.007-1.604a8.596 8.596 0 00-4.286-4.286l-1.604 2.007a.75.75 0 01-.836.092L3.04 5.918A.75.75 0 011.5 4.5z" clipRule="evenodd" />
+            </svg>
+            <span className="font-bold">Talk To Our Support<br />9982210776</span>
+          </div>
+          <p className="mt-4">3 K Shivpure Kota (Raj.),</p>
+          <p>near Saras Dairy Shivpura</p>
+          <p>Pincode : 324010</p>
         </div>
 
-        <div class="extended-footer-column">
-            <h3>SUBSCRIBE NOW //</h3>
-            <p>Subscribe to our newsletter and be the first to know about exclusive deals, new services, and car care tips.</p>
-            <div class="subscribe-form">
-                <input type="email" placeholder="Email Address">
-                <button type="submit">SEND</button>
-            </div>
-            <div class="social-icons">
-                <!-- Social media icons placeholders -->
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram"></a>
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook"></a>
-            </div>
+        <div className="extended-footer-column">
+          <h3>OUR SOLUTIONS //</h3>
+          <ul className="list-none p-0 m-0">
+            <li className="mb-3"><a href="#quick-shine" className="text-gray-300 hover:text-white transition-colors">Quick Shine</a></li>
+            <li className="mb-3"><a href="#deep-cleaning" className="text-gray-300 hover:text-white transition-colors">Deep Cleaning</a></li>
+            <li className="mb-3"><a href="#rubbing-polishing" className="text-gray-300 hover:text-white transition-colors">Rubbing & Polishing</a></li>
+            <li className="mb-3"><a href="#windshield-polish" className="text-gray-300 hover:text-white transition-colors">Windshield Polish</a></li>
+          </ul>
         </div>
-    </section>
 
-    <!-- Final Copyright Footer -->
-    <footer class="copyright-footer">
+        <div className="extended-footer-column">
+          <h3>SUBSCRIBE NOW //</h3>
+          <p>Subscribe to our newsletter and be the first to know about exclusive deals, new services, and car care tips.</p>
+          <div className="subscribe-form">
+            <input type="email" placeholder="Email Address" className="w-full" />
+            <button type="submit" className="w-full">SEND</button>
+          </div>
+          <div className="social-icons">
+            <a href="#" className="block">
+              <div className="w-8 h-8 bg-car-red rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">IG</span>
+              </div>
+            </a>
+            <a href="#" className="block">
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-xs">FB</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Final Copyright Footer */}
+      <footer className="copyright-footer">
         <p>© Copyright Swassh. All right reserved.</p>
         <div>
-            <a href="#">Home</a> / <a href="#">Booking</a>
+          <a href="#home">Home</a> / <a href="#book">Booking</a>
         </div>
-    </footer>
+      </footer>
 
-    <!-- Contact Us Floating Button -->
-    <a href="#" class="contact-us-float">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.5-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
+      {/* Contact Us Floating Button */}
+      <a href="#contact" className="contact-us-float">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+          <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+          <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
         </svg>
         Contact Us
-    </a>
+      </a>
+    </div>
+  );
+};
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const closeMenu = document.querySelector('.close-menu');
-            const mobileDropdownToggle = document.querySelector('.dropdown-mobile > .nav-button');
-            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
-
-            // Toggle mobile menu visibility
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function() {
-                    mobileMenu.classList.remove('hidden');
-                    mobileMenu.classList.add('flex'); // Show as flex column
-                });
-            }
-
-            // Close mobile menu
-            if (closeMenu) {
-                closeMenu.addEventListener('click', function() {
-                    mobileMenu.classList.remove('flex');
-                    mobileMenu.classList.add('hidden'); // Hide
-                });
-            }
-
-            // Toggle mobile dropdown for "PACKAGES"
-            if (mobileDropdownToggle) {
-                mobileDropdownToggle.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent default link behavior
-                    mobileDropdownContent.classList.toggle('hidden');
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+export default Index;
