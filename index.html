@@ -32,7 +32,7 @@
             background-position: center;
         }
 
-        /* Video element within the container */
+        /* Video element within the container - ensures it shows the entire video content */
         .video-background video {
             min-width: 100%;
             min-height: 100%;
@@ -42,7 +42,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            object-fit: cover; /* Ensures video covers the entire area without distortion */
+            object-fit: contain; /* Changed from 'cover' to 'contain' to show full video content */
         }
 
         /* Main content overlay */
@@ -56,7 +56,6 @@
             justify-content: flex-start; /* Aligns content to the top */
             align-items: center;
             height: 100vh; /* Full viewport height */
-            /* Adjusted opacity for a brighter background - now fully transparent */
             background-color: rgba(0, 0, 0, 0); /* Fully transparent overlay for text readability */
             padding-top: 15vh; /* Initial padding from the top, adjusted for navbar */
             gap: 0.5rem; /* Space between the two text elements */
@@ -99,7 +98,6 @@
         /* Logo styling */
         .navbar-logo {
             height: 40px; /* Fixed height for the logo */
-            /* Removed filter and mix-blend-mode as placeholder is already suitable */
         }
 
         /* Navigation links container */
@@ -137,7 +135,6 @@
         /* Dropdown arrow for 'PACKAGES' */
         .navbar-links .dropdown-arrow {
             margin-left: 0.25rem;
-            /* vertical-align: middle; Removed as flexbox handles alignment now */
         }
 
         /* Dropdown specific styles */
@@ -205,7 +202,7 @@
             align-items: center;
         }
 
-        /* New styles for the Packages section */
+        /* Styles for the Packages section */
         .packages-section {
             background-color: #f8f8f8; /* Light background for the packages section */
             padding: 4rem 1rem;
@@ -380,7 +377,7 @@
             background-color: #45a049;
         }
 
-        /* New styles for Why Choose Us section */
+        /* Styles for Why Choose Us section */
         .why-choose-us-section {
             background-color: white;
             padding: 4rem 1rem;
@@ -530,7 +527,7 @@
             font-size: 1.125rem;
         }
 
-        /* New Extended Footer Section */
+        /* Extended Footer Section */
         .extended-footer-section {
             background-color: #1a1a1a; /* Dark background */
             color: white;
