@@ -32,18 +32,16 @@
             background-position: center;
         }
 
-        /* Video element within the container - ensures it shows the entire video content */
+        /* Video element within the container - ensures it fills the entire area */
         .video-background video {
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100%; /* Fill the container width */
+            height: 100%; /* Fill the container height */
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            /* Changed from 'cover' to 'contain' to ensure the entire video content is visible */
-            object-fit: contain;
+            /* Reverted to 'cover' to ensure the video fills the entire background for the scroll-over effect */
+            object-fit: cover;
         }
 
         /* Main content overlay */
@@ -54,11 +52,14 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Aligns content to the top */
+            /* Aligns content to the center of the remaining viewport height */
+            justify-content: center;
             align-items: center;
-            height: 100vh; /* Full viewport height */
+            /* Calculate height to fill remaining viewport after navbar */
+            min-height: calc(100vh - 64px); /* Assuming navbar height is 64px (4rem) */
             background-color: rgba(0, 0, 0, 0); /* Fully transparent overlay for text readability */
-            padding-top: 15vh; /* Initial padding from the top, adjusted for navbar */
+            padding-top: 0; /* Removed fixed padding as justify-content handles vertical spacing */
+            padding-bottom: 0; /* Removed extra padding */
             gap: 0.5rem; /* Space between the two text elements */
         }
 
@@ -89,11 +90,19 @@
             top: 0;
             left: 0;
             width: 100%;
+            height: 64px; /* Explicitly set navbar height for accurate calc() */
             display: flex;
+            justify-content: space-between; /* Space between logo and menu toggle/links */
             align-items: center;
-            padding: 1rem 2rem; /* Padding for the navbar */
+            padding: 1rem; /* Reduced padding for mobile */
             z-index: 10; /* Ensures navbar is on top of other content */
             border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white line */
+        }
+
+        @media (min-width: 768px) { /* On medium screens and up */
+            .navbar {
+                padding: 1rem 2rem; /* Original padding for desktop */
+            }
         }
 
         /* Logo styling */
@@ -101,12 +110,10 @@
             height: 40px; /* Fixed height for the logo */
         }
 
-        /* Navigation links container */
+        /* Navigation links container (for desktop) */
         .navbar-links {
             display: flex;
             gap: 1rem; /* Default gap between navigation links */
-            flex-grow: 1; /* Allows the links container to take up available space */
-            justify-content: center; /* Centers the links within the available space */
             align-items: center; /* Aligns items vertically in the middle */
         }
 
@@ -176,6 +183,53 @@
             display: block;
         }
 
+        /* Mobile Menu Specific Styles */
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex; /* Ensure it's a flex container for centering SVG */
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); /* Start off-screen to the right */
+            justify-content: flex-start; /* Align content to the top */
+            padding-top: 4rem; /* Padding from the top */
+        }
+
+        #mobile-menu.flex {
+            transform: translateX(0); /* Slide in */
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 2.5rem; /* Larger 'X' */
+            line-height: 1;
+            padding: 0.5rem;
+        }
+
+        .dropdown-mobile .nav-button {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-mobile .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content-mobile {
+            width: 100%; /* Full width within the mobile menu */
+            box-sizing: border-box; /* Include padding in width */
+            padding: 0 1rem; /* Add horizontal padding */
+        }
+
         /* Responsive adjustments for text content */
         .content p {
             font-size: 1.125rem; /* text-xl */
@@ -211,6 +265,7 @@
             position: relative; /* Needed for z-index to be above video */
             z-index: 2; /* Ensure this section is above the video background */
             color: #333; /* Dark text for readability */
+            margin-top: 0; /* Ensure it starts flush after the content section */
         }
 
         .packages-header {
@@ -262,7 +317,7 @@
             gap: 1.5rem;
             max-width: 1200px;
             /* Adjusted margin-top to create the overlapping effect like the image */
-            margin: -4rem auto 0 auto; /* Adjusted to a less negative value */
+            margin: -8rem auto 0 auto; /* Adjusted for more overlap */
             padding: 0 1rem;
         }
 
@@ -721,7 +776,14 @@
             <!-- Logo placeholder updated -->
             <img src="https://placehold.co/150x40/000000/FFFFFF?text=SWASSH+LOGO" alt="Car Care Logo" class="navbar-logo">
         </div>
-        <div class="navbar-links">
+
+        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
+        <button class="menu-toggle md:hidden">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
+        <div class="navbar-links hidden md:flex">
             <a href="car.html" class="nav-button">HOME</a>
             <div class="dropdown">
                 <a href="#" class="nav-button">
@@ -731,11 +793,31 @@
                 <div class="dropdown-content">
                     <a href="quick-shine-page.html">Quick Shine</a>
                     <a href="deep-cleaning-page.html">Deep Cleaning</a>
-                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a> <!-- Link to new page -->
-                    <a href="windshield-polish-page.html">Windshield Polish</a> <!-- Link to new page -->
+                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
+                    <a href="windshield-polish-page.html">Windshield Polish</a>
                 </div>
             </div>
             <a href="#" class="nav-button">CONTACT US</a>
+        </div>
+
+        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
+            <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
+            <div class="flex flex-col gap-6 text-xl">
+                <a href="car.html" class="nav-button text-white">HOME</a>
+                <div class="dropdown-mobile">
+                    <a href="#" class="nav-button text-white flex items-center">
+                        PACKAGES <span class="dropdown-arrow ml-2">&#9660;</span>
+                    </a>
+                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
+                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Quick Shine</a>
+                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Rubbing & Polishing</a>
+                        <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-button text-white">CONTACT US</a>
+            </div>
         </div>
     </nav>
 
@@ -950,5 +1032,39 @@
         </svg>
         Contact Us
     </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileDropdownToggle = document.querySelector('.dropdown-mobile > .nav-button');
+            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+
+            // Toggle mobile menu visibility
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex'); // Show as flex column
+                });
+            }
+
+            // Close mobile menu
+            if (closeMenu) {
+                closeMenu.addEventListener('click', function() {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden'); // Hide
+                });
+            }
+
+            // Toggle mobile dropdown for "PACKAGES"
+            if (mobileDropdownToggle) {
+                mobileDropdownToggle.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    mobileDropdownContent.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
