@@ -32,7 +32,7 @@
             background-position: center;
         }
 
-        /* Video element within the container - ensures it covers the entire area */
+        /* Video element within the container - ensures it shows the entire video content */
         .video-background video {
             min-width: 100%;
             min-height: 100%;
@@ -42,7 +42,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            object-fit: cover; /* Ensures video covers the entire area without distortion */
+            /* Changed from 'cover' to 'contain' to ensure the entire video content is visible */
+            object-fit: contain;
         }
 
         /* Main content overlay */
