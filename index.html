@@ -16,6 +16,7 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #f8f8f8; /* Light background for the page */
         }
 
         /* Video background container */
@@ -100,7 +101,6 @@
 
         @media (min-width: 768px) { /* On medium screens and up */
             .navbar {
-                /* Use flex-grow and justify-center for navbar-links to center them */
                 justify-content: space-between; /* Keep space-between for logo and nav links container */
                 padding: 0rem 2rem; /* Adjusted padding for desktop */
             }
@@ -318,7 +318,7 @@
 
         @media (min-width: 640px) { /* sm breakpoint */
             .package-card-container {
-                grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns on small screens */
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
@@ -367,7 +367,7 @@
         }
 
         .package-card .price {
-            color: #8BC34A; /* Changed from red to light green */
+            color: #8BC34A; /* Red color for price */
         }
 
         .package-card-actions {
@@ -483,7 +483,7 @@
         }
 
         .progress-fill {
-            background-color: #8BC34A; /* Changed from red to light green */
+            background-color: #8BC34A; /* Red fill color */
             height: 100%;
             border-radius: 4px;
         }
@@ -572,17 +572,17 @@
             color: white;
             padding: 4rem 1.5rem;
             display: grid;
-            grid-template-columns: repeat(1, 1fr); /* Single column on small screens */
+            grid-template-columns: repeat(1, 1fr);
             gap: 3rem;
             width: 100%;
-            box-sizing: border-box; /* Include padding in the width calculation */
-            text-align: center; /* Center content for mobile */
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .extended-footer-section {
-                grid-template-columns: repeat(3, 1fr); /* Three columns on larger screens */
-                text-align: left; /* Align text left for desktop */
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
             }
         }
 
@@ -623,22 +623,22 @@
         .phone-contact {
             display: flex;
             align-items: center;
-            justify-content: center; /* Center for mobile */
+            justify-content: center;
             gap: 0.75rem;
             background-color: #333;
             padding: 1rem 1.5rem;
             border-radius: 0.5rem;
             margin-top: 1.5rem;
             width: fit-content;
-            margin-left: auto; /* Center for mobile */
-            margin-right: auto; /* Center for mobile */
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .phone-contact {
-                justify-content: flex-start; /* Align left for desktop */
-                margin-left: 0; /* Reset margin for desktop */
-                margin-right: 0; /* Reset margin for desktop */
+                justify-content: flex-start;
+                margin-left: 0;
+                margin-right: 0;
             }
         }
 
@@ -691,14 +691,14 @@
 
         .social-icons {
             display: flex;
-            justify-content: center; /* Center for mobile */
+            justify-content: center;
             gap: 1rem;
             margin-top: 1.5rem;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .social-icons {
-                justify-content: flex-start; /* Align left for desktop */
+                justify-content: flex-start;
             }
         }
 
@@ -713,7 +713,6 @@
             transform: scale(1.1);
         }
 
-        /* Final Copyright Footer */
         .copyright-footer {
             background-color: #111;
             color: #aaa;
@@ -741,6 +740,153 @@
 
         .copyright-footer a:hover {
             color: white;
+        }
+
+        /* Booking Form Specific Styles - Integrated from booking-form.html */
+        .booking-form-section {
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .booking-form-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1); /* Makes calendar icon white */
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .form-row {
+                flex-direction: row;
+            }
+            .form-row > div {
+                flex: 1;
+            }
+        }
+
+        .time-slot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .package-grid, .car-type-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .package-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .car-type-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .package-item, .car-type-item {
+            background-color: #f0f0f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .package-item.selected, .car-type-item.selected {
+            background-color: #e6ffe6; /* Light green for selected */
+            border-color: #4CAF50; /* Green border for selected */
+        }
+
+        .package-item img, .car-type-item img {
+            height: 60px;
+            width: auto;
+            margin: 0 auto 0.5rem auto;
+        }
+
+        .package-item h4, .car-type-item h4 {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .package-item p, .car-type-item p {
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: fit-content;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -780,7 +926,7 @@
                     <a href="windshield-polish-page.html">Windshield Polish</a>
                 </div>
             </div>
-            <a href="#" class="nav-button">CONTACT US</a>
+            <a href="#booking-form-section" class="nav-button">CONTACT US</a>
         </div>
 
         <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
@@ -799,7 +945,7 @@
                         <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
                     </div>
                 </div>
-                <a href="#" class="nav-button text-white">CONTACT US</a>
+                <a href="#booking-form-section" class="nav-button text-white">CONTACT US</a>
             </div>
         </div>
     </nav>
@@ -960,6 +1106,118 @@
         </div>
     </section>
 
+    <!-- Booking Form Section - Integrated from booking-form.html -->
+    <section id="booking-form-section" class="booking-form-section">
+        <h2>Book Your Car Care Service</h2>
+        <form>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone No.</label>
+                    <input type="tel" id="phone" placeholder="Phone number must be Exactly 10 Digits.">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City</label>
+                <select id="city">
+                    <option value="">Select your city</option>
+                    <option value="jaipur">Jaipur</option>
+                    <option value="kota">Kota</option>
+                    <option value="delhi">Delhi</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" placeholder="Enter your address"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="booking-date">Booking Date</label>
+                <input type="date" id="booking-date" placeholder="dd-mm-yyyy">
+            </div>
+
+            <div class="form-group">
+                <label>Available Time Slot</label>
+                <div class="time-slot-grid">
+                    <label><input type="checkbox" name="time-slot" value="9am-11am"> 9am - 11am</label>
+                    <label><input type="checkbox" name="time-slot" value="11am-1pm"> 11am - 1pm</label>
+                    <label><input type="checkbox" name="time-slot" value="1pm-3pm"> 1pm - 3pm</label>
+                    <label><input type="checkbox" name="time-slot" value="3pm-5pm"> 3pm - 5pm</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Choose Package</label>
+                <div class="package-grid">
+                    <div class="package-item" data-package="quick-shine">
+                        <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=SHINE" alt="Quick Shine Icon">
+                        <h4>Quick Shine</h4>
+                    </div>
+                    <div class="package-item" data-package="deep-cleaning">
+                        <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=DEEP" alt="Deep Cleaning Icon">
+                        <h4>Deep Cleaning</h4>
+                    </div>
+                    <div class="package-item" data-package="rubbing-polishing">
+                        <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=POLISH" alt="Rubbing & Polishing Icon">
+                        <h4>Rubbing & Polishing</h4>
+                    </div>
+                    <div class="package-item" data-package="windshield-polish">
+                        <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=GLASS" alt="Windshield Polish Icon">
+                        <h4>Windshield Polish</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Select Car Type</label>
+                <div class="car-type-grid">
+                    <div class="car-type-item" data-car="hatchback">
+                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=HATCHBACK" alt="Hatchback Car">
+                        <h4>Hatchback</h4>
+                    </div>
+                    <div class="car-type-item" data-car="sedan">
+                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=SEDAN" alt="Sedan Car">
+                        <h4>Sedan</h4>
+                    </div>
+                    <div class="car-type-item" data-car="compact-suv">
+                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=COMPACT+SUV" alt="Compact SUV Car">
+                        <h4>Compact SUV</h4>
+                    </div>
+                    <div class="car-type-item" data-car="5-seater-suv">
+                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=5+SEATER+SUV" alt="5 Seater SUV Car">
+                        <h4>5 Seater SUV</h4>
+                    </div>
+                    <div class="car-type-item" data-car="7-seater-suv">
+                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=7+SEATER+SUV" alt="7 Seater SUV Car">
+                        <h4>7 Seater SUV</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" id="price" placeholder="Price" readonly>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms">
+                <label for="terms">I Agree to the <a href="#" class="text-green-600 font-bold">Terms and Conditions</a> as set out by the user agreement.</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="water-electricity">
+                <label for="water-electricity">Water & Electricity Available</label>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </section>
+
     <!-- Extended Footer Section -->
     <section class="extended-footer-section">
         <div class="extended-footer-column">
@@ -1016,5 +1274,87 @@
         </svg>
         Contact Us
     </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle functionality
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileDropdownToggle = document.querySelector('.dropdown-mobile > .nav-button');
+            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex'); // Show as flex column
+                });
+            }
+
+            if (closeMenu) {
+                closeMenu.addEventListener('click', function() {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden'); // Hide
+                });
+            }
+
+            if (mobileDropdownToggle) {
+                mobileDropdownToggle.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    mobileDropdownContent.classList.toggle('hidden');
+                });
+            }
+
+            // Booking form logic
+            const packageItems = document.querySelectorAll('.package-item');
+            const carTypeItems = document.querySelectorAll('.car-type-item');
+            const priceInput = document.getElementById('price');
+
+            const pricing = {
+                'quick-shine': {
+                    'hatchback': 349, 'sedan': 399, 'compact-suv': 399, '5-seater-suv': 449, '7-seater-suv': 449
+                },
+                'deep-cleaning': {
+                    'hatchback': 799, 'sedan': 899, 'compact-suv': 999, '5-seater-suv': 1199, '7-seater-suv': 1399
+                },
+                'rubbing-polishing': {
+                    'hatchback': 1399, 'sedan': 1599, 'compact-suv': 1799, '5-seater-suv': 1999, '7-seater-suv': 2199
+                },
+                'windshield-polish': {
+                    'hatchback': 799, 'sedan': 899, 'compact-suv': 999, '5-seater-suv': 1199, '7-seater-suv': 1399
+                }
+            };
+
+            let selectedPackage = null;
+            let selectedCarType = null;
+
+            function updatePrice() {
+                if (selectedPackage && selectedCarType) {
+                    const price = pricing[selectedPackage][selectedCarType];
+                    priceInput.value = `₹${price}/-`;
+                } else {
+                    priceInput.value = '';
+                }
+            }
+
+            packageItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    packageItems.forEach(p => p.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedPackage = this.dataset.package;
+                    updatePrice();
+                });
+            });
+
+            carTypeItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    carTypeItems.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedCarType = this.dataset.car;
+                    updatePrice();
+                });
+            });
+        });
+    </script>
 </body>
 </html>
