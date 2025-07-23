@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windshield Polish - Car Care Services</title>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Montserrat for stylish headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles for the body */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #f8f8f8; /* Light background for the page */
+        }
+
+        /* Navigation Bar (replicated from main page for consistency) */
+        .navbar {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem; /* Adjusted padding to match car.html */
+            z-index: 10;
+            background-color: #1a1a1a; /* Dark background for navbar on this page */
+            color: white;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 768px) {
+            .navbar {
+                padding: 0.5rem 2rem;
+            }
+        }
+
+        .navbar-logo {
+            height: 100px; /* Logo height consistent with main page */
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-links {
+                flex-grow: 1;
+                justify-content: center; /* Centering the links */
+                gap: 2rem;
+            }
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-links a:hover {
+            color: #a0aec0;
+            background-color: transparent;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0.375rem;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-weight: normal;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            justify-content: flex-start;
+            padding-top: 4rem;
+        }
+
+        #mobile-menu.flex {
+            transform: translateX(0);
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 2.5rem;
+            line-height: 1;
+            padding: 0.5rem;
+        }
+
+        .dropdown-mobile .nav-button {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-mobile .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content-mobile {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 1rem;
+        }
+        /* End Navbar styles */
+
+        .hero-section {
+            background-image: url('https://placehold.co/1920x1080/38B2AC/FFFFFF?text=WINDSHIELD+POLISH');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            padding: 1rem;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif; /* Applied Montserrat font */
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #ccc;
+        }
+
+        .book-now-hero-btn {
+            background-color: #38B2AC; /* Changed to a teal/greenish color */
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .book-now-hero-btn:hover {
+            background-color: #2C8C88; /* Darker shade on hover */
+        }
+
+        /* Services Grid Section */
+        .services-grid-section {
+            padding: 4rem 1rem;
+            text-align: center;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .services-grid-container {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .services-grid-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 768px) {
+            .services-grid-container {
+                grid-template-columns: repeat(4, minmax(0, 1fr)); /* Adjusted to 4 columns for 4 items */
+            }
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card img {
+            height: 80px;
+            width: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background-color: #38B2AC; /* Changed to a teal/greenish color */
+            padding: 4rem 1rem;
+            color: white;
+            text-align: center;
+        }
+
+        .pricing-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-cards-container {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .pricing-cards-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pricing-cards-container {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+        }
+
+        .pricing-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 3px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: #2C8C88; /* Darker shade on hover */
+        }
+
+        .pricing-card img {
+            height: 100px;
+            width: auto;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .price {
+            color: #2C8C88; /* Darker shade price */
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Contact Us Floating Button */
+        .contact-us-float {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: #38B2AC; /* Changed to a teal/greenish color */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 20;
+        }
+
+        .contact-us-float:hover {
+            background-color: #2C8C88; /* Darker shade on hover */
+        }
+
+        /* Footer Section */
+        .extended-footer-section {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 4rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 3rem;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .extended-footer-section {
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
+            }
+        }
+
+        .extended-footer-column h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #38B2AC; /* Changed to a teal/greenish color */
+        }
+
+        .extended-footer-column p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .extended-footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .extended-footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .extended-footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .extended-footer-column ul li a:hover {
+            color: white;
+        }
+
+        .phone-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background-color: #333;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .phone-contact {
+                justify-content: flex-start;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        .phone-contact svg {
+            width: 24px;
+            height: 24px;
+            fill: #38B2AC; /* Changed to a teal/greenish color */
+        }
+
+        .phone-contact span {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .subscribe-form input[type="email"] {
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #555;
+            background-color: #333;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .subscribe-form input[type="email"]::placeholder {
+            color: #999;
+        }
+
+        .subscribe-form button {
+            background-color: #38B2AC; /* Changed to a teal/greenish color */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #2C8C88; /* Darker shade on hover */
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .social-icons {
+                justify-content: flex-start;
+            }
+        }
+
+        .social-icons a img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+
+        .social-icons a img:hover {
+            transform: scale(1.1);
+        }
+
+        .copyright-footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .copyright-footer {
+                flex-direction: row;
+            }
+        }
+
+        .copyright-footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .copyright-footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo">
+        </div>
+
+        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
+        <button class="menu-toggle md:hidden">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
+        <div class="navbar-links hidden md:flex">
+            <a href="car.html" class="nav-button">HOME</a>
+            <div class="dropdown">
+                <a href="#" class="nav-button">
+                    PACKAGES
+                    <span class="dropdown-arrow">&#9660;</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="quick-shine-page.html">Quick Shine</a>
+                    <a href="deep-cleaning-page.html">Deep Cleaning</a>
+                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
+                    <a href="windshield-polish-page.html">Windshield Polish</a>
+                </div>
+            </div>
+            <a href="#" class="nav-button">CONTACT US</a>
+        </div>
+
+        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
+            <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
+            <div class="flex flex-col gap-6 text-xl">
+                <a href="car.html" class="nav-button text-white">HOME</a>
+                <div class="dropdown-mobile">
+                    <a href="#" class="nav-button text-white flex items-center">
+                        PACKAGES <span class="dropdown-arrow ml-2">&#9660;</span>
+                    </a>
+                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
+                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Quick Shine</a>
+                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Rubbing & Polishing</a>
+                        <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-button text-white">CONTACT US</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="text-white text-5xl font-bold">// WINDSHIELD POLISH //</h1>
+                <div class="breadcrumb">
+                    <a href="car.html">Home</a>
+                    <span>/</span>
+                    <span>Windshield Polish</span>
+                </div>
+                <a href="#" class="book-now-hero-btn">BOOK NOW</a>
+            </div>
+        </section>
+
+        <section class="services-grid-section">
+            <h2>What's Included?</h2>
+            <div class="services-grid-container">
+                <!-- Service Card 1: Shampoo Wash -->
+                <div class="service-card">
+                    <img src="https://placehold.co/80x80/38B2AC/FFFFFF?text=SHAMPOO+WASH" alt="Shampoo Wash Icon">
+                    <h3>Shampoo Wash</h3>
+                    <p>Thorough shampoo wash of the entire car exterior.</p>
+                </div>
+
+                <!-- Service Card 2: Sandpaper Rubbing -->
+                <div class="service-card">
+                    <img src="https://placehold.co/80x80/38B2AC/FFFFFF?text=SANDPAPER+RUBBING" alt="Sandpaper Rubbing Icon">
+                    <h3>Sandpaper Rubbing</h3>
+                    <p>Careful sandpaper rubbing to prepare the windshield surface.</p>
+                </div>
+
+                <!-- Service Card 3: Windshield Rubbing -->
+                <div class="service-card">
+                    <img src="https://placehold.co/80x80/38B2AC/FFFFFF?text=WINDSHIELD+RUBBING" alt="Windshield Rubbing Icon">
+                    <h3>Windshield Rubbing</h3>
+                    <p>Specialized rubbing to remove stubborn water spots and light scratches.</p>
+                </div>
+
+                <!-- Service Card 4: Headlight Rubbing -->
+                <div class="service-card">
+                    <img src="https://placehold.co/80x80/38B2AC/FFFFFF?text=HEADLIGHT+RUBBING" alt="Headlight Rubbing Icon">
+                    <h3>Headlight Rubbing</h3>
+                    <p>Rubbing and polishing of headlights for improved clarity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section (adjusted prices for Windshield Polish) -->
+        <section class="pricing-section">
+            <h2>PRICING</h2>
+            <div class="pricing-cards-container">
+                <!-- Pricing Card 1: Hatchback -->
+                <div class="pricing-card">
+                    <img src="https://placehold.co/100x100/38B2AC/FFFFFF?text=HATCHBACK" alt="Hatchback Car">
+                    <h3>HATCHBACK</h3>
+                    <span class="price">₹799</span>
+                </div>
+
+                <!-- Pricing Card 2: Sedan -->
+                <div class="pricing-card">
+                    <img src="https://placehold.co/100x100/38B2AC/FFFFFF?text=SEDAN" alt="Sedan Car">
+                    <h3>SEDAN</h3>
+                    <span class="price">₹899</span>
+                </div>
+
+                <!-- Pricing Card 3: Compact SUV -->
+                <div class="pricing-card">
+                    <img src="https://placehold.co/100x100/38B2AC/FFFFFF?text=COMPACT+SUV" alt="Compact SUV Car">
+                    <h3>COMPACT SUV</h3>
+                    <span class="price">₹999</span>
+                </div>
+
+                <!-- Pricing Card 4: 5 Seater SUV -->
+                <div class="pricing-card">
+                    <img src="https://placehold.co/100x100/38B2AC/FFFFFF?text=5+SEATER+SUV" alt="5 Seater SUV Car">
+                    <h3>5 SEATER SUV</h3>
+                    <span class="price">₹1199</span>
+                </div>
+
+                <!-- Pricing Card 5: 7 Seater SUV -->
+                <div class="pricing-card">
+                    <img src="https://placehold.co/100x100/38B2AC/FFFFFF?text=7+SEATER+SUV" alt="7 Seater SUV Car">
+                    <h3>7 SEATER SUV</h3>
+                    <span class="price">₹1399</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section for Windshield Polish Page -->
+        <footer class="extended-footer-section">
+            <div class="extended-footer-column">
+                <h3>WINDSHIELD POLISH INCLUDES //</h3>
+                <p>Time - Around 2 hours process</p>
+                <p>Exterior and interior glass cleaning.</p>
+                <p>Water spot and mineral deposit removal.</p>
+                <p>Windshield polishing to remove minor scratches.</p>
+                <p>Application of rain repellent coating.</p>
+                <p>Wiper blade inspection and side mirror cleaning.</p>
+                <div class="phone-contact">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.832 1.442l.636 2.017a.75.75 0 01-.092.836l-2.007 1.604a8.596 8.596 0 004.286 4.286l1.604-2.007a.75.75 0 01.836-.092l2.017.636c.856.222 1.442.972 1.442 1.832V19.5a3 3 0 01-3 3h-1.372c-.86 0-1.61-.586-1.832-1.442l-.636-2.017a.75.75 0 01.092-.836l2.007-1.604a8.596 8.596 0 00-4.286-4.286l-1.604 2.007a.75.75 0 01-.836.092L3.04 5.918A.75.75 0 011.5 4.5zm10.5 6a.75.75 0 01.75.75v.5a.75.75 0 01-1.5 0v-.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Talk To Our Support<br>9982210776</span>
+                </div>
+            </div>
+
+            <div class="extended-footer-column">
+                <h3>OUR SOLUTIONS //</h3>
+                <ul>
+                    <li><a href="quick-shine-page.html">Quick Shine</a></li>
+                    <li><a href="deep-cleaning-page.html">Deep Cleaning</a></li>
+                    <li><a href="rubbing-polishing-page.html">Rubbing & Polishing</a></li>
+                    <li><a href="windshield-polish-page.html">Windshield Polish</a></li>
+                </ul>
+            </div>
+
+            <div class="extended-footer-column">
+                <h3>SUBSCRIBE NOW //</h3>
+                <p>Subscribe to our newsletter and be the first to know about exclusive deals, new services, and car care tips.</p>
+                <div class="subscribe-form">
+                    <input type="email" placeholder="Email Address">
+                    <button type="submit">SEND</button>
+                </div>
+                <div class="social-icons">
+                    <!-- Social media icons placeholders -->
+                    <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram"></a>
+                    <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook"></a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Final Copyright Footer -->
+        <footer class="copyright-footer">
+            <p>© Copyright Swassh. All right reserved.</p>
+            <div>
+                <a href="car.html">Home</a> / <a href="#">Booking</a>
+            </div>
+        </footer>
+
+        <!-- Contact Us Floating Button -->
+        <a href="#" class="contact-us-float">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.5-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
+            </svg>
+            Contact Us
+        </a>
+</body>
+</html>
