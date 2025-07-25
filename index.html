@@ -838,8 +838,8 @@
                     <span class="price">₹349/-</span>
                 </div>
                 <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
+                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                    <a href="booking-form.html" class="more-link">More</a>
                 </div>
             </div>
 
@@ -853,8 +853,8 @@
                     <span class="price">₹799/-</span>
                 </div>
                 <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
+                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                    <a href="booking-form.html" class="more-link">More</a>
                 </div>
             </div>
 
@@ -868,8 +868,8 @@
                     <span class="price">₹1399/-</span>
                 </div>
                 <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
+                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                    <a href="booking-form.html" class="more-link">More</a>
                 </div>
             </div>
 
@@ -883,8 +883,8 @@
                     <span class="price">₹799/-</span>
                 </div>
                 <div class="package-card-actions">
-                    <a href="#" class="book-now-btn">BOOK NOW</a>
-                    <a href="#" class="more-link">More</a>
+                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                    <a href="booking-form.html" class="more-link">More</a>
                 </div>
             </div>
         </div>
@@ -1004,16 +1004,45 @@
     <footer class="copyright-footer">
         <p>© Copyright Swassh. All right reserved.</p>
         <div>
-            <a href="index.html">Home</a> / <a href="#">Booking</a>
+            <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
         </div>
     </footer>
 
     <!-- Contact Us Floating Button -->
-    <a href="https://api.whatsapp.com/send?phone=919982210776" class="contact-us-float">
+    <a href="https://api.whatsapp.com/send?phone=919509208599" class="contact-us-float">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.499-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
         </svg>
         Contact Us
     </a>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
+            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+
+            // Toggle mobile menu visibility
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+
+            // Close mobile menu
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+
+            // Toggle mobile dropdown visibility
+            mobileDropdownToggle.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                mobileDropdownContent.classList.toggle('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
