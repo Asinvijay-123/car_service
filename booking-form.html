@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for clean typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Montserrat for a more stylish heading font (added for consistency) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         /* Base styles for the body */
         body {
@@ -20,19 +22,26 @@
 
         /* Navigation Bar (replicated from main page for consistency) */
         .navbar {
-            position: relative;
+            position: relative; /* Changed from absolute to relative for static positioning on this page */
             width: 100%;
             display: flex;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 0rem 1rem; /* Adjusted padding to match index.html */
             z-index: 10;
-            background-color: #1a1a1a;
+            background-color: #1a1a1a; /* Dark background for consistency */
             color: white;
             justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white line */
+        }
+
+        @media (min-width: 768px) { /* On medium screens and up */
+            .navbar {
+                padding: 0rem 2rem; /* Adjusted padding for desktop */
+            }
         }
 
         .navbar-logo {
-            height: 40px;
+            height: 100px; /* Logo height as requested in index.html */
         }
 
         .navbar-links {
@@ -43,6 +52,8 @@
 
         @media (min-width: 768px) {
             .navbar-links {
+                flex-grow: 1; /* Allow links container to grow */
+                justify-content: center; /* Center the links within the container */
                 gap: 2rem;
             }
         }
@@ -63,6 +74,12 @@
             background-color: transparent;
         }
 
+        /* Dropdown arrow for 'PACKAGES' */
+        .navbar-links .dropdown-arrow {
+            margin-left: 0.25rem;
+        }
+
+        /* Dropdown specific styles */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -98,6 +115,53 @@
 
         .dropdown:hover .dropdown-content {
             display: block;
+        }
+
+        /* Mobile Menu Specific Styles */
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            justify-content: flex-start;
+            padding-top: 4rem;
+        }
+
+        #mobile-menu.flex {
+            transform: translateX(0);
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 2.5rem;
+            line-height: 1;
+            padding: 0.5rem;
+        }
+
+        .dropdown-mobile .nav-button {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-mobile .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content-mobile {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 1rem;
         }
 
         /* Booking Form Specific Styles */
@@ -271,7 +335,7 @@
         }
 
         /* Footer (replicated) */
-        .quick-shine-footer-section {
+        .extended-footer-section { /* Renamed to extended-footer-section for consistency */
             background-color: #1a1a1a;
             color: white;
             padding: 4rem 1.5rem;
@@ -284,47 +348,47 @@
         }
 
         @media (min-width: 768px) {
-            .quick-shine-footer-section {
+            .extended-footer-section { /* Renamed to extended-footer-section for consistency */
                 grid-template-columns: repeat(3, 1fr);
                 text-align: left;
             }
         }
 
-        .quick-shine-footer-column h3 {
+        .extended-footer-column h3 { /* Renamed to extended-footer-column h3 for consistency */
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
             color: #4CAF50;
         }
 
-        .quick-shine-footer-column p {
+        .extended-footer-column p { /* Renamed to extended-footer-column p for consistency */
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 1rem;
             color: #ccc;
         }
 
-        .quick-shine-footer-column ul {
+        .extended-footer-column ul { /* Renamed to extended-footer-column ul for consistency */
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .quick-shine-footer-column ul li {
+        .extended-footer-column ul li { /* Renamed to extended-footer-column ul li for consistency */
             margin-bottom: 0.75rem;
         }
 
-        .quick-shine-footer-column ul li a {
+        .extended-footer-column ul li a { /* Renamed to extended-footer-column ul li a for consistency */
             color: #ccc;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .quick-shine-footer-column ul li a:hover {
+        .extended-footer-column ul li a:hover { /* Renamed to extended-footer-column ul li a:hover for consistency */
             color: white;
         }
 
-        .quick-shine-phone-contact {
+        .phone-contact { /* Renamed to phone-contact for consistency */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -339,33 +403,33 @@
         }
 
         @media (min-width: 768px) {
-            .quick-shine-phone-contact {
+            .phone-contact { /* Renamed to phone-contact for consistency */
                 justify-content: flex-start;
                 margin-left: 0;
                 margin-right: 0;
             }
         }
 
-        .quick-shine-phone-contact svg {
+        .phone-contact svg { /* Renamed to phone-contact svg for consistency */
             width: 24px;
             height: 24px;
             fill: #4CAF50;
         }
 
-        .quick-shine-phone-contact span {
+        .phone-contact span { /* Renamed to phone-contact span for consistency */
             font-size: 1.125rem;
             font-weight: bold;
             color: white;
         }
 
-        .quick-shine-subscribe-form {
+        .subscribe-form { /* Renamed to subscribe-form for consistency */
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
             margin-top: 1rem;
         }
 
-        .quick-shine-subscribe-form input[type="email"] {
+        .subscribe-form input[type="email"] { /* Renamed to subscribe-form input[type="email"] for consistency */
             padding: 0.75rem 1rem;
             border-radius: 0.375rem;
             border: 1px solid #555;
@@ -374,11 +438,11 @@
             font-size: 0.9rem;
         }
 
-        .quick-shine-subscribe-form input[type="email"]::placeholder {
+        .subscribe-form input[type="email"]::placeholder { /* Renamed to subscribe-form input[type="email"]::placeholder for consistency */
             color: #999;
         }
 
-        .quick-shine-subscribe-form button {
+        .subscribe-form button { /* Renamed to subscribe-form button for consistency */
             background-color: #4CAF50;
             color: white;
             padding: 0.75rem 1.5rem;
@@ -389,11 +453,11 @@
             border: none;
         }
 
-        .quick-shine-subscribe-form button:hover {
+        .subscribe-form button:hover { /* Renamed to subscribe-form button:hover for consistency */
             background-color: #45a049;
         }
 
-        .quick-shine-social-icons {
+        .social-icons { /* Renamed to social-icons for consistency */
             display: flex;
             justify-content: center;
             gap: 1rem;
@@ -401,19 +465,19 @@
         }
 
         @media (min-width: 768px) {
-            .quick-shine-social-icons {
+            .social-icons { /* Renamed to social-icons for consistency */
                 justify-content: flex-start;
             }
         }
 
-        .quick-shine-social-icons a img {
+        .social-icons a img { /* Renamed to social-icons a img for consistency */
             width: 30px;
             height: 30px;
             border-radius: 50%;
             transition: transform 0.2s ease;
         }
 
-        .quick-shine-social-icons a img:hover {
+        .social-icons a img:hover { /* Renamed to social-icons a img:hover for consistency */
             transform: scale(1.1);
         }
 
@@ -445,20 +509,56 @@
         .copyright-footer a:hover {
             color: white;
         }
+
+        /* Message box styles */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .message-box button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
-            <img src="https://placehold.co/150x40/000000/FFFFFF?text=SWASSH+LOGO" alt="Car Care Logo" class="navbar-logo">
+            <!-- Logo updated to match index.html -->
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo">
         </div>
-        <div class="navbar-links">
-            <a href="car.html" class="nav-button">HOME</a>
+
+        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
+        <button class="menu-toggle md:hidden">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
+        <div class="navbar-links hidden md:flex">
+            <a href="index.html" class="nav-button">HOME</a>
             <div class="dropdown">
                 <a href="#" class="nav-button">
                     PACKAGES
-                    <span class="dropdown-arrow">&#9660;</span>
+                    <span class="dropdown-arrow">&#9660;</span> <!-- Unicode for down arrow -->
                 </a>
                 <div class="dropdown-content">
                     <a href="quick-shine-page.html">Quick Shine</a>
@@ -467,28 +567,47 @@
                     <a href="windshield-polish-page.html">Windshield Polish</a>
                 </div>
             </div>
-            <a href="booking-form.html" class="nav-button">CONTACT US</a> <!-- Linked to booking form -->
-            <a href="booking-form.html" class="book-now-header-btn ml-4">BOOKING</a> <!-- Linked to booking form -->
+            <a href="booking-form.html" class="nav-button">CONTACT US</a>
+        </div>
+
+        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
+            <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
+            <div class="flex flex-col gap-6 text-xl">
+                <a href="index.html" class="nav-button text-white">HOME</a>
+                <div class="dropdown-mobile">
+                    <a href="#" class="nav-button text-white flex items-center">
+                        PACKAGES <span class="dropdown-arrow ml-2">&#9660;</span>
+                    </a>
+                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
+                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Quick Shine</a>
+                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Rubbing & Polishing</a>
+                        <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
+                    </div>
+                </div>
+                <a href="booking-form.html" class="nav-button text-white">CONTACT US</a>
+            </div>
         </div>
     </nav>
 
     <section class="booking-form-section">
         <h2>Booking Form</h2>
-        <form>
+        <form id="bookingForm">
             <div class="form-row">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Enter your name">
+                    <input type="text" id="name" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone No.</label>
-                    <input type="tel" id="phone" placeholder="Phone number must be Exactly 10 Digits.">
+                    <input type="tel" id="phone" placeholder="Phone number must be Exactly 10 Digits." pattern="[0-9]{10}" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="city">City</label>
-                <select id="city">
+                <select id="city" required>
                     <option value="">Select your city</option>
                     <option value="jaipur">Jaipur</option>
                     <option value="kota">Kota</option>
@@ -498,12 +617,12 @@
 
             <div class="form-group">
                 <label for="address">Address</label>
-                <textarea id="address" placeholder="Enter your address"></textarea>
+                <textarea id="address" placeholder="Enter your address" required></textarea>
             </div>
 
             <div class="form-group">
                 <label for="booking-date">Booking Date</label>
-                <input type="date" id="booking-date" placeholder="dd-mm-yyyy">
+                <input type="date" id="booking-date" placeholder="dd-mm-yyyy" required>
             </div>
 
             <div class="form-group">
@@ -570,12 +689,12 @@
             </div>
 
             <div class="checkbox-group">
-                <input type="checkbox" id="terms">
+                <input type="checkbox" id="terms" required>
                 <label for="terms">I Agree to the <a href="#" class="text-green-600 font-bold">Terms and Conditions</a> as set out by the user agreement.</label>
             </div>
 
             <div class="checkbox-group">
-                <input type="checkbox" id="water-electricity">
+                <input type="checkbox" id="water-electricity" required>
                 <label for="water-electricity">Water & Electricity Available</label>
             </div>
 
@@ -584,74 +703,114 @@
     </section>
 
     <!-- Contact Us Floating Button -->
-    <a href="#" class="contact-us-float">
+    <a href="https://api.whatsapp.com/send?phone=919509208599" class="contact-us-float">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.5-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
+            <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.499-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
         </svg>
         Contact Us
     </a>
 
     <!-- Footer (replicated from main page) -->
-    <footer class="quick-shine-footer-section">
-        <div class="quick-shine-footer-column">
-            <h3>COMPANY //</h3>
-            <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
-            <div class="quick-shine-phone-contact">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.832 1.442l.636 2.017a.75.75 0 01-.092.836l-2.007 1.604a8.596 8.596 0 004.286 4.286l1.604-2.007a.75.75 0 01.836-.092l2.017.636c.856.222 1.442.972 1.442 1.832V19.5a3 3 0 01-3 3h-1.372c-.86 0-1.61-.586-1.832-1.442l-.636-2.017a.75.75 0 01.092-.836l2.007-1.604a8.596 8.596 0 00-4.286-4.286l-1.604 2.007a.75.75 0 01-.836.092L3.04 5.918A.75.75 0 011.5 4.5zm10.5 6a.75.75 0 01.75.75v.5a.75.75 0 01-1.5 0v-.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
-                </svg>
-                <span>Talk To Our Support<br>9982210776</span>
-            </div>
-            <p class="mt-4">3 K Shivpure Kota (Raj.),</p>
-            <p>near Saras Dairy Shivpura</p>
-            <p>Pincode : 324010</p>
-        </div>
-
-        <div class="quick-shine-footer-column">
-            <h3>OUR SOLUTIONS //</h3>
-            <ul>
-                <li><a href="quick-shine-page.html">Quick Shine</a></li>
-                <li><a href="deep-cleaning-page.html">Deep Cleaning</a></li>
-                <li><a href="rubbing-polishing-page.html">Rubbing & Polishing</a></li>
-                <li><a href="windshield-polish-page.html">Windshield Polish</a></li>
-            </ul>
-        </div>
-
-        <div class="quick-shine-footer-column">
-            <h3>SUBSCRIBE NOW //</h3>
-            <p>Subscribe to our newsletter and be the first to know about exclusive deals, new services, and car care tips.</p>
-            <div class="quick-shine-subscribe-form">
-                <input type="email" placeholder="Email Address">
-                <button type="submit">SEND</button>
-            </div>
-            <div class="quick-shine-social-icons">
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram"></a>
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook"></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final Copyright Footer -->
     <footer class="copyright-footer">
         <p>© Copyright Swassh. All right reserved.</p>
         <div>
-            <a href="car.html">Home</a> / <a href="#">Booking</a>
+            <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
         </div>
     </footer>
 
-    <!-- Contact Us Floating Button (replicated) -->
-    <a href="#" class="contact-us-float">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.5-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
-        </svg>
-        Contact Us
-    </a>
+    <!-- Message Box for user feedback -->
+    <div id="messageBox" class="message-box">
+        <p id="messageText"></p>
+        <button onclick="document.getElementById('messageBox').style.display='none';">OK</button>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+        // IMPORTANT: Your actual Firebase project configuration!
+        // This has been updated with the details from your screenshot.
+        const firebaseConfig = {
+            apiKey: "AIzaSyC-fzkmY0_6Ko8mP8B6HM9fUxTXvIqg18s",
+            authDomain: "car-service-9dff6.firebaseapp.com",
+            projectId: "car-service-9dff6",
+            storageBucket: "car-service-9dff6.firebasestorage.app",
+            messagingSenderId: "872557668249",
+            appId: "1:872557668249:web:a60ea16a0af58d916e1508",
+            measurementId: "G-CCFLNVLTVN"
+        };
+
+        // This will be used as the collection path.
+        const firestoreCollectionPath = `bookings`; // Storing directly under 'bookings' for simplicity outside Canvas
+
+        let app;
+        let db;
+        let auth;
+        let userId;
+
+        // Function to show custom message box
+        function showMessageBox(message) {
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            messageText.textContent = message;
+            messageBox.style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Initialize Firebase
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Sign in anonymously for simplicity outside Canvas.
+                // Ensure Anonymous Authentication is enabled in your Firebase project.
+                await signInAnonymously(auth);
+                userId = auth.currentUser?.uid || 'anonymous'; // Fallback to 'anonymous' if UID is not available
+                console.log("Firebase initialized and user authenticated. User ID:", userId);
+            } catch (error) {
+                console.error("Error initializing Firebase or authenticating:", error);
+                showMessageBox("Error initializing the application. Please check your Firebase configuration and network connection.");
+                return; // Stop execution if Firebase fails to initialize
+            }
+
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
+            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+
+            // Toggle mobile menu visibility
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('flex');
+                });
+            }
+
+            // Close mobile menu
+            if (closeMenu) {
+                closeMenu.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            }
+
+            // Toggle mobile dropdown visibility
+            if (mobileDropdownToggle) {
+                mobileDropdownToggle.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    mobileDropdownContent.classList.toggle('hidden');
+                });
+            }
+
+            // Booking form logic
             const packageItems = document.querySelectorAll('.package-item');
             const carTypeItems = document.querySelectorAll('.car-type-item');
             const priceInput = document.getElementById('price');
+            const bookingForm = document.getElementById('bookingForm');
 
             const pricing = {
                 'quick-shine': {
@@ -696,6 +855,65 @@
                     selectedCarType = this.dataset.car;
                     updatePrice();
                 });
+            });
+
+            // Handle form submission
+            bookingForm.addEventListener('submit', async function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Collect form data
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const city = document.getElementById('city').value;
+                const address = document.getElementById('address').value;
+                const bookingDate = document.getElementById('booking-date').value;
+                const selectedTimeSlots = Array.from(document.querySelectorAll('input[name="time-slot"]:checked')).map(cb => cb.value);
+                const price = priceInput.value;
+                const termsAgreed = document.getElementById('terms').checked;
+                const waterElectricityAvailable = document.getElementById('water-electricity').checked;
+
+                // Basic validation
+                if (!name || !phone || !city || !address || !bookingDate || selectedTimeSlots.length === 0 || !selectedPackage || !selectedCarType || !termsAgreed || !waterElectricityAvailable) {
+                    showMessageBox("Please fill in all required fields and make selections.");
+                    return;
+                }
+
+                if (phone.length !== 10 || !/^\d{10}$/.test(phone)) {
+                    showMessageBox("Please enter a valid 10-digit phone number.");
+                    return;
+                }
+
+                const bookingData = {
+                    userId: userId, // Store the user ID
+                    name: name,
+                    phone: phone,
+                    city: city,
+                    address: address,
+                    bookingDate: bookingDate,
+                    timeSlots: selectedTimeSlots,
+                    package: selectedPackage,
+                    carType: selectedCarType,
+                    price: price,
+                    termsAgreed: termsAgreed,
+                    waterElectricityAvailable: waterElectricityAvailable,
+                    timestamp: new Date() // Add a timestamp
+                };
+
+                try {
+                    // Add a new document with a generated ID to the 'bookings' collection
+                    const docRef = await addDoc(collection(db, firestoreCollectionPath), bookingData);
+                    console.log("Document written with ID: ", docRef.id);
+                    showMessageBox("Booking submitted successfully! We will contact you shortly.");
+                    bookingForm.reset(); // Clear the form
+                    packageItems.forEach(p => p.classList.remove('selected')); // Deselect packages
+                    carTypeItems.forEach(c => c.classList.remove('selected')); // Deselect car types
+                    selectedPackage = null;
+                    selectedCarType = null;
+                    updatePrice(); // Clear price display
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                    showMessageBox("Error submitting booking. Please try again.");
+                }
             });
         });
     </script>
