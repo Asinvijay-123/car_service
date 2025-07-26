@@ -267,7 +267,7 @@
         /* Styles for the Packages section */
         .packages-section {
             background-color: #f8f8f8; /* Light background for the packages section */
-            padding: 4rem 1rem;
+            padding: 0rem 1rem; /* Adjusted padding-top to remove extra space */
             text-align: center;
             position: relative; /* Needed for z-index to be above video */
             z-index: 2; /* Ensure this section is above the video background */
@@ -277,9 +277,10 @@
         .packages-header {
             background-color: #8BC34A; /* Changed from red to light green */
             color: white;
-            padding: 4rem 1rem; /* Increased padding-top and padding-bottom */
+            padding: 2.5rem 1rem; /* Adjusted padding to make it less tall */
             text-align: left;
             position: relative;
+            margin-top: 2rem; /* Adjusted margin-top to move it further up */
         }
 
         .tire-track {
@@ -311,8 +312,8 @@
             grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
             gap: 1.5rem;
             max-width: 1200px;
-            /* Adjusted margin-top to create the overlapping effect like the image */
-            margin: -4rem auto 0 auto; /* Adjusted to a less negative value */
+            /* Adjusted margin-top to place cards below the header without overlap */
+            margin: 1.5rem auto 0 auto; /* Positive margin to push cards down */
             padding: 0 1rem;
         }
 
@@ -332,19 +333,28 @@
             background-color: white;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            padding: 1.5rem; /* Adjusted padding */
+            padding: 1.5rem; /* Reverted to original padding */
             text-align: left;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             min-height: 300px; /* Ensure cards have a consistent minimum height */
+            /* Removed position: relative as icons are no longer absolute */
         }
 
+        /* Reverted icon styling to original */
         .package-card .icon {
             height: 50px;
             width: 50px;
             margin-bottom: 1rem;
+            /* Removed object-fit: contain */
         }
+
+        /* Removed .icon-wrapper styling as the div is removed from HTML */
+        /* .icon-wrapper {
+            display: none;
+        } */
+
 
         .package-card h3 {
             font-size: 1.5rem;
@@ -831,7 +841,8 @@
         <div class="package-card-container">
             <!-- Card 1: Quick Shine -->
             <div class="package-card">
-                <img src="https://placehold.co/50x50/8BC34A/FFFFFF?text=SHINE" alt="Quick Shine Icon" class="icon">
+                <!-- Set quick.jpg as the icon for Quick Shine -->
+                <img src="quick.jpg" alt="Quick Shine Icon" class="icon">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
                 <div class="time-price">
@@ -846,7 +857,8 @@
 
             <!-- Card 2: Deep Cleaning -->
             <div class="package-card">
-                <img src="https://placehold.co/50x50/8BC34A/FFFFFF?text=DEEP" alt="Deep Cleaning Icon" class="icon">
+                <!-- Reverted icon to original structure -->
+                <img src="deep.png" alt="Deep Cleaning Icon" class="icon">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
                 <div class="time-price">
@@ -861,7 +873,8 @@
 
             <!-- Card 3: Rubbing & Polishing -->
             <div class="package-card">
-                <img src="https://placehold.co/50x50/8BC34A/FFFFFF?text=POLISH" alt="Rubbing & Polishing Icon" class="icon">
+                <!-- Set rubbing.jpg as the icon for Rubbing & Polishing -->
+                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
                 <div class="time-price">
@@ -876,7 +889,8 @@
 
             <!-- Card 4: Windshield Polish -->
             <div class="package-card">
-                <img src="https://placehold.co/50x50/8BC34A/FFFFFF?text=GLASS" alt="Windshield Polish Icon" class="icon">
+                <!-- Set windshield.jpg as the icon for Windshield Polish -->
+                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
                 <div class="time-price">
@@ -948,7 +962,7 @@
                 <!-- Changed "Swassh" to "Car Care" -->
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
                 <div class="testimonial-author">
-                    <img src="https://placehold.co/50x50/A0AEC0/FFFFFF?text=USER" alt="Geeta Kumari">
+                    <img src="user1_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white">
                     <span>-Geeta Kumari</span>
                 </div>
             </div>
@@ -956,7 +970,7 @@
             <div class="testimonial-card">
                 <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
                 <div class="testimonial-author">
-                    <img src="https://placehold.co/50x50/A0AEC0/FFFFFF?text=USER" alt="Rahul Sherewala">
+                    <img src="user2_review.webp" alt="Rahul Sherewala" class="w-12 h-12 rounded-full object-cover border-2 border-white">
                     <span>-Rahul Sherewala</span>
                 </div>
             </div>
@@ -970,7 +984,7 @@
             <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
             <div class="phone-contact">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.832 1.442l.636 2.017a.75.75 0 01-.092.836l-2.007 1.604a8.596 8.596 0 004.286 4.286l1.604-2.007a.75.75 0 01.836-.092l2.017.636c.856.222 1.442.972 1.442 1.832V19.5a3 3 0 01-3 3h-1.372c-.86 0-1.61-.586-1.832-1.442l-.636-2.017a.75.75 0 01.092-.836l2.007-1.604a8.596 8.596 0 00-4.286-4.286l-1.604 2.007a.75.75 0 01-.836.092L3.04 5.918A.75.75 0 011.5 4.5zm10.5 6a.75.75 0 01.75.75v.5a.75.75 0 01-1.5 0v-.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.832 1.442l.636 2.017a.75.75 0 01-.092.836l-2.007 1.604a8.596 8.596 0 004.286 4.286l1.604-2.007a.75.75 0 01.836-.092l2.017.636c.856.222 1.442.972 1.442 1.832V19.5a3 3 0 01-3 3h-1.372c-.86 0-1.61-.586-1-832-1.442l-.636-2.017a.75.75 0 01.092-.836l2.007-1.604a8.596 8.596 0 00-4.286-4.286l-1.604 2.007a.75.75 0 01-.836.092L3.04 5.918A.75.75 0 011.5 4.5zm10.5 6a.75.75 0 01.75.75v.5a.75.75 0 01-1.5 0v-.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
                 </svg>
                 <span>Talk To Our Support<br>9509208599</span>
             </div>
