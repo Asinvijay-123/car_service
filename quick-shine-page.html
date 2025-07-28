@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for clean typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Montserrat for a more stylish heading font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         /* Base styles for the body */
         body {
@@ -19,29 +21,39 @@
 
         /* Navigation Bar (replicated from main page for consistency) */
         .navbar {
-            position: relative; /* Changed to relative for this page */
+            position: absolute; /* Changed to absolute for transparent overlay */
+            top: 0;
+            left: 0;
             width: 100%;
             display: flex;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 0.5rem 2rem; /* Adjusted padding-top to move the line up */
             z-index: 10;
-            background-color: #1a1a1a; /* Dark background for navbar on this page */
+            background-color: transparent; /* Changed to transparent */
             color: white;
             justify-content: space-between; /* To push logo left and links right */
+            /* Moved border-bottom to here to span full width */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .navbar-logo {
-            height: 40px;
+            /* Removed fixed height, now controlled by Tailwind classes in HTML */
+            /* height: 40px; */
         }
 
-        .navbar-links {
+        .navbar-main-links { /* New class for the centered links container */
             display: flex;
             gap: 1rem;
             align-items: center;
+            justify-content: center; /* Centered the navigation links */
+            flex-grow: 1; /* Allows links container to grow and take available space */
+            /* Removed border-bottom and padding-bottom from here */
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         @media (min-width: 768px) {
-            .navbar-links {
+            .navbar-main-links { /* Apply gap to the new container */
                 gap: 2rem;
             }
         }
@@ -61,6 +73,23 @@
             color: #a0aec0;
             background-color: transparent;
         }
+
+        /* Styling for the new green booking button */
+        .navbar-booking-btn {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-left: auto; /* Pushes the button to the far right */
+        }
+
+        .navbar-booking-btn:hover {
+            background-color: #45a049;
+        }
+
 
         .dropdown {
             position: relative;
@@ -99,10 +128,57 @@
             display: block;
         }
 
+        /* Mobile Menu Specific Styles */
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            justify-content: flex-start;
+            padding-top: 4rem;
+        }
+
+        #mobile-menu.flex {
+            transform: translateX(0);
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 2.5rem;
+            line-height: 1;
+            padding: 0.5rem;
+        }
+
+        .dropdown-mobile .nav-button {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-mobile .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content-mobile {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 1rem;
+        }
+
         /* Hero Section Specific Styles */
         .hero-section {
-            /* Updated background image to car_green.jpg */
-            background-image: url('car_green.jpg');
+            /* Updated background image to pages_back.png */
+            background-image: url('pages_back.png');
             background-size: cover;
             background-position: center;
             height: 60vh; /* Adjust height as needed */
@@ -281,8 +357,8 @@
         }
 
         .pricing-card img {
-            height: 100px; /* Adjust car image size */
-            width: auto;
+            height: 120px; /* Increased height */
+            width: auto; /* Adjusted width to maintain aspect ratio */
             margin-bottom: 1rem;
         }
 
@@ -503,10 +579,18 @@
     <!-- Navigation Bar (replicated for consistency) -->
     <nav class="navbar">
         <div class="logo-container">
-            <img src="https://placehold.co/150x40/000000/FFFFFF?text=SWASSH+LOGO" alt="Car Care Logo" class="navbar-logo">
+            <!-- Updated logo to car logo.png and added responsive classes -->
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24">
         </div>
-        <div class="navbar-links">
-            <a href="car.html" class="nav-button">HOME</a>
+
+        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
+        <button class="menu-toggle md:hidden">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
+        <div class="navbar-main-links hidden md:flex"> <!-- New wrapper for centered links -->
+            <a href="index.html" class="nav-button">HOME</a>
             <div class="dropdown">
                 <a href="#" class="nav-button">
                     PACKAGES
@@ -519,8 +603,29 @@
                     <a href="windshield-polish-page.html">Windshield Polish</a>
                 </div>
             </div>
-            <a href="#" class="nav-button">CONTACT US</a>
-            <a href="#" class="book-now-header-btn ml-4">BOOKING</a>
+            <a href="booking-form.html" class="nav-button">CONTACT US</a>
+        </div>
+        <a href="booking-form.html" class="navbar-booking-btn">BOOKING</a> <!-- Moved and styled booking button -->
+
+        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
+            <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
+            <div class="flex flex-col gap-6 text-xl">
+                <a href="index.html" class="nav-button text-white">HOME</a>
+                <div class="dropdown-mobile">
+                    <a href="#" class="nav-button text-white flex items-center">
+                        PACKAGES <span class="dropdown-arrow ml-2">&#9660;</span>
+                    </a>
+                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
+                        <a href="quick-shine-page.html">Quick Shine</a>
+                        <a href="deep-cleaning-page.html">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
+                        <a href="windshield-polish-page.html">Windshield Polish</a>
+                    </div>
+                </div>
+                <a href="booking-form.html" class="nav-button text-white">CONTACT US</a>
+                <a href="booking-form.html" class="nav-button text-white">BOOKING</a>
+            </div>
         </div>
     </nav>
 
@@ -530,11 +635,11 @@
         <div class="hero-content">
             <h1 class="text-white text-5xl font-bold">// QUICK SHINE //</h1>
             <div class="breadcrumb">
-                <a href="car.html">Home</a>
+                <a href="index.html">Home</a> <!-- Changed from car.html to index.html -->
                 <span>/</span>
                 <span>Quick Shine</span>
             </div>
-            <a href="#" class="book-now-hero-btn">BOOK NOW</a>
+            <a href="booking-form.html" class="book-now-hero-btn">BOOK NOW</a> <!-- Linked to booking-form.html -->
         </div>
     </section>
 
@@ -543,45 +648,45 @@
         <div class="services-grid-container">
             <!-- Service Card 1: Vacuum Cleaning -->
             <div class="service-card">
-                <img src="https://placehold.co/80x80/E53E3E/FFFFFF?text=VACUUM" alt="Vacuum Cleaning Icon">
+                <img src="vaccum.png" alt="Vacuum Cleaning Icon">
                 <h3>Vacuum Cleaning</h3>
                 <p>Thorough vacuuming of the interior, including carpets, seats, and floor mats.</p>
             </div>
 
             <!-- Service Card 2: Interior Dusting -->
             <div class="service-card">
-                <img src="https://placehold.co/80x80/E53E3E/FFFFFF?text=DUST" alt="Interior Dusting Icon">
+                <img src="interiorDusting.png" alt="Interior Dusting Icon">
                 <h3>Interior Dusting</h3>
                 <p>Wiping down all interior surfaces, dashboard, door panels, and console.</p>
             </div>
 
             <!-- Service Card 3: Shampoo Washing -->
             <div class="service-card">
-                <img src="https://placehold.co/80x80/E53E3E/FFFFFF?text=SHAMPOO" alt="Shampoo Washing Icon">
+                <img src="exterior.png" alt="Shampoo Washing Icon">
                 <h3>Shampoo Washing</h3>
                 <p>Exterior wash using high-quality car shampoo to remove dirt and grime.</p>
             </div>
 
             <!-- Service Card 4: Dashboard Polishing -->
             <div class="service-card">
-                <img src="https://placehold.co/80x80/E53E3E/FFFFFF?text=DASH" alt="Dashboard Polishing Icon">
+                <img src="dashboard.png" alt="Dashboard Polishing Icon">
                 <h3>Dashboard Polishing</h3>
                 <p>Application of a protective polish to the dashboard for a glossy finish.</p>
             </div>
 
             <!-- Service Card 5: Tyre Polishing -->
             <div class="service-card">
-                <img src="https://placehold.co/80x80/E53E3E/FFFFFF?text=TYRE" alt="Tyre Polishing Icon">
+                <img src="tyre.png" alt="Tyre Polishing Icon">
                 <h3>Tyre Polishing</h3>
                 <p>Cleaning and polishing of tires to restore their black, shiny appearance.</p>
             </div>
 
-            <!-- Service Card 6: Glass Cleaning -->
-            <div class="service-card">
+            <!-- Removed Service Card 6: Glass Cleaning -->
+            <!-- <div class="service-card">
                 <img src="https://placehold.co/80x80/E53E3E/FFFFFF?text=GLASS" alt="Glass Cleaning Icon">
                 <h3>Glass Cleaning</h3>
                 <p>Streak-free cleaning of all windows and mirrors for crystal-clear visibility.</p>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -591,35 +696,35 @@
         <div class="pricing-cards-container">
             <!-- Pricing Card 1: Hatchback -->
             <div class="pricing-card">
-                <img src="https://placehold.co/100x100/E53E3E/FFFFFF?text=HATCHBACK" alt="Hatchback Car">
+                <img src="hatchback.jpg" alt="Hatchback Car">
                 <h3>HATCHBACK</h3>
                 <span class="price">₹349</span>
             </div>
 
             <!-- Pricing Card 2: Sedan -->
             <div class="pricing-card">
-                <img src="https://placehold.co/100x100/E53E3E/FFFFFF?text=SEDAN" alt="Sedan Car">
+                <img src="sedan.jpg" alt="Sedan Car">
                 <h3>SEDAN</h3>
                 <span class="price">₹399</span>
             </div>
 
             <!-- Pricing Card 3: Compact SUV -->
             <div class="pricing-card">
-                <img src="https://placehold.co/100x100/E53E3E/FFFFFF?text=COMPACT+SUV" alt="Compact SUV Car">
+                <img src="compact-suv.jpg" alt="Compact SUV Car">
                 <h3>COMPACT SUV</h3>
                 <span class="price">₹399</span>
             </div>
 
             <!-- Pricing Card 4: 5 Seater SUV -->
             <div class="pricing-card">
-                <img src="https://placehold.co/100x100/E53E3E/FFFFFF?text=5+SEATER+SUV" alt="5 Seater SUV Car">
+                <img src="suv-5-seater.jpg" alt="5 Seater SUV Car">
                 <h3>5 SEATER SUV</h3>
                 <span class="price">₹449</span>
             </div>
 
             <!-- Pricing Card 5: 7 Seater SUV -->
             <div class="pricing-card">
-                <img src="https://placehold.co/100x100/E53E3E/FFFFFF?text=7+SEATER+SUV" alt="7 Seater SUV Car">
+                <img src="suv-7-seater.jpg" alt="7 Seater SUV Car">
                 <h3>7 SEATER SUV</h3>
                 <span class="price">₹449</span>
             </div>
@@ -668,18 +773,46 @@
 
     <!-- Final Copyright Footer -->
     <footer class="copyright-footer">
-        <p>© Copyright Swassh. All right reserved.</p>
+        <p>© Copyright Car Care. All right reserved.</p>
         <div>
-            <a href="#">Home</a> / <a href="#">Booking</a>
+            <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
         </div>
     </footer>
 
     <!-- Contact Us Floating Button (replicated) -->
-    <a href="#" class="contact-us-float">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.5-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
-        </svg>
+    <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
+        <!-- Replaced SVG with WhatsApp logo image -->
+        <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6">
         Contact Us
     </a>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
+            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+
+            // Toggle mobile menu visibility
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+
+            // Close mobile menu
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+
+            // Toggle mobile dropdown visibility
+            mobileDropdownToggle.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                mobileDropdownContent.classList.toggle('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
