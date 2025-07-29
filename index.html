@@ -108,7 +108,8 @@
 
         /* Logo styling */
         .navbar-logo {
-            height: 100px; /* Logo height as requested */
+            /* Reverted to fixed height */
+            height: 100px;
         }
 
         /* Navigation links container (for desktop) */
@@ -428,7 +429,7 @@
 
         /* Styles for Why Choose Us section */
         .why-choose-us-section {
-            background-color: white;
+            background-color: white; /* Default background */
             padding: 4rem 1rem;
             color: #333;
             display: flex;
@@ -437,6 +438,15 @@
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative; /* Needed for z-index */
+            z-index: 2; /* Ensure this section is above the video background */
+            /* Added background image for this section */
+            background-image: url('bg1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Makes the background fixed while scrolling */
+            color: white; /* Changed text color to white for readability against dark background */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Added text shadow for readability */
         }
 
         @media (min-width: 768px) { /* On medium screens and up */
@@ -447,30 +457,28 @@
             }
         }
 
-        .why-choose-us-image {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            object-fit: cover; /* Ensure the image covers the area without distortion */
+        /* Removed .why-choose-us-image as it's replaced by section background */
+        .why-choose-us-image-container {
+            display: none; /* Hide the image container */
         }
 
         .why-choose-us-content {
             flex: 1;
             padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for text readability */
+            border-radius: 0.75rem;
         }
 
         .why-choose-us-content h2 {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            color: #333;
+            color: white; /* Changed text color to white */
         }
 
         .why-choose-us-content p {
             font-size: 1rem;
-            color: #555;
+            color: #ccc; /* Lighter text for readability */
             margin-bottom: 1.5rem;
         }
 
@@ -483,7 +491,7 @@
             justify-content: space-between;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            color: #333;
+            color: white; /* Changed text color to white */
         }
 
         .progress-bar {
@@ -907,8 +915,9 @@
 
     <!-- Why Choose Us Section -->
     <section class="why-choose-us-section">
+        <!-- The image is now set as a background for the section via CSS -->
         <div class="why-choose-us-image-container">
-            <!-- Why Choose Us image updated to car_green.jpg -->
+            <!-- This image tag is now hidden via CSS as the image is a background -->
             <img src="car_green.jpg" alt="Green Car Cleaning" class="why-choose-us-image">
         </div>
         <div class="why-choose-us-content">
