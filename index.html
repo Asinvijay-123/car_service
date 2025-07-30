@@ -30,15 +30,26 @@
             justify-content: flex-start; /* Aligns content to the top */
             align-items: center;
             height: 100vh; /* Full viewport height for the first page */
-            /* New background image for the first page */
             background-image: url('slide1.jpg'); /* Set slide1.jpg as background */
-            background-size: cover;
-            background-position: center;
+            background-size: cover; /* Ensure image covers the area */
+            background-position: center; /* Center the background image */
             background-repeat: no-repeat;
             padding-top: 17vh; /* Adjusted padding-top to move text higher */
             gap: 0.5rem; /* Space between the two text elements */
-            overflow: hidden; /* Ensure car stays within bounds */
+            overflow: hidden; /* Ensure content stays within bounds */
             background-color: transparent; /* Ensure content area is transparent to show body background */
+        }
+
+        /* Responsive adjustments for the hero text padding */
+        @media (max-width: 767px) { /* For mobile screens */
+            .content {
+                padding-top: 10vh; /* Reduce padding on smaller screens */
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) { /* For tablet screens */
+            .content {
+                padding-top: 15vh; /* Moderate padding for tablets */
+            }
         }
 
         /* Animation for continuous text movement (bounce effect) */
@@ -86,7 +97,6 @@
         /* Logo styling */
         .navbar-logo {
             height: 100px;
-            /* Added max-height for smaller screens to prevent it from being too large */
             max-height: 80px; /* Adjust as needed for smaller devices */
             width: auto; /* Maintain aspect ratio */
         }
@@ -239,6 +249,15 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Added text shadow */
         }
 
+        @media (max-width: 767px) { /* For mobile screens */
+            .content h1 {
+                font-size: 2.5rem; /* Smaller font size for mobile */
+            }
+            .content p {
+                font-size: 1rem; /* Smaller font size for mobile */
+            }
+        }
+
         @media (min-width: 768px) { /* On medium screens and up */
             .content h1 {
                 font-size: 5.5rem; /* Increased from 5rem */
@@ -268,6 +287,16 @@
             text-align: left;
             position: relative;
             margin-top: 2rem; /* Adjusted margin-top to move it further up */
+            /* Ensure responsive padding for the header content */
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .packages-header {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
         }
 
         .tire-track {
@@ -277,7 +306,6 @@
             height: 100%;
             opacity: 0.2; /* Make it subtle */
             z-index: -1;
-            /* Ensure it scales and doesn't cause overflow */
             width: auto;
             max-width: 120%; /* Allow it to be slightly larger than its container */
         }
@@ -302,7 +330,6 @@
             grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
             gap: 1.5rem;
             max-width: 1200px;
-            /* Adjusted margin-top to place cards below the header without overlap */
             margin: 1.5rem auto 0 auto; /* Positive margin to push cards down */
             padding: 0 1rem;
         }
@@ -335,7 +362,6 @@
             height: 50px;
             width: 50px;
             margin-bottom: 1rem;
-            /* Ensure icons scale down if needed */
             max-width: 100%;
             height: auto;
         }
@@ -406,6 +432,18 @@
             z-index: 20;
         }
 
+        /* Responsive positioning for the floating button */
+        @media (max-width: 767px) {
+            .contact-us-float {
+                bottom: 1rem; /* Adjust bottom for smaller screens */
+                left: 50%; /* Center horizontally */
+                transform: translateX(-50%); /* Adjust for centering */
+                width: auto; /* Allow width to adjust to content */
+                padding: 0.6rem 1.2rem; /* Slightly smaller padding */
+                font-size: 0.9rem; /* Smaller font size */
+            }
+        }
+
         .contact-us-float:hover {
             background-color: #45a049;
         }
@@ -423,7 +461,6 @@
             margin: 0 auto;
             position: relative; /* Needed for z-index */
             z-index: 2; /* Ensure this section is above the video background */
-            /* Updated background image for this section */
             background-image: url('image_36bf07.jpg');
             background-size: cover;
             background-position: center;
