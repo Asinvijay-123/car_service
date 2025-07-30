@@ -274,7 +274,6 @@
             text-decoration: none;
             transition: background-color 0.3s ease, color 0.3s ease;
             font-size: clamp(0.7rem, 2vw, 1rem); /* Fluid font size */
-            /* Removed white-space: nowrap; to allow natural wrapping if needed */
         }
 
         .book-now-header-btn:hover {
@@ -285,7 +284,6 @@
         .packages-header h2 {
             font-size: clamp(2rem, 8vw, 5rem); /* Adjusted clamp for more aggressive scaling to keep on fewer lines */
             font-weight: bold;
-            /* Removed min-width, max-width, word-break to allow more natural scaling */
             line-height: 1.2; /* Adjust line height if needed for multi-line */
         }
 
@@ -399,37 +397,13 @@
             color: #333; /* Darker color on hover */
         }
 
-        /* Contact Us button at the bottom */
-        .contact-us-float {
-            position: fixed;
-            bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid bottom position */
-            left: clamp(1rem, 4vw, 1.5rem); /* Fluid left position */
-            background-color: #4CAF50; /* Green background */
-            color: white;
-            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
-            border-radius: 9999px; /* Fully rounded */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            z-index: 20;
-            font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
-        }
-
-        .contact-us-float:hover {
-            background-color: #45a049;
-        }
-
         /* Styles for Why Choose Us section */
         .why-choose-us-section {
             background-color: white; /* Default background */
             padding: clamp(2rem, 8vw, 4rem) 1rem; /* Fluid padding */
             color: #333;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Default to column on small screens */
             align-items: center;
             gap: clamp(1rem, 4vw, 2rem); /* Fluid gap */
             max-width: 1200px;
@@ -447,10 +421,24 @@
 
         @media (min-width: 768px) { /* On medium screens and up */
             .why-choose-us-section {
-                flex-direction: row;
+                flex-direction: row; /* Change to row on medium screens and up */
                 text-align: left;
                 justify-content: center;
             }
+        }
+
+        .why-choose-us-image-container {
+            flex: 1; /* Allow image to take available space */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .why-choose-us-image-container img {
+            max-width: 100%; /* Ensure image scales within its container */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 0.75rem; /* Rounded corners for the image */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Optional shadow */
         }
 
         .why-choose-us-content {
@@ -897,6 +885,9 @@
 
     <!-- Why Choose Us Section -->
     <section class="why-choose-us-section">
+        <div class="why-choose-us-image-container">
+            <img src="Gemini_Generated_Image_ox5odcox5odcox5o.jpg" alt="Car Cleaning Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Car+Cleaning';">
+        </div>
         <div class="why-choose-us-content">
             <p class="text-sm font-semibold uppercase text-gray-200 mb-1">CAR CARE</p> <!-- Adjusted text color for readability -->
             <h2 class="text-4xl md:text-5xl">WHY CHOOSE US//</h2>
