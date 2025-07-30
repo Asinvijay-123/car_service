@@ -13,6 +13,7 @@
     <style>
         /* Base styles for the body */
         body {
+            
             font-family: 'Inter', sans-serif;
             margin: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -239,8 +240,9 @@
             padding: 0rem 1rem; /* Adjusted padding-top to remove extra space */
             text-align: center;
             position: relative; /* Needed for z-index to be above video */
-            z-index: 2; /* Ensure this section is above the video background */
+            z-index: 2; /* Ensures this section is above the video background */
             color: #333; /* Dark text for readability */
+            margin-bottom: clamp(2rem, 8vw, 4rem); /* Added margin-bottom for spacing */
         }
 
         .packages-header {
@@ -399,28 +401,34 @@
 
         /* Styles for Why Choose Us section */
         .why-choose-us-section {
-            background-color: white; /* Default background */
-            padding: clamp(2rem, 8vw, 4rem) 1rem; /* Fluid padding */
-            color: #333;
+            background-color: white; /* Changed to white background */
+            padding: clamp(2rem, 8vw, 4rem) 0; /* Removed horizontal padding here */
+            color: #333; /* Default text color for this section */
             display: flex;
             flex-direction: column; /* Default to column on small screens */
             align-items: center;
             gap: clamp(1rem, 4vw, 2rem); /* Fluid gap */
-            max-width: 1200px;
-            margin: 0 auto;
+            /* Removed max-width and margin: 0 auto; from here */
             position: relative; /* Needed for z-index */
-            z-index: 2; /* Ensure this section is above the video background */
-            /* Updated background image for this section */
-            background-image: url('image_36bf07.jpg'); /* Restored original image name */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Makes the background fixed while scrolling */
-            color: white; /* Changed text color to white for readability against dark background */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Added text shadow for readability */
+            z-index: 2; /* Ensure this section is above other elements */
+            /* Removed background-image and background-attachment */
+            text-shadow: none; /* Removed text shadow as background is light */
+        }
+
+        /* New inner container for content to keep it centered */
+        .why-choose-us-inner-container {
+            max-width: 1200px; /* Max width for content */
+            margin: 0 auto; /* Center the content */
+            width: 100%; /* Take full width within the max-width */
+            padding: 0 1rem; /* Add horizontal padding to inner container */
+            display: flex; /* Apply flex to inner container */
+            flex-direction: column; /* Default to column on small screens */
+            align-items: center;
+            gap: inherit; /* Inherit gap from parent section */
         }
 
         @media (min-width: 768px) { /* On medium screens and up */
-            .why-choose-us-section {
+            .why-choose-us-inner-container {
                 flex-direction: row; /* Change to row on medium screens and up */
                 text-align: left;
                 justify-content: center;
@@ -444,20 +452,24 @@
         .why-choose-us-content {
             flex: 1;
             padding: clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for text readability */
+            background-color: transparent; /* Changed to transparent to show white background of section */
             border-radius: 0.75rem;
+        }
+
+        .why-choose-us-content p.text-sm { /* Targeting the "CAR CARE" uppercase text */
+            color: #666; /* Darker color for readability on white background */
         }
 
         .why-choose-us-content h2 {
             font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid font size */
             font-weight: bold;
             margin-bottom: clamp(0.8rem, 3vw, 1rem); /* Fluid margin */
-            color: white;
+            color: #333; /* Changed to dark text for readability */
         }
 
         .why-choose-us-content p {
             font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
-            color: #ccc;
+            color: #555; /* Changed to dark text for readability */
             margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
         }
 
@@ -470,7 +482,7 @@
             justify-content: space-between;
             font-weight: bold;
             margin-bottom: clamp(0.3rem, 1vw, 0.5rem); /* Fluid margin */
-            color: white;
+            color: #333; /* Changed to dark text for readability */
             font-size: clamp(0.7rem, 2vw, 0.9rem); /* Fluid font size */
         }
 
@@ -885,41 +897,43 @@
 
     <!-- Why Choose Us Section -->
     <section class="why-choose-us-section">
-        <div class="why-choose-us-image-container">
-            <img src="Gemini_Generated_Image_ox5odcox5odcox5o.png" alt="Car Cleaning Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Car+Cleaning';">
-        </div>
-        <div class="why-choose-us-content">
-            <p class="text-sm font-semibold uppercase text-gray-200 mb-1">CAR CARE</p> <!-- Adjusted text color for readability -->
-            <h2 class="text-4xl md:text-5xl">WHY CHOOSE US//</h2>
-            <p>CAR CARE provides professional car cleaning services at your doorstep whenever you want, so you can spend your time doing the things you love.</p>
-
-            <div class="progress-bar-container">
-                <div class="progress-bar-label">
-                    <span>QUALITY SERVICES</span>
-                    <span>90%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 90%;"></div>
-                </div>
+        <div class="why-choose-us-inner-container">
+            <div class="why-choose-us-image-container">
+                <img src="Gemini_Generated_Image_ox5odcox5odcox5o.png" alt="Car Cleaning Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Car+Cleaning';">
             </div>
+            <div class="why-choose-us-content">
+                <p class="text-sm font-semibold uppercase mb-1">CAR CARE</p> <!-- Adjusted text color for readability -->
+                <h2 class="text-4xl md:text-5xl">WHY CHOOSE US//</h2>
+                <p>CAR CARE provides professional car cleaning services at your doorstep whenever you want, so you can spend your time doing the things you love.</p>
 
-            <div class="progress-bar-container">
-                <div class="progress-bar-label">
-                    <span>EXPERIENCED TECHNICIANS</span>
-                    <span>85%</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-label">
+                        <span>QUALITY SERVICES</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%;"></div>
+                    </div>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 85%;"></div>
-                </div>
-            </div>
 
-            <div class="progress-bar-container">
-                <div class="progress-bar-label">
-                    <span>CUSTOMER SATISFACTION</span>
-                    <span>95%</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-label">
+                        <span>EXPERIENCED TECHNICIANS</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 95%;"></div>
+
+                <div class="progress-bar-container">
+                    <div class="progress-bar-label">
+                        <span>CUSTOMER SATISFACTION</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%;"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -936,7 +950,7 @@
             <div class="testimonial-card">
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
                 <div class="testimonial-author">
-                    <img src="user1_review.webp" alt="Rahul Sherewala " class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=User1';">
+                    <img src="user1_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=User1';">
                     <span>-Geeta Kumari</span>
                 </div>
             </div>
@@ -944,7 +958,7 @@
             <div class="testimonial-card">
                 <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
                 <div class="testimonial-author">
-                    <img src="user2_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=User2';">
+                    <img src="user2_review.webp" alt="Rahul Sherewala" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=User2';">
                     <span>-Rahul Sherewala</span>
                 </div>
             </div>
