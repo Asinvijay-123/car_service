@@ -17,7 +17,6 @@
             margin: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
             background-color: #f8f8f8; /* Light background for the page */
-            /* Removed background-image from body as it's now on .content */
         }
 
         /* Main content overlay - now acts as the first page background */
@@ -42,32 +41,6 @@
             background-color: transparent; /* Ensure content area is transparent to show body background */
         }
 
-        /* Styling for the animated car GIF - REMOVED */
-        /* .animated-car-gif {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 175%;
-            max-width: 2300px;
-            height: auto;
-            z-index: 2;
-            animation: moveCar 10s linear infinite alternate;
-        }
-
-        .car-gif-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: none;
-            box-shadow: none;
-        }
-
-        .car-gif-image:hover {
-            transform: translateX(-50%);
-            box-shadow: none;
-        } */
-
         /* Animation for continuous text movement (bounce effect) */
         @keyframes bounceText {
             0% {
@@ -88,16 +61,6 @@
         .animated-text.delay-1 {
             animation-delay: 0.5s; /* Delay for the second text element */
         }
-
-        /* Keyframe animation for horizontal car movement - REMOVED */
-        /* @keyframes moveCar {
-            0% {
-                transform: translateX(-50%) translateX(-5%);
-            }
-            100% {
-                transform: translateX(-50%) translateX(5%);
-            }
-        } */
 
         /* Navigation bar styling */
         .navbar {
@@ -122,8 +85,17 @@
 
         /* Logo styling */
         .navbar-logo {
-            /* Reverted to fixed height */
             height: 100px;
+            /* Added max-height for smaller screens to prevent it from being too large */
+            max-height: 80px; /* Adjust as needed for smaller devices */
+            width: auto; /* Maintain aspect ratio */
+        }
+
+        @media (min-width: 768px) {
+            .navbar-logo {
+                height: 100px; /* Restore original height on larger screens */
+                max-height: none; /* Remove max-height constraint */
+            }
         }
 
         /* Navigation links container (for desktop) */
@@ -305,6 +277,9 @@
             height: 100%;
             opacity: 0.2; /* Make it subtle */
             z-index: -1;
+            /* Ensure it scales and doesn't cause overflow */
+            width: auto;
+            max-width: 120%; /* Allow it to be slightly larger than its container */
         }
 
         .book-now-header-btn {
@@ -354,22 +329,16 @@
             flex-direction: column;
             justify-content: space-between;
             min-height: 300px; /* Ensure cards have a consistent minimum height */
-            /* Removed position: relative as icons are no longer absolute */
         }
 
-        /* Reverted icon styling to original */
         .package-card .icon {
             height: 50px;
             width: 50px;
             margin-bottom: 1rem;
-            /* Removed object-fit: contain */
+            /* Ensure icons scale down if needed */
+            max-width: 100%;
+            height: auto;
         }
-
-        /* Removed .icon-wrapper styling as the div is removed from HTML */
-        /* .icon-wrapper {
-            display: none;
-        } */
-
 
         .package-card h3 {
             font-size: 1.5rem;
@@ -471,7 +440,6 @@
             }
         }
 
-        /* Removed .why-choose-us-image as it's replaced by section background */
         .why-choose-us-image-container {
             display: none; /* Hide the image container */
         }
@@ -781,7 +749,7 @@
     <nav class="navbar">
         <div class="logo-container">
             <!-- Logo updated with the provided image -->
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo">
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo" onerror="this.onerror=null;this.src='https://placehold.co/100x100/000000/FFFFFF?text=Logo';">
         </div>
 
         <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
@@ -835,10 +803,6 @@
         <h1 class="font-bold animated-text delay-1">
             CAR CARE
         </h1>
-        <!-- Animated Car GIF - Removed -->
-        <!-- <div class="animated-car-gif">
-            <img src="car image background-Photoroom.png" alt="Animated Car on Road" class="car-gif-image">
-        </div> -->
     </div>
 
     <!-- Packages Section -->
@@ -860,7 +824,7 @@
             <!-- Card 1: Quick Shine -->
             <div class="package-card">
                 <!-- Set quick.jpg as the icon for Quick Shine -->
-                <img src="quick.jpg" alt="Quick Shine Icon" class="icon">
+                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/8BC34A/FFFFFF?text=Icon';">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
                 <div class="time-price">
@@ -876,7 +840,7 @@
             <!-- Card 2: Deep Cleaning -->
             <div class="package-card">
                 <!-- Reverted icon to original structure -->
-                <img src="deep.png" alt="Deep Cleaning Icon" class="icon">
+                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/8BC34A/FFFFFF?text=Icon';">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
                 <div class="time-price">
@@ -892,7 +856,7 @@
             <!-- Card 3: Rubbing & Polishing -->
             <div class="package-card">
                 <!-- Set rubbing.jpg as the icon for Rubbing & Polishing -->
-                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon">
+                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/8BC34A/FFFFFF?text=Icon';">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
                 <div class="time-price">
@@ -908,7 +872,7 @@
             <!-- Card 4: Windshield Polish -->
             <div class="package-card">
                 <!-- Set windshield.jpg as the icon for Windshield Polish -->
-                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon">
+                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/8BC34A/FFFFFF?text=Icon';">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
                 <div class="time-price">
@@ -928,7 +892,7 @@
         <!-- The image is now set as a background for the section via CSS -->
         <div class="why-choose-us-image-container">
             <!-- This image tag is now hidden via CSS as the image is a background -->
-            <img src="car_green.jpg" alt="Green Car Cleaning" class="why-choose-us-image">
+            <img src="car_green.jpg" alt="Green Car Cleaning" class="why-choose-us-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/8BC34A/FFFFFF?text=Why+Choose+Us';">
         </div>
         <div class="why-choose-us-content">
             <!-- Changed "SWASSH" to "CAR CARE" -->
@@ -981,7 +945,7 @@
                 <!-- Changed "Swassh" to "Car Care" -->
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
                 <div class="testimonial-author">
-                    <img src="user1_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+                    <img src="user1_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/CCCCCC/000000?text=User1';">
                     <span>-Geeta Kumari</span>
                 </div>
             </div>
@@ -989,7 +953,7 @@
             <div class="testimonial-card">
                 <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
                 <div class="testimonial-author">
-                    <img src="user2_review.webp" alt="Rahul Sherewala" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+                    <img src="user2_review.webp" alt="Rahul Sherewala" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/CCCCCC/000000?text=User2';">
                     <span>-Rahul Sherewala</span>
                 </div>
             </div>
@@ -1031,8 +995,8 @@
             </div>
             <div class="social-icons">
                 <!-- Social media icons placeholders -->
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram"></a>
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook"></a>
+                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram" onerror="this.onerror=null;this.src='https://placehold.co/30x30/000000/FFFFFF?text=IG';"></a>
+                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook" onerror="this.onerror=null;this.src='https://placehold.co/30x30/000000/FFFFFF?text=FB';"></a>
             </div>
         </div>
     </section>
@@ -1049,7 +1013,7 @@
     <!-- Contact Us Floating Button -->
     <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
         <!-- Replaced SVG with WhatsApp logo image -->
-        <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6">
+        <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" onerror="this.onerror=null;this.src='https://placehold.co/24x24/25D366/FFFFFF?text=WA';">
         Contact Us
     </a>
 
