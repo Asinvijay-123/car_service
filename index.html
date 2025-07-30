@@ -461,12 +461,40 @@
             margin: 0 auto;
             position: relative; /* Needed for z-index */
             z-index: 2; /* Ensure this section is above the video background */
-            background-image: url('image_36bf07.jpg');
+            background-image: url('image_d0dc86.jpg'); /* Updated background image */
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Makes the background fixed while scrolling */
+            background-attachment: scroll; /* Changed from fixed to scroll for better mobile performance */
             color: white; /* Changed text color to white for readability against dark background */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Added text shadow for readability */
+        }
+
+        /* Specific styles for the image and content within Why Choose Us section */
+        .why-choose-us-section .why-choose-us-image-container {
+            display: block; /* Make the image container visible */
+            flex: 1;
+            max-width: 50%; /* Adjust width for desktop */
+            margin-right: 2rem; /* Space between image and content */
+        }
+
+        .why-choose-us-section .why-choose-us-image {
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            object-fit: cover; /* Ensure image covers the area */
+        }
+
+        @media (max-width: 767px) { /* Mobile specific adjustments */
+            .why-choose-us-section {
+                flex-direction: column; /* Stack image and content vertically */
+                padding: 2rem 1rem; /* Adjust padding for mobile */
+            }
+            .why-choose-us-section .why-choose-us-image-container {
+                max-width: 100%; /* Full width on mobile */
+                margin-right: 0;
+                margin-bottom: 1.5rem; /* Space below image */
+            }
         }
 
         @media (min-width: 768px) { /* On medium screens and up */
@@ -475,10 +503,6 @@
                 text-align: left;
                 justify-content: center;
             }
-        }
-
-        .why-choose-us-image-container {
-            display: none; /* Hide the image container */
         }
 
         .why-choose-us-content {
@@ -926,16 +950,13 @@
 
     <!-- Why Choose Us Section -->
     <section class="why-choose-us-section">
-        <!-- The image is now set as a background for the section via CSS -->
+        <!-- The image is now explicitly placed and styled -->
         <div class="why-choose-us-image-container">
-            <!-- This image tag is now hidden via CSS as the image is a background -->
             <img src="car_green.jpg" alt="Green Car Cleaning" class="why-choose-us-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/8BC34A/FFFFFF?text=Why+Choose+Us';">
         </div>
         <div class="why-choose-us-content">
-            <!-- Changed "SWASSH" to "CAR CARE" -->
             <p class="text-sm font-semibold uppercase text-gray-600 mb-1">CAR CARE</p>
             <h2 class="text-4xl md:text-5xl">WHY CHOOSE US//</h2>
-            <!-- Changed "SWASSH" to "CAR CARE" -->
             <p>CAR CARE provides professional car cleaning services at your doorstep whenever you want, so you can spend your time doing the things you love.</p>
 
             <div class="progress-bar-container">
@@ -979,7 +1000,6 @@
         <div class="testimonial-cards-container">
             <!-- Testimonial Card 1 -->
             <div class="testimonial-card">
-                <!-- Changed "Swassh" to "Car Care" -->
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
                 <div class="testimonial-author">
                     <img src="user1_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/CCCCCC/000000?text=User1';">
