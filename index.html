@@ -36,7 +36,6 @@
             background-position: center;
             background-repeat: no-repeat;
             /* Adjusted padding-top using Tailwind classes for responsiveness */
-            /* padding-top: 17vh;  -- Replaced by Tailwind classes below */
             gap: 0.5rem; /* Space between the two text elements */
             overflow: hidden; /* Ensure car stays within bounds */
             background-color: transparent; /* Ensure content area is transparent to show body background */
@@ -86,20 +85,8 @@
 
         /* Logo styling - Made responsive with max-height and auto width */
         .navbar-logo {
-            max-height: 80px; /* Default max height for mobile */
+            max-height: clamp(60px, 10vw, 100px); /* Fluid height for logo */
             width: auto; /* Maintain aspect ratio */
-        }
-
-        @media (min-width: 640px) { /* Small screens and up */
-            .navbar-logo {
-                max-height: 90px;
-            }
-        }
-
-        @media (min-width: 768px) { /* Medium screens and up */
-            .navbar-logo {
-                max-height: 100px; /* Original height for desktop */
-            }
         }
 
         /* Navigation links container (for desktop) */
@@ -127,6 +114,7 @@
             border-radius: 0.375rem;
             display: flex;
             align-items: center;
+            font-size: clamp(0.8rem, 2vw, 1rem); /* Fluid font size for nav links */
         }
 
         .navbar-links a:hover {
@@ -149,7 +137,7 @@
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 160px;
+            min-width: clamp(120px, 20vw, 160px); /* Fluid min-width for dropdown */
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 0.375rem;
@@ -166,6 +154,7 @@
             display: block;
             text-align: left;
             font-weight: normal;
+            font-size: clamp(0.7rem, 2vw, 0.9rem); /* Fluid font size for dropdown items */
         }
 
         .dropdown-content a:hover {
@@ -203,7 +192,7 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 8vw, 2.5rem); /* Fluid font size for close button */
             line-height: 1;
             padding: 0.5rem;
         }
@@ -212,6 +201,7 @@
             padding: 0.5rem 0.75rem;
             border-radius: 0.375rem;
             transition: background-color 0.3s ease;
+            font-size: clamp(1rem, 4vw, 1.25rem); /* Fluid font size for mobile nav buttons */
         }
 
         .dropdown-mobile .nav-button:hover {
@@ -226,27 +216,17 @@
 
         /* Responsive adjustments for text content */
         .content p {
-            color: white; /* Changed text color to white */
-            font-size: 1.25rem; /* Increased from 1.125rem (text-xl to text-2xl) */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Added text shadow */
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .content p {
-                font-size: 1.75rem; /* Increased from 1.5rem (md:text-2xl to md:text-3xl) */
-            }
+            color: white;
+            font-size: clamp(1rem, 3vw, 1.75rem); /* Fluid font size for main content paragraph */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; to allow natural wrapping */
         }
 
         .content h1 {
-            font-family: 'Montserrat', sans-serif; /* Applied Montserrat font */
-            font-size: 3.8rem; /* Increased from 3.5rem */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Added text shadow */
-        }
-
-        @media (min-width: 768px) { /* On medium screens and up */
-            .content h1 {
-                font-size: 5.5rem; /* Increased from 5rem */
-            }
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem); /* Fluid font size for main content heading */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; to allow natural wrapping */
         }
 
         /* Responsive adjustment for logo position */
@@ -268,7 +248,7 @@
         .packages-header {
             background-color: #8BC34A; /* Changed from red to light green */
             color: white;
-            padding: 2.5rem 1rem; /* Adjusted padding to make it less tall */
+            padding: clamp(1.5rem, 5vw, 2.5rem) 1rem; /* Fluid padding */
             text-align: left;
             position: relative;
             margin-top: 2rem; /* Adjusted margin-top to move it further up */
@@ -290,11 +270,12 @@
         .book-now-header-btn {
             background-color: white;
             color: #8BC34A; /* Changed from red to light green */
-            padding: 0.75rem 1.5rem;
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             border-radius: 0.375rem;
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: clamp(0.7rem, 2vw, 1rem); /* Fluid font size */
         }
 
         .book-now-header-btn:hover {
@@ -302,13 +283,18 @@
             color: #689F38; /* Changed from darker red to darker green */
         }
 
+        .packages-header h2 {
+            font-size: clamp(1.8rem, 5vw, 3rem); /* Fluid font size for header title */
+            font-weight: bold;
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
+        }
+
         .package-card-container {
             display: grid;
             grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
-            gap: 1.5rem;
+            gap: clamp(1rem, 4vw, 1.5rem); /* Fluid gap */
             max-width: 1200px;
-            /* Adjusted margin-top to place cards below the header without overlap */
-            margin: 1.5rem auto 0 auto; /* Positive margin to push cards down */
+            margin: clamp(1rem, 4vw, 1.5rem) auto 0 auto; /* Fluid margin */
             padding: 0 1rem;
         }
 
@@ -328,39 +314,45 @@
             background-color: white;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            padding: 1.5rem; /* Reverted to original padding */
+            padding: clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             text-align: left;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 300px; /* Ensure cards have a consistent minimum height */
         }
 
         .package-card .icon {
-            height: 50px;
-            width: 50px;
-            margin-bottom: 1rem;
+            width: clamp(30px, 8vw, 50px); /* Fluid icon sizing */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
             object-fit: contain; /* Ensure icons scale down without cropping */
         }
 
         .package-card h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3.5vw, 1.5rem); /* Fluid font size */
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: clamp(0.25rem, 1vw, 0.5rem); /* Fluid margin */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .package-card p {
-            font-size: 0.95rem;
+            font-size: clamp(0.75rem, 2.5vw, 0.95rem); /* Fluid font size */
             color: #555;
-            margin-bottom: 1rem;
-            flex-grow: 1; /* Allows description to take available space */
+            margin-bottom: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
+            flex-grow: 1;
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .package-card .time-price {
-            font-size: 1.125rem;
+            font-size: clamp(0.8rem, 2.5vw, 1.125rem); /* Fluid font size */
             font-weight: bold;
-            margin-top: 1rem;
+            margin-top: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
             color: #333;
+            display: flex; /* Use flex to keep time and price on one line */
+            flex-wrap: nowrap; /* Attempt to prevent wrapping within this container */
+            justify-content: flex-start;
+            align-items: baseline;
+            gap: 0.5rem; /* Small gap between time and price */
         }
 
         .package-card .price {
@@ -371,19 +363,19 @@
             display: flex;
             justify-content: flex-start; /* Align items to the start */
             align-items: center;
-            margin-top: 1rem;
-            gap: 1rem; /* Space between buttons */
+            margin-top: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
+            gap: clamp(0.5rem, 2vw, 1rem); /* Fluid gap */
         }
 
         .package-card-actions .book-now-btn {
             background-color: #8BC34A; /* Changed from red to light green */
             color: white;
-            padding: 0.5rem 1rem;
+            padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
             border-radius: 0.375rem;
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            font-size: 0.875rem; /* Adjusted font size */
+            font-size: clamp(0.7rem, 2vw, 0.875rem); /* Fluid font size */
         }
 
         .package-card-actions .book-now-btn:hover {
@@ -393,8 +385,7 @@
         .package-card-actions .more-link {
             color: #666; /* Default color for 'More' link */
             text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.3s ease;
+            font-size: clamp(0.7rem, 2vw, 0.875rem); /* Fluid font size */
         }
 
         .package-card-actions .more-link:hover {
@@ -404,11 +395,11 @@
         /* Contact Us button at the bottom */
         .contact-us-float {
             position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
+            bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid bottom position */
+            left: clamp(1rem, 4vw, 1.5rem); /* Fluid left position */
             background-color: #4CAF50; /* Green background */
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             border-radius: 9999px; /* Fully rounded */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
@@ -418,6 +409,7 @@
             font-weight: bold;
             transition: background-color 0.3s ease;
             z-index: 20;
+            font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
         }
 
         .contact-us-float:hover {
@@ -427,12 +419,12 @@
         /* Styles for Why Choose Us section */
         .why-choose-us-section {
             background-color: white; /* Default background */
-            padding: 4rem 1rem;
+            padding: clamp(2rem, 8vw, 4rem) 1rem; /* Fluid padding */
             color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
+            gap: clamp(1rem, 4vw, 2rem); /* Fluid gap */
             max-width: 1200px;
             margin: 0 auto;
             position: relative; /* Needed for z-index */
@@ -456,34 +448,38 @@
 
         .why-choose-us-content {
             flex: 1;
-            padding: 1rem;
+            padding: clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
             background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for text readability */
             border-radius: 0.75rem;
         }
 
         .why-choose-us-content h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid font size */
             font-weight: bold;
-            margin-bottom: 1rem;
-            color: white; /* Changed text color to white */
+            margin-bottom: clamp(0.8rem, 3vw, 1rem); /* Fluid margin */
+            color: white;
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .why-choose-us-content p {
-            font-size: 1rem;
-            color: #ccc; /* Lighter text for readability */
-            margin-bottom: 1.5rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
+            color: #ccc;
+            margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .progress-bar-container {
-            margin-bottom: 1rem;
+            margin-bottom: clamp(0.8rem, 3vw, 1rem); /* Fluid margin */
         }
 
         .progress-bar-label {
             display: flex;
             justify-content: space-between;
             font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: white; /* Changed text color to white */
+            margin-bottom: clamp(0.3rem, 1vw, 0.5rem); /* Fluid margin */
+            color: white;
+            font-size: clamp(0.7rem, 2vw, 0.9rem); /* Fluid font size */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .progress-bar {
@@ -503,32 +499,34 @@
         .testimonials-section {
             background-color: #222; /* Dark background for testimonials */
             color: white;
-            padding: 4rem 1rem;
+            padding: clamp(2rem, 8vw, 4rem) 1rem; /* Fluid padding */
             position: relative;
             overflow: hidden;
         }
 
         .testimonials-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: clamp(1.5rem, 6vw, 3rem); /* Fluid margin */
         }
 
         .testimonials-header p {
-            font-size: 0.875rem;
+            font-size: clamp(0.7rem, 2vw, 0.875rem); /* Fluid font size */
             text-transform: uppercase;
             color: #a0aec0;
-            margin-bottom: 0.5rem;
+            margin-bottom: clamp(0.3rem, 1vw, 0.5rem); /* Fluid margin */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .testimonials-header h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid font size */
             font-weight: bold;
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .testimonial-cards-container {
             display: flex;
             flex-direction: column; /* Stack vertically on small screens */
-            gap: 2rem;
+            gap: clamp(1rem, 4vw, 2rem); /* Fluid gap */
             max-width: 1200px;
             margin: 0 auto;
             justify-content: center;
@@ -545,28 +543,29 @@
         .testimonial-card {
             background-color: #333; /* Slightly lighter dark background for cards */
             border-radius: 0.75rem;
-            padding: 2rem;
+            padding: clamp(1.5rem, 6vw, 2rem); /* Fluid padding */
             position: relative;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            max-width: 500px; /* Limit card width */
+            max-width: clamp(280px, 80vw, 500px); /* Fluid max-width */
             text-align: left;
         }
 
         .testimonial-card p {
-            font-size: 1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
             line-height: 1.5;
-            margin-bottom: 1.5rem;
+            margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: clamp(0.5rem, 2vw, 1rem); /* Fluid gap */
         }
 
         .testimonial-author img {
-            width: 50px;
-            height: 50px;
+            width: clamp(40px, 8vw, 50px); /* Fluid size for avatar */
+            height: clamp(40px, 8vw, 50px); /* Fluid size for avatar */
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid white;
@@ -574,17 +573,18 @@
 
         .testimonial-author span {
             font-weight: bold;
-            font-size: 1.125rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.125rem); /* Fluid font size */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         /* Extended Footer Section */
         .extended-footer-section {
             background-color: #1a1a1a; /* Dark background */
             color: white;
-            padding: 4rem 1.5rem;
+            padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            gap: 3rem;
+            gap: clamp(2rem, 6vw, 3rem); /* Fluid gap */
             width: 100%;
             box-sizing: border-box;
             text-align: center;
@@ -598,17 +598,18 @@
         }
 
         .extended-footer-column h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3.5vw, 1.5rem); /* Fluid font size */
             font-weight: bold;
-            margin-bottom: 1.5rem;
+            margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
             color: #8BC34A; /* Light green accent for headers */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .extended-footer-column p {
-            font-size: 0.9rem;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem); /* Fluid font size */
             line-height: 1.5;
-            margin-bottom: 1rem;
-            color: #ccc;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .extended-footer-column ul {
@@ -618,13 +619,15 @@
         }
 
         .extended-footer-column ul li {
-            margin-bottom: 0.75rem;
+            margin-bottom: clamp(0.5rem, 2vw, 0.75rem); /* Fluid margin */
         }
 
         .extended-footer-column ul li a {
             color: #ccc;
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: clamp(0.75rem, 2vw, 0.9rem); /* Fluid font size */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .extended-footer-column ul li a:hover {
@@ -635,11 +638,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
+            gap: clamp(0.5rem, 2vw, 0.75rem); /* Fluid gap */
             background-color: #333;
-            padding: 1rem 1.5rem;
+            padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             border-radius: 0.5rem;
-            margin-top: 1.5rem;
+            margin-top: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
             width: fit-content;
             margin-left: auto;
             margin-right: auto;
@@ -654,31 +657,32 @@
         }
 
         .phone-contact svg {
-            width: 24px;
-            height: 24px;
+            width: clamp(20px, 4vw, 24px); /* Fluid icon size */
+            height: clamp(20px, 4vw, 24px); /* Fluid icon size */
             fill: #4CAF50; /* Green phone icon */
         }
 
         .phone-contact span {
-            font-size: 1.125rem;
+            font-size: clamp(0.8rem, 2.5vw, 1.125rem); /* Fluid font size */
             font-weight: bold;
             color: white;
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .subscribe-form {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1rem;
+            gap: clamp(0.5rem, 2vw, 0.75rem); /* Fluid gap */
+            margin-top: clamp(0.8rem, 3vw, 1rem); /* Fluid margin */
         }
 
         .subscribe-form input[type="email"] {
-            padding: 0.75rem 1rem;
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
             border-radius: 0.375rem;
             border: 1px solid #555;
             background-color: #333;
             color: white;
-            font-size: 0.9rem;
+            font-size: clamp(0.75rem, 2vw, 0.9rem); /* Fluid font size */
         }
 
         .subscribe-form input[type="email"]::placeholder {
@@ -688,12 +692,13 @@
         .subscribe-form button {
             background-color: #4CAF50; /* Green send button */
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             border-radius: 0.375rem;
             font-weight: bold;
             transition: background-color 0.3s ease;
             cursor: pointer;
             border: none;
+            font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
         }
 
         .subscribe-form button:hover {
@@ -703,8 +708,8 @@
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: clamp(0.8rem, 3vw, 1rem); /* Fluid gap */
+            margin-top: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
         }
 
         @media (min-width: 768px) {
@@ -714,8 +719,8 @@
         }
 
         .social-icons a img {
-            width: 30px;
-            height: 30px;
+            width: clamp(25px, 5vw, 30px); /* Fluid size for social icons */
+            height: clamp(25px, 5vw, 30px); /* Fluid size for social icons */
             border-radius: 50%;
             transition: transform 0.2s ease;
         }
@@ -727,9 +732,9 @@
         .copyright-footer {
             background-color: #111;
             color: #aaa;
-            padding: 1rem 1.5rem;
+            padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             text-align: center;
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 2vw, 0.8rem); /* Fluid font size */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -743,10 +748,17 @@
             }
         }
 
+        .copyright-footer p {
+            font-size: clamp(0.7rem, 2vw, 0.8rem); /* Fluid font size */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
+        }
+
         .copyright-footer a {
             color: #aaa;
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: clamp(0.7rem, 2vw, 0.8rem); /* Fluid font size */
+            /* Removed white-space: nowrap; and text-overflow: ellipsis; */
         }
 
         .copyright-footer a:hover {
@@ -759,7 +771,7 @@
     <nav class="navbar">
         <div class="logo-container">
             <!-- Logo updated with responsive max-height and auto width -->
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo">
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=LOGO';">
         </div>
 
         <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
@@ -819,7 +831,7 @@
     <section class="packages-section">
         <div class="packages-header">
             <!-- Tire track image placeholder updated -->
-            <img src="https://placehold.co/200x100/8BC34A/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track">
+            <img src="https://placehold.co/200x100/8BC34A/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" onerror="this.onerror=null;this.src='https://placehold.co/200x100/8BC34A/FFFFFF?text=TIRE+TRACK+DESIGN';">
             <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
                 <div class="w-full text-left">
                     <p class="text-sm font-semibold uppercase mb-1">OUR PACKAGES</p>
@@ -833,12 +845,11 @@
         <div class="package-card-container">
             <!-- Card 1: Quick Shine -->
             <div class="package-card">
-                <img src="quick.jpg" alt="Quick Shine Icon" class="icon">
+                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Quick';">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
                 <div class="time-price">
-                    Time :- Around 1hr<br>
-                    <span class="price">₹349/-</span>
+                    Time :- Around 1hr <span class="price">₹349/-</span>
                 </div>
                 <div class="package-card-actions">
                     <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
@@ -848,12 +859,11 @@
 
             <!-- Card 2: Deep Cleaning -->
             <div class="package-card">
-                <img src="deep.png" alt="Deep Cleaning Icon" class="icon">
+                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Deep';">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
                 <div class="time-price">
-                    Time :- Around 2-3hrs<br>
-                    <span class="price">₹799/-</span>
+                    Time :- Around 2-3hrs <span class="price">₹799/-</span>
                 </div>
                 <div class="package-card-actions">
                     <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
@@ -863,12 +873,11 @@
 
             <!-- Card 3: Rubbing & Polishing -->
             <div class="package-card">
-                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon">
+                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Rubbing';">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
                 <div class="time-price">
-                    Time :- Around 2-3hrs<br>
-                    <span class="price">₹1399/-</span>
+                    Time :- Around 2-3hrs <span class="price">₹1399/-</span>
                 </div>
                 <div class="package-card-actions">
                     <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
@@ -878,12 +887,11 @@
 
             <!-- Card 4: Windshield Polish -->
             <div class="package-card">
-                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon">
+                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Windshield';">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
                 <div class="time-price">
-                    Time :- Around 2hrs<br>
-                    <span class="price">₹799/-</span>
+                    Time :- Around 2hrs <span class="price">₹799/-</span>
                 </div>
                 <div class="package-card-actions">
                     <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
@@ -943,7 +951,7 @@
             <div class="testimonial-card">
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
                 <div class="testimonial-author">
-                    <img src="user1_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+                    <img src="user1_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=User1';">
                     <span>-Geeta Kumari</span>
                 </div>
             </div>
@@ -951,7 +959,7 @@
             <div class="testimonial-card">
                 <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
                 <div class="testimonial-author">
-                    <img src="user2_review.webp" alt="Rahul Sherewala" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+                    <img src="user2_review.webp" alt="Rahul Sherewala" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=User2';">
                     <span>-Rahul Sherewala</span>
                 </div>
             </div>
@@ -967,7 +975,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.832 1.442l.636 2.017a.75.75 0 01-.092.836l-2.007 1.604a8.596 8.596 0 004.286 4.286l1.604-2.007a.75.75 0 01.836-.092l2.017.636c.856.222 1.442.972 1.442 1.832V19.5a3 3 0 01-3 3h-1.372c-.86 0-1.61-.586-1-832-1.442l-.636-2.017a.75.75 0 01.092-.836l2.007-1.604a8.596 8.596 0 00-4.286-4.286l-1.604 2.007a.75.75 0 01-.836.092L3.04 5.918A.75.75 0 011.5 4.5zm10.5 6a.75.75 0 01.75.75v.5a.75.75 0 01-1.5 0v-.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
                 </svg>
-                <span>Talk To Our Support<br>9509208599</span>
+                <span>Talk To Our Support 9509208599</span>
             </div>
             <p class="mt-4">3 K Shivpure Kota (Raj.),</p>
             <p>near Saras Dairy Shivpura</p>
@@ -993,8 +1001,8 @@
             </div>
             <div class="social-icons">
                 <!-- Social media icons placeholders were already in original code -->
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram"></a>
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook"></a>
+                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram" onerror="this.onerror=null;this.src='https://placehold.co/30x30/000000/FFFFFF?text=IG';"></a>
+                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook" onerror="this.onerror=null;this.src='https://placehold.co/30x30/000000/FFFFFF?text=FB';"></a>
             </div>
         </div>
     </section>
@@ -1009,7 +1017,7 @@
 
     <!-- Contact Us Floating Button -->
     <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
-        <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6">
+        <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" onerror="this.onerror=null;this.src='https://placehold.co/24x24/00E676/FFFFFF?text=WA';">
         Contact Us
     </a>
 
