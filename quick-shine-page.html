@@ -200,17 +200,6 @@
                 padding-top: 5rem; /* Adjusted padding-top for mobile to be less but still sufficient */
                 padding-bottom: 3vh; /* Reduced padding for mobile */
             }
-            .hero-content h1 {
-                /* Adjusted clamp values for a smaller range on mobile */
-                font-size: clamp(1rem, 5vw, 2.5rem); /* Smaller base font size for better fitting */
-                padding: 0 1rem;
-            }
-            .hero-content h1:not(:last-child) {
-                margin-bottom: 0.5rem; /* Reduced space for smaller screens */
-            }
-            .hero-content .breadcrumb {
-                font-size: 0.75rem; /* Smaller font for breadcrumb on mobile */
-            }
         }
         
         .hero-overlay {
@@ -228,7 +217,7 @@
         }
 
         .hero-content h1 {
-            font-size: 3rem; /* Adjusted default font size to be a little bigger */
+            font-size: clamp(2rem, 8vw, 5rem); /* Adjusted to use clamp for all sizes for fluid scaling */
             font-weight: bold;
             margin-bottom: 1rem;
             white-space: nowrap; /* Keep text on a single line */
@@ -236,13 +225,6 @@
             text-overflow: ellipsis; /* Add ellipsis for overflow text */
         }
         
-        /* New media query for larger screens for h1 */
-        @media (min-width: 768px) {
-            .hero-content h1 {
-                font-size: 4rem; /* Adjusted for desktop */
-            }
-        }
-
         .breadcrumb {
             display: flex;
             align-items: center;
