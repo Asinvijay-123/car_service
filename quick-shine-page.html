@@ -180,7 +180,7 @@
             background-image: url('pages_back.png');
             background-size: cover;
             background-position: center;
-            height: 60vh;
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: flex-end; /* Pushed to bottom */
@@ -189,20 +189,20 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            padding-top: 15vh; /* Re-added padding-top to shift content down from the top edge */
-            padding-bottom: 5vh; /* Added padding to create a gap from the bottom edge */
+            padding-top: 7rem; /* Increased padding-top to give more space */
+            padding-bottom: 5vh;
         }
         
         /* Responsive hero height and font sizes */
         @media (max-width: 767px) {
             .hero-section {
-                height: 40vh; /* Shorter height on mobile */
-                padding-top: 12vh; /* Reduced padding-top for mobile */
+                min-height: 40vh; /* Shorter height on mobile */
+                padding-top: 5rem; /* Adjusted padding-top for mobile to be less but still sufficient */
                 padding-bottom: 3vh; /* Reduced padding for mobile */
             }
             .hero-content h1 {
                 /* Adjusted clamp values for a smaller range on mobile */
-                font-size: clamp(1.5rem, 6vw, 2.5rem); /* Smaller base font size for better fitting */
+                font-size: clamp(1rem, 5vw, 2.5rem); /* Smaller base font size for better fitting */
                 padding: 0 1rem;
             }
             .hero-content h1:not(:last-child) {
@@ -228,15 +228,18 @@
         }
 
         .hero-content h1 {
-            font-size: 2.5rem; /* Smaller default font size */
+            font-size: 3rem; /* Adjusted default font size to be a little bigger */
             font-weight: bold;
             margin-bottom: 1rem;
+            white-space: nowrap; /* Keep text on a single line */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Add ellipsis for overflow text */
         }
         
         /* New media query for larger screens for h1 */
         @media (min-width: 768px) {
             .hero-content h1 {
-                font-size: 3.5rem; /* Adjusted for desktop */
+                font-size: 4rem; /* Adjusted for desktop */
             }
         }
 
