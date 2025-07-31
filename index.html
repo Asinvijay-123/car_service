@@ -34,18 +34,29 @@
             gap: 0.5rem; /* Space between the two text elements */
             overflow: hidden; /* Ensure car stays within bounds */
             background-color: transparent; /* Ensure content area is transparent to show body background */
+            /* Removed padding-top as hero-video handles centering */
+            padding-top: 0;
         }
 
         /* Video background styling */
-        .video-background {
-            position: absolute;
+        .hero-video {
+            position: absolute; /* Changed from relative to absolute to allow full coverage */
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Ensures the entire video is visible, scaling down to fit */
-            background-color: black; /* Fills empty space if object-fit: contain creates bars */
-            z-index: -1; /* Puts the video behind the content */
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -2; /* Placed behind overlay and content */
+        }
+
+        .hero-video video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%; /* Changed from 100vw to 100% to fill parent */
+            min-height: 100%; /* Changed from 100vh to 100% to fill parent */
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Ensures video covers the entire area, cropping as needed */
         }
 
         /* Overlay for video to improve text readability */
@@ -57,6 +68,32 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5); /* Dark overlay */
             z-index: -1; /* Below content, above video */
+        }
+
+        /* Hero text styling */
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2; /* Ensures text is above video and overlay */
+            width: 100%; /* Ensure text container takes full width for centering */
+            padding: 0 1rem; /* Add some horizontal padding */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        .hero-text h4 {
+            font-size: clamp(1rem, 3vw, 1.75rem); /* Fluid font size for main content paragraph */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin-bottom: 0.5rem; /* Space between h4 and h1 */
+        }
+
+        .hero-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem); /* Fluid font size for main content heading */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
         }
 
         /* Animation for continuous text movement (bounce effect) */
@@ -882,23 +919,20 @@
         </div>
     </nav>
 
-    <div class="content pt-24 sm:pt-32 lg:pt-48"> <!-- Adjusted padding-top using Tailwind classes -->
-        <!-- Video Background -->
-        <video autoplay loop muted class="video-background">
-            <source src="car_video_gemini.mp4" type="video/mp4">
-            <source src="कार_धुलाई_वीडियो_निर्माण.mp4" type="video/mp4"> <!-- Fallback/alternative video -->
-            <source src="car wash.mp4" type="video/mp4"> <!-- Fallback/alternative video -->
-            Your browser does not support the video tag.
-        </video>
-        <!-- Video Overlay for readability -->
-        <div class="video-overlay"></div>
-
-        <p class="mb-2 animated-text text-xl sm:text-2xl lg:text-3xl"> <!-- Responsive font sizes -->
-            // DOORSTEP CAR CLEANING SERVICES //
-        </p>
-        <h1 class="font-bold animated-text delay-1 text-5xl sm:text-6xl lg:text-7xl"> <!-- Responsive font sizes -->
-            CAR CARE
-        </h1>
+    <div class="content"> <!-- Removed padding-top here as hero-video handles it -->
+        <div class="hero-video">
+            <video autoplay muted loop playsinline>
+                <source src="car_video_gemini.mp4" type="video/mp4">
+                <source src="कार_धुलाई_वीडियो_निर्माण.mp4" type="video/mp4"> <!-- Fallback/alternative video -->
+                <source src="car wash.mp4" type="video/mp4"> <!-- Fallback/alternative video -->
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay"></div> <!-- Overlay for text readability -->
+            <div class="hero-text">
+                <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
+                <h1 class="animated-text delay-1">CAR CARE</h1>
+            </div>
+        </div>
     </div>
 
     <!-- Packages Section -->
