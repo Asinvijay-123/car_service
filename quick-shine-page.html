@@ -183,37 +183,36 @@
             height: 60vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Changed to flex-end to push content to the bottom */
+            justify-content: flex-end; /* Pushed to bottom */
             align-items: center;
             color: white;
             text-align: center;
             position: relative;
             z-index: 1;
-            padding-bottom: 5vh; /* Added padding to create space from the bottom */
+            padding-top: 15vh; /* Re-added padding-top to shift content down from the top edge */
+            padding-bottom: 5vh; /* Added padding to create a gap from the bottom edge */
         }
-
+        
         /* Responsive hero height and font sizes */
         @media (max-width: 767px) {
             .hero-section {
                 height: 40vh; /* Shorter height on mobile */
+                padding-top: 12vh; /* Reduced padding-top for mobile */
                 padding-bottom: 3vh; /* Reduced padding for mobile */
             }
             .hero-content h1 {
-                font-size: 2.5rem; /* Smaller font on mobile */
-                /* Added a smaller font size for very small screens to prevent overflow */
-                font-size: 2rem;
+                /* Adjusted clamp values for a smaller range on mobile */
+                font-size: clamp(1.5rem, 6vw, 2.5rem); /* Smaller base font size for better fitting */
                 padding: 0 1rem;
             }
             .hero-content h1:not(:last-child) {
                 margin-bottom: 0.5rem; /* Reduced space for smaller screens */
             }
-        }
-        @media (min-width: 480px) and (max-width: 767px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .hero-content .breadcrumb {
+                font-size: 0.75rem; /* Smaller font for breadcrumb on mobile */
             }
         }
-
+        
         .hero-overlay {
             background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
             position: absolute;
@@ -229,7 +228,7 @@
         }
 
         .hero-content h1 {
-            font-size: 3rem;
+            font-size: 2.5rem; /* Smaller default font size */
             font-weight: bold;
             margin-bottom: 1rem;
         }
@@ -237,7 +236,7 @@
         /* New media query for larger screens for h1 */
         @media (min-width: 768px) {
             .hero-content h1 {
-                font-size: 5rem; /* Adjust as needed for desktop */
+                font-size: 3.5rem; /* Adjusted for desktop */
             }
         }
 
@@ -303,7 +302,7 @@
         }
 
         @media (min-width: 1024px) {
-             /* Adjusted to 5 columns on large screens to fit the new pricing section layout better */
+            /* Adjusted to 5 columns on large screens to fit the new pricing section layout better */
             .services-grid-container {
                 grid-template-columns: repeat(5, minmax(0, 1fr));
             }
@@ -689,7 +688,7 @@
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="text-white text-5xl font-bold">// QUICK SHINE //</h1>
+            <h1 class="text-white font-bold">// QUICK SHINE //</h1>
             <div class="breadcrumb">
                 <a href="index.html">Home</a>
                 <span>/</span>
@@ -706,35 +705,30 @@
             <div class="service-card">
                 <img src="vaccum.png" alt="Vacuum Cleaning Icon" onerror="this.onerror=null;this.src='https://placehold.co/80x80/4CAF50/FFFFFF?text=VACUUM';">
                 <h3>Vacuum Cleaning</h3>
-                <p>Thorough vacuuming of the interior, including carpets, seats, and floor mats.</p>
             </div>
 
             <!-- Service Card 2: Interior Dusting -->
             <div class="service-card">
                 <img src="interiorDusting.png" alt="Interior Dusting Icon" onerror="this.onerror=null;this.src='https://placehold.co/80x80/4CAF50/FFFFFF?text=DUST';">
                 <h3>Interior Dusting</h3>
-                <p>Wiping down all interior surfaces, dashboard, door panels, and console.</p>
             </div>
 
             <!-- Service Card 3: Shampoo Washing -->
             <div class="service-card">
                 <img src="exterior.png" alt="Shampoo Washing Icon" onerror="this.onerror=null;this.src='https://placehold.co/80x80/4CAF50/FFFFFF?text=WASH';">
                 <h3>Shampoo Washing</h3>
-                <p>Exterior wash using high-quality car shampoo to remove dirt and grime.</p>
             </div>
 
             <!-- Service Card 4: Dashboard Polishing -->
             <div class="service-card">
                 <img src="dashboard.png" alt="Dashboard Polishing Icon" onerror="this.onerror=null;this.src='https://placehold.co/80x80/4CAF50/FFFFFF?text=DASH';">
                 <h3>Dashboard Polishing</h3>
-                <p>Application of a protective polish to the dashboard for a glossy finish.</p>
             </div>
 
             <!-- Service Card 5: Tyre Polishing -->
             <div class="service-card">
                 <img src="tyre.png" alt="Tyre Polishing Icon" onerror="this.onerror=null;this.src='https://placehold.co/80x80/4CAF50/FFFFFF?text=TYRE';">
                 <h3>Tyre Polishing</h3>
-                <p>Cleaning and polishing of tires to restore their black, shiny appearance.</p>
             </div>
         </div>
     </section>
