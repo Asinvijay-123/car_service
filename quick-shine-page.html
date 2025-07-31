@@ -183,21 +183,34 @@
             height: 60vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end; /* Changed to flex-end to push content to the bottom */
             align-items: center;
             color: white;
             text-align: center;
             position: relative;
             z-index: 1;
+            padding-bottom: 5vh; /* Added padding to create space from the bottom */
         }
 
         /* Responsive hero height and font sizes */
         @media (max-width: 767px) {
             .hero-section {
                 height: 40vh; /* Shorter height on mobile */
+                padding-bottom: 3vh; /* Reduced padding for mobile */
             }
             .hero-content h1 {
                 font-size: 2.5rem; /* Smaller font on mobile */
+                /* Added a smaller font size for very small screens to prevent overflow */
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+            .hero-content h1:not(:last-child) {
+                margin-bottom: 0.5rem; /* Reduced space for smaller screens */
+            }
+        }
+        @media (min-width: 480px) and (max-width: 767px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
         }
 
@@ -219,6 +232,13 @@
             font-size: 3rem;
             font-weight: bold;
             margin-bottom: 1rem;
+        }
+        
+        /* New media query for larger screens for h1 */
+        @media (min-width: 768px) {
+            .hero-content h1 {
+                font-size: 5rem; /* Adjust as needed for desktop */
+            }
         }
 
         .breadcrumb {
