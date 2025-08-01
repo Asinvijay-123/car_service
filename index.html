@@ -109,21 +109,40 @@
 
         /* Media query for 9:16 aspect ratio (portrait mode) */
         @media (max-aspect-ratio: 9/16) {
+            /* Use the white gradient image as the background for the hero-video container */
+            .hero-video {
+                background-image: url('Minimalist White Gradient Studio.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-color: transparent; /* Ensure background color doesn't obscure the image */
+                display: flex; /* Use flexbox to stack and center content */
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            /* The video and overlay should be hidden in this mode */
+            .hero-video video, .video-overlay {
+                display: none;
+            }
+            
+            /* Adjust the hero text container to work with the new layout */
             .hero-text-container {
-                top: 0; /* Move to the top */
-                left: 0;
+                position: static; /* Remove absolute positioning */
                 transform: none; /* Remove centering transform */
                 height: auto; /* Height adapts to content */
+                width: 100%; /* Take full width */
                 padding-top: clamp(2rem, 5vh, 4rem); /* Top padding for text */
                 padding-bottom: clamp(1rem, 3vh, 2rem); /* Bottom padding for text */
-                background-color: white; /* White background for the text area */
-                display: flex; /* Ensure flex properties apply */
+                background-color: transparent; /* Ensure text container is transparent */
                 flex-direction: column; /* Stack text vertically */
                 justify-content: flex-start; /* Align content to the top */
                 align-items: center; /* Center horizontally */
-                width: 100%; /* Ensure it takes full width */
-                border-bottom: 1px solid #eee; /* Subtle separation line */
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow */
+                border-bottom: none; /* Remove border-bottom */
+                box-shadow: none; /* Remove shadow */
+                order: 1; /* Put the text before the video using flexbox order */
             }
 
             .hero-text {
@@ -1195,13 +1214,13 @@
             const aspectRatio = viewportWidth / viewportHeight;
 
             // Define your video sources based on aspect ratio
-            const landscapeVideo = 'Car_Wash_Animation_For_Website.mp4'; // 16:9 video
-            const portraitVideo = 'car-wash-animation-for-website_iJnuj6A7.mp4'; // 9:16 video
+            const landscapeVideo = 'Car_Wash_Animation_For_Website.mp4'; // 16:9 video for desktop
+            const portraitVideo = 'car-wash-animation-for-website-ijnuj6a7_smOtmhJd.mp4'; // 9:16 video for mobile
 
             let newSrc = '';
-            // If aspect ratio is less than 1 (e.g., 0.56, 0.75), it's more portrait.
-            // If aspect ratio is greater than or equal to 1, it's more landscape/square.
-            if (aspectRatio < 1) {
+            // If aspect ratio is less than a certain threshold, it's more portrait.
+            // Using 1.25 as a common break point for modern devices
+            if (aspectRatio < 1.25) {
                 newSrc = portraitVideo;
             } else {
                 newSrc = landscapeVideo;
