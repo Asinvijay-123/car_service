@@ -36,7 +36,7 @@
             padding-top: 0; /* Handled by hero-video */
         }
 
-        /* Video background styling */
+        /* Video background styling for landscape/desktop */
         .hero-video {
             position: absolute;
             top: 0;
@@ -1010,10 +1010,10 @@
     <div class="content">
         <!-- New container to handle the mobile layout -->
         <div class="hero-content-wrapper">
-            <!-- Video container for mobile portrait mode -->
-            <div class="hero-video-box">
+            <!-- Video container for mobile portrait mode, will be displayed via JS -->
+            <div id="mobile-video-container" class="hero-video-box hidden md:hidden">
                 <video autoplay muted loop playsinline id="video-player">
-                    <!-- Sources will be dynamically set by JavaScript -->
+                    <!-- Source will be dynamically set by JavaScript -->
                 </video>
             </div>
             <!-- Text container for both modes -->
@@ -1025,9 +1025,9 @@
             </div>
         </div>
         <!-- Original hero video for desktop landscape view -->
-        <div class="hero-video">
+        <div id="desktop-video-container" class="hero-video hidden md:block">
             <video autoplay muted loop playsinline id="video-player-desktop">
-                <!-- Sources will be dynamically set by JavaScript -->
+                <!-- Source will be dynamically set by JavaScript -->
             </video>
             <div class="video-overlay"></div> <!-- Overlay for text readability -->
         </div>
@@ -1234,67 +1234,50 @@
     </a>
 
     <script>
-        // Function to set video source based on screen aspect ratio
+        // Function to set video source and visibility based on screen aspect ratio
         function setVideoSource() {
-            const videoElement = document.getElementById('video-player');
-            const videoElementDesktop = document.getElementById('video-player-desktop');
+            // Get the video elements and their containers
+            const mobileVideoContainer = document.getElementById('mobile-video-container');
+            const mobileVideoPlayer = document.getElementById('video-player');
+            const desktopVideoContainer = document.getElementById('desktop-video-container');
+            const desktopVideoPlayer = document.getElementById('video-player-desktop');
 
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
             const aspectRatio = viewportWidth / viewportHeight;
 
-            // Define your video sources based on aspect ratio
-            const landscapeVideo = 'Car_Wash_Animation_For_Website.mp4'; // 16:9 video for desktop
-            const portraitVideo = 'car-wash-animation-for-website-ijnuj6a7_smOtmhJd.mp4'; // 9:16 video for mobile
+            // Define your video sources
+            const landscapeVideo = 'Car_Wash_Animation_For_Website.mp4';
+            const portraitVideo = 'car-wash-animation-for-website-ijnuj6a7_smOtmhJd.mp4'; 
+            
+            // Check if we are in portrait mode (aspect ratio < 1)
+            // A more generous threshold like 1.25 is used to catch most phones
+            if (aspectRatio < 1.25) { 
+                // Show mobile video and hide desktop video
+                if (mobileVideoContainer) mobileVideoContainer.classList.remove('hidden');
+                if (desktopVideoContainer) desktopVideoContainer.classList.add('hidden');
 
-            if (aspectRatio < 1.25) {
-                // Portrait mode: Show mobile container, hide desktop container
-                if (videoElementDesktop && videoElementDesktop.parentNode) videoElementDesktop.parentNode.style.display = 'none';
-                
-                const mobileVideoBox = document.querySelector('.hero-video-box');
-                if (mobileVideoBox) {
-                    mobileVideoBox.style.display = 'flex'; // Show the mobile video box
-                }
-
-                if (videoElement) {
-                    // Set the video source for mobile
-                    while (videoElement.firstChild) {
-                        videoElement.removeChild(videoElement.firstChild);
-                    }
-                    const sourceElement = document.createElement('source');
-                    sourceElement.src = portraitVideo;
-                    sourceElement.type = 'video/mp4';
-                    videoElement.appendChild(sourceElement);
-
-                    videoElement.load();
-                    videoElement.play();
+                if (mobileVideoPlayer && mobileVideoPlayer.src !== portraitVideo) {
+                    // Set the video source for mobile if it's not already set
+                    mobileVideoPlayer.src = portraitVideo;
+                    mobileVideoPlayer.load();
                 }
             } else {
-                // Landscape mode: Show desktop container, hide mobile container
-                const mobileVideoBox = document.querySelector('.hero-video-box');
-                if (mobileVideoBox) mobileVideoBox.style.display = 'none';
-                
-                if (videoElementDesktop && videoElementDesktop.parentNode) {
-                    videoElementDesktop.parentNode.style.display = 'block'; // Show the desktop video container
+                // Show desktop video and hide mobile video
+                if (desktopVideoContainer) desktopVideoContainer.classList.remove('hidden');
+                if (mobileVideoContainer) mobileVideoContainer.classList.add('hidden');
 
-                    // Set the video source for desktop
-                    while (videoElementDesktop.firstChild) {
-                        videoElementDesktop.removeChild(videoElementDesktop.firstChild);
-                    }
-                    const sourceElement = document.createElement('source');
-                    sourceElement.src = landscapeVideo;
-                    sourceElement.type = 'video/mp4';
-                    videoElementDesktop.appendChild(sourceElement);
-
-                    videoElementDesktop.load();
-                    videoElementDesktop.play();
+                if (desktopVideoPlayer && desktopVideoPlayer.src !== landscapeVideo) {
+                    // Set the video source for desktop if it's not already set
+                    desktopVideoPlayer.src = landscapeVideo;
+                    desktopVideoPlayer.load();
                 }
             }
         }
 
         // JavaScript for mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
-            // Initial set of video source
+            // Initial set of video source and visibility
             setVideoSource();
 
             // Set video source on window resize (e.g., device rotation)
