@@ -109,46 +109,61 @@
 
         /* Media query for 9:16 aspect ratio (portrait mode) */
         @media (max-aspect-ratio: 9/16) {
-            /* Use the white gradient image as the background for the hero-video container */
+            /* Now, instead of hiding the video, we want to show it over a white gradient background. */
             .hero-video {
+                /* Set the white gradient image as the background for the entire hero section */
                 background-image: url('Minimalist White Gradient Studio.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-color: transparent; /* Ensure background color doesn't obscure the image */
-                display: flex; /* Use flexbox to stack and center content */
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 1rem;
+                display: block;
             }
 
-            /* The video and overlay should be hidden in this mode */
-            .hero-video video, .video-overlay {
+            /* The video should be visible in this mode, centered within its container */
+            .hero-video video {
+                display: block; /* Ensure the video is visible */
+                position: relative; /* Change from absolute to relative to be in the normal flow */
+                top: auto;
+                left: auto;
+                transform: none;
+                width: 100%; /* Make video fill the width of its container */
+                max-width: 90%; /* Constrain the video size */
+                height: auto; /* Maintain aspect ratio */
+                margin: 0 auto; /* Center the video horizontally */
+                object-fit: contain; /* Ensure the entire video is visible and not cropped */
+                z-index: 1; /* Place video above the background image */
+                border-radius: 0.75rem; /* Add rounded corners */
+            }
+
+            /* The overlay should be hidden in this mode */
+            .video-overlay {
                 display: none;
             }
             
             /* Adjust the hero text container to work with the new layout */
             .hero-text-container {
-                position: static; /* Remove absolute positioning */
-                transform: none; /* Remove centering transform */
-                height: auto; /* Height adapts to content */
-                width: 100%; /* Take full width */
-                padding-top: clamp(2rem, 5vh, 4rem); /* Top padding for text */
-                padding-bottom: clamp(1rem, 3vh, 2rem); /* Bottom padding for text */
-                background-color: transparent; /* Ensure text container is transparent */
-                flex-direction: column; /* Stack text vertically */
-                justify-content: flex-start; /* Align content to the top */
-                align-items: center; /* Center horizontally */
-                border-bottom: none; /* Remove border-bottom */
-                box-shadow: none; /* Remove shadow */
-                order: 1; /* Put the text before the video using flexbox order */
+                position: relative; /* Change to relative to flow below the video */
+                top: auto;
+                left: auto;
+                transform: none;
+                height: auto;
+                width: 100%;
+                padding-top: clamp(2rem, 5vh, 4rem);
+                padding-bottom: clamp(1rem, 3vh, 2rem);
+                background-color: transparent;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                border-bottom: none;
+                box-shadow: none;
+                order: 1;
             }
 
             .hero-text {
                 color: #333; /* Dark text color for white background */
                 text-shadow: none; /* Remove text shadow */
-                padding: 0; /* Remove padding as container has it */
+                padding: 0;
             }
 
             .hero-text h4,
