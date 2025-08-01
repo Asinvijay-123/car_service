@@ -121,6 +121,8 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                position: relative; /* Change to relative to not take up the full viewport height anymore */
+                height: auto;
             }
 
             /* The video should be visible in this mode, centered within its container */
@@ -138,6 +140,22 @@
                 z-index: 1; /* Place video above the background image */
                 border-radius: 0.75rem; /* Add rounded corners */
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            }
+            .hero-video-box {
+                width: 90%;
+                height: 50vh;
+                background-color: white; /* Or any other color for visibility */
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                border-radius: 0.75rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .hero-video-box video {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                border-radius: 0.75rem;
             }
 
             /* The overlay should be hidden in this mode */
@@ -1006,12 +1024,12 @@
                 <!-- Sources will be dynamically set by JavaScript -->
             </video>
             <div class="video-overlay"></div> <!-- Overlay for text readability -->
-            <!-- New container for the text that can change background/position -->
-            <div class="hero-text-container">
-                <div class="hero-text">
-                    <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
-                    <h1 class="animated-text delay-1">CAR CARE</h1>
-                </div>
+        </div>
+        <!-- This container is now outside the video container -->
+        <div class="hero-text-container">
+            <div class="hero-text">
+                <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
+                <h1 class="animated-text delay-1">CAR CARE</h1>
             </div>
         </div>
     </div>
