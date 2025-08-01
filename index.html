@@ -111,61 +111,53 @@
         @media (max-aspect-ratio: 9/16) {
             /* Now, instead of hiding the video, we want to show it over a white gradient background. */
             .hero-video {
-                /* Set the white gradient image as the background for the entire hero section */
+                /* The main hero-video div acts as the background container here */
                 background-image: url('Minimalist White Gradient Studio.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                background-color: transparent; /* Ensure background color doesn't obscure the image */
+                background-color: transparent;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                position: relative; /* Change to relative to not take up the full viewport height anymore */
-                height: auto;
+                position: relative;
+                height: 100vh; /* Set to full viewport height for the content wrapper */
+                padding: 0 1rem;
+                box-sizing: border-box;
             }
 
-            /* The video should be visible in this mode, centered within its container */
-            .hero-video video {
-                display: block; /* Ensure the video is visible */
-                position: relative; /* Change from absolute to relative to be in the normal flow */
-                top: auto;
-                left: auto;
-                transform: none;
-                width: 90%; /* Make video fill the width of its container, but with padding */
-                max-width: 90%; /* Constrain the video size */
-                height: auto; /* Allow height to adjust automatically based on video's aspect ratio */
-                margin: 0 auto; /* Center the video horizontally */
-                object-fit: contain; /* Ensure the entire video is visible and not cropped */
-                z-index: 1; /* Place video above the background image */
-                border-radius: 0.75rem; /* Add rounded corners */
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            /* Video and overlay are hidden in this view */
+            .hero-video video, .video-overlay {
+                display: none;
             }
-            .hero-video-box {
+
+            /* New container for video in portrait view */
+            .hero-video-mobile-container {
                 width: 90%;
-                height: 50vh;
-                background-color: white; /* Or any other color for visibility */
+                height: 50vh; /* Fixed height for clear visibility */
+                background-color: white;
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
                 border-radius: 0.75rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                margin: 0 auto; /* Center the container */
+                margin-top: 10vh; /* Push it down from the top */
+                z-index: 1; /* Make sure it's above the background */
             }
-            .hero-video-box video {
+
+            /* Style for the video inside the mobile container */
+            .hero-video-mobile-container video {
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
+                object-fit: contain; /* Ensure video is fully visible */
                 border-radius: 0.75rem;
             }
 
-            /* The overlay should be hidden in this mode */
-            .video-overlay {
-                display: none;
-            }
-            
             /* Adjust the hero text container to work with the new layout */
             .hero-text-container {
-                position: relative; /* Change to relative to flow below the video */
+                position: relative;
                 top: auto;
                 left: auto;
                 transform: none;
@@ -1019,18 +1011,28 @@
     </nav>
 
     <div class="content">
+        <!-- New container to handle the mobile layout -->
+        <div class="hero-content-wrapper">
+            <!-- Video container for mobile portrait mode -->
+            <div class="hero-video-mobile-container">
+                <video autoplay muted loop playsinline id="background-video">
+                    <!-- Sources will be dynamically set by JavaScript -->
+                </video>
+            </div>
+            <!-- Text container for both modes -->
+            <div class="hero-text-container">
+                <div class="hero-text">
+                    <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
+                    <h1 class="animated-text delay-1">CAR CARE</h1>
+                </div>
+            </div>
+        </div>
+        <!-- Original hero video for desktop landscape view -->
         <div class="hero-video">
-            <video autoplay muted loop playsinline id="background-video">
+            <video autoplay muted loop playsinline id="background-video-desktop">
                 <!-- Sources will be dynamically set by JavaScript -->
             </video>
             <div class="video-overlay"></div> <!-- Overlay for text readability -->
-        </div>
-        <!-- This container is now outside the video container -->
-        <div class="hero-text-container">
-            <div class="hero-text">
-                <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
-                <h1 class="animated-text delay-1">CAR CARE</h1>
-            </div>
         </div>
     </div>
 
@@ -1238,12 +1240,7 @@
         // Function to set video source based on screen aspect ratio
         function setVideoSource() {
             const videoElement = document.getElementById('background-video');
-            if (!videoElement) return;
-
-            // Clear existing sources
-            while (videoElement.firstChild) {
-                videoElement.removeChild(videoElement.firstChild);
-            }
+            const videoElementDesktop = document.getElementById('background-video-desktop');
 
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
@@ -1253,26 +1250,47 @@
             const landscapeVideo = 'Car_Wash_Animation_For_Website.mp4'; // 16:9 video for desktop
             const portraitVideo = 'car-wash-animation-for-website-ijnuj6a7_smOtmhJd.mp4'; // 9:16 video for mobile
 
-            let newSrc = '';
-            // If aspect ratio is less than a certain threshold, it's more portrait.
-            // Using 1.25 as a common break point for modern devices
             if (aspectRatio < 1.25) {
-                newSrc = portraitVideo;
+                // Portrait mode: Show mobile container, hide desktop container
+                if (videoElementDesktop) videoElementDesktop.parentNode.style.display = 'none';
+                if (videoElement) {
+                    const parent = videoElement.parentNode;
+                    parent.style.display = 'flex'; // Show the mobile video container
+
+                    // Set the video source for mobile
+                    while (videoElement.firstChild) {
+                        videoElement.removeChild(videoElement.firstChild);
+                    }
+                    const sourceElement = document.createElement('source');
+                    sourceElement.src = portraitVideo;
+                    sourceElement.type = 'video/mp4';
+                    videoElement.appendChild(sourceElement);
+
+                    videoElement.load();
+                    videoElement.play();
+                }
             } else {
-                newSrc = landscapeVideo;
+                // Landscape mode: Show desktop container, hide mobile container
+                const mobileContainer = document.querySelector('.hero-video-mobile-container');
+                if (mobileContainer) mobileContainer.style.display = 'none';
+
+                if (videoElementDesktop) {
+                    const parent = videoElementDesktop.parentNode;
+                    parent.style.display = 'block'; // Show the desktop video container
+
+                    // Set the video source for desktop
+                    while (videoElementDesktop.firstChild) {
+                        videoElementDesktop.removeChild(videoElementDesktop.firstChild);
+                    }
+                    const sourceElement = document.createElement('source');
+                    sourceElement.src = landscapeVideo;
+                    sourceElement.type = 'video/mp4';
+                    videoElementDesktop.appendChild(sourceElement);
+
+                    videoElementDesktop.load();
+                    videoElementDesktop.play();
+                }
             }
-
-            const sourceElement = document.createElement('source');
-            sourceElement.src = newSrc;
-            sourceElement.type = 'video/mp4';
-            videoElement.appendChild(sourceElement);
-
-            // Add fallback text
-            const fallbackText = document.createTextNode('Your browser does not support the video tag.');
-            videoElement.appendChild(fallbackText);
-
-            videoElement.load(); // Load the new video source
-            videoElement.play(); // Ensure it plays
         }
 
         // JavaScript for mobile menu toggle
