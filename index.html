@@ -117,7 +117,10 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 background-color: transparent; /* Ensure background color doesn't obscure the image */
-                display: block;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
             }
 
             /* The video should be visible in this mode, centered within its container */
@@ -127,13 +130,14 @@
                 top: auto;
                 left: auto;
                 transform: none;
-                width: 100%; /* Make video fill the width of its container */
+                width: 90%; /* Make video fill the width of its container, but with padding */
                 max-width: 90%; /* Constrain the video size */
                 height: auto; /* Maintain aspect ratio */
                 margin: 0 auto; /* Center the video horizontally */
                 object-fit: contain; /* Ensure the entire video is visible and not cropped */
                 z-index: 1; /* Place video above the background image */
                 border-radius: 0.75rem; /* Add rounded corners */
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             }
 
             /* The overlay should be hidden in this mode */
