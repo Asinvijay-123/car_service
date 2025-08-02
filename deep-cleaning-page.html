@@ -9,17 +9,18 @@
     <!-- Google Fonts - Inter for clean typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <!-- Google Fonts - Montserrat for stylish headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700&display=swap" rel="stylesheet">
     <style>
         /* Base styles for the body */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
-            background-color: #f8f8f8; /* Light background for the page */
+            background-color: #EDF6F9; /* Light, peaceful background */
+            color: #1F1F1F; /* Dark text color for contrast */
         }
 
-        /* Navigation Bar (replicated from main page for consistency) */
+        /* Navigation Bar */
         .navbar {
             position: absolute; /* Changed to absolute for transparent overlay */
             top: 0;
@@ -74,7 +75,7 @@
 
         /* Styling for the new green booking button */
         .navbar-booking-btn {
-            background-color: #4CAF50; /* Green background */
+            background-color: #007F5F; /* Deep Emerald Green */
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 0.375rem;
@@ -85,7 +86,7 @@
         }
 
         .navbar-booking-btn:hover {
-            background-color: #45a049;
+            background-color: #B8F2E6; /* Soft Lime on hover */
         }
 
         .dropdown {
@@ -96,7 +97,7 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
+            background-color: #F5F7FA; /* Soft Pearl White */
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
@@ -108,7 +109,7 @@
         }
 
         .dropdown-content a {
-            color: black;
+            color: #1F1F1F; /* Dark Charcoal */
             padding: 12px 16px;
             text-decoration: none;
             display: block;
@@ -117,8 +118,8 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #ddd;
-            color: #333;
+            background-color: #C9D6DF; /* Light Gray */
+            color: #1F1F1F;
         }
 
         .dropdown:hover .dropdown-content {
@@ -173,11 +174,12 @@
         }
         /* End Navbar styles */
 
+        /* Hero Section */
         .hero-section {
-            background-image: url('pages_back.png'); /* Background image from user upload */
+            background-image: url('pages_back.png');
             background-size: cover;
             background-position: center;
-            height: 60vh; /* Adjust height as needed */
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -189,7 +191,7 @@
         }
 
         .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
             position: absolute;
             top: 0;
             left: 0;
@@ -200,14 +202,18 @@
 
         .hero-content {
             padding: 1rem;
+            padding-top: 7rem; /* Increased padding-top to give more space */
         }
-
+        
         .hero-content h1 {
             font-family: 'Montserrat', sans-serif; /* Applied Montserrat font */
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 5rem);
             font-weight: bold;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            white-space: nowrap; /* Keep text on one line */
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .breadcrumb {
@@ -229,7 +235,7 @@
         }
 
         .book-now-hero-btn {
-            background-color: #4CAF50; /* Green button */
+            background-color: #007F5F; /* Deep Emerald Green */
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 0.375rem;
@@ -239,40 +245,52 @@
         }
 
         .book-now-hero-btn:hover {
-            background-color: #45a049;
+            background-color: #00B4D8; /* Aqua Blue on hover */
         }
+        /* End Hero styles */
 
         /* Services Grid Section */
         .services-grid-section {
             padding: 4rem 1rem;
             text-align: center;
-            background-color: #f8f8f8;
-            color: #333;
+            background-color: #EAF4F4; /* Mist Gray */
+            color: #1F1F1F; /* Dark text color */
+        }
+
+        .services-grid-section h2 {
+            color: #1F1F1F;
         }
 
         .services-grid-container {
             display: grid;
             grid-template-columns: repeat(1, minmax(0, 1fr));
-            row-gap: 2.5rem; /* Vertical gap */
-            column-gap: 5rem; /* Set horizontal gap to 5rem */
-            max-width: 1300px; /* Increased max-width to accommodate wider layout */
-            margin: 0 auto; /* Center the grid container */
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-
-        @media (min-width: 640px) {
+        
+        @media (min-width: 480px) {
             .services-grid-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.5rem;
             }
         }
 
         @media (min-width: 768px) {
             .services-grid-container {
-                grid-template-columns: repeat(5, minmax(0, 1fr)); /* Changed to 5 columns for 10 cards */
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
+        
+        @media (min-width: 1024px) {
+            .services-grid-container {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+        }
+        
 
         .service-card {
-            background-color: white;
+            background-color: #F5F7FA;
             border-radius: 0.75rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
@@ -281,9 +299,6 @@
             align-items: center;
             text-align: center;
             transition: transform 0.2s ease;
-            width: 220px; /* Increased width to make it bigger */
-            height: 220px; /* Increased height to make it bigger */
-            justify-content: center; /* Center content vertically */
         }
 
         .service-card:hover {
@@ -291,27 +306,28 @@
         }
 
         .service-card img {
-            height: 100px; /* Adjusted image size for larger card */
-            width: 100px; /* Adjusted image size for larger card */
-            margin-bottom: 0.5rem; /* Adjusted margin-bottom */
+            height: 80px;
+            width: 80px;
+            margin-bottom: 0.5rem;
         }
 
         .service-card h3 {
             font-size: 1.25rem;
             font-weight: bold;
-            margin-bottom: 0; /* Removed margin-bottom */
-            color: #333;
+            margin-bottom: 0;
+            color: #1F1F1F;
         }
 
         .service-card p {
             font-size: 0.9rem;
             color: #555;
-            display: none; /* Hide the descriptive text */
+            display: none;
         }
+        /* End Services section */
 
         /* Pricing Section */
         .pricing-section {
-            background-color: #8BC34A; /* Changed to light green */
+            background-color: #1E2A38; /* Slate Blue-Gray */
             padding: 4rem 1rem;
             color: white;
             text-align: center;
@@ -321,6 +337,7 @@
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 2rem;
+            color: #FFFFFF; /* White heading */
         }
 
         .pricing-cards-container {
@@ -331,9 +348,10 @@
             margin: 0 auto;
         }
 
-        @media (min-width: 640px) {
+        @media (min-width: 480px) {
             .pricing-cards-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.5rem;
             }
         }
 
@@ -344,7 +362,7 @@
         }
 
         .pricing-card {
-            background-color: white;
+            background-color: #F5F7FA;
             border-radius: 0.75rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
@@ -357,56 +375,33 @@
         }
 
         .pricing-card:hover {
-            border-color: #689F38; /* Darker green border on hover */
+            border-color: #007F5F;
         }
 
         .pricing-card img {
-            height: 120px; /* Increased height */
-            width: auto; /* Adjusted width to maintain aspect ratio */
+            height: 120px;
+            width: auto;
             margin-bottom: 1rem;
         }
 
         .pricing-card h3 {
             font-size: 1.25rem;
             font-weight: bold;
-            color: #333;
+            color: #1F1F1F;
             margin-bottom: 0.5rem;
         }
 
         .pricing-card .price {
-            color: #689F38; /* Darker green price */
+            color: #00B4D8;
             font-size: 1.5rem;
             font-weight: bold;
         }
+        /* End Pricing section */
 
-        /* Contact Us Floating Button */
-        .contact-us-float {
-            position: fixed; /* Ensures it floats */
-            bottom: 1.5rem;
-            left: 1.5rem;
-            background-color: #4CAF50; /* Green background */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px; /* Fully rounded */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            z-index: 20;
-            width: auto; /* Allow width to shrink to content */
-        }
-
-        .contact-us-float:hover {
-            background-color: #45a049;
-        }
-
-        /* Footer Section - copied from main page for consistency */
+        /* Footer Section */
         .extended-footer-section {
-            background-color: #1a1a1a;
-            color: white;
+            background-color: #16222A; /* Deep Charcoal Navy */
+            color: #D3DDE2; /* Light Gray text */
             padding: 4rem 1.5rem;
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -427,14 +422,14 @@
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
-            color: #8BC34A; /* Light green accent for headers */
+            color: #007F5F; /* Deep Emerald Green for headers */
         }
 
         .extended-footer-column p {
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 1rem;
-            color: #ccc;
+            color: #D3DDE2;
         }
 
         .extended-footer-column ul {
@@ -448,7 +443,7 @@
         }
 
         .extended-footer-column ul li a {
-            color: #ccc;
+            color: #D3DDE2;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -470,7 +465,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-
+        
         @media (min-width: 768px) {
             .phone-contact {
                 justify-content: flex-start;
@@ -482,7 +477,7 @@
         .phone-contact svg {
             width: 24px;
             height: 24px;
-            fill: #4CAF50; /* Green phone icon */
+            fill: #007F5F; /* Deep Emerald Green icon */
         }
 
         .phone-contact span {
@@ -507,12 +502,8 @@
             font-size: 0.9rem;
         }
 
-        .subscribe-form input[type="email"]::placeholder {
-            color: #999;
-        }
-
         .subscribe-form button {
-            background-color: #4CAF50; /* Green send button */
+            background-color: #007F5F; /* Deep Emerald Green */
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 0.375rem;
@@ -523,7 +514,7 @@
         }
 
         .subscribe-form button:hover {
-            background-color: #45a049;
+            background-color: #B8F2E6;
         }
 
         .social-icons {
@@ -551,8 +542,8 @@
         }
 
         .copyright-footer {
-            background-color: #111;
-            color: #aaa;
+            background-color: #16222A; /* Deep Charcoal Navy */
+            color: #D3DDE2;
             padding: 1rem 1.5rem;
             text-align: center;
             font-size: 0.8rem;
@@ -570,13 +561,42 @@
         }
 
         .copyright-footer a {
-            color: #aaa;
+            color: #D3DDE2;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .copyright-footer a:hover {
             color: white;
+        }
+        /* End Footer styles */
+
+        /* Floating Contact Button */
+        .contact-us-float {
+            position: fixed; /* Ensures it floats */
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: #007F5F; /* Deep Emerald Green */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 20;
+            width: auto; /* Allow width to shrink to content */
+        }
+
+        .contact-us-float:hover {
+            background-color: #00B4D8;
+        }
+
+        .contact-us-float img {
+            /* styles for the whatsapp icon */
         }
     </style>
 </head>
@@ -585,7 +605,7 @@
     <nav class="navbar">
         <div class="logo-container">
             <!-- Updated logo to car logo.png and added responsive classes -->
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24">
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24" onerror="this.onerror=null;this.src='https://placehold.co/100x100/000000/FFFFFF?text=Logo';">
         </div>
 
         <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
@@ -610,7 +630,7 @@
             </div>
             <a href="booking-form.html" class="nav-button">CONTACT US</a>
         </div>
-        <a href="booking-form.html" class="navbar-booking-btn">BOOKING</a> <!-- Moved and styled booking button -->
+        <a href="booking-form.html" class="navbar-booking-btn hidden md:block">BOOKING</a> <!-- Moved and styled booking button -->
 
         <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
@@ -649,7 +669,7 @@
         </section>
 
         <section class="services-grid-section">
-            <!-- Removed h2 heading -->
+            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">SERVICES</h2>
             <div class="services-grid-container">
                 <!-- Service Card 1: Vaccum Cleaning -->
                 <div class="service-card">
@@ -715,7 +735,7 @@
 
         <!-- Pricing Section (replicated from Quick Shine, adjust prices if needed) -->
         <section class="pricing-section">
-            <h2>PRICING</h2>
+            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">PRICING</h2>
             <div class="pricing-cards-container">
                 <!-- Pricing Card 1: Hatchback -->
                 <div class="pricing-card">
@@ -806,7 +826,7 @@
             </div>
         </footer>
 
-        <!-- Contact Us Floating Button (replicated) -->
+        <!-- Contact Us Floating Button -->
         <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
             <!-- Replaced SVG with WhatsApp logo image -->
             <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6">
