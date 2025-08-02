@@ -360,4 +360,463 @@
         .pricing-card {
             background-color: white;
             border-radius: 0.75rem;
-            box-shadow: 0 4p
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 3px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: #2C8C88;
+        }
+
+        .pricing-card img {
+            height: 100px;
+            width: auto;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2C8C88;
+        }
+
+        /* Contact Us Floating Button */
+        .contact-us-float {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 20;
+        }
+
+        .contact-us-float:hover {
+            background-color: #45a049;
+        }
+
+        /* Footer Section */
+        .extended-footer-section {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 4rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 3rem;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .extended-footer-section {
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
+            }
+        }
+
+        .extended-footer-column h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #38B2AC;
+        }
+
+        .extended-footer-column p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .extended-footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .extended-footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .extended-footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .extended-footer-column ul li a:hover {
+            color: white;
+        }
+
+        .phone-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background-color: #333;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .phone-contact {
+                justify-content: flex-start;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        .phone-contact svg {
+            width: 24px;
+            height: 24px;
+            fill: #38B2AC;
+        }
+
+        .phone-contact span {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .subscribe-form input[type="email"] {
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #555;
+            background-color: #333;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .subscribe-form button {
+            background-color: #38B2AC;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #2C8C88;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .social-icons {
+                justify-content: flex-start;
+            }
+        }
+
+        .social-icons a img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+
+        .social-icons a img:hover {
+            transform: scale(1.1);
+        }
+
+        .copyright-footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .copyright-footer {
+                flex-direction: row;
+            }
+        }
+
+        .copyright-footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .copyright-footer a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24">
+        </div>
+
+        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
+        <button class="menu-toggle md:hidden">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
+        <div class="navbar-main-links hidden md:flex">
+            <a href="index.html" class="nav-button">HOME</a>
+            <div class="dropdown">
+                <a href="#" class="nav-button">
+                    PACKAGES
+                    <span class="dropdown-arrow">&#9660;</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="quick-shine-page.html">Quick Shine</a>
+                    <a href="deep-cleaning-page.html">Deep Cleaning</a>
+                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
+                    <a href="windshield-polish-page.html">Windshield Polish</a>
+                </div>
+            </div>
+            <a href="booking-form.html" class="nav-button">CONTACT US</a>
+        </div>
+        <a href="booking-form.html" class="navbar-booking-btn">BOOKING</a>
+
+        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
+            <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
+            <div class="flex flex-col text-xl w-full px-4 text-white">
+                <a href="index.html" class="nav-button py-2 border-b border-gray-700">HOME</a>
+                <div class="dropdown-mobile w-full">
+                    <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
+                        PACKAGES
+                        <span class="dropdown-arrow transform transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
+                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
+                        <a href="deep-cleaning-page.html">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
+                        <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
+                    </div>
+                </div>
+                <a href="booking-form.html" class="nav-button py-2 border-b border-gray-700">CONTACT US</a>
+                <a href="booking-form.html" class="nav-button py-2 border-b border-gray-700">BOOKING</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="text-white font-bold">WINDSHIELD POLISH</h1>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Windshield Polish</span>
+                </div>
+                <a href="booking-form.html" class="book-now-hero-btn">BOOK NOW</a>
+            </div>
+        </section>
+
+        <section class="services-grid-section">
+            <h2>Services</h2>
+            <div class="services-grid-container">
+                <!-- Service Card 1: Shampoo Wash -->
+                <div class="service-card">
+                    <img src="exterior.png" alt="Shampoo Wash Icon">
+                    <h3>Shampoo Wash</h3>
+                </div>
+
+                <!-- Service Card 2: Sandpaper Rubbing -->
+                <div class="service-card">
+                    <img src="sandpaper.png" alt="Sandpaper Rubbing Icon">
+                    <h3>Sandpaper Rubbing</h3>
+                </div>
+
+                <!-- Service Card 3: Windshield Rubbing -->
+                <div class="service-card">
+                    <img src="windshield.jpg" alt="Windshield Rubbing Icon">
+                    <h3>Windshield Rubbing</h3>
+                </div>
+
+                <!-- Service Card 4: Headlight Rubbing -->
+                <div class="service-card">
+                    <img src="headlight-rubbing.png" alt="Headlight Rubbing Icon">
+                    <h3>Headlight Rubbing</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section (adjusted prices for Windshield Polish) -->
+        <section class="pricing-section">
+            <h2>PRICING</h2>
+            <div class="pricing-cards-container">
+                <!-- Pricing Card 1: Hatchback -->
+                <div class="pricing-card">
+                    <img src="hatchback.jpg" alt="Hatchback Car">
+                    <h3>HATCHBACK</h3>
+                    <span class="price">₹799</span>
+                </div>
+
+                <!-- Pricing Card 2: Sedan -->
+                <div class="pricing-card">
+                    <img src="sedan.jpg" alt="Sedan Car">
+                    <h3>SEDAN</h3>
+                    <span class="price">₹899</span>
+                </div>
+
+                <!-- Pricing Card 3: Compact SUV -->
+                <div class="pricing-card">
+                    <img src="compact-suv.jpg" alt="Compact SUV Car">
+                    <h3>COMPACT SUV</h3>
+                    <span class="price">₹999</span>
+                </div>
+
+                <!-- Pricing Card 4: 5 Seater SUV -->
+                <div class="pricing-card">
+                    <img src="suv-5-seater.jpg" alt="5 Seater SUV Car">
+                    <h3>5 SEATER SUV</h3>
+                    <span class="price">₹1199</span>
+                </div>
+
+                <!-- Pricing Card 5: 7 Seater SUV -->
+                <div class="pricing-card">
+                    <img src="suv-7-seater.jpg" alt="7 Seater SUV Car">
+                    <h3>7 SEATER SUV</h3>
+                    <span class="price">₹1399</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section for Windshield Polish Page -->
+        <section class="extended-footer-section">
+            <div class="extended-footer-column">
+                <h3>WINDSHIELD POLISH INCLUDES //</h3>
+                <p>Time - Around 2 hours process</p>
+                <p>Exterior and interior glass cleaning.</p>
+                <p>Water spot and mineral deposit removal.</p>
+                <p>Windshield polishing to remove minor scratches.</p>
+                <p>Application of rain repellent coating.</p>
+                <p>Wiper blade inspection and side mirror cleaning.</p>
+                <a href="tel:+919509208599" class="phone-contact">
+                    <img src="download.webp" alt="Call Icon" class="w-6 h-6">
+                    <span>Talk To Our Support<br>9509208599</span>
+                </a>
+            </div>
+
+            <div class="extended-footer-column">
+                <h3>OUR SOLUTIONS //</h3>
+                <ul>
+                    <li><a href="quick-shine-page.html">Quick Shine</a></li>
+                    <li><a href="deep-cleaning-page.html">Deep Cleaning</a></li>
+                    <li><a href="rubbing-polishing-page.html">Rubbing & Polishing</a></li>
+                    <li><a href="windshield-polish-page.html">Windshield Polish</a></li>
+                </ul>
+            </div>
+
+            <div class="extended-footer-column">
+                <h3>SUBSCRIBE NOW //</h3>
+                <p>Subscribe to our newsletter and be the first to know about exclusive deals, new services, and car care tips.</p>
+                <div class="subscribe-form">
+                    <input type="email" placeholder="Email Address">
+                    <button type="submit">SEND</button>
+                </div>
+                <div class="social-icons">
+                    <!-- Social media icons placeholders -->
+                    <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram"></a>
+                    <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Copyright Footer -->
+        <footer class="copyright-footer">
+            <p>© Copyright Car Care. All right reserved.</p>
+            <div>
+                <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
+            </div>
+        </footer>
+
+        <!-- Contact Us Floating Button -->
+        <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
+            <!-- Replaced SVG with WhatsApp logo image -->
+            <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6">
+            Contact Us
+        </a>
+    </main>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
+            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+            const dropdownArrow = document.querySelector('.dropdown-mobile .dropdown-arrow');
+
+            // Toggle mobile menu visibility
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+
+            // Close mobile menu
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+            
+            // Toggle mobile dropdown visibility and rotate arrow
+            mobileDropdownToggle.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                mobileDropdownContent.classList.toggle('hidden');
+                dropdownArrow.classList.toggle('rotate-90');
+            });
+        });
+    </script>
+</body>
+</html>
