@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <!-- Google Fonts - Montserrat for a more stylish heading font (added for consistency) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- Flatpickr CSS for the calendar widget -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         /* Base styles for the body */
         body {
@@ -195,6 +197,7 @@
 
         .form-group input[type="text"],
         .form-group input[type="tel"],
+        .form-group input[type="email"], /* Added email input type */
         .form-group input[type="date"],
         .form-group select,
         .form-group textarea {
@@ -210,10 +213,11 @@
             min-height: 80px;
             resize: vertical;
         }
-
-        .form-group input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1); /* Makes calendar icon white */
-        }
+        
+        /* Removed the old style for the native date picker icon */
+        /* .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        } */
 
         .form-row {
             display: flex;
@@ -311,12 +315,13 @@
             background-color: #45a049;
         }
 
-        /* Contact Us Floating Button (replicated) */
+        /* --- Updated Contact Us Floating Button Styles --- */
         .contact-us-float {
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
-            background-color: #4CAF50;
+            /* New background color to match the image */
+            background-color: #0F9643;
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
@@ -331,7 +336,16 @@
         }
 
         .contact-us-float:hover {
-            background-color: #45a049;
+            /* Slightly darker green on hover */
+            background-color: #0c7a36;
+        }
+        
+        .whatsapp-icon {
+            height: 24px;
+            width: 24px;
+            /* Use object-fit and object-position to ensure the image fits well */
+            object-fit: contain;
+            object-position: center;
         }
 
         /* Footer (replicated) */
@@ -570,19 +584,24 @@
             <a href="booking-form.html" class="nav-button">CONTACT US</a>
         </div>
 
-        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
+            <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
             <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
-            <div class="flex flex-col gap-6 text-xl">
-                <a href="index.html" class="nav-button text-white">HOME</a>
-                <div class="dropdown-mobile">
-                    <a href="#" class="nav-button text-white flex items-center">
-                        PACKAGES <span class="dropdown-arrow ml-2">&#9660;</span>
+            <div class="flex flex-col text-xl w-full px-4 text-white">
+                <a href="index.html" class="nav-button py-2 border-b border-gray-700">HOME</a>
+                <div class="dropdown-mobile w-full">
+                    <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
+                        PACKAGES
+                        <span class="dropdown-arrow transform transition-transform duration-300">
+                               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                   <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                               </svg>
+                        </span>
                     </a>
                     <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
-                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Quick Shine</a>
-                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Deep Cleaning</a>
-                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Rubbing & Polishing</a>
+                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
+                        <a href="deep-cleaning-page.html"class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
                         <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
                     </div>
                 </div>
@@ -606,6 +625,11 @@
             </div>
 
             <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
                 <label for="city">City</label>
                 <select id="city" required>
                     <option value="">Select your city</option>
@@ -622,7 +646,8 @@
 
             <div class="form-group">
                 <label for="booking-date">Booking Date</label>
-                <input type="date" id="booking-date" placeholder="dd-mm-yyyy" required>
+                <!-- Changed to type="text" to be used with flatpickr -->
+                <input type="text" id="booking-date" placeholder="Select a booking date" required>
             </div>
 
             <div class="form-group">
@@ -639,19 +664,19 @@
                 <label>Choose Package</label>
                 <div class="package-grid">
                     <div class="package-item" data-package="quick-shine">
-                        <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=SHINE" alt="Quick Shine Icon">
+                        <img src="quick.jpg" alt="Quick Shine Icon">
                         <h4>Quick Shine</h4>
                     </div>
                     <div class="package-item" data-package="deep-cleaning">
-                        <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=DEEP" alt="Deep Cleaning Icon">
+                        <img src="deep.png" alt="Deep Cleaning Icon">
                         <h4>Deep Cleaning</h4>
                     </div>
                     <div class="package-item" data-package="rubbing-polishing">
-                        <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=POLISH" alt="Rubbing & Polishing Icon">
+                        <img src="roof-rubbing.png" alt="Rubbing & Polishing Icon">
                         <h4>Rubbing & Polishing</h4>
                     </div>
                     <div class="package-item" data-package="windshield-polish">
-                        <img src="https://placehold.co/60x60/4CAF50/FFFFFF?text=GLASS" alt="Windshield Polish Icon">
+                        <img src="windshield.jpg" alt="Windshield Polish Icon">
                         <h4>Windshield Polish</h4>
                     </div>
                 </div>
@@ -661,23 +686,23 @@
                 <label>Select Car Type</label>
                 <div class="car-type-grid">
                     <div class="car-type-item" data-car="hatchback">
-                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=HATCHBACK" alt="Hatchback Car">
+                        <img src="hatchback.jpg" alt="Hatchback Car">
                         <h4>Hatchback</h4>
                     </div>
                     <div class="car-type-item" data-car="sedan">
-                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=SEDAN" alt="Sedan Car">
+                        <img src="sedan.jpg" alt="Sedan Car">
                         <h4>Sedan</h4>
                     </div>
                     <div class="car-type-item" data-car="compact-suv">
-                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=COMPACT+SUV" alt="Compact SUV Car">
+                        <img src="compact-suv.jpg" alt="Compact SUV Car">
                         <h4>Compact SUV</h4>
                     </div>
                     <div class="car-type-item" data-car="5-seater-suv">
-                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=5+SEATER+SUV" alt="5 Seater SUV Car">
+                        <img src="suv-5-seater.jpg" alt="5 Seater SUV Car">
                         <h4>5 Seater SUV</h4>
                     </div>
                     <div class="car-type-item" data-car="7-seater-suv">
-                        <img src="https://placehold.co/100x60/E53E3E/FFFFFF?text=7+SEATER+SUV" alt="7 Seater SUV Car">
+                        <img src="suv-7-seater.jpg" alt="7 Seater SUV Car">
                         <h4>7 Seater SUV</h4>
                     </div>
                 </div>
@@ -702,11 +727,10 @@
         </form>
     </section>
 
-    <!-- Contact Us Floating Button -->
+    <!-- Updated Contact Us Floating Button -->
     <a href="https://api.whatsapp.com/send?phone=919509208599" class="contact-us-float">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-            <path d="M2.27 12.27c0-2.07.68-3.9 2.03-5.5C5.65 5.17 7.3 4 9.27 4c1.6 0 3.06.63 4.2 1.88l.6.6.6-.6c1.14-1.25 2.6-1.88 4.2-1.88 1.97 0 3.62 1.17 4.97 2.77 1.35 1.6 2.03 3.43 2.03 5.5 0 1.9-.55 3.65-1.65 5.25-1.1 1.6-2.6 2.8-4.5 3.6-1.9.8-3.9.8-5.8 0-1.9-.8-3.4-2-4.5-3.6-1.1-1.6-1.65-3.35-1.65-5.25zM12 21.2c-1.6 0-3.1-.3-4.5-.9-1.4-.6-2.6-1.4-3.6-2.4-1-.9-1.8-2.1-2.4-3.5-.6-1.4-.9-2.9-.9-4.5 0-1.6.3-3.1.9-4.5.6-1.4 1.4-2.6 2.4-3.6 1-1 2.2-1.8 3.6-2.4 1.4-.6 2.9-.9 4.5-.9 1.6 0 3.1.3 4.5.9 1.4.6 2.6 1.4 3.6 2.4 1 .9 1.8 2.1 2.4 3.5.6 1.4.9 2.9.9 4.5 0 1.6-.3 3.1-.9 4.499-.6 1.4-1.4 2.6-2.4 3.6-1 .9-2.2 1.8-3.6 2.4-1.4.6-2.9.9-4.5.9z"/>
-        </svg>
+        <!-- New image element for the WhatsApp icon -->
+        <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon">
         Contact Us
     </a>
 
@@ -724,6 +748,9 @@
         <button onclick="document.getElementById('messageBox').style.display='none';">OK</button>
     </div>
 
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
     <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
@@ -731,7 +758,6 @@
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
         // IMPORTANT: Your actual Firebase project configuration!
-        // This has been updated with the details from your screenshot.
         const firebaseConfig = {
             apiKey: "AIzaSyC-fzkmY0_6Ko8mP8B6HM9fUxTXvIqg18s",
             authDomain: "car-service-9dff6.firebaseapp.com",
@@ -754,11 +780,17 @@
         function showMessageBox(message) {
             const messageBox = document.getElementById('messageBox');
             const messageText = document.getElementById('messageText');
-            messageText.textContent = message;
             messageBox.style.display = 'block';
+            messageText.textContent = message;
         }
 
         document.addEventListener('DOMContentLoaded', async function() {
+            // Initialize Flatpickr on the booking-date input field
+            flatpickr("#booking-date", {
+                dateFormat: "Y-m-d",
+                minDate: "today"
+            });
+
             // Initialize Firebase
             try {
                 app = initializeApp(firebaseConfig);
@@ -864,6 +896,7 @@
                 // Collect form data
                 const name = document.getElementById('name').value;
                 const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value; // Get the email value
                 const city = document.getElementById('city').value;
                 const address = document.getElementById('address').value;
                 const bookingDate = document.getElementById('booking-date').value;
@@ -873,7 +906,7 @@
                 const waterElectricityAvailable = document.getElementById('water-electricity').checked;
 
                 // Basic validation
-                if (!name || !phone || !city || !address || !bookingDate || selectedTimeSlots.length === 0 || !selectedPackage || !selectedCarType || !termsAgreed || !waterElectricityAvailable) {
+                if (!name || !phone || !email || !city || !address || !bookingDate || selectedTimeSlots.length === 0 || !selectedPackage || !selectedCarType || !termsAgreed || !waterElectricityAvailable) {
                     showMessageBox("Please fill in all required fields and make selections.");
                     return;
                 }
@@ -887,6 +920,7 @@
                     userId: userId, // Store the user ID
                     name: name,
                     phone: phone,
+                    email: email, // Add email to booking data
                     city: city,
                     address: address,
                     bookingDate: bookingDate,
