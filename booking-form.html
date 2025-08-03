@@ -24,26 +24,26 @@
 
         /* Navigation Bar (replicated from main page for consistency) */
         .navbar {
-            position: relative; /* Changed from absolute to relative for static positioning on this page */
+            position: relative;
             width: 100%;
             display: flex;
             align-items: center;
-            padding: 0rem 1rem; /* Adjusted padding to match index.html */
+            padding: 0rem 1rem;
             z-index: 10;
-            background-color: #1a1a1a; /* Dark background for consistency */
+            background-color: #1a1a1a;
             color: white;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white line */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .navbar {
-                padding: 0rem 2rem; /* Adjusted padding for desktop */
+                padding: 0rem 2rem;
             }
         }
 
         .navbar-logo {
-            height: 100px; /* Logo height as requested in index.html */
+            height: 100px;
         }
 
         .navbar-links {
@@ -54,8 +54,8 @@
 
         @media (min-width: 768px) {
             .navbar-links {
-                flex-grow: 1; /* Allow links container to grow */
-                justify-content: center; /* Center the links within the container */
+                flex-grow: 1;
+                justify-content: center;
                 gap: 2rem;
             }
         }
@@ -197,7 +197,7 @@
 
         .form-group input[type="text"],
         .form-group input[type="tel"],
-        .form-group input[type="email"], /* Added email input type */
+        .form-group input[type="email"],
         .form-group input[type="date"],
         .form-group select,
         .form-group textarea {
@@ -206,7 +206,7 @@
             border-radius: 0.375rem;
             border: 1px solid #ccc;
             font-size: 1rem;
-            box-sizing: border-box; /* Include padding in width */
+            box-sizing: border-box;
         }
 
         .form-group textarea {
@@ -214,11 +214,6 @@
             resize: vertical;
         }
         
-        /* Removed the old style for the native date picker icon */
-        /* .form-group input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-        } */
-
         .form-row {
             display: flex;
             flex-direction: column;
@@ -267,8 +262,8 @@
         }
 
         .package-item.selected, .car-type-item.selected {
-            background-color: #e6ffe6; /* Light green for selected */
-            border-color: #4CAF50; /* Green border for selected */
+            background-color: #e6ffe6;
+            border-color: #4CAF50;
         }
 
         .package-item img, .car-type-item img {
@@ -320,7 +315,6 @@
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
-            /* New background color to match the image */
             background-color: #0F9643;
             color: white;
             padding: 0.75rem 1.5rem;
@@ -336,20 +330,18 @@
         }
 
         .contact-us-float:hover {
-            /* Slightly darker green on hover */
             background-color: #0c7a36;
         }
         
         .whatsapp-icon {
             height: 24px;
             width: 24px;
-            /* Use object-fit and object-position to ensure the image fits well */
             object-fit: contain;
             object-position: center;
         }
 
         /* Footer (replicated) */
-        .extended-footer-section { /* Renamed to extended-footer-section for consistency */
+        .extended-footer-section {
             background-color: #1a1a1a;
             color: white;
             padding: 4rem 1.5rem;
@@ -362,47 +354,47 @@
         }
 
         @media (min-width: 768px) {
-            .extended-footer-section { /* Renamed to extended-footer-section for consistency */
+            .extended-footer-section {
                 grid-template-columns: repeat(3, 1fr);
                 text-align: left;
             }
         }
 
-        .extended-footer-column h3 { /* Renamed to extended-footer-column h3 for consistency */
+        .extended-footer-column h3 {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
             color: #4CAF50;
         }
 
-        .extended-footer-column p { /* Renamed to extended-footer-column p for consistency */
+        .extended-footer-column p {
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 1rem;
             color: #ccc;
         }
 
-        .extended-footer-column ul { /* Renamed to extended-footer-column ul for consistency */
+        .extended-footer-column ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .extended-footer-column ul li { /* Renamed to extended-footer-column ul li for consistency */
+        .extended-footer-column ul li {
             margin-bottom: 0.75rem;
         }
 
-        .extended-footer-column ul li a { /* Renamed to extended-footer-column ul li a for consistency */
+        .extended-footer-column ul li a {
             color: #ccc;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
-        .extended-footer-column ul li a:hover { /* Renamed to extended-footer-column ul li a:hover for consistency */
+        .extended-footer-column ul li a:hover {
             color: white;
         }
 
-        .phone-contact { /* Renamed to phone-contact for consistency */
+        .phone-contact {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -417,33 +409,33 @@
         }
 
         @media (min-width: 768px) {
-            .phone-contact { /* Renamed to phone-contact for consistency */
+            .phone-contact {
                 justify-content: flex-start;
                 margin-left: 0;
                 margin-right: 0;
             }
         }
 
-        .phone-contact svg { /* Renamed to phone-contact svg for consistency */
+        .phone-contact svg {
             width: 24px;
             height: 24px;
             fill: #4CAF50;
         }
 
-        .phone-contact span { /* Renamed to phone-contact span for consistency */
+        .phone-contact span {
             font-size: 1.125rem;
             font-weight: bold;
             color: white;
         }
 
-        .subscribe-form { /* Renamed to subscribe-form for consistency */
+        .subscribe-form {
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
             margin-top: 1rem;
         }
 
-        .subscribe-form input[type="email"] { /* Renamed to subscribe-form input[type="email"] for consistency */
+        .subscribe-form input[type="email"] {
             padding: 0.75rem 1rem;
             border-radius: 0.375rem;
             border: 1px solid #555;
@@ -452,11 +444,11 @@
             font-size: 0.9rem;
         }
 
-        .subscribe-form input[type="email"]::placeholder { /* Renamed to subscribe-form input[type="email"]::placeholder for consistency */
+        .subscribe-form input[type="email"]::placeholder {
             color: #999;
         }
 
-        .subscribe-form button { /* Renamed to subscribe-form button for consistency */
+        .subscribe-form button {
             background-color: #4CAF50;
             color: white;
             padding: 0.75rem 1.5rem;
@@ -467,11 +459,11 @@
             border: none;
         }
 
-        .subscribe-form button:hover { /* Renamed to subscribe-form button:hover for consistency */
+        .subscribe-form button:hover {
             background-color: #45a049;
         }
 
-        .social-icons { /* Renamed to social-icons for consistency */
+        .social-icons {
             display: flex;
             justify-content: center;
             gap: 1rem;
@@ -479,19 +471,19 @@
         }
 
         @media (min-width: 768px) {
-            .social-icons { /* Renamed to social-icons for consistency */
+            .social-icons {
                 justify-content: flex-start;
             }
         }
 
-        .social-icons a img { /* Renamed to social-icons a img for consistency */
+        .social-icons a img {
             width: 30px;
             height: 30px;
             border-radius: 50%;
             transition: transform 0.2s ease;
         }
 
-        .social-icons a img:hover { /* Renamed to social-icons a img:hover for consistency */
+        .social-icons a img:hover {
             transform: scale(1.1);
         }
 
@@ -536,7 +528,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            display: none; /* Hidden by default */
+            display: none;
             text-align: center;
             font-size: 1.2rem;
         }
@@ -557,22 +549,19 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Logo updated to match index.html -->
             <img src="car logo.png" alt="Car Care Logo" class="navbar-logo">
         </div>
 
-        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
         <button class="menu-toggle md:hidden">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
 
-        <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
         <div class="navbar-links hidden md:flex">
             <a href="index.html" class="nav-button">HOME</a>
             <div class="dropdown">
                 <a href="#" class="nav-button">
                     PACKAGES
-                    <span class="dropdown-arrow">&#9660;</span> <!-- Unicode for down arrow -->
+                    <span class="dropdown-arrow">&#9660;</span>
                 </a>
                 <div class="dropdown-content">
                     <a href="quick-shine-page.html">Quick Shine</a>
@@ -584,7 +573,6 @@
             <a href="booking-form.html" class="nav-button">CONTACT US</a>
         </div>
 
-            <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
             <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
             <div class="flex flex-col text-xl w-full px-4 text-white">
@@ -593,9 +581,9 @@
                     <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
                         PACKAGES
                         <span class="dropdown-arrow transform transition-transform duration-300">
-                               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                   <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                               </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
                         </span>
                     </a>
                     <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
@@ -629,13 +617,45 @@
                 <input type="email" id="email" placeholder="Enter your email" required>
             </div>
 
+            <!-- The City dropdown now only shows "Jaipur" -->
             <div class="form-group">
                 <label for="city">City</label>
                 <select id="city" required>
-                    <option value="">Select your city</option>
-                    <option value="jaipur">Jaipur</option>
-                    <option value="kota">Kota</option>
-                    <option value="delhi">Delhi</option>
+                    <option value="jaipur" selected>Jaipur</option>
+                </select>
+            </div>
+
+            <!-- New dropdown for Sub-areas with an expanded list -->
+            <div id="subAreaGroup" class="form-group">
+                <label for="sub-area">Sub-area in Jaipur</label>
+                <select id="sub-area" required>
+                    <option value="">Select a sub-area</option>
+                    <option value="ajmer-road">Ajmer Road</option>
+                    <option value="amer">Amer</option>
+                    <option value="bapu-nagar">Bapu Nagar</option>
+                    <option value="c-scheme">C-Scheme</option>
+                    <option value="civil-lines">Civil Lines</option>
+                    <option value="durga-pura">Durga Pura</option>
+                    <option value="gandhi-nagar">Gandhi Nagar</option>
+                    <option value="jagatpura">Jagatpura</option>
+                    <option value="jawahar-nagar">Jawahar Nagar</option>
+                    <option value="jhotwara">Jhotwara</option>
+                    <option value="jhotwara-industrial-area">Jhotwara Industrial Area</option>
+                    <option value="lal-kothi">Lal Kothi</option>
+                    <option value="malviya-nagar">Malviya Nagar</option>
+                    <option value="mansarovar">Mansarovar</option>
+                    <option value="mahesh-nagar">Mahesh Nagar</option>
+                    <option value="muralipura">Muralipura</option>
+                    <option value="pratap-nagar">Pratap Nagar</option>
+                    <option value="ramgarh-mod">Ramgarh Mod</option>
+                    <option value="sanganer">Sanganer</option>
+                    <option value="shastri-nagar">Shastri Nagar</option>
+                    <option value="sitapura">Sitapura</option>
+                    <option value="subhash-nagar">Subhash Nagar</option>
+                    <option value="tonk-road">Tonk Road</option>
+                    <option value="vaishali-nagar">Vaishali Nagar</option>
+                    <option value="vidyadhar-nagar">Vidyadhar Nagar</option>
+                    <option value="vishwakarma-industrial-area">Vishwakarma Industrial Area</option>
                 </select>
             </div>
 
@@ -646,7 +666,6 @@
 
             <div class="form-group">
                 <label for="booking-date">Booking Date</label>
-                <!-- Changed to type="text" to be used with flatpickr -->
                 <input type="text" id="booking-date" placeholder="Select a booking date" required>
             </div>
 
@@ -729,7 +748,6 @@
 
     <!-- Updated Contact Us Floating Button -->
     <a href="https://api.whatsapp.com/send?phone=919509208599" class="contact-us-float">
-        <!-- New image element for the WhatsApp icon -->
         <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon">
         Contact Us
     </a>
@@ -754,23 +772,17 @@
     <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-        // IMPORTANT: Your actual Firebase project configuration!
-        const firebaseConfig = {
-            apiKey: "AIzaSyC-fzkmY0_6Ko8mP8B6HM9fUxTXvIqg18s",
-            authDomain: "car-service-9dff6.firebaseapp.com",
-            projectId: "car-service-9dff6",
-            storageBucket: "car-service-9dff6.firebasestorage.app",
-            messagingSenderId: "872557668249",
-            appId: "1:872557668249:web:a60ea16a0af58d916e1508",
-            measurementId: "G-CCFLNVLTVN"
-        };
+        // Canvas environment variables for Firestore.
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
 
         // This will be used as the collection path.
-        const firestoreCollectionPath = `bookings`; // Storing directly under 'bookings' for simplicity outside Canvas
-
+        const firestoreCollectionPath = `artifacts/${appId}/public/data/bookings`;
+        
         let app;
         let db;
         let auth;
@@ -791,21 +803,40 @@
                 minDate: "today"
             });
 
-            // Initialize Firebase
+            // Initialize Firebase and authenticate
             try {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
+                if (Object.keys(firebaseConfig).length > 0) {
+                    app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);
+                    auth = getAuth(app);
 
-                // Sign in anonymously for simplicity outside Canvas.
-                // Ensure Anonymous Authentication is enabled in your Firebase project.
-                await signInAnonymously(auth);
-                userId = auth.currentUser?.uid || 'anonymous'; // Fallback to 'anonymous' if UID is not available
-                console.log("Firebase initialized and user authenticated. User ID:", userId);
+                    // Sign in using the custom auth token if available, otherwise sign in anonymously
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                    
+                    userId = auth.currentUser?.uid || crypto.randomUUID();
+                    console.log("Firebase initialized and user authenticated. User ID:", userId);
+
+                    // Add a state change listener to ensure user is logged in
+                    onAuthStateChanged(auth, (user) => {
+                        if (user) {
+                            console.log("Auth state changed, user is signed in:", user.uid);
+                        } else {
+                            console.log("Auth state changed, user is signed out.");
+                        }
+                    });
+                } else {
+                    console.error("Firebase configuration is missing.");
+                    showMessageBox("Error initializing Firebase. Configuration is missing.");
+                    return;
+                }
             } catch (error) {
                 console.error("Error initializing Firebase or authenticating:", error);
                 showMessageBox("Error initializing the application. Please check your Firebase configuration and network connection.");
-                return; // Stop execution if Firebase fails to initialize
+                return;
             }
 
             const menuToggle = document.querySelector('.menu-toggle');
@@ -814,7 +845,6 @@
             const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
             const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
 
-            // Toggle mobile menu visibility
             if (menuToggle) {
                 menuToggle.addEventListener('click', function() {
                     mobileMenu.classList.toggle('hidden');
@@ -822,7 +852,6 @@
                 });
             }
 
-            // Close mobile menu
             if (closeMenu) {
                 closeMenu.addEventListener('click', function() {
                     mobileMenu.classList.add('hidden');
@@ -830,7 +859,6 @@
                 });
             }
 
-            // Toggle mobile dropdown visibility
             if (mobileDropdownToggle) {
                 mobileDropdownToggle.addEventListener('click', function(event) {
                     event.preventDefault();
@@ -843,6 +871,9 @@
             const carTypeItems = document.querySelectorAll('.car-type-item');
             const priceInput = document.getElementById('price');
             const bookingForm = document.getElementById('bookingForm');
+            const cityDropdown = document.getElementById('city');
+            const subAreaGroup = document.getElementById('subAreaGroup');
+            const subAreaDropdown = document.getElementById('sub-area');
 
             const pricing = {
                 'quick-shine': {
@@ -891,13 +922,13 @@
 
             // Handle form submission
             bookingForm.addEventListener('submit', async function(event) {
-                event.preventDefault(); // Prevent default form submission
+                event.preventDefault();
 
-                // Collect form data
                 const name = document.getElementById('name').value;
                 const phone = document.getElementById('phone').value;
-                const email = document.getElementById('email').value; // Get the email value
-                const city = document.getElementById('city').value;
+                const email = document.getElementById('email').value;
+                const city = cityDropdown.value;
+                const subArea = subAreaDropdown.value; // Get the sub-area value
                 const address = document.getElementById('address').value;
                 const bookingDate = document.getElementById('booking-date').value;
                 const selectedTimeSlots = Array.from(document.querySelectorAll('input[name="time-slot"]:checked')).map(cb => cb.value);
@@ -906,7 +937,7 @@
                 const waterElectricityAvailable = document.getElementById('water-electricity').checked;
 
                 // Basic validation
-                if (!name || !phone || !email || !city || !address || !bookingDate || selectedTimeSlots.length === 0 || !selectedPackage || !selectedCarType || !termsAgreed || !waterElectricityAvailable) {
+                if (!name || !phone || !email || !city || !subArea || !address || !bookingDate || selectedTimeSlots.length === 0 || !selectedPackage || !selectedCarType || !termsAgreed || !waterElectricityAvailable) {
                     showMessageBox("Please fill in all required fields and make selections.");
                     return;
                 }
@@ -917,11 +948,12 @@
                 }
 
                 const bookingData = {
-                    userId: userId, // Store the user ID
+                    userId: userId,
                     name: name,
                     phone: phone,
-                    email: email, // Add email to booking data
+                    email: email,
                     city: city,
+                    subArea: subArea, // Include the sub-area in the booking data
                     address: address,
                     bookingDate: bookingDate,
                     timeSlots: selectedTimeSlots,
@@ -930,23 +962,26 @@
                     price: price,
                     termsAgreed: termsAgreed,
                     waterElectricityAvailable: waterElectricityAvailable,
-                    timestamp: new Date() // Add a timestamp
+                    timestamp: new Date()
                 };
-
-                try {
-                    // Add a new document with a generated ID to the 'bookings' collection
-                    const docRef = await addDoc(collection(db, firestoreCollectionPath), bookingData);
-                    console.log("Document written with ID: ", docRef.id);
-                    showMessageBox("Booking submitted successfully! We will contact you shortly.");
-                    bookingForm.reset(); // Clear the form
-                    packageItems.forEach(p => p.classList.remove('selected')); // Deselect packages
-                    carTypeItems.forEach(c => c.classList.remove('selected')); // Deselect car types
-                    selectedPackage = null;
-                    selectedCarType = null;
-                    updatePrice(); // Clear price display
-                } catch (e) {
-                    console.error("Error adding document: ", e);
-                    showMessageBox("Error submitting booking. Please try again.");
+                
+                if (auth.currentUser) {
+                    try {
+                        const docRef = await addDoc(collection(db, firestoreCollectionPath), bookingData);
+                        console.log("Document written with ID: ", docRef.id);
+                        showMessageBox("Booking submitted successfully! We will contact you shortly.");
+                        bookingForm.reset();
+                        packageItems.forEach(p => p.classList.remove('selected'));
+                        carTypeItems.forEach(c => c.classList.remove('selected'));
+                        selectedPackage = null;
+                        selectedCarType = null;
+                        updatePrice();
+                    } catch (e) {
+                        console.error("Error adding document: ", e);
+                        showMessageBox("Error submitting booking. Please try again.");
+                    }
+                } else {
+                    showMessageBox("User not authenticated. Please try reloading the page.");
                 }
             });
         });
