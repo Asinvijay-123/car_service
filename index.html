@@ -16,7 +16,8 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             overflow-x: hidden; /* Prevent horizontal scrolling */
-            background-color: #f8f8f8; /* Light background for the page */
+            background-color: #F6F6F6; /* Light background for the page */
+            color: #2B2B2B; /* Default text color for light backgrounds */
         }
 
         /* Main content overlay - now acts as the first page background */
@@ -45,7 +46,7 @@
             height: 100vh;
             overflow: hidden;
             z-index: -2; /* Placed behind overlay and content */
-            background-color: black; /* Default background for video area */
+            background-color: #000000; /* Pure black for the video area */
         }
 
         .hero-video video {
@@ -89,7 +90,7 @@
         /* Hero text styling (inside hero-text-container) */
         .hero-text {
             text-align: center;
-            color: white; /* Default white text for dark video background */
+            color: #FFFFFF; /* White text for dark video background */
             width: 100%; /* Ensure text container takes full width for centering */
             padding: 0 1rem; /* Add some horizontal padding */
             box-sizing: border-box; /* Include padding in width calculation */
@@ -99,12 +100,14 @@
             font-size: clamp(1rem, 3vw, 1.75rem); /* Fluid font size for main content paragraph */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Default text shadow */
             margin-bottom: 0.5rem; /* Space between h4 and h1 */
+            color: #CCCCCC; /* Light gray for subheading */
         }
 
         .hero-text h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.5rem, 8vw, 5.5rem); /* Fluid font size for main content heading */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Default text shadow */
+            color: #FFFFFF; /* White for main heading */
         }
 
         /* Media query for 9:16 aspect ratio (portrait mode) */
@@ -160,12 +163,12 @@
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
-                color: #333;
+                color: #222222; /* Near black text */
             }
 
             .hero-text h4,
             .hero-text h1 {
-                color: #333;
+                color: #222222; /* Near black text */
                 text-shadow: none;
             }
         }
@@ -207,14 +210,14 @@
         
         @media (max-aspect-ratio: 9/16) {
             .navbar {
-                background-color: white; /* Match navbar background with mobile hero section */
+                background-color: #FFFFFF; /* Match navbar background with mobile hero section */
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
             }
             .navbar .navbar-logo {
-                filter: brightness(0) saturate(100%) invert(0%); /* Change logo to black */
+                filter: none; /* No filter needed as the logo is dark on a light background */
             }
             .navbar .menu-toggle svg {
-                color: black; /* Change hamburger icon to black */
+                color: #222222; /* Change hamburger icon to near black */
             }
         }
 
@@ -249,7 +252,7 @@
 
         /* Individual navigation link styling */
         .navbar-links a {
-            color: white;
+            color: #FFFFFF;
             text-decoration: none;
             font-weight: bold;
             padding: 0.5rem 0.75rem;
@@ -261,7 +264,7 @@
         }
 
         .navbar-links a:hover {
-            color: #a0aec0;
+            color: #A0D9B4; /* Soft minty green highlight on hover */
             background-color: transparent;
         }
 
@@ -279,7 +282,7 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
+            background-color: #FFFFFF;
             min-width: clamp(120px, 20vw, 160px); /* Fluid min-width for dropdown */
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
@@ -291,7 +294,7 @@
         }
 
         .dropdown-content a {
-            color: black;
+            color: #222222; /* Near black text */
             padding: 12px 16px;
             text-decoration: none;
             display: block;
@@ -301,8 +304,8 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #ddd;
-            color: #333;
+            background-color: #F5F5F5;
+            color: #A0D9B4; /* Soft minty green highlight on hover */
         }
 
         .dropdown:hover .dropdown-content {
@@ -359,7 +362,7 @@
 
         /* Responsive adjustments for text content */
         .content p {
-            color: white;
+            color: #DDDDDD; /* Light gray text */
             font-size: clamp(1rem, 3vw, 1.75rem); /* Fluid font size for main content paragraph */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
@@ -378,17 +381,17 @@
 
         /* Styles for the Packages section */
         .packages-section {
-            background-color: #f8f8f8; /* Light background for the packages section */
+            background-color: #F5F5F5; /* Light gray background for the packages section */
             padding: 0rem 1rem; /* Adjusted padding-top to remove extra space */
             text-align: center;
             position: relative; /* Needed for z-index to be above video */
             z-index: 2; /* Ensures this section is above the video background */
-            color: #333; /* Dark text for readability */
+            color: #222222; /* Dark text for readability */
             margin-bottom: clamp(2rem, 8vw, 4rem); /* Added margin-bottom for spacing */
         }
 
         .packages-header {
-            background-color: #8BC34A; /* Changed from red to light green */
+            background-color: #6FCF97; /* Soft minty green accent color */
             color: white;
             padding: clamp(1.5rem, 5vw, 2.5rem) 1rem; /* Fluid padding */
             text-align: left;
@@ -411,7 +414,7 @@
 
         .book-now-header-btn {
             background-color: white;
-            color: #8BC34A; /* Changed from red to light green */
+            color: #6FCF97; /* Soft minty green accent color */
             padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             border-radius: 0.375rem;
             font-weight: bold;
@@ -421,8 +424,8 @@
         }
 
         .book-now-header-btn:hover {
-            background-color: #f0f0f0;
-            color: #689F38; /* Changed from darker red to darker green */
+            background-color: #57AE73;
+            color: white;
         }
 
         .packages-header h2 {
@@ -465,7 +468,7 @@
         }
 
         .package-card {
-            background-color: white;
+            background-color: #FFFFFF;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             padding: clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
@@ -486,11 +489,12 @@
             font-size: clamp(1rem, 3.5vw, 1.5rem); /* Fluid font size */
             font-weight: bold;
             margin-bottom: clamp(0.25rem, 1vw, 0.5rem); /* Fluid margin */
+            color: #222222; /* Near black text */
         }
 
         .package-card p {
             font-size: clamp(0.75rem, 2.5vw, 0.95rem); /* Fluid font size */
-            color: #555;
+            color: #555555; /* Mid-gray for description */
             margin-bottom: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
             flex-grow: 1;
         }
@@ -499,13 +503,13 @@
             font-size: clamp(0.8rem, 2.5vw, 1.125rem); /* Fluid font size */
             font-weight: bold;
             margin-top: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
-            color: #333;
+            color: #222222; /* Near black color for text */
             /* Changed to block to allow natural wrapping for time and price if needed */
             display: block;
         }
 
         .package-card .price {
-            color: #8BC34A; /* Green color for price */
+            color: #6FCF97; /* Soft minty green color for price */
         }
 
         .package-card-actions {
@@ -517,7 +521,7 @@
         }
 
         .package-card-actions .book-now-btn {
-            background-color: #8BC34A; /* Changed from red to light green */
+            background-color: #6FCF97; /* Soft minty green accent color */
             color: white;
             padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
             border-radius: 0.375rem;
@@ -528,33 +532,32 @@
         }
 
         .package-card-actions .book-now-btn:hover {
-            background-color: #689F38; /* Changed from darker red to darker green */
+            background-color: #57AE73; /* Darker minty green on hover */
         }
 
         .package-card-actions .more-link {
-            color: #666; /* Default color for 'More' link */
+            color: #222222; /* Near black for 'More' link */
             text-decoration: none;
             font-size: clamp(0.7rem, 2vw, 0.875rem); /* Fluid font size */
+            transition: color 0.3s ease;
         }
 
         .package-card-actions .more-link:hover {
-            color: #333; /* Darker color on hover */
+            color: #A0D9B4; /* Soft minty green highlight on hover */
         }
 
         /* Styles for Why Choose Us section */
         .why-choose-us-section {
-            background-color: white; /* Changed to white background */
+            background-color: #1A1A1A; /* Charcoal gray background */
             padding: clamp(2rem, 8vw, 4rem) 0; /* Removed horizontal padding here */
-            color: #333; /* Default text color for this section */
+            color: #DDDDDD; /* Default text color for this section */
             display: flex;
             flex-direction: column; /* Default to column on small screens */
             align-items: center;
             gap: clamp(1rem, 4vw, 2rem); /* Fluid gap */
-            /* Removed max-width and margin: 0 auto; from here */
             position: relative; /* Needed for z-index */
             z-index: 2; /* Ensure this section is above other elements */
-            /* Removed background-image and background-attachment */
-            text-shadow: none; /* Removed text shadow as background is light */
+            text-shadow: none; /* Removed text shadow as background is dark */
         }
 
         /* New inner container for content to keep it centered */
@@ -594,24 +597,24 @@
         .why-choose-us-content {
             flex: 1;
             padding: clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
-            background-color: transparent; /* Changed to transparent to show white background of section */
+            background-color: transparent; /* Changed to transparent to show section background */
             border-radius: 0.75rem;
         }
 
         .why-choose-us-content p.text-sm { /* Targeting the "CAR CARE" uppercase text */
-            color: #666; /* Darker color for readability on white background */
+            color: #DDDDDD; /* Light gray for readability on dark background */
         }
 
         .why-choose-us-content h2 {
             font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid font size */
             font-weight: bold;
             margin-bottom: clamp(0.8rem, 3vw, 1rem); /* Fluid margin */
-            color: #333; /* Changed to dark text for readability */
+            color: #FFFFFF; /* White text for heading */
         }
 
         .why-choose-us-content p {
             font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
-            color: #555; /* Changed to dark text for readability */
+            color: #DDDDDD; /* Light gray text for readability */
             margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
         }
 
@@ -624,27 +627,27 @@
             justify-content: space-between;
             font-weight: bold;
             margin-bottom: clamp(0.3rem, 1vw, 0.5rem); /* Fluid margin */
-            color: #333; /* Changed to dark text for readability */
+            color: #FFFFFF; /* White text for readability */
             font-size: clamp(0.7rem, 2vw, 0.9rem); /* Fluid font size */
         }
 
         .progress-bar {
-            background-color: #e0e0e0;
+            background-color: #333333; /* Dark gray for the empty bar */
             height: 8px;
             border-radius: 4px;
             overflow: hidden;
         }
 
         .progress-fill {
-            background-color: #8BC34A; /* Green fill color */
+            background-color: #A0D9B4; /* Soft minty green fill color */
             height: 100%;
             border-radius: 4px;
         }
 
         /* Testimonials Section */
         .testimonials-section {
-            background-color: #222; /* Dark background for testimonials */
-            color: white;
+            background-color: #121212; /* Near-black background for testimonials */
+            color: #FFFFFF; /* White text for dark background */
             padding: clamp(2rem, 8vw, 4rem) 1rem; /* Fluid padding */
             position: relative;
             overflow: hidden;
@@ -658,7 +661,7 @@
         .testimonials-header p {
             font-size: clamp(0.7rem, 2vw, 0.875rem); /* Fluid font size */
             text-transform: uppercase;
-            color: #a0aec0;
+            color: #EEEEEE; /* Light gray for readability */
             margin-bottom: clamp(0.3rem, 1vw, 0.5rem); /* Fluid margin */
         }
 
@@ -685,7 +688,7 @@
         }
 
         .testimonial-card {
-            background-color: #333; /* Slightly lighter dark background for cards */
+            background-color: #1F1F1F; /* Slightly lighter dark background for cards */
             border-radius: 0.75rem;
             padding: clamp(1.5rem, 6vw, 2rem); /* Fluid padding */
             position: relative;
@@ -698,6 +701,7 @@
             font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
             line-height: 1.5;
             margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
+            color: #AAAAAA; /* Gray for quote text */
         }
 
         .testimonial-author {
@@ -711,18 +715,19 @@
             height: clamp(40px, 8vw, 50px); /* Fluid size for avatar */
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid white;
+            border: 2px solid #A0D9B4; /* Soft minty green border to match new text color */
         }
 
         .testimonial-author span {
             font-weight: bold;
             font-size: clamp(0.9rem, 2.5vw, 1.125rem); /* Fluid font size */
+            color: #A0D9B4; /* Soft minty green for author name */
         }
 
         /* Extended Footer Section */
         .extended-footer-section {
-            background-color: #1a1a1a; /* Dark background */
-            color: white;
+            background-color: #0F0F0F; /* Dark background */
+            color: #CCCCCC; /* Light gray for text */
             padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -743,7 +748,7 @@
             font-size: clamp(1.2rem, 3.5vw, 1.5rem); /* Fluid font size */
             font-weight: bold;
             margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
-            color: #8BC34A; /* Light green accent for headers */
+            color: #6FCF97; /* Soft minty green accent for headers */
         }
 
         .extended-footer-column p {
@@ -763,14 +768,14 @@
         }
 
         .extended-footer-column ul li a {
-            color: #ccc;
+            color: #CCCCCC; /* Light gray for links */
             text-decoration: none;
             transition: color 0.3s ease;
             font-size: clamp(0.75rem, 2vw, 0.9rem); /* Fluid font size */
         }
 
         .extended-footer-column ul li a:hover {
-            color: white;
+            color: #A0D9B4; /* Soft minty green highlight on hover */
         }
 
         .phone-contact {
@@ -778,7 +783,7 @@
             align-items: center;
             justify-content: center;
             gap: clamp(0.5rem, 2vw, 0.75rem); /* Fluid gap */
-            background-color: #333;
+            background-color: #1A1A1A; /* Charcoal gray background for contact button */
             padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             border-radius: 0.5rem;
             margin-top: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
@@ -795,16 +800,15 @@
             }
         }
 
-        .phone-contact svg {
+        .phone-contact img {
             width: clamp(20px, 4vw, 24px); /* Fluid icon size */
             height: clamp(20px, 4vw, 24px); /* Fluid icon size */
-            fill: #4CAF50; /* Green phone icon */
         }
 
         .phone-contact span {
             font-size: clamp(0.8rem, 2.5vw, 1.125rem); /* Fluid font size */
             font-weight: bold;
-            color: white;
+            color: #FFFFFF;
         }
 
         .subscribe-form {
@@ -818,7 +822,7 @@
             padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
             border-radius: 0.375rem;
             border: 1px solid #555;
-            background-color: #333;
+            background-color: #333333; /* Darker gray for input field */
             color: white;
             font-size: clamp(0.75rem, 2vw, 0.9rem); /* Fluid font size */
         }
@@ -828,8 +832,8 @@
         }
 
         .subscribe-form button {
-            background-color: #4CAF50; /* Green send button */
-            color: white;
+            background-color: #6FCF97; /* Soft minty green send button */
+            color: #FFFFFF;
             padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             border-radius: 0.375rem;
             font-weight: bold;
@@ -840,7 +844,7 @@
         }
 
         .subscribe-form button:hover {
-            background-color: #45a049;
+            background-color: #57AE73; /* Darker minty green on hover */
         }
 
         .social-icons {
@@ -867,9 +871,10 @@
             transform: scale(1.1);
         }
 
+        /* Final Copyright Footer */
         .copyright-footer {
-            background-color: #111;
-            color: #aaa;
+            background-color: #0F0F0F; /* Same as main footer */
+            color: #CCCCCC;
             padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
             text-align: center;
             font-size: clamp(0.7rem, 2vw, 0.8rem); /* Fluid font size */
@@ -891,14 +896,14 @@
         }
 
         .copyright-footer a {
-            color: #aaa;
+            color: #CCCCCC;
             text-decoration: none;
             transition: color 0.3s ease;
             font-size: clamp(0.7rem, 2vw, 0.8rem); /* Fluid font size */
         }
 
         .copyright-footer a:hover {
-            color: white;
+            color: #FFFFFF;
         }
 
         /* Floating Contact Us Button */
@@ -918,40 +923,30 @@
             transform: scale(1.05); /* Slightly enlarge on hover */
         }
 
-        .whatsapp-icon-container {
-            background-color: #25D366; /* WhatsApp green */
-            border-radius: 9999px; /* Fully rounded */
-            padding: 0.5rem;
+        /* New styles for the single, unified WhatsApp button */
+        .whatsapp-button {
+            background-color: #6FCF97; /* Soft minty green for the button background */
+            color: #FFFFFF;
+            padding: 0.75rem 1.5rem; /* Adjust padding to make it a comfortable size */
+            border-radius: 9999px; /* Pill shape */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
             display: flex;
-            justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-
-        .whatsapp-icon-container:hover {
-            background-color: #1DA851; /* Darker green on hover */
-        }
-
-        .whatsapp-icon {
-            width: 24px; /* Icon size */
-            height: 24px; /* Icon size */
-            filter: invert(100%); /* Make icon white */
-        }
-
-        .contact-text {
-            background-color: #1a1a1a; /* Dark background for text */
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem; /* Rounded corners */
+            gap: 0.75rem; /* Space between icon and text */
             font-weight: bold;
-            font-size: 0.9rem; /* Adjust font size as needed */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
+            font-size: 1rem;
         }
 
-        .contact-text:hover {
-            background-color: #333; /* Slightly lighter dark on hover */
+        .whatsapp-button:hover {
+            background-color: #57AE73; /* Darker minty green on hover */
+            transform: scale(1.05);
+        }
+
+        /* Styling for the icon inside the new button */
+        .whatsapp-button img {
+            width: 24px; /* Size of the icon */
+            height: 24px;
         }
     </style>
 </head>
@@ -1037,7 +1032,7 @@
     <section class="packages-section">
         <div class="packages-header">
             <!-- Tire track image placeholder updated -->
-            <img src="https://placehold.co/200x100/8BC34A/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" onerror="this.onerror=null;this.src='https://placehold.co/200x100/8BC34A/FFFFFF?text=TIRE+TRACK+DESIGN';">
+            <img src="https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" onerror="this.onerror=null;this.src='https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN';">
             <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
                 <div class="w-full text-left">
                     <p class="text-sm font-semibold uppercase mb-1">OUR PACKAGES</p>
@@ -1051,7 +1046,7 @@
         <div class="package-card-container">
             <!-- Card 1: Quick Shine -->
             <div class="package-card">
-                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Quick';">
+                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Quick';">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
                 <div class="time-price">
@@ -1065,7 +1060,7 @@
 
             <!-- Card 2: Deep Cleaning -->
             <div class="package-card">
-                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Deep';">
+                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Deep';">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
                 <div class="time-price">
@@ -1079,7 +1074,7 @@
 
             <!-- Card 3: Rubbing & Polishing -->
             <div class="package-card">
-                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Rubbing';">
+                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Rubbing';">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
                 <div class="time-price">
@@ -1093,7 +1088,7 @@
 
             <!-- Card 4: Windshield Polish -->
             <div class="package-card">
-                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=Windshield';">
+                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Windshield';">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
                 <div class="time-price">
@@ -1111,7 +1106,7 @@
     <section class="why-choose-us-section">
         <div class="why-choose-us-inner-container">
             <div class="why-choose-us-image-container">
-                <img src="Gemini_Generated_Image_ox5odcox5odcox5o.png" alt="Car Cleaning Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Car+Cleaning';">
+                <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/222222?text=Car+Cleaning';">
             </div>
             <div class="why-choose-us-content">
                 <p class="text-sm font-semibold uppercase mb-1">CAR CARE</p> <!-- Adjusted text color for readability -->
@@ -1162,7 +1157,7 @@
             <div class="testimonial-card">
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
                 <div class="testimonial-author">
-                    <img src="user1_review.webp" alt="Rahul Sherewala" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=User1';">
+                    <img src="user1_review.webp" alt="Rahul Sherewala" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=User1';">
                     <span>-Rahul Sherewala</span>
                 </div>
             </div>
@@ -1170,7 +1165,8 @@
             <div class="testimonial-card">
                 <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
                 <div class="testimonial-author">
-                    <img src="user2_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/333333?text=User2';">
+                    <img src="user2_review.webp" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=User2';">
+                    <span>-Geeta Kumari</span>
                 </div>
             </div>
         </div>
@@ -1182,9 +1178,8 @@
             <h3>COMPANY //</h3>
             <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
             <div class="phone-contact">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.832 1.442l.636 2.017a.75.75 0 01-.092.836l-2.007 1.604a8.596 8.596 0 004.286 4.286l1.604-2.007a.75.75 0 01.836-.092l2.017.636c.856.222 1.442.972 1.442 1.832V19.5a3 3 0 01-3 3h-1.372c-.86 0-1.61-.586-1-832-1.442l-.636-2.017a.75.75 0 01.092-.836l2.007-1.604a8.596 8.596 0 00-4.286-4.286l-1.604 2.007a.75.75 0 01-.836.092L3.04 5.918A.75.75 0 011.5 4.5zm10.5 6a.75.75 0 01.75.75v.5a.75.75 0 01-1.5 0v-.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
-                </svg>
+                <!-- Replaced the SVG with the new image tag and added fluid sizing and a fallback placeholder image -->
+                <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" onerror="this.onerror=null;this.src='https://placehold.co/24x24/6FCF97/FFFFFF?text=Phone';" >
                 <span>Talk To Our Support 9509208599</span>
             </div>
             <p class="mt-4">3 K Shivpure Kota (Raj.),</p>
@@ -1211,8 +1206,8 @@
             </div>
             <div class="social-icons">
                 <!-- Social media icons placeholders were already in original code -->
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=IG" alt="Instagram" onerror="this.onerror=null;this.src='https://placehold.co/30x30/000000/FFFFFF?text=IG';"></a>
-                <a href="#"><img src="https://placehold.co/30x30/000000/FFFFFF?text=FB" alt="Facebook" onerror="this.onerror=null;this.src='https://placehold.co/30x30/000000/FFFFFF?text=FB';"></a>
+                <a href="#"><img src="https://placehold.co/30x30/0F0F0F/CCCCCC?text=IG" alt="Instagram" onerror="this.onerror=null;this.src='https://placehold.co/30x30/0F0F0F/CCCCCC?text=IG';"></a>
+                <a href="#"><img src="https://placehold.co/30x30/0F0F0F/CCCCCC?text=FB" alt="Facebook" onerror="this.onerror=null;this.src='https://placehold.co/30x30/0F0F0F/CCCCCC?text=FB';">"></a>
             </div>
         </div>
     </section>
@@ -1226,11 +1221,9 @@
     </footer>
 
     <!-- Contact Us Floating Button -->
-    <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
-        <div class="whatsapp-icon-container">
-            <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/00E676/FFFFFF?text=WA';">
-        </div>
-        <span class="contact-text">Contact Us</span>
+    <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
+        <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/6FCF97/FFFFFF?text=WA';">
+        <span>Contact Us</span>
     </a>
 
     <script>
@@ -1247,12 +1240,12 @@
             const aspectRatio = viewportWidth / viewportHeight;
 
             // Define your video sources
-            const landscapeVideo = 'Car_Wash_Animation_For_Website.mp4';
-            const portraitVideo = 'car-wash-animation-for-website-ijnuj6a7_smOtmhJd.mp4'; 
+            const landscapeVideo = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
+            const portraitVideo = 'car-wash-animation-for-website-ijnuj6a7_smOtmhJd.mp4';
             
             // Check if we are in portrait mode (aspect ratio < 1)
             // A more generous threshold like 1.25 is used to catch most phones
-            if (aspectRatio < 1.25) { 
+            if (aspectRatio < 1.25) {
                 // Show mobile video and hide desktop video
                 if (mobileVideoContainer) mobileVideoContainer.classList.remove('hidden');
                 if (desktopVideoContainer) desktopVideoContainer.classList.add('hidden');
