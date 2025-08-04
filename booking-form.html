@@ -802,13 +802,31 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-        // Canvas environment variables for Firestore.
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        // User's original Firebase configuration.
+        const userFirebaseConfig = {
+            apiKey: "AIzaSyC-fzkmY0_6Ko8mP8B6HM9fUxTXvIqg18s",
+            authDomain: "car-service-9dff6.firebaseapp.com",
+            projectId: "car-service-9dff6",
+            storageBucket: "car-service-9dff6.firebasestorage.app",
+            messagingSenderId: "872557668249",
+            appId: "1:872557668249:web:a60ea16a0af58d916e1508",
+            measurementId: "G-CCFLNVLTVN"
+        };
         
+        // Canvas environment variables for Firestore. We will use these as the primary config
+        // but fallback to the user's config if the environment variable is not defined or empty.
+        let firebaseConfig;
+        if (typeof __firebase_config !== 'undefined' && __firebase_config.length > 2) {
+            firebaseConfig = JSON.parse(__firebase_config);
+        } else {
+            firebaseConfig = userFirebaseConfig;
+        }
+
         // This will be used as the collection path.
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const firestoreCollectionPath = `artifacts/${appId}/public/data/bookings`;
+        
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
         
         let app;
         let db;
@@ -856,20 +874,7 @@
                         }
                     });
                 } else {
-                    console.error("Firebase configuration is missing. Using placeholder.");
-                    // Use a placeholder object to prevent app crash if config is missing
-                    const placeholderConfig = {
-                        apiKey: "placeholder",
-                        authDomain: "placeholder",
-                        projectId: "placeholder",
-                        storageBucket: "placeholder",
-                        messagingSenderId: "placeholder",
-                        appId: "placeholder",
-                        measurementId: "placeholder"
-                    };
-                    app = initializeApp(placeholderConfig);
-                    db = getFirestore(app);
-                    auth = getAuth(app);
+                    console.error("Firebase configuration is missing.");
                     showMessageBox("Error initializing Firebase. Configuration is missing.");
                     return;
                 }
@@ -1029,4 +1034,3 @@
     </script>
 </body>
 </html>
-
