@@ -630,29 +630,56 @@
                 <label for="sub-area">Sub-area in Jaipur</label>
                 <select id="sub-area" required>
                     <option value="">Select a sub-area</option>
+                    <option value="adarsh-nagar">Adarsh Nagar</option>
+                    <option value="agra-road">Agra Road</option>
                     <option value="ajmer-road">Ajmer Road</option>
                     <option value="amer">Amer</option>
+                    <option value="bani-park">Bani Park</option>
                     <option value="bapu-nagar">Bapu Nagar</option>
+                    <option value="brahmpuri">Brahmpuri</option>
                     <option value="c-scheme">C-Scheme</option>
+                    <option value="chandpole">Chandpole</option>
                     <option value="civil-lines">Civil Lines</option>
                     <option value="durga-pura">Durga Pura</option>
-                    <option value="gandhi-nagar">Gandhi Nagar</option>
+                    <option value="gopalpura">Gopalpura</option>
+                    <option value="goner-road">Goner Road</option>
+                    <option value="govindpura">Govindpura</option>
+                    <option value="hasanpura">Hasanpura</option>
+                    <option value="hawa-sadak">Hawa Sadak</option>
                     <option value="jagatpura">Jagatpura</option>
                     <option value="jawahar-nagar">Jawahar Nagar</option>
                     <option value="jhotwara">Jhotwara</option>
                     <option value="jhotwara-industrial-area">Jhotwara Industrial Area</option>
+                    <option value="kalwad">Kalwad</option>
+                    <option value="kalwar-road">Kalwar Road</option>
+                    <option value="khatipura">Khatipura</option>
+                    <option value="kukas">Kukas</option>
+                    <option value="kunda">Kunda</option>
                     <option value="lal-kothi">Lal Kothi</option>
+                    <option value="mahesh-nagar">Mahesh Nagar</option>
                     <option value="malviya-nagar">Malviya Nagar</option>
                     <option value="mansarovar">Mansarovar</option>
-                    <option value="mahesh-nagar">Mahesh Nagar</option>
+                    <option value="muhana-mandi">Muhana Mandi</option>
                     <option value="muralipura">Muralipura</option>
+                    <option value="nangam-jaisa-bohra">Nangal Jaisa Bohra</option>
+                    <option value="nehru-place">Nehru Place</option>
+                    <option value="nirman-nagar">Nirman Nagar</option>
                     <option value="pratap-nagar">Pratap Nagar</option>
+                    <option value="raja-park">Raja Park</option>
+                    <option value="ramganj">Ramganj</option>
                     <option value="ramgarh-mod">Ramgarh Mod</option>
                     <option value="sanganer">Sanganer</option>
                     <option value="shastri-nagar">Shastri Nagar</option>
+                    <option value="sikar-road">Sikar Road</option>
+                    <option value="sindhi-camp">Sindhi Camp</option>
+                    <option value="sirsi-road">Sirsi Road</option>
                     <option value="sitapura">Sitapura</option>
+                    <option value="sodala">Sodala</option>
                     <option value="subhash-nagar">Subhash Nagar</option>
+                    <option value="tilak-nagar">Tilak Nagar</option>
                     <option value="tonk-road">Tonk Road</option>
+                    <option value="transport-nagar">Transport Nagar</option>
+                    <option value="triveni-nagar">Triveni Nagar</option>
                     <option value="vaishali-nagar">Vaishali Nagar</option>
                     <option value="vidyadhar-nagar">Vidyadhar Nagar</option>
                     <option value="vishwakarma-industrial-area">Vishwakarma Industrial Area</option>
@@ -747,7 +774,7 @@
     </section>
 
     <!-- Updated Contact Us Floating Button -->
-    <a href="https://api.whatsapp.com/send?phone=919509208599" class="contact-us-float">
+    <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=919509208599&text=Hello,%20I'm%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
         <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon">
         Contact Us
     </a>
@@ -779,7 +806,7 @@
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
         const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-
+        
         // This will be used as the collection path.
         const firestoreCollectionPath = `artifacts/${appId}/public/data/bookings`;
         
@@ -829,7 +856,20 @@
                         }
                     });
                 } else {
-                    console.error("Firebase configuration is missing.");
+                    console.error("Firebase configuration is missing. Using placeholder.");
+                    // Use a placeholder object to prevent app crash if config is missing
+                    const placeholderConfig = {
+                        apiKey: "placeholder",
+                        authDomain: "placeholder",
+                        projectId: "placeholder",
+                        storageBucket: "placeholder",
+                        messagingSenderId: "placeholder",
+                        appId: "placeholder",
+                        measurementId: "placeholder"
+                    };
+                    app = initializeApp(placeholderConfig);
+                    db = getFirestore(app);
+                    auth = getAuth(app);
                     showMessageBox("Error initializing Firebase. Configuration is missing.");
                     return;
                 }
@@ -844,6 +884,7 @@
             const closeMenu = document.querySelector('.close-menu');
             const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
             const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+            
 
             if (menuToggle) {
                 menuToggle.addEventListener('click', function() {
