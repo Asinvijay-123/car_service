@@ -1253,9 +1253,8 @@
             const viewportHeight = window.innerHeight;
             const aspectRatio = viewportWidth / viewportHeight;
 
-            // Define your video sources
-            const landscapeVideo = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
-            const portraitVideo = 'car-wash-animation-for-website-ijnuj6a7_smOtmhJd.mp4';
+            // Define your single video source
+            const videoSource = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
             
             // Check if we are in portrait mode (aspect ratio < 1.25)
             if (aspectRatio < 1.25) {
@@ -1263,9 +1262,9 @@
                 if (mobileVideoContainer) mobileVideoContainer.classList.remove('hidden');
                 if (desktopVideoContainer) desktopVideoContainer.classList.add('hidden');
 
-                if (mobileVideoPlayer && mobileVideoPlayer.src !== portraitVideo) {
-                    // Set the video source for mobile if it's not already set
-                    mobileVideoPlayer.src = portraitVideo;
+                if (mobileVideoPlayer && mobileVideoPlayer.src !== videoSource) {
+                    // Set the video source for mobile
+                    mobileVideoPlayer.src = videoSource;
                     mobileVideoPlayer.load();
                 }
             } else {
@@ -1273,9 +1272,9 @@
                 if (desktopVideoContainer) desktopVideoContainer.classList.remove('hidden');
                 if (mobileVideoContainer) mobileVideoContainer.classList.add('hidden');
 
-                if (desktopVideoPlayer && desktopVideoPlayer.src !== landscapeVideo) {
-                    // Set the video source for desktop if it's not already set
-                    desktopVideoPlayer.src = landscapeVideo;
+                if (desktopVideoPlayer && desktopVideoPlayer.src !== videoSource) {
+                    // Set the video source for desktop
+                    desktopVideoPlayer.src = videoSource;
                     desktopVideoPlayer.load();
                 }
             }
