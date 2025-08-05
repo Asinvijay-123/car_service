@@ -112,13 +112,11 @@
 
         /*
         * START OF MODIFIED CSS
-        * This section has been updated to make the mobile video and text fully visible,
-        * touching the left and right corners.
+        * This section has been updated to make the mobile view as requested.
         */
         @media (max-aspect-ratio: 9/16) {
             /* The main content container will handle the background and flex layout for mobile */
             .content {
-                /* New, more professional-looking background image for mobile */
                 background-image: url('https://placehold.co/1080x1920/F6F6F6/2B2B2B?text=Car+Care+Mobile+Background');
                 background-size: cover;
                 background-position: center;
@@ -126,10 +124,12 @@
                 height: 100vh;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                /* MODIFIED: Align content to flex-start to move the text to the top */
+                justify-content: flex-start;
                 align-items: center;
-                padding: 0; /* Removed padding to allow content to touch corners */
-                gap: 2rem;
+                padding: 0;
+                gap: 0; /* MODIFIED: Removed gap to allow precise spacing control */
+                position: relative; /* Ensure text is positioned correctly relative to this container */
             }
 
             /* Hide the landscape video elements */
@@ -139,17 +139,13 @@
 
             /* New container for portrait mode video. */
             .hero-video-box {
-                width: 100%; /* Changed to 100% to touch both corners */
-                
-                /* * MODIFIED: Replaced white background with the user-provided image.
-                */
-                background-image: url('ChatGPT Image Aug 5, 2025, 09_37_47 PM.png');
+                width: 100%;
+                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-                border-radius: 0; /* Removed border-radius to touch corners */
+                border-radius: 0;
                 position: relative;
                 padding-top: 177.77%;
                 height: 0;
@@ -164,31 +160,40 @@
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
-                border-radius: 0; /* Removed border-radius to match container */
+                border-radius: 0;
             }
 
             /* Adjust hero text for the new layout */
             .hero-text-container {
-                position: static;
-                transform: none;
+                /* MODIFIED: Positioned absolutely at the top of the .content container */
+                position: absolute;
+                top: 15vh; /* Adjusted top position to move text above the video */
+                left: 50%;
+                transform: translateX(-50%);
                 height: auto;
                 width: 100%;
-                padding: 0; /* Removed padding to allow text to touch corners */
+                padding: 0;
                 flex-direction: column;
-                justify-content: flex-start;
+                justify-content: center;
                 align-items: center;
-                color: #222222; /* Near black text */
+                color: #222222;
+                z-index: 3; /* Ensure text is above the video */
             }
             
             .hero-text {
-                /* Added horizontal padding to the inner text div for readability */
                 padding: 0 1rem;
             }
-
+            
             .hero-text h4,
             .hero-text h1 {
-                color: #222222; /* Near black text */
-                text-shadow: none;
+                color: #FFFFFF; /* MODIFIED: Changed text color to white for better readability on the dark background image */
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* Added a text shadow for better contrast */
+            }
+            
+            /* MODIFIED: Adjusted the packages section to appear right after the video on mobile */
+            .packages-section {
+                margin-top: -100vh; /* MODIFIED: Use a negative margin to pull the section up and hide the empty space */
+                padding-top: 50vh; /* Add padding to push the content down past the video */
             }
         }
         /* END OF MODIFIED CSS */
