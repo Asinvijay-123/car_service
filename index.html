@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Care Services Tch</title>
+    <title>Car Care Services</title>
     <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for clean typography -->
@@ -110,7 +110,11 @@
             color: #FFFFFF; /* White for main heading */
         }
 
-        /* Media query for 9:16 aspect ratio (portrait mode) */
+        /*
+        * START OF MODIFIED CSS
+        * This section has been updated to make the mobile video fully visible
+        * on all mobile screens without being cropped.
+        */
         @media (max-aspect-ratio: 9/16) {
             /* The main content container will handle the background and flex layout for mobile */
             .content {
@@ -121,7 +125,7 @@
                 height: 100vh;
                 display: flex;
                 flex-direction: column;
-                justify-content: center; /* Changed from flex-start to center to align content vertically */
+                justify-content: center;
                 align-items: center;
                 padding-top: 1rem;
                 gap: 2rem;
@@ -132,24 +136,32 @@
                 display: none;
             }
 
-            /* New video container for portrait mode */
+            /* New container for portrait mode video.
+             * We use padding-top to create a container with a 9:16 aspect ratio,
+             * ensuring the video is fully visible and not cropped.
+             */
             .hero-video-box {
                 width: 90%;
-                height: 50vh;
                 background-color: white;
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
                 border-radius: 0.75rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-top: 0; /* Removed margin-top to allow for proper centering */
+                position: relative; /* Needed for absolute positioning of video */
+                /* Use padding-top to maintain a 9:16 aspect ratio (16/9 * 100%) */
+                padding-top: 177.77%;
+                height: 0; /* Set height to 0 so padding-top controls the box height */
+                overflow: hidden; /* Hide any overflow */
             }
 
-            /* Video element inside the new container */
+            /* Video element inside the new container.
+             * Positioned absolutely to fill its aspect-ratio-controlled parent.
+             */
             .hero-video-box video {
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
-                object-fit: contain; /* Ensures the whole video is visible */
+                object-fit: contain; /* Ensures the whole video is visible, not just a cropped part */
                 border-radius: 0.75rem;
             }
 
@@ -172,6 +184,8 @@
                 text-shadow: none;
             }
         }
+        /* END OF MODIFIED CSS */
+
 
         /* Animation for continuous text movement (bounce effect) */
         @keyframes bounceText {
@@ -207,7 +221,7 @@
             z-index: 10; /* Ensures navbar is on top of other content */
             border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white line */
         }
-        
+
         @media (max-aspect-ratio: 9/16) {
             .navbar {
                 background-color: #FFFFFF; /* Match navbar background with mobile hero section */
@@ -1015,7 +1029,7 @@
             <div class="hero-text-container">
                 <div class="hero-text">
                     <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
-                    <h1 class="animated-text delay-1">CAR CARE TCH</h1>
+                    <h1 class="animated-text delay-1">CAR CARE</h1>
                 </div>
             </div>
         </div>
@@ -1243,8 +1257,7 @@
             const landscapeVideo = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
             const portraitVideo = 'car-wash-animation-for-website-ijnuj6a7_smOtmhJd.mp4';
             
-            // Check if we are in portrait mode (aspect ratio < 1)
-            // A more generous threshold like 1.25 is used to catch most phones
+            // Check if we are in portrait mode (aspect ratio < 1.25)
             if (aspectRatio < 1.25) {
                 // Show mobile video and hide desktop video
                 if (mobileVideoContainer) mobileVideoContainer.classList.remove('hidden');
