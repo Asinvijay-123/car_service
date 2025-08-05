@@ -140,7 +140,14 @@
             /* New container for portrait mode video. */
             .hero-video-box {
                 width: 100%; /* Changed to 100% to touch both corners */
-                background-color: white;
+                
+                /* * MODIFIED: Replaced white background with the user-provided image.
+                */
+                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
                 border-radius: 0; /* Removed border-radius to touch corners */
                 position: relative;
