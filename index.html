@@ -111,92 +111,92 @@
         }
 
         /*
-        * START OF MODIFIED CSS
-        * This section has been updated to make the mobile view as requested.
+        * START OF MODIFIED CSS FOR MOBILE VIEW
         */
         @media (max-aspect-ratio: 9/16) {
-            /* The main content container will handle the background and flex layout for mobile */
+            /* Hide the main .content div (which contains desktop video/text) on mobile */
             .content {
-                background-image: url('https://placehold.co/1080x1920/F6F6F6/2B2B2B?text=Car+Care+Mobile+Background');
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                height: 100vh;
-                display: flex;
-                flex-direction: column;
-                /* MODIFIED: Align content to flex-start to move the text to the top */
-                justify-content: flex-start;
-                align-items: center;
-                padding: 0;
-                gap: 0; /* MODIFIED: Removed gap to allow precise spacing control */
-                position: relative; /* Ensure text is positioned correctly relative to this container */
-            }
-
-            /* Hide the landscape video elements */
-            .hero-video {
                 display: none;
             }
 
-            /* New container for portrait mode video. */
-            .hero-video-box {
+            /* New container for MOBILE-ONLY hero content (text and video) */
+            .mobile-hero-section-wrapper {
+                display: flex; /* Make it visible on mobile */
+                flex-direction: column; /* Stack text and video vertically */
                 width: 100%;
-                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg');
+                height: auto; /* Allow height to be determined by content */
+                background-image: url('https://placehold.co/1080x1920/F6F6F6/2B2B2B?text=Car+Care+Mobile+Background'); /* Background for the whole mobile hero section */
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-                border-radius: 0;
-                position: relative;
-                padding-top: 177.77%;
-                height: 0;
-                overflow: hidden;
+                padding-top: 15vh; /* Push content down from the top edge for spacing */
+                box-sizing: border-box;
             }
 
-            /* Video element inside the new container. */
-            .hero-video-box video {
+            /* Styles for the text container within the mobile hero section */
+            .hero-text-container.mobile-text-position-override {
+                position: static; /* Ensure it flows naturally within the flex container */
+                transform: none; /* Reset any transforms */
+                width: 100%;
+                padding: 0 1rem 2rem 1rem; /* Padding around text, extra at bottom to separate from video */
+                text-align: center;
+                color: #FFFFFF; /* White text for better contrast on the dark background image */
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* Added text shadow for readability */
+                box-sizing: border-box;
+            }
+
+            .hero-text-container.mobile-text-position-override h4,
+            .hero-text-container.mobile-text-position-override h1 {
+                color: #FFFFFF;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            }
+
+            /* Styles for the video container within the mobile hero section */
+            .hero-video-box.mobile-video-position-override {
+                width: 100%; /* Full width to touch corners */
+                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg'); /* Dark background for video container */
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                box-shadow: none; /* No shadow for flush look */
+                border-radius: 0; /* No rounded corners for flush look */
+                position: relative;
+                padding-top: 177.77%; /* Maintain video aspect ratio (9:16) */
+                height: 0; /* Height is controlled by padding-top */
+                overflow: hidden;
+                margin-bottom: 0; /* No margin below video, so packages section can be flush */
+            }
+
+            .hero-video-box.mobile-video-position-override video {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
+                object-fit: contain; /* Ensure video is fully visible within its container */
                 border-radius: 0;
             }
 
-            /* Adjust hero text for the new layout */
-            .hero-text-container {
-                /* MODIFIED: Positioned absolutely at the top of the .content container */
-                position: absolute;
-                top: 15vh; /* Adjusted top position to move text above the video */
-                left: 50%;
-                transform: translateX(-50%);
-                height: auto;
-                width: 100%;
-                padding: 0;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                color: #222222;
-                z-index: 3; /* Ensure text is above the video */
-            }
-            
-            .hero-text {
-                padding: 0 1rem;
-            }
-            
-            .hero-text h4,
-            .hero-text h1 {
-                color: #FFFFFF; /* MODIFIED: Changed text color to white for better readability on the dark background image */
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* Added a text shadow for better contrast */
-            }
-            
-            /* MODIFIED: Adjusted the packages section to appear right after the video on mobile */
+            /* Packages section: should now naturally follow the mobile-hero-section-wrapper */
             .packages-section {
-                margin-top: -100vh; /* MODIFIED: Use a negative margin to pull the section up and hide the empty space */
-                padding-top: 50vh; /* Add padding to push the content down past the video */
+                margin-top: 0; /* Ensure no extra space between hero and packages */
+                padding-top: 0; /* Reset any padding-top that might push it down */
+                position: relative; /* Keep its z-index if needed */
+                z-index: 2; /* Ensure it's above other elements if any overlap */
+            }
+
+            /* Adjust the packages-header margin-top to be flush with the video bottom */
+            .packages-header {
+                margin-top: 0; /* Remove default margin-top to make it flush with the video */
+                /* Keep its internal padding as defined for desktop */
+            }
+
+            /* Hide desktop-only text container */
+            .hero-text-container.desktop-text-only {
+                display: none;
             }
         }
-        /* END OF MODIFIED CSS */
+        /* END OF MODIFIED CSS FOR MOBILE VIEW */
 
 
         /* Animation for continuous text movement (bounce effect) */
@@ -1028,29 +1028,40 @@
         </div>
     </nav>
 
+    <!-- Main content area for desktop -->
     <div class="content">
-        <!-- New container to handle the mobile layout -->
-        <div class="hero-content-wrapper">
-            <!-- Video container for mobile portrait mode, will be displayed via JS -->
-            <div id="mobile-video-container" class="hero-video-box hidden md:hidden">
-                <video autoplay muted loop playsinline id="video-player">
-                    <!-- Source will be dynamically set by JavaScript -->
-                </video>
-            </div>
-            <!-- Text container for both modes -->
-            <div class="hero-text-container">
-                <div class="hero-text">
-                    <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
-                    <h1 class="animated-text delay-1">CAR CARE</h1>
-                </div>
-            </div>
-        </div>
-        <!-- Original hero video for desktop landscape view -->
+        <!-- Desktop video (visible on desktop, hidden on mobile) -->
         <div id="desktop-video-container" class="hero-video hidden md:block">
             <video autoplay muted loop playsinline id="video-player-desktop">
                 <!-- Source will be dynamically set by JavaScript -->
             </video>
             <div class="video-overlay"></div> <!-- Overlay for text readability -->
+        </div>
+
+        <!-- Text container for desktop (will be hidden on mobile) -->
+        <div class="hero-text-container desktop-text-only hidden md:flex">
+            <div class="hero-text">
+                <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
+                <h1 class="animated-text delay-1">CAR CARE</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- New container for MOBILE-ONLY hero content (text and video) -->
+    <!-- This will be displayed as a flex column on mobile and hidden on desktop -->
+    <div class="mobile-hero-section-wrapper md:hidden">
+        <!-- Mobile Text -->
+        <div class="hero-text-container mobile-text-position-override">
+            <div class="hero-text">
+                <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
+                <h1 class="animated-text delay-1">CAR CARE</h1>
+            </div>
+        </div>
+        <!-- Mobile Video -->
+        <div id="mobile-video-container" class="hero-video-box mobile-video-position-override">
+            <video autoplay muted loop playsinline id="video-player">
+                <!-- Source will be dynamically set by JavaScript -->
+            </video>
         </div>
     </div>
 
@@ -1270,22 +1281,22 @@
             
             // Check if we are in portrait mode (aspect ratio < 1.25)
             if (aspectRatio < 1.25) {
-                // Show mobile video and hide desktop video
+                // Show mobile video container and hide desktop video container
                 if (mobileVideoContainer) mobileVideoContainer.classList.remove('hidden');
                 if (desktopVideoContainer) desktopVideoContainer.classList.add('hidden');
 
+                // Set the video source for mobile if it's not already set
                 if (mobileVideoPlayer && mobileVideoPlayer.src !== videoSource) {
-                    // Set the video source for mobile
                     mobileVideoPlayer.src = videoSource;
                     mobileVideoPlayer.load();
                 }
             } else {
-                // Show desktop video and hide mobile video
+                // Show desktop video container and hide mobile video container
                 if (desktopVideoContainer) desktopVideoContainer.classList.remove('hidden');
                 if (mobileVideoContainer) mobileVideoContainer.classList.add('hidden');
 
+                // Set the video source for desktop if it's not already set
                 if (desktopVideoPlayer && desktopVideoPlayer.src !== videoSource) {
-                    // Set the video source for desktop
                     desktopVideoPlayer.src = videoSource;
                     desktopVideoPlayer.load();
                 }
