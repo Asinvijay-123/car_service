@@ -136,7 +136,7 @@
             /* Styles for the video container within the mobile hero section */
             .hero-video-box.mobile-video-position-override {
                 width: 100%; /* Full width to touch corners */
-                background-image: url('ChatGPT Image Aug 5, 2025, 09_37_47 PM.png'); /* Dark background for video container */
+                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg'); /* Dark background for video container */
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -1282,6 +1282,7 @@
 
             // Define your single video source
             const videoSource = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
+            const mobileVideoSource = 'save.mp4';
             
             // Check if we are in portrait mode (aspect ratio < 1.25)
             if (aspectRatio < 1.25) {
@@ -1290,8 +1291,8 @@
                 if (desktopVideoContainer) desktopVideoContainer.classList.add('hidden');
 
                 // Set the video source for mobile if it's not already set
-                if (mobileVideoPlayer && mobileVideoPlayer.src !== videoSource) {
-                    mobileVideoPlayer.src = videoSource;
+                if (mobileVideoPlayer && mobileVideoPlayer.src !== mobileVideoSource) {
+                    mobileVideoPlayer.src = mobileVideoSource;
                     mobileVideoPlayer.load();
                 }
             } else {
