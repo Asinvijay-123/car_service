@@ -111,7 +111,8 @@
         }
 
         /*
-        * START OF MODIFIED CSS FOR MOBILE VIEW
+        * START OF MOBILE-ONLY STYLES
+        * This section is specifically for devices with a portrait aspect ratio.
         */
         @media (max-aspect-ratio: 9/16) {
             /* Hide the main .content div (which contains desktop video/text) on mobile */
@@ -129,24 +130,23 @@
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                padding-top: 0; /* Removed padding-top as text is now inside video box */
+                padding-top: 0;
                 box-sizing: border-box;
             }
 
             /* Styles for the video container within the mobile hero section */
             .hero-video-box.mobile-video-position-override {
                 width: 100%; /* Full width to touch corners */
-                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg'); /* Dark background for video container */
+                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
-                box-shadow: none; /* No shadow for flush look */
-                border-radius: 0; /* No rounded corners for flush look */
+                box-shadow: none;
+                border-radius: 0;
                 position: relative;
                 padding-top: 177.77%; /* Maintain video aspect ratio (9:16) */
-                height: 0; /* Height is controlled by padding-top */
+                height: 0;
                 overflow: hidden;
-                margin-bottom: 0; /* No margin below video, so packages section can be flush */
             }
 
             .hero-video-box.mobile-video-position-override video {
@@ -162,16 +162,16 @@
             /* Styles for the text container within the mobile hero section */
             .hero-text-container.mobile-text-position-override {
                 position: absolute;
-                top: 25%; /* Adjust vertical position as needed */
+                top: 25%;
                 left: 50%;
-                transform: translate(-50%, -50%); /* Center horizontally and adjust vertically */
+                transform: translate(-50%, -50%);
                 width: 100%;
-                padding: 0 1rem; /* Padding around text */
+                padding: 0 1rem;
                 text-align: center;
-                color: #FFFFFF; /* White text for better contrast on the dark background image */
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* Added text shadow for readability */
+                color: #FFFFFF;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
                 box-sizing: border-box;
-                z-index: 3; /* Ensure text is above the video */
+                z-index: 3;
             }
 
             .hero-text-container.mobile-text-position-override h4,
@@ -180,18 +180,9 @@
                 text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
             }
             
-            /* Packages section: should now naturally follow the mobile-hero-section-wrapper */
-            .packages-section {
-                /* Corrected logic to ensure seamless alignment */
-                margin-top: 0;
-                padding-top: 0;
-                position: relative;
-                z-index: 2;
-            }
-            
-            /* Adjust the packages-header margin-top to be flush with the video bottom */
-            .packages-header {
-                margin-top: 0;
+            /* New section for mobile-only package header adjustment */
+            .packages-section.mobile-shift {
+                margin-top: -15rem; /* Set a negative margin to pull the section up. */
             }
 
             /* Hide desktop-only text container */
@@ -199,7 +190,7 @@
                 display: none;
             }
         }
-        /* END OF MODIFIED CSS FOR MOBILE VIEW */
+        /* END OF MOBILE-ONLY STYLES */
 
 
         /* Animation for continuous text movement (bounce effect) */
@@ -208,7 +199,7 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px); /* Move slightly up */
+                transform: translateY(-10px);
             }
             100% {
                 transform: translateY(0);
@@ -216,11 +207,11 @@
         }
 
         .animated-text {
-            animation: bounceText 2s ease-in-out infinite alternate; /* Continuous bounce effect */
+            animation: bounceText 2s ease-in-out infinite alternate;
         }
 
         .animated-text.delay-1 {
-            animation-delay: 0.5s; /* Delay for the second text element */
+            animation-delay: 0.5s;
         }
 
         /* Navigation bar styling */
@@ -230,37 +221,37 @@
             left: 0;
             width: 100%;
             display: flex;
-            justify-content: space-between; /* Space between logo and menu toggle/links */
+            justify-content: space-between;
             align-items: center;
-            padding: 0rem 1rem; /* Minimal padding to bring the bottom border (white line) up */
-            z-index: 10; /* Ensures navbar is on top of other content */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white line */
+            padding: 0rem 1rem;
+            z-index: 10;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         @media (max-aspect-ratio: 9/16) {
             .navbar {
-                background-color: #FFFFFF; /* Match navbar background with mobile hero section */
+                background-color: #FFFFFF;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
             }
             .navbar .navbar-logo {
-                filter: none; /* No filter needed as the logo is dark on a light background */
+                filter: none;
             }
             .navbar .menu-toggle svg {
-                color: #222222; /* Change hamburger icon to near black */
+                color: #222222;
             }
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .navbar {
-                justify-content: space-between; /* Keep space-between for logo and nav links container */
-                padding: 0rem 2rem; /* Adjusted padding for desktop */
+                justify-content: space-between;
+                padding: 0rem 2rem;
             }
         }
 
         /* Logo styling - Made responsive with max-height and auto width */
         .navbar-logo {
-            max-height: clamp(60px, 10vw, 100px); /* Fluid height for logo */
-            width: auto; /* Maintain aspect ratio */
+            max-height: clamp(60px, 10vw, 100px);
+            width: auto;
             transition: filter 0.3s ease;
         }
 
@@ -271,10 +262,10 @@
             align-items: center;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .navbar-links {
-                flex-grow: 1; /* Allow links container to grow */
-                justify-content: center; /* Center the links within the container */
+                flex-grow: 1;
+                justify-content: center;
                 gap: 2rem;
             }
         }
@@ -289,11 +280,11 @@
             border-radius: 0.375rem;
             display: flex;
             align-items: center;
-            font-size: clamp(0.8rem, 2vw, 1rem); /* Fluid font size for nav links */
+            font-size: clamp(0.8rem, 2vw, 1rem);
         }
 
         .navbar-links a:hover {
-            color: #A0D9B4; /* Soft minty green highlight on hover */
+            color: #A0D9B4;
             background-color: transparent;
         }
 
@@ -312,7 +303,7 @@
             display: none;
             position: absolute;
             background-color: #FFFFFF;
-            min-width: clamp(120px, 20vw, 160px); /* Fluid min-width for dropdown */
+            min-width: clamp(120px, 20vw, 160px);
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 0.375rem;
@@ -323,18 +314,18 @@
         }
 
         .dropdown-content a {
-            color: #222222; /* Near black text */
+            color: #222222;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
             text-align: left;
             font-weight: normal;
-            font-size: clamp(0.7rem, 2vw, 0.9rem); /* Fluid font size for dropdown items */
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
         }
 
         .dropdown-content a:hover {
             background-color: #F5F5F5;
-            color: #A0D9B4; /* Soft minty green highlight on hover */
+            color: #A0D9B4;
         }
 
         .dropdown:hover .dropdown-content {
@@ -354,20 +345,20 @@
 
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
-            transform: translateX(100%); /* Start off-screen */
+            transform: translateX(100%);
             justify-content: flex-start;
             padding-top: 4rem;
         }
 
         #mobile-menu.flex {
-            transform: translateX(0); /* Slide in */
+            transform: translateX(0);
         }
 
         .close-menu {
             background: none;
             border: none;
             cursor: pointer;
-            font-size: clamp(2rem, 8vw, 2.5rem); /* Fluid font size for close button */
+            font-size: clamp(2rem, 8vw, 2.5rem);
             line-height: 1;
             padding: 0.5rem;
         }
@@ -376,7 +367,7 @@
             padding: 0.5rem 0.75rem;
             border-radius: 0.375rem;
             transition: background-color 0.3s ease;
-            font-size: clamp(1rem, 4vw, 1.25rem); /* Fluid font size for mobile nav buttons */
+            font-size: clamp(1rem, 4vw, 1.25rem);
         }
 
         .dropdown-mobile .nav-button:hover {
@@ -391,14 +382,14 @@
 
         /* Responsive adjustments for text content */
         .content p {
-            color: #DDDDDD; /* Light gray text */
-            font-size: clamp(1rem, 3vw, 1.75rem); /* Fluid font size for main content paragraph */
+            color: #DDDDDD;
+            font-size: clamp(1rem, 3vw, 1.75rem);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
 
         .content h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5.5rem); /* Fluid font size for main content heading */
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
         }
 
@@ -410,46 +401,47 @@
 
         /* Styles for the Packages section */
         .packages-section {
-            background-color: #F5F5F5; /* Light gray background for the packages section */
-            padding: 0rem 1rem; /* Adjusted padding-top to remove extra space */
+            background-color: #F5F5F5;
+            padding: 0rem 1rem;
             text-align: center;
-            position: relative; /* Needed for z-index to be above video */
-            z-index: 2; /* Ensures this section is above the video background */
-            color: #222222; /* Dark text for readability */
-            margin-bottom: clamp(2rem, 8vw, 4rem); /* Added margin-bottom for spacing */
+            position: relative;
+            z-index: 2;
+            color: #222222;
+            margin-bottom: clamp(2rem, 8vw, 4rem);
         }
 
         .packages-header {
-            background-color: #6FCF97; /* Soft minty green accent color */
+            background-color: #6FCF97;
             color: white;
-            padding: clamp(1.5rem, 5vw, 2.5rem) 1rem; /* Fluid padding */
+            padding: clamp(1.5rem, 5vw, 2.5rem) 1rem;
             text-align: left;
             position: relative;
-            margin-top: 2rem; /* Adjusted margin-top to move it further up */
-            overflow: hidden; /* Ensure tire track stays within bounds */
+            /* Default desktop value */
+            margin-top: 2rem;
+            overflow: hidden;
         }
 
         .tire-track {
             position: absolute;
             top: 0;
-            right: 0; /* Adjusted to 0 for better control with width */
-            width: auto; /* Allow width to adjust based on height */
-            height: 100%; /* Fill parent height */
-            opacity: 0.2; /* Make it subtle */
+            right: 0;
+            width: auto;
+            height: 100%;
+            opacity: 0.2;
             z-index: -1;
-            object-fit: cover; /* Ensure it covers the area without distortion */
-            object-position: right; /* Align to the right */
+            object-fit: cover;
+            object-position: right;
         }
 
         .book-now-header-btn {
             background-color: white;
-            color: #6FCF97; /* Soft minty green accent color */
-            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
+            color: #6FCF97;
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem);
             border-radius: 0.375rem;
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s ease, color 0.3s ease;
-            font-size: clamp(0.7rem, 2vw, 1rem); /* Fluid font size */
+            font-size: clamp(0.7rem, 2vw, 1rem);
         }
 
         .book-now-header-btn:hover {
@@ -458,41 +450,41 @@
         }
 
         .packages-header h2 {
-            font-size: clamp(2rem, 8vw, 5rem); /* Adjusted clamp for more aggressive scaling to keep on fewer lines */
+            font-size: clamp(2rem, 8vw, 5rem);
             font-weight: bold;
-            line-height: 1.2; /* Adjust line height if needed for multi-line */
+            line-height: 1.2;
         }
 
         .packages-header .relative {
-            flex-direction: column; /* Ensure stacking on mobile */
-            align-items: flex-start; /* Align text to the left */
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         @media (min-width: 768px) {
             .packages-header .relative {
-                flex-direction: row; /* Revert to row on desktop */
+                flex-direction: row;
                 align-items: center;
             }
         }
 
         .package-card-container {
             display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr)); /* Single column by default */
-            gap: clamp(1rem, 4vw, 1.5rem); /* Fluid gap */
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: clamp(1rem, 4vw, 1.5rem);
             max-width: 1200px;
-            margin: clamp(1rem, 4vw, 1.5rem) auto 0 auto; /* Fluid margin */
+            margin: clamp(1rem, 4vw, 1.5rem) auto 0 auto;
             padding: 0 1rem;
         }
 
-        @media (min-width: 640px) { /* sm breakpoint */
+        @media (min-width: 640px) {
             .package-card-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
-        @media (min-width: 1024px) { /* lg breakpoint */
+        @media (min-width: 1024px) {
             .package-card-container {
-                grid-template-columns: repeat(4, minmax(0, 1fr)); /* Four columns on large screens */
+                grid-template-columns: repeat(4, minmax(0, 1fr));
             }
         }
 
@@ -500,7 +492,7 @@
             background-color: #FFFFFF;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            padding: clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
+            padding: clamp(1rem, 4vw, 1.5rem);
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -508,208 +500,208 @@
         }
 
         .package-card .icon {
-            width: clamp(30px, 8vw, 50px); /* Fluid icon sizing */
-            height: auto; /* Maintain aspect ratio */
-            margin-bottom: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
-            object-fit: contain; /* Ensure icons scale down without cropping */
+            width: clamp(30px, 8vw, 50px);
+            height: auto;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
+            object-fit: contain;
         }
 
         .package-card h3 {
-            font-size: clamp(1rem, 3.5vw, 1.5rem); /* Fluid font size */
+            font-size: clamp(1rem, 3.5vw, 1.5rem);
             font-weight: bold;
-            margin-bottom: clamp(0.25rem, 1vw, 0.5rem); /* Fluid margin */
-            color: #222222; /* Near black text */
+            margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
+            color: #222222;
         }
 
         .package-card p {
-            font-size: clamp(0.75rem, 2.5vw, 0.95rem); /* Fluid font size */
-            color: #555555; /* Mid-gray for description */
-            margin-bottom: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
+            font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+            color: #555555;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
             flex-grow: 1;
         }
 
         .package-card .time-price {
-            font-size: clamp(0.8rem, 2.5vw, 1.125rem); /* Fluid font size */
+            font-size: clamp(0.8rem, 2.5vw, 1.125rem);
             font-weight: bold;
-            margin-top: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
-            color: #222222; /* Near black color for text */
-            /* Changed to block to allow natural wrapping for time and price if needed */
+            margin-top: clamp(0.5rem, 2vw, 1rem);
+            color: #222222;
             display: block;
         }
 
         .package-card .price {
-            color: #6FCF97; /* Soft minty green color for price */
+            color: #6FCF97;
         }
 
         .package-card-actions {
             display: flex;
-            justify-content: flex-start; /* Align items to the start */
+            justify-content: flex-start;
             align-items: center;
-            margin-top: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
-            gap: clamp(0.5rem, 2vw, 1rem); /* Fluid gap */
+            margin-top: clamp(0.5rem, 2vw, 1rem);
+            gap: clamp(0.5rem, 2vw, 1rem);
         }
 
         .package-card-actions .book-now-btn {
-            background-color: #6FCF97; /* Soft minty green accent color */
+            background-color: #6FCF97;
             color: white;
-            padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
+            padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.8rem, 3vw, 1rem);
             border-radius: 0.375rem;
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            font-size: clamp(0.7rem, 2vw, 0.875rem); /* Fluid font size */
+            font-size: clamp(0.7rem, 2vw, 0.875rem);
         }
 
         .package-card-actions .book-now-btn:hover {
-            background-color: #57AE73; /* Darker minty green on hover */
+            background-color: #57AE73;
+            color: white;
         }
 
         .package-card-actions .more-link {
-            color: #222222; /* Near black for 'More' link */
+            color: #222222;
             text-decoration: none;
-            font-size: clamp(0.7rem, 2vw, 0.875rem); /* Fluid font size */
+            font-size: clamp(0.7rem, 2vw, 0.875rem);
             transition: color 0.3s ease;
         }
 
         .package-card-actions .more-link:hover {
-            color: #A0D9B4; /* Soft minty green highlight on hover */
+            color: #A0D9B4;
         }
 
         /* Styles for Why Choose Us section */
         .why-choose-us-section {
-            background-color: #1A1A1A; /* Charcoal gray background */
-            padding: clamp(2rem, 8vw, 4rem) 0; /* Removed horizontal padding here */
-            color: #DDDDDD; /* Default text color for this section */
+            background-color: #1A1A1A;
+            padding: clamp(2rem, 8vw, 4rem) 0;
+            color: #DDDDDD;
             display: flex;
-            flex-direction: column; /* Default to column on small screens */
+            flex-direction: column;
             align-items: center;
-            gap: clamp(1rem, 4vw, 2rem); /* Fluid gap */
-            position: relative; /* Needed for z-index */
-            z-index: 2; /* Ensure this section is above other elements */
-            text-shadow: none; /* Removed text shadow as background is dark */
+            gap: clamp(1rem, 4vw, 2rem);
+            position: relative;
+            z-index: 2;
+            text-shadow: none;
         }
 
         /* New inner container for content to keep it centered */
         .why-choose-us-inner-container {
-            max-width: 1200px; /* Max width for content */
-            margin: 0 auto; /* Center the content */
-            width: 100%; /* Take full width within the max-width */
-            padding: 0 1rem; /* Add horizontal padding to inner container */
-            display: flex; /* Apply flex to inner container */
-            flex-direction: column; /* Default to column on small screens */
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: inherit; /* Inherit gap from parent section */
+            gap: inherit;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .why-choose-us-inner-container {
-                flex-direction: row; /* Change to row on medium screens and up */
+                flex-direction: row;
                 text-align: left;
                 justify-content: center;
             }
         }
 
         .why-choose-us-image-container {
-            flex: 1; /* Allow image to take available space */
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .why-choose-us-image-container img {
-            max-width: 100%; /* Ensure image scales within its container */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 0.75rem; /* Rounded corners for the image */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Optional shadow */
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .why-choose-us-content {
             flex: 1;
-            padding: clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
-            background-color: transparent; /* Changed to transparent to show section background */
+            padding: clamp(0.8rem, 3vw, 1rem);
+            background-color: transparent;
             border-radius: 0.75rem;
         }
 
-        .why-choose-us-content p.text-sm { /* Targeting the "CAR CARE" uppercase text */
-            color: #DDDDDD; /* Light gray for readability on dark background */
+        .why-choose-us-content p.text-sm {
+            color: #DDDDDD;
         }
 
         .why-choose-us-content h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid font size */
+            font-size: clamp(2rem, 5vw, 2.5rem);
             font-weight: bold;
-            margin-bottom: clamp(0.8rem, 3vw, 1rem); /* Fluid margin */
-            color: #FFFFFF; /* White text for heading */
+            margin-bottom: clamp(0.8rem, 3vw, 1rem);
+            color: #FFFFFF;
         }
 
         .why-choose-us-content p {
-            font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
-            color: #DDDDDD; /* Light gray text for readability */
-            margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            color: #DDDDDD;
+            margin-bottom: clamp(1rem, 4vw, 1.5rem);
         }
 
         .progress-bar-container {
-            margin-bottom: clamp(0.8rem, 3vw, 1rem); /* Fluid margin */
+            margin-bottom: clamp(0.8rem, 3vw, 1rem);
         }
 
         .progress-bar-label {
             display: flex;
             justify-content: space-between;
             font-weight: bold;
-            margin-bottom: clamp(0.3rem, 1vw, 0.5rem); /* Fluid margin */
-            color: #FFFFFF; /* White text for readability */
-            font-size: clamp(0.7rem, 2vw, 0.9rem); /* Fluid font size */
+            margin-bottom: clamp(0.3rem, 1vw, 0.5rem);
+            color: #FFFFFF;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
         }
 
         .progress-bar {
-            background-color: #333333; /* Dark gray for the empty bar */
+            background-color: #333333;
             height: 8px;
             border-radius: 4px;
             overflow: hidden;
         }
 
         .progress-fill {
-            background-color: #A0D9B4; /* Soft minty green fill color */
+            background-color: #A0D9B4;
             height: 100%;
             border-radius: 4px;
         }
 
         /* Testimonials Section */
         .testimonials-section {
-            background-color: #121212; /* Near-black background for testimonials */
-            color: #FFFFFF; /* White text for dark background */
-            padding: clamp(2rem, 8vw, 4rem) 1rem; /* Fluid padding */
+            background-color: #121212;
+            color: #FFFFFF;
+            padding: clamp(2rem, 8vw, 4rem) 1rem;
             position: relative;
             overflow: hidden;
         }
 
         .testimonials-header {
             text-align: center;
-            margin-bottom: clamp(1.5rem, 6vw, 3rem); /* Fluid margin */
+            margin-bottom: clamp(1.5rem, 6vw, 3rem);
         }
 
         .testimonials-header p {
-            font-size: clamp(0.7rem, 2vw, 0.875rem); /* Fluid font size */
+            font-size: clamp(0.7rem, 2vw, 0.875rem);
             text-transform: uppercase;
-            color: #EEEEEE; /* Light gray for readability */
-            margin-bottom: clamp(0.3rem, 1vw, 0.5rem); /* Fluid margin */
+            color: #EEEEEE;
+            margin-bottom: clamp(0.3rem, 1vw, 0.5rem);
         }
 
         .testimonials-header h2 {
-            font-size: clamp(2rem, 5vw, 2.5rem); /* Fluid font size */
+            font-size: clamp(2rem, 5vw, 2.5rem);
             font-weight: bold;
         }
 
         .testimonial-cards-container {
             display: flex;
-            flex-direction: column; /* Stack vertically on small screens */
-            gap: clamp(1rem, 4vw, 2rem); /* Fluid gap */
+            flex-direction: column;
+            gap: clamp(1rem, 4vw, 2rem);
             max-width: 1200px;
             margin: 0 auto;
             justify-content: center;
             align-items: center;
         }
 
-        @media (min-width: 768px) { /* On medium screens and up */
+        @media (min-width: 768px) {
             .testimonial-cards-container {
                 flex-direction: row;
                 justify-content: space-around;
@@ -717,50 +709,50 @@
         }
 
         .testimonial-card {
-            background-color: #1F1F1F; /* Slightly lighter dark background for cards */
+            background-color: #1F1F1F;
             border-radius: 0.75rem;
-            padding: clamp(1.5rem, 6vw, 2rem); /* Fluid padding */
+            padding: clamp(1.5rem, 6vw, 2rem);
             position: relative;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            max-width: clamp(280px, 80vw, 500px); /* Fluid max-width */
+            max-width: clamp(280px, 80vw, 500px);
             text-align: left;
         }
 
         .testimonial-card p {
-            font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
             line-height: 1.5;
-            margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
-            color: #AAAAAA; /* Gray for quote text */
+            margin-bottom: clamp(1rem, 4vw, 1.5rem);
+            color: #AAAAAA;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: clamp(0.5rem, 2vw, 1rem); /* Fluid gap */
+            gap: clamp(0.5rem, 2vw, 1rem);
         }
 
         .testimonial-author img {
-            width: clamp(40px, 8vw, 50px); /* Fluid size for avatar */
-            height: clamp(40px, 8vw, 50px); /* Fluid size for avatar */
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #A0D9B4; /* Soft minty green border to match new text color */
+            border: 2px solid #A0D9B4;
         }
 
         .testimonial-author span {
             font-weight: bold;
-            font-size: clamp(0.9rem, 2.5vw, 1.125rem); /* Fluid font size */
-            color: #A0D9B4; /* Soft minty green for author name */
+            font-size: clamp(0.9rem, 2.5vw, 1.125rem);
+            color: #A0D9B4;
         }
 
         /* Extended Footer Section */
         .extended-footer-section {
-            background-color: #0F0F0F; /* Dark background */
-            color: #CCCCCC; /* Light gray for text */
-            padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
+            background-color: #0F0F0F;
+            color: #CCCCCC;
+            padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 4vw, 1.5rem);
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            gap: clamp(2rem, 6vw, 3rem); /* Fluid gap */
+            gap: clamp(2rem, 6vw, 3rem);
             width: 100%;
             box-sizing: border-box;
             text-align: center;
@@ -774,16 +766,16 @@
         }
 
         .extended-footer-column h3 {
-            font-size: clamp(1.2rem, 3.5vw, 1.5rem); /* Fluid font size */
+            font-size: clamp(1.2rem, 3.5vw, 1.5rem);
             font-weight: bold;
-            margin-bottom: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
-            color: #6FCF97; /* Soft minty green accent for headers */
+            margin-bottom: clamp(1rem, 4vw, 1.5rem);
+            color: #6FCF97;
         }
 
         .extended-footer-column p {
-            font-size: clamp(0.75rem, 2.5vw, 0.9rem); /* Fluid font size */
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
             line-height: 1.5;
-            margin-bottom: clamp(0.5rem, 2vw, 1rem); /* Fluid margin */
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
         }
 
         .extended-footer-column ul {
@@ -793,29 +785,29 @@
         }
 
         .extended-footer-column ul li {
-            margin-bottom: clamp(0.5rem, 2vw, 0.75rem); /* Fluid margin */
+            margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
         }
 
         .extended-footer-column ul li a {
-            color: #CCCCCC; /* Light gray for links */
+            color: #CCCCCC;
             text-decoration: none;
             transition: color 0.3s ease;
-            font-size: clamp(0.75rem, 2vw, 0.9rem); /* Fluid font size */
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
         }
 
         .extended-footer-column ul li a:hover {
-            color: #A0D9B4; /* Soft minty green highlight on hover */
+            color: #A0D9B4;
         }
 
         .phone-contact {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: clamp(0.5rem, 2vw, 0.75rem); /* Fluid gap */
-            background-color: #1A1A1A; /* Charcoal gray background for contact button */
-            padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
+            gap: clamp(0.5rem, 2vw, 0.75rem);
+            background-color: #1A1A1A;
+            padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem);
             border-radius: 0.5rem;
-            margin-top: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
+            margin-top: clamp(1rem, 4vw, 1.5rem);
             width: fit-content;
             margin-left: auto;
             margin-right: auto;
@@ -830,12 +822,12 @@
         }
 
         .phone-contact img {
-            width: clamp(20px, 4vw, 24px); /* Fluid icon size */
-            height: clamp(20px, 4vw, 24px); /* Fluid icon size */
+            width: clamp(20px, 4vw, 24px);
+            height: clamp(20px, 4vw, 24px);
         }
 
         .phone-contact span {
-            font-size: clamp(0.8rem, 2.5vw, 1.125rem); /* Fluid font size */
+            font-size: clamp(0.8rem, 2.5vw, 1.125rem);
             font-weight: bold;
             color: #FFFFFF;
         }
@@ -843,17 +835,17 @@
         .subscribe-form {
             display: flex;
             flex-direction: column;
-            gap: clamp(0.5rem, 2vw, 0.75rem); /* Fluid gap */
-            margin-top: clamp(0.8rem, 3vw, 1rem); /* Fluid margin */
+            gap: clamp(0.5rem, 2vw, 0.75rem);
+            margin-top: clamp(0.8rem, 3vw, 1rem);
         }
 
         .subscribe-form input[type="email"] {
-            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.8rem, 3vw, 1rem); /* Fluid padding */
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.8rem, 3vw, 1rem);
             border-radius: 0.375rem;
             border: 1px solid #555;
-            background-color: #333333; /* Darker gray for input field */
+            background-color: #333333;
             color: white;
-            font-size: clamp(0.75rem, 2vw, 0.9rem); /* Fluid font size */
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
         }
 
         .subscribe-form input[type="email"]::placeholder {
@@ -861,26 +853,26 @@
         }
 
         .subscribe-form button {
-            background-color: #6FCF97; /* Soft minty green send button */
+            background-color: #6FCF97;
             color: #FFFFFF;
-            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem);
             border-radius: 0.375rem;
             font-weight: bold;
             transition: background-color 0.3s ease;
             cursor: pointer;
             border: none;
-            font-size: clamp(0.8rem, 2.5vw, 1rem); /* Fluid font size */
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
         }
 
         .subscribe-form button:hover {
-            background-color: #57AE73; /* Darker minty green on hover */
+            background-color: #57AE73;
         }
 
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: clamp(0.8rem, 3vw, 1rem); /* Fluid gap */
-            margin-top: clamp(1rem, 4vw, 1.5rem); /* Fluid margin */
+            gap: clamp(0.8rem, 3vw, 1rem);
+            margin-top: clamp(1rem, 4vw, 1.5rem);
         }
 
         @media (min-width: 768px) {
@@ -890,8 +882,8 @@
         }
 
         .social-icons a img {
-            width: clamp(25px, 5vw, 30px); /* Fluid size for social icons */
-            height: clamp(25px, 5vw, 30px); /* Fluid size for social icons */
+            width: clamp(25px, 5vw, 30px);
+            height: clamp(25px, 5vw, 30px);
             border-radius: 50%;
             transition: transform 0.2s ease;
         }
@@ -902,11 +894,11 @@
 
         /* Final Copyright Footer */
         .copyright-footer {
-            background-color: #0F0F0F; /* Same as main footer */
+            background-color: #0F0F0F;
             color: #CCCCCC;
-            padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem); /* Fluid padding */
+            padding: clamp(0.8rem, 3vw, 1rem) clamp(1rem, 4vw, 1.5rem);
             text-align: center;
-            font-size: clamp(0.7rem, 2vw, 0.8rem); /* Fluid font size */
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -921,14 +913,14 @@
         }
 
         .copyright-footer p {
-            font-size: clamp(0.7rem, 2vw, 0.8rem); /* Fluid font size */
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
         }
 
         .copyright-footer a {
             color: #CCCCCC;
             text-decoration: none;
             transition: color 0.3s ease;
-            font-size: clamp(0.7rem, 2vw, 0.8rem); /* Fluid font size */
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
         }
 
         .copyright-footer a:hover {
@@ -937,10 +929,10 @@
 
         /* Floating Contact Us Button */
         .contact-us-float {
-            position: fixed; /* Ensures it stays in place when scrolling */
-            bottom: 1.5rem; /* Distance from bottom */
-            left: 1.5rem; /* Distance from left */
-            z-index: 100; /* Ensures it's above other content */
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -949,37 +941,56 @@
         }
 
         .contact-us-float:hover {
-            transform: scale(1.05); /* Slightly enlarge on hover */
+            transform: scale(1.05);
         }
 
         /* New styles for the single, unified WhatsApp button */
         .whatsapp-button {
-            background-color: #6FCF97; /* Soft minty green for the button background */
+            background-color: #6FCF97;
             color: #FFFFFF;
-            padding: 0.75rem 1.5rem; /* Adjust padding to make it a comfortable size */
-            border-radius: 9999px; /* Pill shape */
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, transform 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 0.75rem; /* Space between icon and text */
+            gap: 0.75rem;
             font-weight: bold;
             font-size: 1rem;
         }
 
         .whatsapp-button:hover {
-            background-color: #57AE73; /* Darker minty green on hover */
+            background-color: #57AE73;
             transform: scale(1.05);
         }
 
         /* Styling for the icon inside the new button */
         .whatsapp-button img {
-            width: 24px; /* Size of the icon */
+            width: 24px;
             height: 24px;
         }
     </style>
 </head>
 <body>
+    <!-- Main content area for desktop -->
+    <div class="content md:flex">
+        <!-- Desktop video (visible on desktop, hidden on mobile) -->
+        <div id="desktop-video-container" class="hero-video">
+            <video autoplay muted loop playsinline id="video-player-desktop">
+                <!-- Source will be dynamically set by JavaScript -->
+            </video>
+            <div class="video-overlay"></div> <!-- Overlay for text readability -->
+        </div>
+
+        <!-- Text container for desktop (will be hidden on mobile) -->
+        <div class="hero-text-container">
+            <div class="hero-text">
+                <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
+                <h1 class="animated-text delay-1">CAR CARE</h1>
+            </div>
+        </div>
+    </div>
+    
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
@@ -1031,24 +1042,6 @@
         </div>
     </nav>
 
-    <!-- Main content area for desktop -->
-    <div class="content">
-        <!-- Desktop video (visible on desktop, hidden on mobile) -->
-        <div id="desktop-video-container" class="hero-video hidden md:block">
-            <video autoplay muted loop playsinline id="video-player-desktop">
-                <!-- Source will be dynamically set by JavaScript -->
-            </video>
-            <div class="video-overlay"></div> <!-- Overlay for text readability -->
-        </div>
-
-        <!-- Text container for desktop (will be hidden on mobile) -->
-        <div class="hero-text-container desktop-text-only hidden md:flex">
-            <div class="hero-text">
-                <h4 class="animated-text">// DOORSTEP CAR CLEANING SERVICES //</h4>
-                <h1 class="animated-text delay-1">CAR CARE</h1>
-            </div>
-        </div>
-    </div>
 
     <!-- New container for MOBILE-ONLY hero content (text and video) -->
     <!-- This will be displayed as a flex column on mobile and hidden on desktop -->
@@ -1067,7 +1060,7 @@
             </video>
         </div>
     </div>
-
+    
     <!-- Packages Section -->
     <section class="packages-section">
         <div class="packages-header">
@@ -1260,7 +1253,7 @@
         </div>
     </footer>
 
-    <!-- Contact Us Floating Button -->
+    <!-- Floating Contact Us Button -->
     <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
         <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/6FCF97/FFFFFF?text=WA';">
         <span>Contact Us</span>
@@ -1281,7 +1274,7 @@
 
             // Define your video sources
             const desktopVideoSource = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
-            const mobileVideoSource = 'save-vmake.mp4';
+            const mobileVideoSource = 'save.mp4';
             
             // Check if we are in portrait mode (aspect ratio < 1.25)
             if (aspectRatio < 1.25) {
