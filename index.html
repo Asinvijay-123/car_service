@@ -155,13 +155,12 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                object-fit: contain; /* Ensure video is fully visible within its container */
+                object-fit: cover;
                 border-radius: 0;
             }
 
             /* Styles for the text container within the mobile hero section */
             .hero-text-container.mobile-text-position-override {
-                /* MODIFIED: Positioned absolutely within the video box */
                 position: absolute;
                 top: 25%; /* Adjust vertical position as needed */
                 left: 50%;
@@ -183,16 +182,16 @@
             
             /* Packages section: should now naturally follow the mobile-hero-section-wrapper */
             .packages-section {
-                margin-top: 0; /* Ensure no extra space between hero and packages */
-                padding-top: 0; /* Reset any padding-top that might push it down */
-                position: relative; /* Keep its z-index if needed */
-                z-index: 2; /* Ensure it's above other elements if any overlap */
+                /* Corrected logic to ensure seamless alignment */
+                margin-top: 0;
+                padding-top: 0;
+                position: relative;
+                z-index: 2;
             }
-
+            
             /* Adjust the packages-header margin-top to be flush with the video bottom */
             .packages-header {
-                margin-top: 0; /* Remove default margin-top to make it flush with the video */
-                /* Keep its internal padding as defined for desktop */
+                margin-top: 0;
             }
 
             /* Hide desktop-only text container */
@@ -1280,8 +1279,8 @@
             const viewportHeight = window.innerHeight;
             const aspectRatio = viewportWidth / viewportHeight;
 
-            // Define your single video source
-            const videoSource = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
+            // Define your video sources
+            const desktopVideoSource = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
             const mobileVideoSource = 'save.mp4';
             
             // Check if we are in portrait mode (aspect ratio < 1.25)
@@ -1301,8 +1300,8 @@
                 if (mobileVideoContainer) mobileVideoContainer.classList.add('hidden');
 
                 // Set the video source for desktop if it's not already set
-                if (desktopVideoPlayer && desktopVideoPlayer.src !== videoSource) {
-                    desktopVideoPlayer.src = videoSource;
+                if (desktopVideoPlayer && desktopVideoPlayer.src !== desktopVideoSource) {
+                    desktopVideoPlayer.src = desktopVideoSource;
                     desktopVideoPlayer.load();
                 }
             }
