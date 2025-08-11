@@ -1022,24 +1022,28 @@
         </div>
 
         <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
+        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
             <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
-            <div class="flex flex-col gap-6 text-xl">
-                <a href="index.html" class="nav-button text-white">HOME</a>
-                <div class="dropdown-mobile">
-                    <a href="#" class="nav-button text-white flex items-center">
-                        PACKAGES <span class="dropdown-arrow ml-2">&#9660;</span>
+            <div class="flex flex-col text-xl w-full px-4 text-white">
+                <a href="index.html" class="nav-button py-2 border-b border-gray-700">HOME</a>
+                <div class="dropdown-mobile w-full">
+                    <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
+                        PACKAGES
+                        <span class="dropdown-arrow transform transition-transform duration-300">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                             </svg>
+                        </span>
                     </a>
                     <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
-                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Quick Shine</a>
-                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Deep Cleaning</a>
-                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Rubbing & Polishing</a>
+                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
+                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
                         <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
                     </div>
                 </div>
-                <a href="booking-form.html" class="nav-button text-white">CONTACT US</a>
-            </div>
-        </div>
+
     </nav>
 
 
