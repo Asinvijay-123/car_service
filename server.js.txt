@@ -1,0 +1,41 @@
+const express = require("express");
+const mysql = require("mysql2");
+const bodyParser = require("body-parser");
+
+const app = express();
+app.use(bodyParser.json());
+
+// 🔑 AWS Database ka connection
+const db = mysql.createConnection({
+    host: "your-endpoint.rds.amazonaws.com",  // AWS RDS endpoint (connection details me milega)
+    user: "admin",                            // tumne jo username diya tha
+    password: "your-password",                // tumhara password
+    database: "database-1"                    // tumhara DB ka naam
+});
+
+// connect check
+db.connect(err => {
+    if (err) {
+        console.log("❌ DB connection failed:", err);
+    } else {
+        console.log("✅ Connected to AWS DB");
+    }
+});
+
+// API route
+app.post("/book", (req, res) => {
+    const { name, phone, booking_date } = req.body;
+
+    const sql = "INSERT INTO bookings (name, phone, booking_date) VALUES (?, ?, ?)";
+    db.query(sql, [name, phone, booking_date], (err, result) => {
+        if (err) {
+            res.status(500).send("DB error");
+        } else {
+            res.send("Booking saved ✅");
+        }
+    });
+});
+
+app.listen(5000, () => {
+    console.log("🚀 Server running on port 5000");
+});
