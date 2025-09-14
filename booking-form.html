@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Form - Car Care Services</title>
+    <title>Car Care Services</title>
     <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for clean typography -->
@@ -19,8 +19,8 @@
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            background-color: #f8f8f8; /* Light background for the page */
+            overflow-x: hidden;
+            background-color: #f8f8f8;
             color: #333;
         }
 
@@ -182,8 +182,17 @@
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        
+        .admin-dashboard-section {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
 
-        .booking-form-section h2 {
+        .booking-form-section h2, .admin-dashboard-section h2 {
             font-size: 2.5rem;
             font-weight: bold;
             text-align: center;
@@ -681,208 +690,235 @@
         </div>
     </nav>
 
-    <section class="booking-form-section">
-        <h2>Booking Form</h2>
-        <form id="bookingForm">
-            <div class="form-row">
+    <main id="mainContent">
+        <section id="bookingSection" class="booking-form-section">
+            <h2>Booking Form</h2>
+            <form id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone No.</label>
+                        <input type="tel" id="phone" placeholder="Phone number must be Exactly 10 Digits." pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="phone">Phone No.</label>
-                    <input type="tel" id="phone" placeholder="Phone number must be Exactly 10 Digits." pattern="[0-9]{10}" required>
+                    <label for="city">City</label>
+                    <select id="city" required>
+                        <option value="jaipur" selected>Jaipur</option>
+                    </select>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="city">City</label>
-                <select id="city" required>
-                    <option value="jaipur" selected>Jaipur</option>
-                </select>
-            </div>
-
-            <div id="subAreaGroup" class="form-group">
-                <label for="sub-area">Sub-area in Jaipur</label>
-                <select id="sub-area" required>
-                    <option value="">Select a sub-area</option>
-                    <option value="adarsh-nagar">Adarsh Nagar</option>
-                    <option value="agra-road">Agra Road</option>
-                    <option value="ajmer-road">Ajmer Road</option>
-                    <option value="amer">Amer</option>
-                    <option value="bani-park">Bani Park</option>
-                    <option value="bapu-nagar">Bapu Nagar</option>
-                    <option value="brahmpuri">Brahmpuri</option>
-                    <option value="c-scheme">C-Scheme</option>
-                    <option value="chandpole">Chandpole</option>
-                    <option value="civil-lines">Civil Lines</option>
-                    <option value="durga-pura">Durga Pura</option>
-                    <option value="gopalpura">Gopalpura</option>
-                    <option value="goner-road">Goner Road</option>
-                    <option value="govindpura">Govindpura</option>
-                    <option value="hasanpura">Hasanpura</option>
-                    <option value="hawa-sadak">Hawa Sadak</option>
-                    <option value="jagatpura">Jagatpura</option>
-                    <option value="jawahar-nagar">Jawahar Nagar</option>
-                    <option value="jhotwara">Jhotwara</option>
-                    <option value="jhotwara-industrial-area">Jhotwara Industrial Area</option>
-                    <option value="kalwad">Kalwad</option>
-                    <option value="kalwar-road">Kalwar Road</option>
-                    <option value="khatipura">Khatipura</option>
-                    <option value="kukas">Kukas</option>
-                    <option value="kunda">Kunda</option>
-                    <option value="lal-kothi">Lal Kothi</option>
-                    <option value="mahesh-nagar">Mahesh Nagar</option>
-                    <option value="malviya-nagar">Malviya Nagar</option>
-                    <option value="mansarovar">Mansarovar</option>
-                    <option value="muhana-mandi">Muhana Mandi</option>
-                    <option value="muralipura">Muralipura</option>
-                    <option value="nangam-jaisa-bohra">Nangal Jaisa Bohra</option>
-                    <option value="nehru-place">Nehru Place</option>
-                    <option value="nirman-nagar">Nirman Nagar</option>
-                    <option value="pratap-nagar">Pratap Nagar</option>
-                    <option value="raja-park">Raja Park</option>
-                    <option value="ramganj">Ramganj</option>
-                    <option value="ramgarh-mod">Ramgarh Mod</option>
-                    <option value="sanganer">Sanganer</option>
-                    <option value="shastri-nagar">Shastri Nagar</option>
-                    <option value="sikar-road">Sikar Road</option>
-                    <option value="sindhi-camp">Sindhi Camp</option>
-                    <option value="sirsi-road">Sirsi Road</option>
-                    <option value="sitapura">Sitapura</option>
-                    <option value="sodala">Sodala</option>
-                    <option value="subhash-nagar">Subhash Nagar</option>
-                    <option value="tilak-nagar">Tilak Nagar</option>
-                    <option value="tonk-road">Tonk Road</option>
-                    <option value="transport-nagar">Transport Nagar</option>
-                    <option value="triveni-nagar">Triveni Nagar</option>
-                    <option value="vaishali-nagar">Vaishali Nagar</option>
-                    <option value="vidyadhar-nagar">Vidyadhar Nagar</option>
-                    <option value="vishwakarma-industrial-area">Vishwakarma Industrial Area</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="address">Address</label>
-                <textarea id="address" placeholder="Enter your address" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="booking-date">Booking Date</label>
-                <input type="text" id="booking-date" placeholder="Select a booking date" required>
-            </div>
-
-            <div class="form-group">
-                <label>Available Time Slot</label>
-                <div class="time-slot-grid">
-                    <label><input type="checkbox" name="time-slot" value="9am-11am"> 9am - 11am</label>
-                    <label><input type="checkbox" name="time-slot" value="11am-1pm"> 11am - 1pm</label>
-                    <label><input type="checkbox" name="time-slot" value="1pm-3pm"> 1pm - 3pm</label>
-                    <label><input type="checkbox" name="time-slot" value="3pm-5pm"> 3pm - 5pm</label>
+                <div id="subAreaGroup" class="form-group">
+                    <label for="sub-area">Sub-area in Jaipur</label>
+                    <select id="sub-area" required>
+                        <option value="">Select a sub-area</option>
+                        <option value="adarsh-nagar">Adarsh Nagar</option>
+                        <option value="agra-road">Agra Road</option>
+                        <option value="ajmer-road">Ajmer Road</option>
+                        <option value="amer">Amer</option>
+                        <option value="bani-park">Bani Park</option>
+                        <option value="bapu-nagar">Bapu Nagar</option>
+                        <option value="brahmpuri">Brahmpuri</option>
+                        <option value="c-scheme">C-Scheme</option>
+                        <option value="chandpole">Chandpole</option>
+                        <option value="civil-lines">Civil Lines</option>
+                        <option value="durga-pura">Durga Pura</option>
+                        <option value="gopalpura">Gopalpura</option>
+                        <option value="goner-road">Goner Road</option>
+                        <option value="govindpura">Govindpura</option>
+                        <option value="hasanpura">Hasanpura</option>
+                        <option value="hawa-sadak">Hawa Sadak</option>
+                        <option value="jagatpura">Jagatpura</option>
+                        <option value="jawahar-nagar">Jawahar Nagar</option>
+                        <option value="jhotwara">Jhotwara</option>
+                        <option value="jhotwara-industrial-area">Jhotwara Industrial Area</option>
+                        <option value="kalwad">Kalwad</option>
+                        <option value="kalwar-road">Kalwar Road</option>
+                        <option value="khatipura">Khatipura</option>
+                        <option value="kukas">Kukas</option>
+                        <option value="kunda">Kunda</option>
+                        <option value="lal-kothi">Lal Kothi</option>
+                        <option value="mahesh-nagar">Mahesh Nagar</option>
+                        <option value="malviya-nagar">Malviya Nagar</option>
+                        <option value="mansarovar">Mansarovar</option>
+                        <option value="muhana-mandi">Muhana Mandi</option>
+                        <option value="muralipura">Muralipura</option>
+                        <option value="nangam-jaisa-bohra">Nangal Jaisa Bohra</option>
+                        <option value="nehru-place">Nehru Place</option>
+                        <option value="nirman-nagar">Nirman Nagar</option>
+                        <option value="pratap-nagar">Pratap Nagar</option>
+                        <option value="raja-park">Raja Park</option>
+                        <option value="ramganj">Ramganj</option>
+                        <option value="ramgarh-mod">Ramgarh Mod</option>
+                        <option value="sanganer">Sanganer</option>
+                        <option value="shastri-nagar">Shastri Nagar</option>
+                        <option value="sikar-road">Sikar Road</option>
+                        <option value="sindhi-camp">Sindhi Camp</option>
+                        <option value="sirsi-road">Sirsi Road</option>
+                        <option value="sitapura">Sitapura</option>
+                        <option value="sodala">Sodala</option>
+                        <option value="subhash-nagar">Subhash Nagar</option>
+                        <option value="tilak-nagar">Tilak Nagar</option>
+                        <option value="tonk-road">Tonk Road</option>
+                        <option value="transport-nagar">Transport Nagar</option>
+                        <option value="triveni-nagar">Triveni Nagar</option>
+                        <option value="vaishali-nagar">Vaishali Nagar</option>
+                        <option value="vidyadhar-nagar">Vidyadhar Nagar</option>
+                        <option value="vishwakarma-industrial-area">Vishwakarma Industrial Area</option>
+                    </select>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label>Choose Package</label>
-                <div class="package-grid">
-                    <div class="package-item" data-package="quick-shine">
-                        <!-- Restored original image with fallback -->
-                        <img src="quick.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Quick';" alt="Quick Shine Icon">
-                        <h4>Quick Shine</h4>
-                    </div>
-                    <div class="package-item" data-package="deep-cleaning">
-                        <!-- Restored original image with fallback -->
-                        <img src="deep.png" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Deep';" alt="Deep Cleaning Icon">
-                        <h4>Deep Cleaning</h4>
-                    </div>
-                    <div class="package-item" data-package="rubbing-polishing">
-                        <!-- Restored original image with fallback -->
-                        <img src="roof-rubbing.png" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Polish';" alt="Rubbing & Polishing Icon">
-                        <h4>Rubbing & Polishing</h4>
-                    </div>
-                    <div class="package-item" data-package="windshield-polish">
-                        <!-- Restored original image with fallback -->
-                        <img src="windshield.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Windshield';" alt="Windshield Polish Icon">
-                        <h4>Windshield Polish</h4>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" placeholder="Enter your address" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="booking-date">Booking Date</label>
+                    <input type="text" id="booking-date" placeholder="Select a booking date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Available Time Slot</label>
+                    <div class="time-slot-grid">
+                        <label><input type="checkbox" name="time-slot" value="9am-11am"> 9am - 11am</label>
+                        <label><input type="checkbox" name="time-slot" value="11am-1pm"> 11am - 1pm</label>
+                        <label><input type="checkbox" name="time-slot" value="1pm-3pm"> 1pm - 3pm</label>
+                        <label><input type="checkbox" name="time-slot" value="3pm-5pm"> 3pm - 5pm</label>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label>Select Car Type</label>
-                <div class="car-type-grid">
-                    <div class="car-type-item" data-car="hatchback">
-                        <!-- Restored original image with fallback -->
-                        <img src="hatchback.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Hatch';" alt="Hatchback Car">
-                        <h4>Hatchback</h4>
-                    </div>
-                    <div class="car-type-item" data-car="sedan">
-                        <!-- Restored original image with fallback -->
-                        <img src="sedan.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Sedan';" alt="Sedan Car">
-                        <h4>Sedan</h4>
-                    </div>
-                    <div class="car-type-item" data-car="compact-suv">
-                        <!-- Restored original image with fallback -->
-                        <img src="compact-suv.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=C-SUV';" alt="Compact SUV Car">
-                        <h4>Compact SUV</h4>
-                    </div>
-                    <div class="car-type-item" data-car="5-seater-suv">
-                        <!-- Restored original image with fallback -->
-                        <img src="suv-5-seater.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=5-SUV';" alt="5 Seater SUV Car">
-                        <h4>5 Seater SUV</h4>
-                    </div>
-                    <div class="car-type-item" data-car="7-seater-suv">
-                        <!-- Restored original image with fallback -->
-                        <img src="suv-7-seater.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=7-SUV';" alt="7 Seater SUV Car">
-                        <h4>7 Seater SUV</h4>
+                <div class="form-group">
+                    <label>Choose Package</label>
+                    <div class="package-grid">
+                        <div class="package-item" data-package="quick-shine">
+                            <!-- Restored original image with fallback -->
+                            <img src="quick.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Quick';" alt="Quick Shine Icon">
+                            <h4>Quick Shine</h4>
+                        </div>
+                        <div class="package-item" data-package="deep-cleaning">
+                            <!-- Restored original image with fallback -->
+                            <img src="deep.png" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Deep';" alt="Deep Cleaning Icon">
+                            <h4>Deep Cleaning</h4>
+                        </div>
+                        <div class="package-item" data-package="rubbing-polishing">
+                            <!-- Restored original image with fallback -->
+                            <img src="roof-rubbing.png" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Polish';" alt="Rubbing & Polishing Icon">
+                            <h4>Rubbing & Polishing</h4>
+                        </div>
+                        <div class="package-item" data-package="windshield-polish">
+                            <!-- Restored original image with fallback -->
+                            <img src="windshield.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Windshield';" alt="Windshield Polish Icon">
+                            <h4>Windshield Polish</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="text" id="price" placeholder="Price" readonly>
-            </div>
-
-            <!-- New Payment Method Section -->
-            <div class="form-group">
-                <label>Payment Method</label>
-                <div class="payment-method-options">
-                    <label>
-                        <input type="radio" name="payment-method" value="cash" checked required>
-                        Cash
-                    </label>
-                    <label>
-                        <input type="radio" name="payment-method" value="online" required>
-                        Online
-                    </label>
+                <div class="form-group">
+                    <label>Select Car Type</label>
+                    <div class="car-type-grid">
+                        <div class="car-type-item" data-car="hatchback">
+                            <!-- Restored original image with fallback -->
+                            <img src="hatchback.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Hatch';" alt="Hatchback Car">
+                            <h4>Hatchback</h4>
+                        </div>
+                        <div class="car-type-item" data-car="sedan">
+                            <!-- Restored original image with fallback -->
+                            <img src="sedan.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Sedan';" alt="Sedan Car">
+                            <h4>Sedan</h4>
+                        </div>
+                        <div class="car-type-item" data-car="compact-suv">
+                            <!-- Restored original image with fallback -->
+                            <img src="compact-suv.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=C-SUV';" alt="Compact SUV Car">
+                            <h4>Compact SUV</h4>
+                        </div>
+                        <div class="car-type-item" data-car="5-seater-suv">
+                            <!-- Restored original image with fallback -->
+                            <img src="suv-5-seater.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=5-SUV';" alt="5 Seater SUV Car">
+                            <h4>5 Seater SUV</h4>
+                        </div>
+                        <div class="car-type-item" data-car="7-seater-suv">
+                            <!-- Restored original image with fallback -->
+                            <img src="suv-7-seater.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=7-SUV';" alt="7 Seater SUV Car">
+                            <h4>7 Seater SUV</h4>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="checkbox-group">
-                <input type="checkbox" id="terms" required>
-                <label for="terms">I Agree to the <a href="#" class="text-green-600 font-bold">Terms and Conditions</a> as set out by the user agreement.</label>
-            </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" id="price" placeholder="Price" readonly>
+                </div>
 
-            <div class="checkbox-group">
-                <input type="checkbox" id="water-electricity" required>
-                <label for="water-electricity">Water & Electricity Available</label>
-            </div>
+                <!-- New Payment Method Section -->
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <div class="payment-method-options">
+                        <label>
+                            <input type="radio" name="payment-method" value="cash" checked required>
+                            Cash
+                        </label>
+                        <label>
+                            <input type="radio" name="payment-method" value="online" required>
+                            Online
+                        </label>
+                    </div>
+                </div>
 
-            <button type="submit" class="submit-btn" id="submitBtn">
-                Submit
-                <svg id="loadingSpinner" class="animate-spin h-5 w-5 ml-3 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-            </button>
-        </form>
-    </section>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I Agree to the <a href="#" class="text-green-600 font-bold">Terms and Conditions</a> as set out by the user agreement.</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="water-electricity" required>
+                    <label for="water-electricity">Water & Electricity Available</label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Submit
+                    <svg id="loadingSpinner" class="animate-spin h-5 w-5 ml-3 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+        </section>
+
+        <!-- Admin Dashboard Section (Initially Hidden) -->
+        <section id="adminDashboard" class="admin-dashboard-section hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center">Admin Dashboard</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">ID</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Name</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Phone</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Date</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Package</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Car Type</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Price</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                        <!-- Bookings will be dynamically inserted here -->
+                        <tr><td colspan="8" class="text-center py-4 text-gray-500">Loading bookings...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
     <!-- Updated Contact Us Floating Button -->
     <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=919509208599&text=Hello,%20I'm%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
@@ -909,244 +945,334 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
-        // Function to show custom message box
-        function showMessageBox(message) {
-            const messageBox = document.getElementById('messageBox');
-            const messageText = document.getElementById('messageText');
-            messageBox.style.display = 'block';
-            messageText.textContent = message;
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Flatpickr on the booking-date input field
-            flatpickr("#booking-date", {
-                dateFormat: "Y-m-d",
-                minDate: "today"
-            });
-
-            // Mobile menu and dropdown logic
-            const menuToggle = document.querySelector('.menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const closeMenu = document.querySelector('.close-menu');
-            const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
-            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
-
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                    mobileMenu.classList.toggle('flex');
-                });
+        // Use a self-invoking function to avoid global scope pollution
+        (function() {
+            // Function to show custom message box
+            function showMessageBox(message) {
+                const messageBox = document.getElementById('messageBox');
+                const messageText = document.getElementById('messageText');
+                messageBox.style.display = 'block';
+                messageText.textContent = message;
             }
 
-            if (closeMenu) {
-                closeMenu.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize Flatpickr on the booking-date input field
+                flatpickr("#booking-date", {
+                    dateFormat: "Y-m-d",
+                    minDate: "today"
                 });
-            }
 
-            if (mobileDropdownToggle) {
-                mobileDropdownToggle.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    mobileDropdownContent.classList.toggle('hidden');
-                });
-            }
+                // Mobile menu and dropdown logic
+                const menuToggle = document.querySelector('.menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const closeMenu = document.querySelector('.close-menu');
+                const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
+                const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+                const bookingSection = document.getElementById('bookingSection');
+                const adminDashboard = document.getElementById('adminDashboard');
+                const adminButton = document.getElementById('adminButton');
+                const loginModal = document.getElementById('loginModal');
+                const loginButton = document.getElementById('loginButton');
+                const usernameInput = document.getElementById('username');
+                const passwordInput = document.getElementById('password');
+                const loginError = document.getElementById('loginError');
 
-            // Booking form logic
-            const packageItems = document.querySelectorAll('.package-item');
-            const carTypeItems = document.querySelectorAll('.car-type-item');
-            const priceInput = document.getElementById('price');
-            const bookingForm = document.getElementById('bookingForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const loadingSpinner = document.getElementById('loadingSpinner');
-
-            const nameInput = document.getElementById('name');
-            const phoneInput = document.getElementById('phone');
-            const emailInput = document.getElementById('email');
-            const cityDropdown = document.getElementById('city');
-            const subAreaDropdown = document.getElementById('sub-area');
-            const addressInput = document.getElementById('address');
-            const dateInput = document.getElementById('booking-date');
-            const timeSlotCheckboxes = document.querySelectorAll('input[name="time-slot"]');
-            const termsCheckbox = document.getElementById('terms');
-            const waterElectricityCheckbox = document.getElementById('water-electricity');
-            const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
-
-
-            // Pricing data
-            const pricing = {
-                'quick-shine': {
-                    'hatchback': 349, 'sedan': 399, 'compact-suv': 399, '5-seater-suv': 449, '7-seater-suv': 449
-                },
-                'deep-cleaning': {
-                    'hatchback': 799, 'sedan': 899, 'compact-suv': 999, '5-seater-suv': 1199, '7-seater-suv': 1399
-                },
-                'rubbing-polishing': {
-                    'hatchback': 1399, 'sedan': 1599, 'compact-suv': 1799, '5-seater-suv': 1999, '7-seater-suv': 2199
-                },
-                'windshield-polish': {
-                    'hatchback': 799, 'sedan': 899, 'compact-suv': 999, '5-seater-suv': 1199, '7-seater-suv': 1399
+                if (menuToggle) {
+                    menuToggle.addEventListener('click', function() {
+                        mobileMenu.classList.toggle('hidden');
+                        mobileMenu.classList.toggle('flex');
+                    });
                 }
-            };
 
-            let selectedPackage = null;
-            let selectedCarType = null;
-
-            function updatePrice() {
-                if (selectedPackage && selectedCarType) {
-                    const price = pricing[selectedPackage][selectedCarType];
-                    priceInput.value = `₹${price}/-`;
-                } else {
-                    priceInput.value = '';
+                if (closeMenu) {
+                    closeMenu.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                    });
                 }
-            }
 
-            packageItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    packageItems.forEach(p => p.classList.remove('selected'));
-                    this.classList.add('selected');
-                    selectedPackage = this.dataset.package;
-                    updatePrice();
-                });
-            });
+                if (mobileDropdownToggle) {
+                    mobileDropdownToggle.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        mobileDropdownContent.classList.toggle('hidden');
+                    });
+                }
 
-            carTypeItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    carTypeItems.forEach(c => c.classList.remove('selected'));
-                    this.classList.add('selected');
-                    selectedCarType = this.dataset.car;
-                    updatePrice();
-                });
-            });
+                // Booking form logic
+                const packageItems = document.querySelectorAll('.package-item');
+                const carTypeItems = document.querySelectorAll('.car-type-item');
+                const priceInput = document.getElementById('price');
+                const bookingForm = document.getElementById('bookingForm');
+                const submitBtn = document.getElementById('submitBtn');
+                const loadingSpinner = document.getElementById('loadingSpinner');
 
-            // Handle form submission
-            bookingForm.addEventListener('submit', async function(event) {
-                event.preventDefault();
+                const nameInput = document.getElementById('name');
+                const phoneInput = document.getElementById('phone');
+                const emailInput = document.getElementById('email');
+                const cityDropdown = document.getElementById('city');
+                const subAreaDropdown = document.getElementById('sub-area');
+                const addressInput = document.getElementById('address');
+                const dateInput = document.getElementById('booking-date');
+                const timeSlotCheckboxes = document.querySelectorAll('input[name="time-slot"]');
+                const termsCheckbox = document.getElementById('terms');
+                const waterElectricityCheckbox = document.getElementById('water-electricity');
+                const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
 
-                // Show loading spinner and disable button
-                submitBtn.disabled = true;
-                loadingSpinner.classList.remove('hidden');
-
-                const name = nameInput.value;
-                const phone = phoneInput.value;
-                const email = emailInput.value;
-                const city = cityDropdown.value;
-                const subArea = subAreaDropdown.value;
-                const address = addressInput.value;
-                const bookingDate = dateInput.value;
-                const selectedTimeSlots = Array.from(timeSlotCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
-                const paymentMethod = document.querySelector('input[name="payment-method"]:checked')?.value;
-                const price = priceInput.value;
-                const termsAgreed = termsCheckbox.checked;
-                const waterElectricityAvailable = waterElectricityCheckbox.checked;
-
-                // Enhanced validation for more specific feedback
-                if (!name) { showMessageBox("Please enter your name."); resetUIState(); return; }
-                if (!phone) { showMessageBox("Please enter your phone number."); resetUIState(); return; }
-                if (phone.length !== 10 || !/^\d{10}$/.test(phone)) { showMessageBox("Please enter a valid 10-digit phone number."); resetUIState(); return; }
-                if (!email) { showMessageBox("Please enter your email address."); resetUIState(); return; }
-                if (!city || !subArea) { showMessageBox("Please select your city and sub-area."); resetUIState(); return; }
-                if (!address) { showMessageBox("Please enter your address."); resetUIState(); return; }
-                if (!bookingDate) { showMessageBox("Please select a booking date."); resetUIState(); return; }
-                if (selectedTimeSlots.length === 0) { showMessageBox("Please select at least one time slot."); resetUIState(); return; }
-                if (!selectedPackage || !selectedCarType) { showMessageBox("Please select both a package and a car type."); resetUIState(); return; }
-                if (!termsAgreed) { showMessageBox("Please agree to the terms and conditions."); resetUIState(); return; }
-                if (!waterElectricityAvailable) { showMessageBox("Please confirm water and electricity availability."); resetUIState(); return; }
-                if (!paymentMethod) { showMessageBox("Please select a payment method."); resetUIState(); return; }
-
-                const bookingData = {
-                    name,
-                    phone,
-                    email,
-                    city,
-                    subArea,
-                    address,
-                    bookingDate,
-                    timeSlots: selectedTimeSlots,
-                    package: selectedPackage,
-                    carType: selectedCarType,
-                    price,
-                    paymentMethod,
-                    termsAgreed,
-                    waterElectricityAvailable,
-                    timestamp: new Date().toISOString()
+                // Pricing data
+                const pricing = {
+                    'quick-shine': {
+                        'hatchback': 349, 'sedan': 399, 'compact-suv': 399, '5-seater-suv': 449, '7-seater-suv': 449
+                    },
+                    'deep-cleaning': {
+                        'hatchback': 799, 'sedan': 899, 'compact-suv': 999, '5-seater-suv': 1199, '7-seater-suv': 1399
+                    },
+                    'rubbing-polishing': {
+                        'hatchback': 1399, 'sedan': 1599, 'compact-suv': 1799, '5-seater-suv': 1999, '7-seater-suv': 2199
+                    },
+                    'windshield-polish': {
+                        'hatchback': 799, 'sedan': 899, 'compact-suv': 999, '5-seater-suv': 1199, '7-seater-suv': 1399
+                    }
                 };
 
-                // Send data to the Node.js backend
-                try {
-                    const response = await fetch('/book', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(bookingData),
-                    });
+                let selectedPackage = null;
+                let selectedCarType = null;
 
-                    if (response.ok) {
-                        const message = await response.text();
-                        showMessageBox(`✅ Booking successful! ${message}`);
-
-                        // Reset the form on successful submission
-                        bookingForm.reset();
-                        packageItems.forEach(p => p.classList.remove('selected'));
-                        carTypeItems.forEach(c => c.classList.remove('selected'));
-                        selectedPackage = null;
-                        selectedCarType = null;
-                        updatePrice();
+                function updatePrice() {
+                    if (selectedPackage && selectedCarType) {
+                        const price = pricing[selectedPackage][selectedCarType];
+                        priceInput.value = `₹${price}/-`;
                     } else {
-                        const errorText = await response.text();
-                        showMessageBox(`❌ Booking error: ${errorText}`);
+                        priceInput.value = '';
                     }
-                } catch (error) {
-                    console.error('Fetch error:', error);
-                    showMessageBox('❌ An error occurred while submitting the booking. Please check if the server is running.');
-                } finally {
-                    // Hide loading spinner and enable button
-                    resetUIState();
                 }
+
+                packageItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        packageItems.forEach(p => p.classList.remove('selected'));
+                        this.classList.add('selected');
+                        selectedPackage = this.dataset.package;
+                        updatePrice();
+                    });
+                });
+
+                carTypeItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        carTypeItems.forEach(c => c.classList.remove('selected'));
+                        this.classList.add('selected');
+                        selectedCarType = this.dataset.car;
+                        updatePrice();
+                    });
+                });
+
+                // Handle form submission
+                bookingForm.addEventListener('submit', async function(event) {
+                    event.preventDefault();
+
+                    // Show loading spinner and disable button
+                    submitBtn.disabled = true;
+                    loadingSpinner.classList.remove('hidden');
+
+                    const name = nameInput.value;
+                    const phone = phoneInput.value;
+                    const email = emailInput.value;
+                    const city = cityDropdown.value;
+                    const subArea = subAreaDropdown.value;
+                    const address = addressInput.value;
+                    const bookingDate = dateInput.value;
+                    const selectedTimeSlots = Array.from(timeSlotCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+                    const paymentMethod = document.querySelector('input[name="payment-method"]:checked')?.value;
+                    const price = priceInput.value;
+                    const termsAgreed = termsCheckbox.checked;
+                    const waterElectricityAvailable = waterElectricityCheckbox.checked;
+
+                    // Enhanced validation for more specific feedback
+                    if (!name) { showMessageBox("Please enter your name."); resetUIState(); return; }
+                    if (!phone) { showMessageBox("Please enter your phone number."); resetUIState(); return; }
+                    if (phone.length !== 10 || !/^\d{10}$/.test(phone)) { showMessageBox("Please enter a valid 10-digit phone number."); resetUIState(); return; }
+                    if (!email) { showMessageBox("Please enter your email address."); resetUIState(); return; }
+                    if (!city || !subArea) { showMessageBox("Please select your city and sub-area."); resetUIState(); return; }
+                    if (!address) { showMessageBox("Please enter your address."); resetUIState(); return; }
+                    if (!bookingDate) { showMessageBox("Please select a booking date."); resetUIState(); return; }
+                    if (selectedTimeSlots.length === 0) { showMessageBox("Please select at least one time slot."); resetUIState(); return; }
+                    if (!selectedPackage || !selectedCarType) { showMessageBox("Please select both a package and a car type."); resetUIState(); return; }
+                    if (!termsAgreed) { showMessageBox("Please agree to the terms and conditions."); resetUIState(); return; }
+                    if (!waterElectricityAvailable) { showMessageBox("Please confirm water and electricity availability."); resetUIState(); return; }
+                    if (!paymentMethod) { showMessageBox("Please select a payment method."); resetUIState(); return; }
+                    
+                    const bookingData = {
+                        name,
+                        phone,
+                        email,
+                        city,
+                        subArea,
+                        address,
+                        bookingDate,
+                        timeSlots: selectedTimeSlots,
+                        package: selectedPackage,
+                        carType: selectedCarType,
+                        price,
+                        paymentMethod,
+                        termsAgreed,
+                        waterElectricityAvailable,
+                        timestamp: new Date().toISOString()
+                    };
+
+                    // Replace with your actual server URL
+                    const serverUrl = "http://13.51.72.193:3000";
+
+                    // Send data to the backend
+                    try {
+                        const response = await fetch(`${serverUrl}/book`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(bookingData),
+                        });
+
+                        if (response.ok) {
+                            const message = await response.text();
+                            showMessageBox(`✅ Booking successful! ${message}`);
+
+                            // Reset the form on successful submission
+                            bookingForm.reset();
+                            packageItems.forEach(p => p.classList.remove('selected'));
+                            carTypeItems.forEach(c => c.classList.remove('selected'));
+                            selectedPackage = null;
+                            selectedCarType = null;
+                            updatePrice();
+                        } else {
+                            const errorText = await response.text();
+                            showMessageBox(`❌ Booking error: ${errorText}`);
+                        }
+                    } catch (error) {
+                        console.error('Fetch error:', error);
+                        showMessageBox('❌ An error occurred while submitting the booking. Please check if the server is running.');
+                    } finally {
+                        // Hide loading spinner and enable button
+                        resetUIState();
+                    }
+                });
+
+                // Helper function to reset UI state (button, spinner)
+                function resetUIState() {
+                    submitBtn.disabled = false;
+                    loadingSpinner.classList.add('hidden');
+                }
+
+                // --- Admin Dashboard Logic ---
+
+                // Function to show the admin dashboard and hide the booking form
+                function showAdminDashboard() {
+                    loginModal.classList.add('hidden');
+                    bookingSection.classList.add('hidden');
+                    adminDashboard.classList.remove('hidden');
+                    fetchBookings();
+                }
+
+                // Function to fetch and display bookings
+                async function fetchBookings() {
+                    const serverUrl = "http://13.51.72.193:3000";
+                    const tableBody = document.getElementById('bookingsTableBody');
+                    tableBody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-gray-500">Loading bookings...</td></tr>';
+
+                    try {
+                        const response = await fetch(`${serverUrl}/admin/bookings`);
+                        if (response.ok) {
+                            const bookings = await response.json();
+                            renderBookings(bookings);
+                        } else {
+                            throw new Error('Failed to fetch bookings.');
+                        }
+                    } catch (error) {
+                        console.error('Failed to fetch bookings:', error);
+                        tableBody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-red-500">Failed to load bookings.</td></tr>';
+                    }
+                }
+
+                // Function to render bookings into the table
+                function renderBookings(bookings) {
+                    const tableBody = document.getElementById('bookingsTableBody');
+                    tableBody.innerHTML = '';
+                    if (bookings.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-gray-500">No bookings found.</td></tr>';
+                        return;
+                    }
+
+                    bookings.forEach(booking => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td class="py-2 px-4 border-b">${booking.id}</td>
+                            <td class="py-2 px-4 border-b">${booking.customer_name}</td>
+                            <td class="py-2 px-4 border-b">${booking.phone}</td>
+                            <td class="py-2 px-4 border-b">${booking.booking_date}</td>
+                            <td class="py-2 px-4 border-b">${booking.service}</td>
+                            <td class="py-2 px-4 border-b">${booking.car_type}</td>
+                            <td class="py-2 px-4 border-b">₹${booking.price}/-</td>
+                            <td class="py-2 px-4 border-b">
+                                <button onclick="deleteBooking(${booking.id})" class="text-red-600 hover:text-red-800 font-bold">Delete</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                }
+                
+                // Function to delete a booking
+                async function deleteBooking(id) {
+                    const serverUrl = "http://13.51.72.193:3000";
+                    if (!confirm(`Are you sure you want to delete booking ID: ${id}?`)) {
+                        return;
+                    }
+                    try {
+                        const response = await fetch(`${serverUrl}/admin/bookings/${id}`, {
+                            method: 'DELETE',
+                        });
+                        if (response.ok) {
+                            showMessageBox(`✅ Booking ID ${id} deleted successfully.`);
+                            fetchBookings(); // Refresh the list
+                        } else {
+                            const errorText = await response.text();
+                            throw new Error(errorText);
+                        }
+                    } catch (error) {
+                        showMessageBox(`❌ Error deleting booking: ${error.message}`);
+                    }
+                }
+                
+                // Expose deleteBooking to the global scope so it can be called from the onclick attribute
+                window.deleteBooking = deleteBooking;
+
+
+                // Admin login functionality
+                adminButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    loginModal.classList.remove('hidden');
+                });
+
+                loginButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const username = usernameInput.value;
+                    const password = passwordInput.value;
+                    
+                    // Hardcoded credentials for demonstration. In a real application, you would
+                    // send these to your server for authentication.
+                    if (username === 'admin' && password === 'admin') {
+                        loginError.classList.add('hidden');
+                        showAdminDashboard();
+                    } else {
+                        loginError.textContent = 'Invalid username or password.';
+                        loginError.classList.remove('hidden');
+                    }
+                });
+
+                // Hide modal when clicking outside
+                loginModal.addEventListener('click', (e) => {
+                    if (e.target === loginModal) {
+                        loginModal.classList.add('hidden');
+                    }
+                });
             });
-
-            // Helper function to reset UI state (button, spinner)
-            function resetUIState() {
-                submitBtn.disabled = false;
-                loadingSpinner.classList.add('hidden');
-            }
-        });
-
-        // Admin login functionality
-        const adminButton = document.getElementById('adminButton');
-        const loginModal = document.getElementById('loginModal');
-        const loginButton = document.getElementById('loginButton');
-        const usernameInput = document.getElementById('username');
-        const passwordInput = document.getElementById('password');
-        const loginError = document.getElementById('loginError');
-
-        adminButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.classList.remove('hidden');
-        });
-
-        loginButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const username = usernameInput.value;
-            const password = passwordInput.value;
-            
-            // Hardcoded credentials for demonstration
-            if (username === 'admin' && password === 'admin') {
-                loginError.classList.add('hidden');
-                window.location.href = 'admin_dashboard.html'; // Redirect to admin dashboard
-            } else {
-                loginError.textContent = 'Invalid username or password.';
-                loginError.classList.remove('hidden');
-            }
-        });
-
-        // Hide modal when clicking outside
-        loginModal.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.classList.add('hidden');
-            }
-        });
+        })();
     </script>
 </body>
 </html>
