@@ -1117,10 +1117,8 @@
                         timestamp: new Date().toISOString()
                     };
 
-                    // Corrected server URL for local development
                     const serverUrl = "http://13.51.72.193:3000";
 
-                    // Send data to the backend
                     try {
                         console.log('Attempting to submit booking to:', `${serverUrl}/book`);
                         const response = await fetch(`${serverUrl}/book`, {
