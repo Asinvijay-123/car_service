@@ -1118,7 +1118,7 @@
                     };
 
                     // Corrected server URL for local development
-                    const serverUrl = "http://localhost:3000";
+                    const serverUrl = "http://13.51.72.193:3000";
 
                     // Send data to the backend
                     try {
@@ -1173,7 +1173,7 @@
 
                 // Function to fetch and display bookings
                 async function fetchBookings() {
-                    const serverUrl = "http://localhost:3000";
+                    const serverUrl = "http://13.51.72.193:3000";
                     const tableBody = document.getElementById('bookingsTableBody');
                     tableBody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-gray-500">Loading bookings...</td></tr>';
 
@@ -1220,7 +1220,7 @@
                 
                 // Function to delete a booking
                 async function deleteBooking(id) {
-                    const serverUrl = "http://localhost:3000";
+                    const serverUrl = "http://13.51.72.193:3000";
                     
                     // Directly attempt deletion without a native confirm dialog
                     try {
