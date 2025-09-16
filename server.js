@@ -38,8 +38,8 @@ let pool;
         connection.release();
 
         // Start the server only after a successful database connection
-      app.listen(process.env.PORT, "0.0.0.0", () => {
-           console.log(`Server running on port ${process.env.PORT}`);
+      app.listen(process.env.PORT || 3000, "0.0.0.0", () => {
+           console.log(`Server running on port ${process.env.PORT || 3000}`);
       });
 
 
@@ -70,12 +70,8 @@ app.post("/book", async (req, res) => {
     try {
         const bookingData = req.body;
 
-        // --- NEW LOGGING ADDED HERE ---
-        console.log("-------------------");
-        console.log("New booking received from client:");
-        console.log(bookingData);
-        console.log("-------------------");
-        console.log("Preparing values for SQL insertion:");
+        // Log the received data for debugging
+        console.log("New booking received:", bookingData);
 
         // Get a connection from the pool
         connection = await pool.getConnection();
@@ -109,8 +105,6 @@ app.post("/book", async (req, res) => {
             bookingData.bookingDate,
             timeSlotsString,
         ];
-        console.log(values);
-        console.log("-------------------");
 
         await connection.execute(insertQuery, values);
 
