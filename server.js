@@ -70,8 +70,12 @@ app.post("/book", async (req, res) => {
     try {
         const bookingData = req.body;
 
-        // Log the received data for debugging
-        console.log("New booking received:", bookingData);
+        // --- NEW LOGGING ADDED HERE ---
+        console.log("-------------------");
+        console.log("New booking received from client:");
+        console.log(bookingData);
+        console.log("-------------------");
+        console.log("Preparing values for SQL insertion:");
 
         // Get a connection from the pool
         connection = await pool.getConnection();
@@ -105,6 +109,8 @@ app.post("/book", async (req, res) => {
             bookingData.bookingDate,
             timeSlotsString,
         ];
+        console.log(values);
+        console.log("-------------------");
 
         await connection.execute(insertQuery, values);
 
