@@ -1117,11 +1117,12 @@
                         timestamp: new Date().toISOString()
                     };
 
-                    // Replace with your actual server URL
-                    const serverUrl = "http://13.51.72.193:3000";
+                    // Corrected server URL for local development
+                    const serverUrl = "http://localhost:3000";
 
                     // Send data to the backend
                     try {
+                        console.log('Attempting to submit booking to:', `${serverUrl}/book`);
                         const response = await fetch(`${serverUrl}/book`, {
                             method: 'POST',
                             headers: {
@@ -1172,7 +1173,7 @@
 
                 // Function to fetch and display bookings
                 async function fetchBookings() {
-                    const serverUrl = "http://13.51.72.193:3000";
+                    const serverUrl = "http://localhost:3000";
                     const tableBody = document.getElementById('bookingsTableBody');
                     tableBody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-gray-500">Loading bookings...</td></tr>';
 
@@ -1219,10 +1220,9 @@
                 
                 // Function to delete a booking
                 async function deleteBooking(id) {
-                    const serverUrl = "http://13.51.72.193:3000";
-                    if (!confirm(`Are you sure you want to delete booking ID: ${id}?`)) {
-                        return;
-                    }
+                    const serverUrl = "http://localhost:3000";
+                    
+                    // Directly attempt deletion without a native confirm dialog
                     try {
                         const response = await fetch(`${serverUrl}/admin/bookings/${id}`, {
                             method: 'DELETE',
