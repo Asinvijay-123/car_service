@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +14,8 @@
     <!-- CSS Defer: सभी CSS को एक ही <style> ब्लॉक में रखा गया है। इसे minify करने के बाद, यह तेज़ी से लोड होगा। -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Web Fonts Preload: फॉन्ट को बाकी कंटेंट से पहले लोड करने के लिए preload एट्रीब्यूट जोड़ा गया है, इससे LCP (Largest Contentful Paint) में सुधार होता है। -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3bDPC_a-xP3gQ.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKeS_s-4.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -966,7 +965,7 @@
     <div class="content md:flex">
         <div id="desktop-video-container" class="hero-video">
             <!-- SEO सुधार: ब्राउज़र को केवल उपयुक्त वीडियो फ़ाइल लोड करने के लिए `media` एट्रीब्यूट जोड़ा गया है। -->
-            <video autoplay muted loop playsinline preload="none" id="video-player-desktop">
+            <video autoplay muted loop playsinline preload="none" id="video-player-desktop" poster="https://placehold.co/1920x1080/000000/FFFFFF?text=CAR+VIDEO+POSTER">
                 <source src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4" media="(min-width: 768px)">
             </video>
             <div class="video-overlay"></div>
@@ -1041,7 +1040,7 @@
                 </div>
             </div>
             <!-- SEO सुधार: ब्राउज़र को केवल उपयुक्त वीडियो फ़ाइल लोड करने के लिए `media` एट्रीब्यूट जोड़ा गया है। -->
-            <video autoplay muted loop playsinline preload="none" id="video-player">
+            <video autoplay muted loop playsinline preload="none" id="video-player" poster="https://placehold.co/1080x1920/000000/FFFFFF?text=CAR+VIDEO+POSTER">
                 <source src="save-vmake.mp4" type="video/mp4" media="(max-width: 767px)">
             </video>
         </div>
@@ -1063,7 +1062,7 @@
         <div class="package-card-container">
             <div class="package-card">
                 <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50">
+                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50" decoding="async">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
                 <div class="time-price">
@@ -1077,7 +1076,7 @@
 
             <div class="package-card">
                 <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" loading="lazy" width="50" height="50">
+                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" loading="lazy" width="50" height="50" decoding="async">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
                 <div class="time-price">
@@ -1091,7 +1090,7 @@
 
             <div class="package-card">
                 <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" loading="lazy" width="50" height="50">
+                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" loading="lazy" width="50" height="50" decoding="async">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
                 <div class="time-price">
@@ -1105,7 +1104,7 @@
 
             <div class="package-card">
                 <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" loading="lazy" width="50" height="50">
+                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" loading="lazy" width="50" height="50" decoding="async">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
                 <div class="time-price">
@@ -1123,7 +1122,7 @@
         <div class="why-choose-us-inner-container">
             <div class="why-choose-us-image-container">
                 <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-                <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" loading="lazy" width="600" height="400">
+                <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" loading="lazy" width="600" height="400" decoding="async">
             </div>
             <div class="why-choose-us-content">
                 <p class="text-sm font-semibold uppercase mb-1">CAR CARE</p>
@@ -1170,13 +1169,13 @@
         <div class="testimonial-cards-container">
             <div class="testimonial-card">
                 <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-                <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50">
+                <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async">
                 <h3>Rahul Sherewala</h3>
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
             </div>
             <div class="testimonial-card">
                 <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-                <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50">
+                <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async">
                 <h3>Geeta Kumari</h3>
                 <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
             </div>
@@ -1189,7 +1188,7 @@
             <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
             <div class="phone-contact">
                 <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-                <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" >
+                <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" decoding="async">
                 <span>Talk To Our Support 9509208599</span>
             </div>
             <p class="mt-4">3 K Shivpure Kota (Raj.),</p>
@@ -1227,7 +1226,7 @@
 
     <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
         <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
-        <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24">
+        <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24" decoding="async">
         <span>Contact Us</span>
     </a>
 
