@@ -962,16 +962,11 @@
     -->
     <div class="content md:flex">
         <div id="desktop-video-container" class="hero-video">
-            <!-- LCP सुधार: वीडियो के लिए poster इमेज का इस्तेमाल किया गया है ताकि पेज जल्दी लोड हो। -->
-            <video autoplay muted loop playsinline preload="none" id="video-player-desktop" poster="https://placehold.co/1920x1080/000000/FFFFFF?text=Car+Video+Poster" data-video-src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4">
+            <!-- अब यहां आपकी ओरिजिनल वीडियो वापस आ गई है। -->
+            <video autoplay muted loop playsinline preload="none" id="video-player-desktop">
+                <source src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4">
             </video>
             <div class="video-overlay"></div>
-            <!-- प्ले बटन ओवरले ताकि वीडियो तभी लोड हो जब यूजर उसे क्लिक करे। -->
-            <div class="play-button" data-target-video="video-player-desktop">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-            </div>
         </div>
 
         <div class="hero-text-container">
@@ -984,8 +979,7 @@
     
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है ताकि इमेज तभी लोड हो जब यूजर इसे देखे। -->
-            <!-- Image Compression: असली वेबसाइट में, इन इमेजेस को कंप्रेस करना चाहिए (जैसे WebP फॉर्मेट में) ताकि उनका साइज़ कम हो और लोड टाइम सुधरे। -->
+            <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
             <img src="car logo.png" alt="Car Care Logo" class="navbar-logo" loading="lazy" width="100" height="80" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=LOGO';">
         </div>
 
@@ -1043,20 +1037,16 @@
                     <h1 class="animated-text delay-1">CAR CARE TCH</h1>
                 </div>
             </div>
-            <!-- Video Preload: परफॉरमेंस के लिए preload="none" जोड़ा गया है। -->
-            <video autoplay muted loop playsinline preload="none" id="video-player" poster="https://placehold.co/1080x1920/000000/FFFFFF?text=Car+Video+Poster" data-video-src="save-vmake.mp4">
+            <!-- अब यहां आपकी ओरिजिनल वीडियो वापस आ गई है। -->
+            <video autoplay muted loop playsinline preload="none" id="video-player">
+                <source src="save-vmake.mp4" type="video/mp4">
             </video>
-             <!-- प्ले बटन ओवरले ताकि वीडियो तभी लोड हो जब यूजर उसे क्लिक करे। -->
-            <div class="play-button" data-target-video="video-player">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-            </div>
         </div>
     </div>
     
     <section class="packages-section">
         <div class="packages-header">
+            <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
             <img src="https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN';">
             <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
                 <div class="w-full text-left">
@@ -1069,9 +1059,8 @@
 
         <div class="package-card-container">
             <div class="package-card">
-                <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है ताकि इमेज तभी लोड हो जब यूजर इसे देखे। -->
-                <!-- इमेज पाथ को WebP फॉर्मेट में अपडेट करने का सुझाव दिया गया है। -->
-                <img src="https://placehold.co/50x50/cccccc/222222?text=Quick" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50">
+                <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
                 <div class="time-price">
@@ -1084,7 +1073,8 @@
             </div>
 
             <div class="package-card">
-                <img src="https://placehold.co/50x50/cccccc/222222?text=Deep" alt="Deep Cleaning Icon" class="icon" loading="lazy" width="50" height="50">
+                <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" loading="lazy" width="50" height="50">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
                 <div class="time-price">
@@ -1097,7 +1087,8 @@
             </div>
 
             <div class="package-card">
-                <img src="https://placehold.co/50x50/cccccc/222222?text=Rubbing" alt="Rubbing & Polishing Icon" class="icon" loading="lazy" width="50" height="50">
+                <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" loading="lazy" width="50" height="50">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
                 <div class="time-price">
@@ -1110,7 +1101,8 @@
             </div>
 
             <div class="package-card">
-                <img src="https://placehold.co/50x50/cccccc/222222?text=Windshield" alt="Windshield Polish Icon" class="icon" loading="lazy" width="50" height="50">
+                <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" loading="lazy" width="50" height="50">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
                 <div class="time-price">
@@ -1127,8 +1119,8 @@
     <section class="why-choose-us-section">
         <div class="why-choose-us-inner-container">
             <div class="why-choose-us-image-container">
-                <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है। -->
-                <img src="https://placehold.co/600x400/cccccc/222222?text=Car+Cleaning" alt="Car Cleaning Image" loading="lazy" width="600" height="400">
+                <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+                <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" loading="lazy" width="600" height="400">
             </div>
             <div class="why-choose-us-content">
                 <p class="text-sm font-semibold uppercase mb-1">CAR CARE</p>
@@ -1174,13 +1166,14 @@
         </div>
         <div class="testimonial-cards-container">
             <div class="testimonial-card">
-                <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है। -->
-                <img src="https://placehold.co/50x50/cccccc/222222?text=User1" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50">
+                <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+                <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50">
                 <h3>Rahul Sherewala</h3>
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
             </div>
             <div class="testimonial-card">
-                <img src="https://placehold.co/50x50/cccccc/222222?text=User2" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50">
+                <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+                <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50">
                 <h3>Geeta Kumari</h3>
                 <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
             </div>
@@ -1192,8 +1185,8 @@
             <h3>COMPANY</h3>
             <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
             <div class="phone-contact">
-                <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है। -->
-                <img src="https://placehold.co/24x24/6FCF97/FFFFFF?text=Phone" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" >
+                <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+                <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" >
                 <span>Talk To Our Support 9509208599</span>
             </div>
             <p class="mt-4">3 K Shivpure Kota (Raj.),</p>
@@ -1230,8 +1223,8 @@
     </footer>
 
     <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
-        <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है। -->
-        <img src="https://placehold.co/24x24/6FCF97/FFFFFF?text=WA" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24">
+        <!-- अब आपकी ओरिजिनल इमेज वापस आ गई है। -->
+        <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24">
         <span>Contact Us</span>
     </a>
 
