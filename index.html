@@ -19,8 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* यह वह जगह है जहाँ आप अपने minified कस्टम CSS को रखेंगे। */
-        /* CSS को छोटा करें (Minify): प्रोडक्शन साइट के लिए, इस इनलाइन CSS को कंप्रेस करके फाइल का साइज़ कम करना चाहिए। */
+        /* Critical CSS: यह CSS तुरंत लोड होता है ताकि पेज का पहला हिस्सा जल्दी दिखे। */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -44,7 +43,7 @@
             background-color: transparent;
             padding-top: 0;
         }
-
+        
         .hero-video {
             position: absolute;
             top: 0;
@@ -56,7 +55,6 @@
             background-color: #000000;
         }
         
-        /* वीडियो के लिए पोस्टर इमेज ताकि FCP/LCP जल्दी हो। */
         .hero-video video {
             position: absolute;
             top: 50%;
@@ -76,8 +74,7 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: -1;
         }
-        
-        /* प्ले बटन के लिए स्टाइल */
+
         .play-button {
             position: absolute;
             top: 50%;
@@ -100,7 +97,6 @@
             color: white;
             font-size: 3rem;
         }
-
 
         .hero-text-container {
             position: absolute;
@@ -951,7 +947,6 @@
 
         .whatsapp-button:hover {
             background-color: #57AE73;
-            transform: scale(1.05);
         }
 
         .whatsapp-button img {
