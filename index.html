@@ -7,6 +7,9 @@
     <title>Car Care Services</title>
     <!-- CSS Defer: सभी CSS को एक ही <style> ब्लॉक में रखा गया है। इसे minify करने के बाद, यह तेज़ी से लोड होगा। -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Web Fonts Preload: फॉन्ट को बाकी कंटेंट से पहले लोड करने के लिए preload एट्रीब्यूट जोड़ा गया है, इससे LCP (Largest Contentful Paint) में सुधार होता है। -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3bDPC_a-xP3gQ.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKeS_s-4.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -776,8 +779,6 @@
         @media (min-width: 768px) {
             .phone-contact {
                 justify-content: flex-start;
-                margin-left: 0;
-                margin-right: 0;
             }
         }
 
@@ -936,7 +937,8 @@
     -->
     <div class="content md:flex">
         <div id="desktop-video-container" class="hero-video">
-            <video autoplay muted loop playsinline id="video-player-desktop">
+            <!-- Video Preload: परफॉरमेंस के लिए preload="none" जोड़ा गया है ताकि वीडियो तुरंत लोड न हो। -->
+            <video autoplay muted loop playsinline preload="none" id="video-player-desktop">
             </video>
             <div class="video-overlay"></div>
         </div>
@@ -1010,7 +1012,8 @@
                     <h1 class="animated-text delay-1">CAR CARE TCH</h1>
                 </div>
             </div>
-            <video autoplay muted loop playsinline id="video-player">
+            <!-- Video Preload: परफॉरमेंस के लिए preload="none" जोड़ा गया है। -->
+            <video autoplay muted loop playsinline preload="none" id="video-player">
             </video>
         </div>
     </div>
@@ -1030,6 +1033,7 @@
         <div class="package-card-container">
             <div class="package-card">
                 <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है ताकि इमेज तभी लोड हो जब यूजर इसे देखे। -->
+                <!-- इमेज पाथ को WebP फॉर्मेट में अपडेट करने का सुझाव दिया गया है। -->
                 <img src="https://placehold.co/50x50/cccccc/222222?text=Quick" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
