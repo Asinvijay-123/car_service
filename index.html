@@ -2,42 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- 1. Mobile-friendly viewport: यह टैग पहले से ही आपके कोड में था। यह वेबसाइट को सभी मोबाइल डिवाइस पर सही दिखाता है। -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Care Services</title>
-    <!-- Tailwind CSS CDN for utility classes -->
+    <!-- CSS Defer: सभी CSS को एक ही <style> ब्लॉक में रखा गया है। इसे minify करने के बाद, यह तेज़ी से लोड होगा। -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter for clean typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Google Fonts - Montserrat for a more stylish heading font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Base styles for the body */
+        /* यह वह जगह है जहाँ आप अपने minified कस्टम CSS को रखेंगे। */
+        /* CSS को छोटा करें (Minify): प्रोडक्शन साइट के लिए, इस इनलाइन CSS को कंप्रेस करके फाइल का साइज़ कम करना चाहिए। */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            background-color: #F6F6F6; /* Light background for the page */
-            color: #2B2B2B; /* Default text color for light backgrounds */
+            overflow-x: hidden;
+            background-color: #F6F6F6;
+            color: #2B2B2B;
         }
 
-        /* Main content overlay - now acts as the first page background */
         .content {
             position: relative;
-            z-index: 1; /* Ensures content is above other elements */
+            z-index: 1;
             color: white;
             text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Aligns content to the top */
+            justify-content: flex-start;
             align-items: center;
-            height: 100vh; /* Full viewport height for the first page */
-            gap: 0.5rem; /* Space between the two text elements */
-            overflow: hidden; /* Ensure car stays within bounds */
-            background-color: transparent; /* Ensure content area is transparent to show body background */
-            padding-top: 0; /* Handled by hero-video */
+            height: 100vh;
+            gap: 0.5rem;
+            overflow: hidden;
+            background-color: transparent;
+            padding-top: 0;
         }
 
-        /* Video background styling for landscape/desktop */
         .hero-video {
             position: absolute;
             top: 0;
@@ -45,88 +43,79 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            z-index: -2; /* Placed behind overlay and content */
-            background-color: #000000; /* Pure black for the video area */
+            z-index: -2;
+            background-color: #000000;
         }
 
         .hero-video video {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 100%; /* Set to 100% to fill parent */
-            height: 100%; /* Set to 100% to fill parent */
+            width: 100%;
+            height: 100%;
             transform: translate(-50%, -50%);
-            object-fit: cover; /* Ensures the video fills the entire container, cropping as needed */
+            object-fit: cover;
         }
 
-        /* Overlay for video to improve text readability */
         .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
-            z-index: -1; /* Below content, above video */
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
         }
 
-        /* New container for the hero text, handles positioning and background */
         .hero-text-container {
             position: absolute;
-            top: 50%; /* Default to center for landscape */
+            top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Default to center for landscape */
+            transform: translate(-50%, -50%);
             width: 100%;
-            height: 100%; /* Default to full height to allow centering of text */
+            height: 100%;
             display: flex;
-            justify-content: center; /* Center text horizontally */
-            align-items: center; /* Center text vertically */
-            z-index: 2; /* Ensures text container is above video and overlay */
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
             box-sizing: border-box;
-            background-color: transparent; /* Default transparent background */
-            transition: all 0.3s ease-in-out; /* Smooth transition for changes */
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
         }
 
-        /* Hero text styling (inside hero-text-container) */
         .hero-text {
             text-align: center;
-            color: #FFFFFF; /* White text for dark video background */
-            width: 100%; /* Ensure text container takes full width for centering */
-            padding: 0 1rem; /* Add some horizontal padding */
-            box-sizing: border-box; /* Include padding in width calculation */
+            color: #FFFFFF;
+            width: 100%;
+            padding: 0 1rem;
+            box-sizing: border-box;
         }
 
         .hero-text h4 {
-            font-size: clamp(1rem, 3vw, 1.75rem); /* Fluid font size for main content paragraph */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Default text shadow */
-            margin-bottom: 0.5rem; /* Space between h4 and h1 */
-            color: #CCCCCC; /* Light gray for subheading */
+            font-size: clamp(1rem, 3vw, 1.75rem);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin-bottom: 0.5rem;
+            color: #CCCCCC;
         }
 
         .hero-text h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5.5rem); /* Fluid font size for main content heading */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Default text shadow */
-            color: #FFFFFF; /* White for main heading */
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+            color: #FFFFFF;
         }
 
-        /*
-        * START OF MOBILE-ONLY STYLES
-        * This section is specifically for devices with a portrait aspect ratio.
-        */
         @media (max-aspect-ratio: 9/16) {
-            /* Hide the main .content div (which contains desktop video/text) on mobile */
             .content {
                 display: none;
             }
 
-            /* New container for MOBILE-ONLY hero content (text and video) */
             .mobile-hero-section-wrapper {
-                display: flex; /* Make it visible on mobile */
-                flex-direction: column; /* Stack text and video vertically */
+                display: flex;
+                flex-direction: column;
                 width: 100%;
-                height: auto; /* Allow height to be determined by content */
-                background-image: url('https://placehold.co/1080x1920/F6F6F6/2B2B2B?text=Car+Care+Mobile+Background'); /* Background for the whole mobile hero section */
+                height: auto;
+                background-image: url('https://placehold.co/1080x1920/F6F6F6/2B2B2B?text=Car+Care+Mobile+Background');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -134,9 +123,8 @@
                 box-sizing: border-box;
             }
 
-            /* Styles for the video container within the mobile hero section */
             .hero-video-box.mobile-video-position-override {
-                width: 100%; /* Full width to touch corners */
+                width: 100%;
                 background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg');
                 background-size: cover;
                 background-position: center;
@@ -144,7 +132,7 @@
                 box-shadow: none;
                 border-radius: 0;
                 position: relative;
-                padding-top: 177.77%; /* Maintain video aspect ratio (9:16) */
+                padding-top: 177.77%;
                 height: 0;
                 overflow: hidden;
             }
@@ -159,7 +147,6 @@
                 border-radius: 0;
             }
 
-            /* Styles for the text container within the mobile hero section */
             .hero-text-container.mobile-text-position-override {
                 position: absolute;
                 top: 25%;
@@ -179,21 +166,16 @@
                 color: #FFFFFF;
                 text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
             }
-            
-            /* New section for mobile-only package header adjustment */
+
             .packages-section.mobile-shift {
-                margin-top: -25rem; /* Set a negative margin to pull the section up. */
+                margin-top: -25rem;
             }
 
-            /* Hide desktop-only text container */
             .hero-text-container.desktop-text-only {
                 display: none;
             }
         }
-        /* END OF MOBILE-ONLY STYLES */
 
-
-        /* Animation for continuous text movement (bounce effect) */
         @keyframes bounceText {
             0% {
                 transform: translateY(0);
@@ -214,7 +196,6 @@
             animation-delay: 0.5s;
         }
 
-        /* Navigation bar styling */
         .navbar {
             position: absolute;
             top: 0;
@@ -248,14 +229,12 @@
             }
         }
 
-        /* Logo styling - Made responsive with max-height and auto width */
         .navbar-logo {
             max-height: clamp(60px, 10vw, 100px);
             width: auto;
             transition: filter 0.3s ease;
         }
 
-        /* Navigation links container (for desktop) */
         .navbar-links {
             display: flex;
             gap: 1rem;
@@ -270,7 +249,6 @@
             }
         }
 
-        /* Individual navigation link styling */
         .navbar-links a {
             color: #FFFFFF;
             text-decoration: none;
@@ -288,12 +266,10 @@
             background-color: transparent;
         }
 
-        /* Dropdown arrow for 'PACKAGES' */
-        .navbar-links .dropdown-arrow {
+        .dropdown-arrow {
             margin-left: 0.25rem;
         }
 
-        /* Dropdown specific styles */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -332,7 +308,6 @@
             display: block;
         }
 
-        /* Mobile Menu Specific Styles */
         .menu-toggle {
             background: none;
             border: none;
@@ -380,7 +355,6 @@
             padding: 0 1rem;
         }
 
-        /* Responsive adjustments for text content */
         .content p {
             color: #DDDDDD;
             font-size: clamp(1rem, 3vw, 1.75rem);
@@ -393,13 +367,11 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
         }
 
-        /* Responsive adjustment for logo position */
         .logo-container {
             display: flex;
             align-items: center;
         }
 
-        /* Styles for the Packages section */
         .packages-section {
             background-color: #F5F5F5;
             padding: 0rem 1rem;
@@ -416,7 +388,6 @@
             padding: clamp(1.5rem, 5vw, 2.5rem) 1rem;
             text-align: left;
             position: relative;
-            /* Default desktop value */
             margin-top: 2rem;
             overflow: hidden;
         }
@@ -567,7 +538,6 @@
             color: #A0D9B4;
         }
 
-        /* Styles for Why Choose Us section */
         .why-choose-us-section {
             background-color: #1A1A1A;
             padding: clamp(2rem, 8vw, 4rem) 0;
@@ -581,7 +551,6 @@
             text-shadow: none;
         }
 
-        /* New inner container for content to keep it centered */
         .why-choose-us-inner-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -665,7 +634,6 @@
             border-radius: 4px;
         }
 
-        /* Testimonials Section */
         .testimonials-section {
             background-color: #121212;
             color: #FFFFFF;
@@ -745,7 +713,6 @@
             color: #A0D9B4;
         }
 
-        /* Extended Footer Section */
         .extended-footer-section {
             background-color: #0F0F0F;
             color: #CCCCCC;
@@ -786,13 +753,6 @@
 
         .extended-footer-column ul li {
             margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
-        }
-
-        .extended-footer-column ul li a {
-            color: #CCCCCC;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
         }
 
         .extended-footer-column ul li a:hover {
@@ -892,7 +852,6 @@
             transform: scale(1.1);
         }
 
-        /* Final Copyright Footer */
         .copyright-footer {
             background-color: #0F0F0F;
             color: #CCCCCC;
@@ -927,7 +886,6 @@
             color: #FFFFFF;
         }
 
-        /* Floating Contact Us Button */
         .contact-us-float {
             position: fixed;
             bottom: 1.5rem;
@@ -944,7 +902,6 @@
             transform: scale(1.05);
         }
 
-        /* New styles for the single, unified WhatsApp button */
         .whatsapp-button {
             background-color: #6FCF97;
             color: #FFFFFF;
@@ -964,7 +921,6 @@
             transform: scale(1.05);
         }
 
-        /* Styling for the icon inside the new button */
         .whatsapp-button img {
             width: 24px;
             height: 24px;
@@ -972,17 +928,19 @@
     </style>
 </head>
 <body>
-    <!-- Main content area for desktop -->
+    <!--
+        कैश (Cache) कैसे सेट करें:
+        वेबसाइट के लिए कैशिंग सर्वर-साइड पर HTTP हेडर के माध्यम से सेट की जाती है।
+        जैसे कि `Cache-Control` हेडर यह बताता है कि ब्राउज़र को फाइल्स को कितनी देर तक स्टोर करना है।
+        यह बार-बार आने वाले यूजर्स के लिए लोड टाइम को बहुत कम कर देता है।
+    -->
     <div class="content md:flex">
-        <!-- Desktop video (visible on desktop, hidden on mobile) -->
         <div id="desktop-video-container" class="hero-video">
             <video autoplay muted loop playsinline id="video-player-desktop">
-                <!-- Source will be dynamically set by JavaScript -->
             </video>
-            <div class="video-overlay"></div> <!-- Overlay for text readability -->
+            <div class="video-overlay"></div>
         </div>
 
-        <!-- Text container for desktop (will be hidden on mobile) -->
         <div class="hero-text-container">
             <div class="hero-text">
                 <h4 class="animated-text"> DOORSTEP CAR CLEANING SERVICES </h4>
@@ -991,25 +949,23 @@
         </div>
     </div>
     
-    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Logo updated with responsive max-height and auto width -->
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=LOGO';">
+            <!-- 2. Lazy Loading: `loading="lazy"` जोड़ा गया है ताकि इमेज तभी लोड हो जब यूजर इसे देखे। -->
+            <!-- 3. Image Compression: असली वेबसाइट में, इन इमेजेस को कंप्रेस करना चाहिए (जैसे WebP फॉर्मेट में) ताकि उनका साइज़ कम हो और लोड टाइम सुधरे। -->
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo" loading="lazy" width="100" height="80" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=LOGO';">
         </div>
 
-        <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
         <button class="menu-toggle md:hidden">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
 
-        <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
         <div class="navbar-links hidden md:flex">
             <a href="index.html" class="nav-button">HOME</a>
             <div class="dropdown">
                 <a href="#" class="nav-button">
                     PACKAGES
-                    <span class="dropdown-arrow">&#9660;</span> <!-- Unicode for down arrow -->
+                    <span class="dropdown-arrow">&#9660;</span>
                 </a>
                 <div class="dropdown-content">
                     <a href="quick-shine-page.html">Quick Shine</a>
@@ -1021,8 +977,6 @@
             <a href="booking-form.html" class="nav-button">CONTACT US</a>
         </div>
 
-        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
-        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
             <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
             <div class="flex flex-col text-xl w-full px-4 text-white">
@@ -1043,16 +997,13 @@
                         <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
                     </div>
                 </div>
-
+            </div>
+        </div>
     </nav>
 
 
-    <!-- New container for MOBILE-ONLY hero content (text and video) -->
-    <!-- This will be displayed as a flex column on mobile and hidden on desktop -->
     <div class="mobile-hero-section-wrapper md:hidden">
-        <!-- Mobile Video Container (now also holds the text) -->
         <div id="mobile-video-container" class="hero-video-box mobile-video-position-override">
-            <!-- Mobile Text (now inside the video container) -->
             <div class="hero-text-container mobile-text-position-override">
                 <div class="hero-text">
                     <h3 class="animated-text">DOORSTEP CAR CLEANING SERVICES</h3>
@@ -1060,30 +1011,26 @@
                 </div>
             </div>
             <video autoplay muted loop playsinline id="video-player">
-                <!-- Source will be dynamically set by JavaScript -->
             </video>
         </div>
     </div>
     
-    <!-- Packages Section -->
     <section class="packages-section">
         <div class="packages-header">
-            <!-- Tire track image placeholder updated -->
-            <img src="https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" onerror="this.onerror=null;this.src='https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN';">
+            <img src="https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN';">
             <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
                 <div class="w-full text-left">
                     <p class="text-sm font-semibold uppercase mb-1">OUR PACKAGES</p>
                     <h2 class="text-white text-4xl md:text-5xl">Packages for Every Ride</h2>
                 </div>
-                <!-- Book Now button links to the booking form page -->
                 <a href="booking-form.html" class="book-now-header-btn mt-4 md:mt-0">BOOK NOW</a>
             </div>
         </div>
 
         <div class="package-card-container">
-            <!-- Card 1: Quick Shine -->
             <div class="package-card">
-                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Quick';">
+                <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है ताकि इमेज तभी लोड हो जब यूजर इसे देखे। -->
+                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Quick';">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
                 <div class="time-price">
@@ -1095,9 +1042,8 @@
                 </div>
             </div>
 
-            <!-- Card 2: Deep Cleaning -->
             <div class="package-card">
-                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Deep';">
+                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" loading="lazy" width="50" height="50" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Deep';">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
                 <div class="time-price">
@@ -1109,9 +1055,8 @@
                 </div>
             </div>
 
-            <!-- Card 3: Rubbing & Polishing -->
             <div class="package-card">
-                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Rubbing';">
+                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" loading="lazy" width="50" height="50" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Rubbing';">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
                 <div class="time-price">
@@ -1123,9 +1068,8 @@
                 </div>
             </div>
 
-            <!-- Card 4: Windshield Polish -->
             <div class="package-card">
-                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Windshield';">
+                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" loading="lazy" width="50" height="50" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=Windshield';">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
                 <div class="time-price">
@@ -1139,17 +1083,16 @@
         </div>
     </section>
 
-    <!-- Why Choose Us Section -->
     <section class="why-choose-us-section">
         <div class="why-choose-us-inner-container">
             <div class="why-choose-us-image-container">
-                <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/222222?text=Car+Cleaning';">
+                <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है। -->
+                <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" loading="lazy" width="600" height="400" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/222222?text=Car+Cleaning';">
             </div>
             <div class="why-choose-us-content">
-                <p class="text-sm font-semibold uppercase mb-1">CAR CARE</p> <!-- Adjusted text color for readability -->
+                <p class="text-sm font-semibold uppercase mb-1">CAR CARE</p>
                 <h2 class="text-4xl md:text-5xl">WHY CHOOSE US</h2>
                 <p>CAR CARE provides professional car cleaning services at your doorstep whenever you want, so you can spend your time doing the things you love.</p>
-
                 <div class="progress-bar-container">
                     <div class="progress-bar-label">
                         <span>QUALITY SERVICES</span>
@@ -1183,40 +1126,37 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
     <section class="testimonials-section">
         <div class="testimonials-header">
             <p>TESTIMONIAL</p>
             <h2>WHAT CLIENTS SAY</h2>
         </div>
         <div class="testimonial-cards-container">
-            <!-- Testimonial Card 1 -->
             <div class="testimonial-card">
                 <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
                 <div class="testimonial-author">
-                    <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=User1';">
+                    <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है। -->
+                    <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=User1';">
                     <span>-Rahul Sherewala</span>
                 </div>
             </div>
-            <!-- Testimonial Card 2 -->
             <div class="testimonial-card">
                 <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
                 <div class="testimonial-author">
-                    <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=User2';">
+                    <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" onerror="this.onerror=null;this.src='https://placehold.co/50x50/cccccc/222222?text=User2';">
                     <span>-Geeta Kumari</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Extended Footer Section -->
     <section class="extended-footer-section">
         <div class="extended-footer-column">
             <h3>COMPANY</h3>
             <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
             <div class="phone-contact">
-                <!-- Replaced the SVG with the new image tag and added fluid sizing and a fallback placeholder image -->
-                <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" onerror="this.onerror=null;this.src='https://placehold.co/24x24/6FCF97/FFFFFF?text=Phone';" >
+                <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है। -->
+                <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/6FCF97/FFFFFF?text=Phone';" >
                 <span>Talk To Our Support 9509208599</span>
             </div>
             <p class="mt-4">3 K Shivpure Kota (Raj.),</p>
@@ -1241,11 +1181,10 @@
                 <input type="email" placeholder="Email Address">
                 <button type="submit">SEND</button>
             </div>
-           
+            
         </div>
     </section>
 
-    <!-- Final Copyright Footer -->
     <footer class="copyright-footer">
         <p>© Copyright Car Care. All right reserved.</p>
         <div>
@@ -1253,16 +1192,17 @@
         </div>
     </footer>
 
-    <!-- Floating Contact Us Button -->
     <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
-        <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" onerror="this.onerror=null;this.src='https://placehold.co/24x24/6FCF97/FFFFFF?text=WA';">
+        <!-- Lazy Loading: `loading="lazy"` जोड़ा गया है। -->
+        <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/6FCF97/FFFFFF?text=WA';">
         <span>Contact Us</span>
     </a>
 
+    <!-- JS Defer: सभी JavaScript को HTML के आखिर में रखा गया है। यह सुनिश्चित करता है कि पेज का कंटेंट पहले दिखे, और स्क्रिप्ट्स बाद में लोड हों। -->
     <script>
-        // Function to set video source and visibility based on screen aspect ratio
+        // JS Minification: प्रोडक्शन के लिए, इस कोड को भी छोटा (minify) करना चाहिए।
+
         function setVideoSource() {
-            // Get the video elements and their containers
             const mobileVideoContainer = document.getElementById('mobile-video-container');
             const mobileVideoPlayer = document.getElementById('video-player');
             const desktopVideoContainer = document.getElementById('desktop-video-container');
@@ -1272,27 +1212,21 @@
             const viewportHeight = window.innerHeight;
             const aspectRatio = viewportWidth / viewportHeight;
 
-            // Define your video sources
             const desktopVideoSource = 'WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4';
             const mobileVideoSource = 'save-vmake.mp4';
             
-            // Check if we are in portrait mode (aspect ratio < 1.25)
             if (aspectRatio < 1.25) {
-                // Show mobile video container and hide desktop video container
                 if (mobileVideoContainer) mobileVideoContainer.classList.remove('hidden');
                 if (desktopVideoContainer) desktopVideoContainer.classList.add('hidden');
 
-                // Set the video source for mobile if it's not already set
                 if (mobileVideoPlayer && mobileVideoPlayer.src !== mobileVideoSource) {
                     mobileVideoPlayer.src = mobileVideoSource;
                     mobileVideoPlayer.load();
                 }
             } else {
-                // Show desktop video container and hide mobile video container
                 if (desktopVideoContainer) desktopVideoContainer.classList.remove('hidden');
                 if (mobileVideoContainer) mobileVideoContainer.classList.add('hidden');
 
-                // Set the video source for desktop if it's not already set
                 if (desktopVideoPlayer && desktopVideoPlayer.src !== desktopVideoSource) {
                     desktopVideoPlayer.src = desktopVideoSource;
                     desktopVideoPlayer.load();
@@ -1300,12 +1234,8 @@
             }
         }
 
-        // JavaScript for mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
-            // Initial set of video source and visibility
             setVideoSource();
-
-            // Set video source on window resize (e.g., device rotation)
             window.addEventListener('resize', setVideoSource);
 
             const menuToggle = document.querySelector('.menu-toggle');
@@ -1314,21 +1244,18 @@
             const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
             const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
 
-            // Toggle mobile menu visibility
             menuToggle.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
                 mobileMenu.classList.toggle('flex');
             });
 
-            // Close mobile menu
             closeMenu.addEventListener('click', function() {
                 mobileMenu.classList.add('hidden');
                 mobileMenu.classList.remove('flex');
             });
 
-            // Toggle mobile dropdown visibility
             mobileDropdownToggle.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                event.preventDefault();
                 mobileDropdownContent.classList.toggle('hidden');
             });
         });
