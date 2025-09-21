@@ -937,8 +937,9 @@
     -->
     <div class="content md:flex">
         <div id="desktop-video-container" class="hero-video">
-            <!-- Video Preload: परफॉरमेंस के लिए preload="none" जोड़ा गया है ताकि वीडियो तुरंत लोड न हो। -->
+            <!-- 2. Video Loading Optimization: <source> टैग जोड़कर ब्राउज़र को सही वीडियो चुनने में मदद मिलती है। -->
             <video autoplay muted loop playsinline preload="none" id="video-player-desktop">
+                <source src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4">
             </video>
             <div class="video-overlay"></div>
         </div>
@@ -1014,6 +1015,7 @@
             </div>
             <!-- Video Preload: परफॉरमेंस के लिए preload="none" जोड़ा गया है। -->
             <video autoplay muted loop playsinline preload="none" id="video-player">
+                <source src="save-vmake.mp4" type="video/mp4">
             </video>
         </div>
     </div>
