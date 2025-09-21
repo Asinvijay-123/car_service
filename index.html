@@ -11,13 +11,14 @@
     <!-- Canonical Tag: यह डुप्लिकेट कंटेंट की समस्या को हल करता है। -->
     <link rel="canonical" href="https://asinvijay-123-github-io-car_service">
 
-    <!-- Web Fonts Preload: फ़ॉन्ट को बाक़ी कंटेंट से पहले लोड करने के लिए प्रीलोड एट्रीब्यूट जोड़ा गया है, इससे LCP (Largest Contentful Paint) में सुधार होता है। -->
+    <!-- CSS Defer: सभी CSS को एक ही <style> ब्लॉक में रखा गया है। इसे minify करने के बाद, यह तेज़ी से लोड होगा। -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Web Fonts Preload: फॉन्ट को बाकी कंटेंट से पहले लोड करने के लिए preload एट्रीब्यूट जोड़ा गया है, इससे LCP (Largest Contentful Paint) में सुधार होता है। -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Tailwind CSS को यहाँ इनलाइन कर दिया गया है ताकि यह रेंडर-ब्लॉकिंग न रहे। */
         /* Critical CSS: यह CSS तुरंत लोड होता है ताकि पेज का पहला हिस्सा जल्दी दिखे। */
         body {
             font-family: 'Inter', sans-serif;
@@ -964,7 +965,7 @@
     <div class="content md:flex">
         <div id="desktop-video-container" class="hero-video">
             <!-- SEO सुधार: ब्राउज़र को केवल उपयुक्त वीडियो फ़ाइल लोड करने के लिए `media` एट्रीब्यूट जोड़ा गया है। -->
-            <video autoplay muted loop playsinline id="video-player-desktop">
+            <video autoplay muted loop playsinline preload="none" id="video-player-desktop" poster="https://placehold.co/1920x1080/000000/FFFFFF?text=CAR+VIDEO+POSTER">
                 <source src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4" media="(min-width: 768px)">
             </video>
             <div class="video-overlay"></div>
@@ -1039,7 +1040,7 @@
                 </div>
             </div>
             <!-- SEO सुधार: ब्राउज़र को केवल उपयुक्त वीडियो फ़ाइल लोड करने के लिए `media` एट्रीब्यूट जोड़ा गया है। -->
-            <video autoplay muted loop playsinline id="video-player">
+            <video autoplay muted loop playsinline preload="none" id="video-player" poster="https://placehold.co/1080x1920/000000/FFFFFF?text=CAR+VIDEO+POSTER">
                 <source src="save-vmake.mp4" type="video/mp4" media="(max-width: 767px)">
             </video>
         </div>
@@ -1250,17 +1251,22 @@
             if (aspectRatio < 1.25) {
                 if (mobileVideoContainer) mobileVideoContainer.classList.remove('hidden');
                 if (desktopVideoContainer) desktopVideoContainer.classList.add('hidden');
-                if (mobileVideoPlayer.src === '') {
-                    mobileVideoPlayer.src = mobileVideoSrc;
-                    mobileVideoPlayer.load();
-                }
             } else {
                 if (desktopVideoContainer) desktopVideoContainer.classList.remove('hidden');
                 if (mobileVideoContainer) mobileVideoContainer.classList.add('hidden');
-                if (desktopVideoPlayer.src === '') {
-                    desktopVideoPlayer.src = desktopVideoSrc;
-                    desktopVideoPlayer.load();
-                }
+            }
+        }
+        
+        function playVideo(videoElementId, sourceUrl) {
+            const video = document.getElementById(videoElementId);
+            const playButton = video.parentElement.querySelector('.play-button');
+            if (video.src !== sourceUrl) {
+                video.src = sourceUrl;
+                video.load();
+            }
+            video.play();
+            if (playButton) {
+                playButton.style.display = 'none'; // प्ले होने पर बटन छुपाएं
             }
         }
         
@@ -1268,6 +1274,16 @@
             setVideoSource();
             window.addEventListener('resize', setVideoSource);
             
+            // प्ले बटन पर क्लिक इवेंट जोड़ें
+            document.querySelectorAll('.play-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetVideoId = button.getAttribute('data-target-video');
+                    const targetVideo = document.getElementById(targetVideoId);
+                    const sourceUrl = targetVideo.getAttribute('data-video-src');
+                    playVideo(targetVideoId, sourceUrl);
+                });
+            });
+
             const menuToggle = document.querySelector('.menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMenu = document.querySelector('.close-menu');
