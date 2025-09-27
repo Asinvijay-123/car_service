@@ -1,1 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Care Services | Online Booking</title>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Montserrat for a more stylish heading font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- Flatpickr CSS for the calendar widget -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <!-- Razorpay SDK - RESTORED -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <style>
+        /* Base styles for the body */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0rem 1rem;
+            z-index: 10;
+            background-color: #1a1a1a;
+            color: white;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .navbar {
+                padding: 0rem 2rem;
+            }
+        }
+
+        .navbar-logo {
+            height: 100px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-links {
+                flex-grow: 1;
+                justify-content: center;
+                gap: 2rem;
+            }
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 0.75rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* New styles for the admin button */
+        .admin-button {
+            @apply bg-transparent border border-white text-white hover:bg-white hover:text-gray-800 transition-colors duration-300;
+        }
+
+        .navbar-links a:hover {
+            color: #a0aec0;
+            background-color: transparent;
+        }
+
+        /* Dropdown arrow for 'PACKAGES' */
+        .navbar-links .dropdown-arrow {
+            margin-left: 0.25rem;
+        }
+
+        /* Dropdown specific styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 0.375rem;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-weight: normal;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Mobile Menu Specific Styles */
+        .menu-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+            justify-content: flex-start;
+            padding-top: 4rem;
+        }
+
+        #mobile-menu.flex {
+            transform: translateX(0);
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 2.5rem;
+            line-height: 1;
+            padding: 0.5rem;
+        }
+
+        .dropdown-mobile .nav-button {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-mobile .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content-mobile {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 1rem;
+        }
+
+        /* Booking Form Specific Styles */
+        .booking-form-section {
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .admin-dashboard-section {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .booking-form-section h2, .admin-dashboard-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="email"],
+        .form-group input[type="date"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .form-row {
+                flex-direction: row;
+            }
+            .form-row > div {
+                flex: 1;
+            }
+        }
+
+        .time-slot-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .package-grid, .car-type-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .package-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .car-type-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .package-item, .car-type-item {
+            background-color: #f0f0f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .package-item.selected, .car-type-item.selected {
+            background-color: #e6ffe6;
+            border-color: #4CAF50;
+        }
+
+        .package-item img, .car-type-item img {
+            height: 60px;
+            width: auto;
+            margin: 0 auto 0.5rem auto;
+        }
+
+        .package-item h4, .car-type-item h4 {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .package-item p, .car-type-item p {
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* Payment method radio button styles */
+        .payment-method-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .payment-method-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: normal;
+        }
+
+        .payment-method-options input[type="radio"] {
+            transform: scale(1.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: fit-content;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* --- Updated Contact Us Floating Button Styles --- */
+        .contact-us-float {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: #0F9643;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 20;
+        }
+
+        .contact-us-float:hover {
+            background-color: #0c7a36;
+        }
+
+        .whatsapp-icon {
+            height: 24px;
+            width: 24px;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        /* Footer (replicated) */
+        .extended-footer-section {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 4rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 3rem;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .extended-footer-section {
+                grid-template-columns: repeat(3, 1fr);
+                text-align: left;
+            }
+        }
+
+        .extended-footer-column h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #4CAF50;
+        }
+
+        .extended-footer-column p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .extended-footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .extended-footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .extended-footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .extended-footer-column ul li a:hover {
+            color: white;
+        }
+
+        .phone-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background-color: #333;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .phone-contact {
+                justify-content: flex-start;
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        .phone-contact svg {
+            width: 24px;
+            height: 24px;
+            fill: #4CAF50;
+        }
+
+        .phone-contact span {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .subscribe-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .subscribe-form input[type="email"] {
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #555;
+            background-color: #333;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .subscribe-form input[type="email"]::placeholder {
+            color: #999;
+        }
+
+        .subscribe-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #45a049;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .social-icons {
+                justify-content: flex-start;
+            }
+        }
+
+        .social-icons a img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+
+        .social-icons a img:hover {
+            transform: scale(1.1);
+        }
+
+        .copyright-footer {
+            background-color: #111;
+            color: #aaa;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .copyright-footer {
+                flex-direction: row;
+            }
+        }
+
+        .copyright-footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .copyright-footer a:hover {
+            color: white;
+        }
+
+        /* Message box styles */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .message-box button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+
+        /* Modal for login */
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+        }
+
+        .login-modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-modal-content input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid #ccc;
+        }
+
+        .login-modal-content .login-btn {
+            @apply bg-green-500 text-white font-bold py-2 px-4 rounded-lg w-full;
+            transition: background-color 0.2s;
+        }
+        
+        .login-modal-content .login-btn:hover {
+            @apply bg-green-600;
+        }
+
+        /* Payment status tags in Admin Dashboard */
+        .status-tag {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .status-tag.cash { background-color: #fef3c7; color: #b45309; }
+        .status-tag.paid { background-color: #d1fae5; color: #047857; }
+        .status-tag.pending { background-color: #fee2e2; color: #ef4444; }
+    </style>
+</head>
+<body>
+    <!-- Login Modal (Hidden by default) -->
+    <div id="loginModal" class="login-modal hidden">
+        <div class="login-modal-content">
+            <h2 class="text-2xl font-bold mb-4">Admin Login</h2>
+            <p class="text-sm text-gray-600 mb-4">Enter your credentials to access the dashboard.</p>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <p id="loginError" class="text-red-500 text-sm mb-4 hidden"></p>
+            <button id="loginButton" class="login-btn">Login</button>
+        </div>
+    </div>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <!-- Restored original image with fallback -->
+            <img src="car logo.png" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1a1a1a/ffffff?text=LOGO';" alt="Car Care Logo" class="navbar-logo">
+        </div>
+        
+        <button class="menu-toggle md:hidden">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <div class="navbar-links hidden md:flex">
+            <a href="#" class="nav-button">HOME</a>
+            <div class="dropdown">
+                <a href="#" class="nav-button">
+                    PACKAGES
+                    <span class="dropdown-arrow">&#9660;</span>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#">Quick Shine</a>
+                    <a href="#">Deep Cleaning</a>
+                    <a href="#">Rubbing & Polishing</a>
+                    <a href="#">Windshield Polish</a>
+                </div>
+            </div>
+            <a href="#" class="nav-button">CONTACT US</a>
+            <a href="#" class="nav-button admin-button" id="adminButton">ADMIN</a>
+        </div>
+
+        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
+            <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
+            <div class="flex flex-col text-xl w-full px-4 text-white">
+                <a href="#" class="nav-button py-2 border-b border-gray-700">HOME</a>
+                <div class="dropdown-mobile w-full">
+                    <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
+                        PACKAGES
+                        <span class="dropdown-arrow transform transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
+                        <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
+                        <a href="#"class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Deep Cleaning</a>
+                        <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
+                        <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-button text-white">CONTACT US</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="mainContent">
+        <section id="bookingSection" class="booking-form-section">
+            <h2>Book Your Car Service</h2>
+            <form id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone No. (10 Digits)</label>
+                        <input type="tel" id="phone" placeholder="Phone number must be Exactly 10 Digits." pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <select id="city" required>
+                        <option value="jaipur" selected>Jaipur</option>
+                    </select>
+                </div>
+
+                <div id="subAreaGroup" class="form-group">
+                    <label for="sub-area">Sub-area in Jaipur</label>
+                    <select id="sub-area" required>
+                        <option value="">Select a sub-area</option>
+                        <option value="adarsh-nagar">Adarsh Nagar</option>
+                        <option value="agra-road">Agra Road</option>
+                        <option value="ajmer-road">Ajmer Road</option>
+                        <option value="amer">Amer</option>
+                        <option value="bani-park">Bani Park</option>
+                        <option value="bapu-nagar">Bapu Nagar</option>
+                        <option value="brahmpuri">Brahmpuri</option>
+                        <option value="c-scheme">C-Scheme</option>
+                        <option value="chandpole">Chandpole</option>
+                        <option value="civil-lines">Civil Lines</option>
+                        <option value="durga-pura">Durga Pura</option>
+                        <option value="gopalpura">Gopalpura</option>
+                        <option value="goner-road">Goner Road</option>
+                        <option value="govindpura">Govindpura</option>
+                        <option value="hasanpura">Hasanpura</option>
+                        <option value="hawa-sadak">Hawa Sadak</option>
+                        <option value="jagatpura">Jagatpura</option>
+                        <option value="jawahar-nagar">Jawahar Nagar</option>
+                        <option value="jhotwara">Jhotwara</option>
+                        <option value="jhotwara-industrial-area">Jhotwara Industrial Area</option>
+                        <option value="kalwad">Kalwad</option>
+                        <option value="kalwar-road">Kalwar Road</option>
+                        <option value="khatipura">Khatipura</option>
+                        <option value="kukas">Kukas</option>
+                        <option value="kunda">Kunda</option>
+                        <option value="lal-kothi">Lal Kothi</option>
+                        <option value="mahesh-nagar">Mahesh Nagar</option>
+                        <option value="malviya-nagar">Malviya Nagar</option>
+                        <option value="mansarovar">Mansarovar</option>
+                        <option value="muhana-mandi">Muhana Mandi</option>
+                        <option value="muralipura">Muralipura</option>
+                        <option value="nangam-jaisa-bohra">Nangal Jaisa Bohra</option>
+                        <option value="nehru-place">Nehru Place</option>
+                        <option value="nirman-nagar">Nirman Nagar</option>
+                        <option value="pratap-nagar">Pratap Nagar</option>
+                        <option value="raja-park">Raja Park</option>
+                        <option value="ramganj">Ramganj</option>
+                        <option value="ramgarh-mod">Ramgarh Mod</option>
+                        <option value="sanganer">Sanganer</option>
+                        <option value="shastri-nagar">Shastri Nagar</option>
+                        <option value="sikar-road">Sikar Road</option>
+                        <option value="sindhi-camp">Sindhi Camp</option>
+                        <option value="sirsi-road">Sirsi Road</option>
+                        <option value="sitapura">Sitapura</option>
+                        <option value="sodala">Sodala</option>
+                        <option value="subhash-nagar">Subhash Nagar</option>
+                        <option value="tilak-nagar">Tilak Nagar</option>
+                        <option value="tonk-road">Tonk Road</option>
+                        <option value="transport-nagar">Transport Nagar</option>
+                        <option value="triveni-nagar">Triveni Nagar</option>
+                        <option value="vaishali-nagar">Vaishali Nagar</option>
+                        <option value="vidyadhar-nagar">Vidyadhar Nagar</option>
+                        <option value="vishwakarma-industrial-area">Vishwakarma Industrial Area</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" placeholder="Enter your address" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="booking-date">Booking Date</label>
+                    <input type="text" id="booking-date" placeholder="Select a booking date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Available Time Slot</label>
+                    <div class="time-slot-grid">
+                        <label><input type="checkbox" name="time-slot" value="9am-11am"> 9am - 11am</label>
+                        <label><input type="checkbox" name="time-slot" value="11am-1pm"> 11am - 1pm</label>
+                        <label><input type="checkbox" name="time-slot" value="1pm-3pm"> 1pm - 3pm</label>
+                        <label><input type="checkbox" name="time-slot" value="3pm-5pm"> 3pm - 5pm</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Choose Package</label>
+                    <div class="package-grid">
+                        <div class="package-item" data-package="quick-shine">
+                            <!-- Restored original image with fallback -->
+                            <img src="quick.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Quick';" alt="Quick Shine Icon">
+                            <h4>Quick Shine</h4>
+                        </div>
+                        <div class="package-item" data-package="deep-cleaning">
+                            <!-- Restored original image with fallback -->
+                            <img src="deep.png" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Deep';" alt="Deep Cleaning Icon">
+                            <h4>Deep Cleaning</h4>
+                        </div>
+                        <div class="package-item" data-package="rubbing-polishing">
+                            <!-- Restored original image with fallback -->
+                            <img src="roof-rubbing.png" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Polish';" alt="Rubbing & Polishing Icon">
+                            <h4>Rubbing & Polishing</h4>
+                        </div>
+                        <div class="package-item" data-package="windshield-polish">
+                            <!-- Restored original image with fallback -->
+                            <img src="windshield.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Windshield';" alt="Windshield Polish Icon">
+                            <h4>Windshield Polish</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Car Type</label>
+                    <div class="car-type-grid">
+                        <div class="car-type-item" data-car="hatchback">
+                            <!-- Restored original image with fallback -->
+                            <img src="hatchback.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Hatch';" alt="Hatchback Car">
+                            <h4>Hatchback</h4>
+                        </div>
+                        <div class="car-type-item" data-car="sedan">
+                            <!-- Restored original image with fallback -->
+                            <img src="sedan.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=Sedan';" alt="Sedan Car">
+                            <h4>Sedan</h4>
+                        </div>
+                        <div class="car-type-item" data-car="compact-suv">
+                            <!-- Restored original image with fallback -->
+                            <img src="compact-suv.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=C-SUV';" alt="Compact SUV Car">
+                            <h4>Compact SUV</h4>
+                        </div>
+                        <div class="car-type-item" data-car="5-seater-suv">
+                            <!-- Restored original image with fallback -->
+                            <img src="suv-5-seater.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=5-SUV';" alt="5 Seater SUV Car">
+                            <h4>5 Seater SUV</h4>
+                        </div>
+                        <div class="car-type-item" data-car="7-seater-suv">
+                            <!-- Restored original image with fallback -->
+                            <img src="suv-7-seater.jpg" onerror="this.onerror=null; this.src='https://placehold.co/60x60/f0f0f0/000000?text=7-SUV';" alt="7 Seater SUV Car">
+                            <h4>7 Seater SUV</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price (Total Amount)</label>
+                    <input type="text" id="price" placeholder="Price" value="₹0/-" readonly>
+                </div>
+
+                <!-- Payment Method Section -->
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <div class="payment-method-options">
+                        <label>
+                            <input type="radio" name="payment-method" value="cash" checked required>
+                            Cash (Pay on Arrival)
+                        </label>
+                        <label>
+                            <input type="radio" name="payment-method" value="online" required>
+                            Online (Razorpay - Mocked)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I Agree to the <a href="#" class="text-green-600 font-bold">Terms and Conditions</a> as set out by the user agreement.</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="water-electricity" required>
+                    <label for="water-electricity">Water & Electricity Available</label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Submit Booking
+                    <svg id="loadingSpinner" class="animate-spin h-5 w-5 ml-3 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+        </section>
+
+        <!-- Admin Dashboard Section (Initially Hidden) -->
+        <section id="adminDashboard" class="admin-dashboard-section hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center">Admin Dashboard</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">ID</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Name/Phone</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Date/Time</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Service/Car</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Amount</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Payment Status</th>
+                            <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                        <tr><td colspan="7" class="text-center py-4 text-gray-500">No bookings loaded.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Updated Contact Us Floating Button -->
+    <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=919509208599&text=Hello,%20I'm%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
+        <!-- Restored original image with fallback -->
+        <img src="OIP.webp" onerror="this.onerror=null; this.src='https://placehold.co/24x24/0F9643/ffffff?text=W';" alt="WhatsApp Icon">
+        Contact Us
+    </a>
+
+    <!-- Footer (replicated from main page) -->
+    <footer class="copyright-footer">
+        <p>© Copyright Car Care. All right reserved.</p>
+        <div>
+            <a href="#">Home</a> / <a href="#">Booking</a>
+        </div>
+    </footer>
+
+    <!-- Message Box for user feedback -->
+    <div id="messageBox" class="message-box">
+        <p id="messageText"></p>
+        <button onclick="document.getElementById('messageBox').style.display='none';">OK</button>
+    </div>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+    <script>
+        // --- Configuration ---
+        // NOTE: This is your public test key ID, which is safe to use on the client-side.
+        const RAZORPAY_KEY_ID = 'rzp_test_RMGjkkPSMeksPe'; 
+        // NOTE: The Secret Key (1tN5nGu1ZFwPhcHaeb8uZHv7) MUST NEVER be used on the client-side for security.
+
+        // --- Global State for Price Calculation ---
+        let selectedPackage = null;
+        let selectedCarType = null;
+        let numericPrice = 0; // Stores the clean integer price (e.g., 349)
+        
+        // --- Utility Functions ---
+
+        // Function to show custom message box
+        function showMessageBox(message) {
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            messageBox.style.display = 'block';
+            messageText.textContent = message;
+        }
+
+        // A simple UUID generator for creating unique IDs on the client side
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        // Helper function to reset UI state (button, spinner)
+        function resetUIState(btn, spinner) {
+            btn.disabled = false;
+            spinner.classList.add('hidden');
+            btn.textContent = 'Submit Booking';
+        }
+
+        // Function to load and display bookings from local storage
+        function loadAndRenderBookings() {
+            const tableBody = document.getElementById('bookingsTableBody');
+            tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-500">Loading bookings...</td></tr>';
+
+            try {
+                const bookings = JSON.parse(localStorage.getItem('carBookings')) || [];
+                renderBookings(bookings);
+            } catch (error) {
+                console.error('Failed to load bookings from local storage:', error);
+                tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-500">Failed to load bookings.</td></tr>';
+            }
+        }
+
+        // Function to render bookings into the table
+        function renderBookings(bookings) {
+            const tableBody = document.getElementById('bookingsTableBody');
+            tableBody.innerHTML = '';
+            
+            // Sort by timestamp descending
+            const sortedBookings = bookings.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+            if (sortedBookings.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-500">No bookings found.</td></tr>';
+                return;
+            }
+
+            sortedBookings.forEach(booking => {
+                let paymentStatusTag = '';
+                if (booking.paymentStatus === 'cash') {
+                    paymentStatusTag = `<span class="status-tag cash">Cash (Unpaid)</span>`;
+                } else if (booking.paymentStatus === 'paid') {
+                    paymentStatusTag = `<span class="status-tag paid">Paid</span>`;
+                } else {
+                    paymentStatusTag = `<span class="status-tag pending">Pending Payment</span>`;
+                }
+
+                const row = document.createElement('tr');
+                row.className = "hover:bg-gray-50 transition-colors";
+                row.innerHTML = `
+                    <td class="py-2 px-4 border-b text-sm font-mono">${booking.id.substring(0, 8)}</td>
+                    <td class="py-2 px-4 border-b text-sm">${booking.customer_name}<br><span class="text-xs text-gray-500">${booking.phone}</span></td>
+                    <td class="py-2 px-4 border-b text-sm">${booking.booking_date}<br><span class="text-xs text-gray-500">${booking.time_slots.join(', ')}</span></td>
+                    <td class="py-2 px-4 border-b text-sm">${booking.service.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}<br><span class="text-xs text-gray-500">${booking.car_type.toUpperCase()}</span></td>
+                    <td class="py-2 px-4 border-b font-semibold">${booking.price}</td>
+                    <td class="py-2 px-4 border-b">${paymentStatusTag}</td>
+                    <td class="py-2 px-4 border-b">
+                        <button onclick="deleteBooking('${booking.id}')" class="text-red-600 hover:text-red-800 font-bold text-sm transition-colors">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // Function to delete a booking from local storage
+        window.deleteBooking = function(id) {
+            try {
+                let bookings = JSON.parse(localStorage.getItem('carBookings')) || [];
+                const initialLength = bookings.length;
+                bookings = bookings.filter(booking => booking.id !== id);
+                
+                if (bookings.length < initialLength) {
+                    localStorage.setItem('carBookings', JSON.stringify(bookings));
+                    showMessageBox(`✅ Booking deleted successfully.`);
+                    loadAndRenderBookings(); // Refresh the list
+                } else {
+                    showMessageBox(`❌ Error: Booking with ID ${id} not found.`);
+                }
+            } catch (error) {
+                showMessageBox(`❌ Error deleting booking: ${error.message}`);
+            }
+        }
+        
+        // Function to save booking data
+        function saveBookingData(data, submitBtn, loadingSpinner, successMessage) {
+            try {
+                // Get existing bookings from local storage or initialize an empty array
+                const existingBookings = JSON.parse(localStorage.getItem('carBookings')) || [];
+                
+                // If the booking already exists (e.g., from a payment failure and retry), update it
+                const existingIndex = existingBookings.findIndex(b => b.id === data.id);
+                if (existingIndex > -1) {
+                    existingBookings[existingIndex] = data;
+                } else {
+                    existingBookings.push(data);
+                }
+
+                localStorage.setItem('carBookings', JSON.stringify(existingBookings));
+                showMessageBox(successMessage);
+
+                // Reset the form on successful submission/update
+                document.getElementById('bookingForm').reset();
+                document.querySelectorAll('.package-item.selected').forEach(p => p.classList.remove('selected'));
+                document.querySelectorAll('.car-type-item.selected').forEach(c => c.classList.remove('selected'));
+                
+                // Reset global selection state and price
+                selectedPackage = null;
+                selectedCarType = null;
+                numericPrice = 0; // Reset numeric price
+                
+                document.getElementById('price').value = '₹0/-';
+
+            } catch (error) {
+                console.error('Error saving to local storage:', error);
+                showMessageBox('❌ An internal error occurred while saving the booking data.');
+            } finally {
+                // Hide loading spinner and enable button
+                resetUIState(submitBtn, loadingSpinner);
+            }
+        }
+
+        // --- MOCKED Razorpay Payment Functions ---
+
+        function mockCreateOrder(amount, receiptId) {
+            const amountInPaise = amount * 100;
+            if (isNaN(amountInPaise) || amountInPaise < 100) { 
+                 throw new Error("Invalid payment amount. Amount is less than ₹1.00");
+            }
+
+            return {
+                amount: amountInPaise,
+                id: 'order_mock_' + uuidv4().replace(/-/g, ''), 
+                currency: 'INR',
+                receipt: receiptId
+            };
+        }
+
+        function openRazorpayCheckout(bookingData, submitBtn, loadingSpinner, rawPrice) { 
+            let mockOrder;
+            
+            try {
+                mockOrder = mockCreateOrder(rawPrice, bookingData.id);
+            } catch (error) {
+                showMessageBox(`❌ Payment failed: ${error.message}`);
+                resetUIState(submitBtn, loadingSpinner);
+                return;
+            }
+
+            const options = {
+                key: RAZORPAY_KEY_ID, 
+                amount: mockOrder.amount, 
+                currency: mockOrder.currency,
+                name: 'Car Care Services',
+                description: `Service Booking: ${bookingData.service}`,
+                image: 'https://placehold.co/100x100/4CAF50/ffffff?text=C',
+                order_id: mockOrder.id, 
+
+                // --- HANDLER IS MOCKED ---
+                handler: function (response) {
+                    // MOCKING SUCCESSFUL PAYMENT HERE:
+                    // Since the previous errors were environment-related, we skip actual server verification
+                    // and mark the payment as successful immediately upon modal completion.
+                    bookingData.paymentStatus = 'paid';
+                    // The response object might be empty, so we create a mock ID for consistency
+                    bookingData.razorpayPaymentId = response ? (response.razorpay_payment_id || 'mock_pay_' + uuidv4()) : 'mock_pay_' + uuidv4();
+                    
+                    saveBookingData(bookingData, submitBtn, loadingSpinner, `✅ Payment successful (Mocked)! Your Booking ID is: ${bookingData.id}.`);
+                },
+
+                prefill: {
+                    name: bookingData.customer_name,
+                    email: bookingData.email,
+                    contact: bookingData.phone 
+                },
+
+                notes: {
+                    address: bookingData.address,
+                    booking_id: bookingData.id
+                },
+
+                theme: {
+                    color: '#4CAF50'
+                }
+            };
+            
+            bookingData.paymentStatus = 'pending';
+
+            try {
+                // Initialize Razorpay
+                const rzp = new Razorpay(options);
+
+                // Set callback for modal close (user clicks outside or closes it)
+                rzp.modal.on('close', () => {
+                    // Only save as 'pending' if it wasn't already marked 'paid'
+                    if (bookingData.paymentStatus === 'pending') {
+                        saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending Payment (${bookingData.id})`);
+                    }
+                });
+
+                // Open the checkout modal
+                rzp.open();
+                
+            } catch (e) {
+                // Catch any final initialization errors that could still happen (unlikely now)
+                console.error('Razorpay initialization fatal error:', e);
+                showMessageBox("❌ Payment Gateway Error. Please try 'Cash' option instead.");
+                resetUIState(submitBtn, loadingSpinner);
+            }
+        }
+
+
+        // --- Event Listeners and Initialization ---
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Flatpickr on the booking-date input field
+            flatpickr("#booking-date", {
+                dateFormat: "Y-m-d",
+                minDate: "today"
+            });
+
+            // Element references
+            const bookingForm = document.getElementById('bookingForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const packageItems = document.querySelectorAll('.package-item');
+            const carTypeItems = document.querySelectorAll('.car-type-item');
+            const priceInput = document.getElementById('price');
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
+            const emailInput = document.getElementById('email');
+            const cityDropdown = document.getElementById('city');
+            const subAreaDropdown = document.getElementById('sub-area');
+            const addressInput = document.getElementById('address');
+            const dateInput = document.getElementById('booking-date');
+            const timeSlotCheckboxes = document.querySelectorAll('input[name="time-slot"]');
+            const termsCheckbox = document.getElementById('terms');
+            const waterElectricityCheckbox = document.getElementById('water-electricity');
+
+            const adminButton = document.getElementById('adminButton');
+            const loginModal = document.getElementById('loginModal');
+            const loginButton = document.getElementById('loginButton');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const loginError = document.getElementById('loginError');
+            const bookingSection = document.getElementById('bookingSection');
+            const adminDashboard = document.getElementById('adminDashboard');
+
+
+            // Pricing data
+            const pricing = {
+                'quick-shine': {
+                    'hatchback': 349, 'sedan': 399, 'compact-suv': 399, '5-seater-suv': 449, '7-seater-suv': 449
+                },
+                'deep-cleaning': {
+                    'hatchback': 799, 'sedan': 899, 'compact-suv': 999, '5-seater-suv': 1199, '7-seater-suv': 1399
+                },
+                'rubbing-polishing': {
+                    'hatchback': 1399, 'sedan': 1599, 'compact-suv': 1799, '5-seater-suv': 1999, '7-seater-suv': 2199
+                },
+                'windshield-polish': {
+                    'hatchback': 799, 'sedan': 899, 'compact-suv': 999, '5-seater-suv': 1199, '7-seater-suv': 1399
+                }
+            };
+
+
+            function updatePrice() {
+                if (selectedPackage && selectedCarType) {
+                    const price = pricing[selectedPackage][selectedCarType];
+                    priceInput.value = `₹${price}/-`;
+                    numericPrice = price; // Set the clean integer price
+                } else {
+                    priceInput.value = '₹0/-';
+                    numericPrice = 0; // Reset numeric price
+                }
+            }
+
+            packageItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    packageItems.forEach(p => p.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedPackage = this.dataset.package;
+                    updatePrice();
+                });
+            });
+
+            carTypeItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    carTypeItems.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedCarType = this.dataset.car;
+                    updatePrice();
+                });
+            });
+
+            // Mobile menu logic
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
+            const mobileDropdownContent = document.getElementById('mobile-menu').querySelector('.dropdown-content-mobile');
+            
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+            mobileDropdownToggle.addEventListener('click', (event) => {
+                event.preventDefault();
+                mobileDropdownContent.classList.toggle('hidden');
+            });
+
+
+            // --- Form Submission Handler (Main Logic) ---
+            bookingForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+
+                submitBtn.disabled = true;
+                loadingSpinner.classList.remove('hidden');
+                submitBtn.textContent = 'Processing...';
+
+                // --- 1. Gather & Validate Data ---
+                try {
+                    if (numericPrice <= 0) { showMessageBox("Please select a package and a car type to calculate the price."); resetUIState(submitBtn, loadingSpinner); return; }
+                    
+                    const selectedTimeSlots = Array.from(timeSlotCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+                    const paymentMethod = document.querySelector('input[name="payment-method"]:checked')?.value;
+                    const termsAgreed = termsCheckbox.checked;
+                    const waterElectricityAvailable = waterElectricityCheckbox.checked;
+
+                    // --- SANITIZE INPUTS ---
+                    const cleanedName = nameInput.value.trim();
+                    const cleanedEmail = emailInput.value.trim();
+                    const cleanedPhone = phoneInput.value.replace(/\D/g, ''); // Remove all non-digit characters
+                    
+                    // Validate phone number strictly
+                    if (cleanedPhone.length !== 10 || !/^\d{10}$/.test(cleanedPhone)) { 
+                        showMessageBox("Please enter a valid, clean 10-digit phone number."); 
+                        resetUIState(submitBtn, loadingSpinner); 
+                        return; 
+                    }
+
+                    const bookingData = {
+                        id: uuidv4(), // Generate a unique client-side ID
+                        customer_name: cleanedName, // Use cleaned name
+                        phone: cleanedPhone, // Use the cleaned phone number
+                        email: cleanedEmail, // Use cleaned email
+                        city: cityDropdown.value,
+                        subArea: subAreaDropdown.value,
+                        address: addressInput.value,
+                        booking_date: dateInput.value,
+                        time_slots: selectedTimeSlots,
+                        service: selectedPackage,
+                        car_type: selectedCarType,
+                        price: priceInput.value, // Use the display string for storage
+                        paymentMethod,
+                        // paymentStatus is set based on the method
+                        paymentStatus: paymentMethod === 'cash' ? 'cash' : 'pending', 
+                        timestamp: new Date().toISOString()
+                    };
+
+                    // General validation (after cleaning/sanitizing)
+                    if (!bookingData.customer_name || !bookingData.email || !bookingData.subArea || !bookingData.address || !bookingData.booking_date) {
+                        showMessageBox("Please fill in all required contact and location fields."); resetUIState(submitBtn, loadingSpinner); return; 
+                    }
+                    if (selectedTimeSlots.length === 0) { showMessageBox("Please select at least one time slot."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (!selectedPackage || !selectedCarType) { showMessageBox("Please select both a package and a car type."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (!termsAgreed) { showMessageBox("Please agree to the terms and conditions."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (!waterElectricityAvailable) { showMessageBox("Please confirm water and electricity availability."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (!paymentMethod) { showMessageBox("Please select a payment method."); resetUIState(submitBtn, loadingSpinner); return; }
+
+
+                    // --- 2. Handle Payment Flow ---
+                    if (paymentMethod === 'online') {
+                        // Start MOCKED Razorpay payment process
+                        openRazorpayCheckout(bookingData, submitBtn, loadingSpinner, numericPrice);
+                    } else {
+                        // Cash payment: save immediately as paymentStatus: 'cash'
+                        const successMessage = `✅ Booking confirmed! Payment is due in Cash (Booking ID: ${bookingData.id}).`;
+                        saveBookingData(bookingData, submitBtn, loadingSpinner, successMessage);
+                    }
+                } catch (e) {
+                    console.error("Fatal error during form submission/validation:", e);
+                    showMessageBox(`❌ Submission Error: ${e.message}. Check console for details.`);
+                    resetUIState(submitBtn, loadingSpinner);
+                }
+            });
+
+
+            // --- Admin Dashboard Logic ---
+
+            function showAdminDashboard() {
+                loginModal.classList.add('hidden');
+                bookingSection.classList.add('hidden');
+                adminDashboard.classList.remove('hidden');
+                loadAndRenderBookings();
+            }
+
+            // Admin login functionality (Hardcoded Credentials)
+            adminButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginModal.classList.remove('hidden');
+            });
+
+            loginButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const username = usernameInput.value;
+                const password = passwordInput.value;
+                
+                // Hardcoded credentials for demonstration
+                if (username === 'admin' && password === 'admin') {
+                    loginError.classList.add('hidden');
+                    usernameInput.value = '';
+                    passwordInput.value = '';
+                    showAdminDashboard();
+                } else {
+                    loginError.textContent = 'Invalid username or password (Hint: admin/admin).';
+                    loginError.classList.remove('hidden');
+                }
+            });
+
+            // Hide modal when clicking outside
+            loginModal.addEventListener('click', (e) => {
+                if (e.target === loginModal) {
+                    loginModal.classList.add('hidden');
+                    loginError.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
 
