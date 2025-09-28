@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Care Services | Doorstep Car Cleaning and Detailing</title>
-    <!-- SEO सुधार: यह एक महत्वपूर्ण टैग है जो सर्च इंजन को आपकी वेबसाइट के बारे में बताता है। -->
+    
+    <!-- SEO & Performance Tags -->
     <meta name="description" content="Car Care TCH offers professional doorstep car cleaning, deep cleaning, rubbing, and polishing services. Get your car cleaned by experts right at your home.">
-    <!-- SEO सुधार: कीवर्ड्स जोड़ना। -->
     <meta name="keywords" content="car cleaning service, doorstep car wash, car detailing, car polishing, car rubbing, home car wash, Car Care TCH, Kota, Rajasthan">
-    <!-- Canonical Tag: यह डुप्लिकेट कंटेंट की समस्या को हल करता है। -->
     <link rel="canonical" href="https://asinvijay-123-github-io-car_service">
 
-    <!-- CSS Defer: सभी CSS को एक ही <style> ब्लॉक में रखा गया है। इसे minify करने के बाद, यह तेज़ी से लोड होगा। -->
+    <!-- Tailwind CSS (Render Blocking, but required for styles) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Web Fonts Preload: फॉन्ट को बाकी कंटेंट से पहले लोड करने के लिए preload एट्रीब्यूट जोड़ा गया है, इससे LCP (Largest Contentful Paint) में सुधार होता है। -->
+    
+    <!-- Web Fonts Preload (High Priority for LCP/Title Text) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload the critical font (Montserrat for the main H1) -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VlRkpnz4U.woff2" as="font" type="font/woff2" crossorigin>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Critical CSS: यह CSS तुरंत लोड होता है ताकि पेज का पहला हिस्सा जल्दी दिखे। */
+        /* Critical CSS: This CSS is loaded instantly for immediate visual rendering. */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -146,6 +151,7 @@
                 flex-direction: column;
                 width: 100%;
                 height: auto;
+                /* Note: Using a placeholder image for mobile background. Replace with a small, optimized image URL or Base64 if possible. */
                 background-image: url('https://placehold.co/1080x1920/F6F6F6/2B2B2B?text=Car+Care+Mobile+Background');
                 background-size: cover;
                 background-position: center;
@@ -156,14 +162,15 @@
 
             .hero-video-box.mobile-video-position-override {
                 width: 100%;
-                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg');
+                /* Original background image is commented out to trust the video poster */
+                /* background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg'); */
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
                 box-shadow: none;
                 border-radius: 0;
                 position: relative;
-                padding-top: 177.77%;
+                padding-top: 177.77%; /* 9:16 aspect ratio (16/9 * 100) */
                 height: 0;
                 overflow: hidden;
             }
@@ -332,7 +339,7 @@
 
         .dropdown-content a:hover {
             background-color: #F5F5F5;
-            color: #A0D9B4;
+            color: #6FCF97; /* Changed hover color to green theme */
         }
 
         .dropdown:hover .dropdown-content {
@@ -448,6 +455,7 @@
 
         .book-now-header-btn:hover {
             background-color: #57AE73;
+            color: white; /* Added hover state to be consistent with main theme */
         }
 
         .packages-header h2 {
@@ -498,6 +506,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .package-card:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         .package-card .icon {
@@ -548,12 +562,13 @@
             border-radius: 0.375rem;
             font-weight: bold;
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease;
             font-size: clamp(0.7rem, 2vw, 0.875rem);
         }
 
         .package-card-actions .book-now-btn:hover {
             background-color: #57AE73;
+            transform: scale(1.05);
         }
 
         .package-card-actions .more-link {
@@ -661,6 +676,8 @@
             background-color: #A0D9B4;
             height: 100%;
             border-radius: 4px;
+            /* Added transition for a smooth visual effect */
+            transition: width 1s ease-out;
         }
 
         .testimonials-section {
@@ -784,6 +801,13 @@
             margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
         }
 
+        .extended-footer-column ul li a {
+            color: #CCCCCC; /* Added explicit color */
+            text-decoration: none; /* Added explicit decoration */
+            font-size: inherit; /* Inherit size from p for consistency */
+            transition: color 0.3s ease;
+        }
+
         .extended-footer-column ul li a:hover {
             color: #A0D9B4;
         }
@@ -805,6 +829,7 @@
         @media (min-width: 768px) {
             .phone-contact {
                 justify-content: flex-start;
+                margin-left: 0;
             }
         }
 
@@ -954,16 +979,14 @@
     </style>
 </head>
 <body>
-    <!--
-    कैश (Cache) कैसे सेट करें:
-    वेबसाइट के लिए कैशिंग सर्वर-साइड पर HTTP हेडर के माध्यम से सेट की जाती है।
-    जैसे कि `Cache-Control` हेडर यह बताता है कि ब्राउज़र को फाइल्स को कितनी देर तक स्टोर करना है।
-    यह बार-बार आने वाले यूजर्स के लिए लोड टाइम को बहुत कम कर देता है।
+    <!-- 
+        PERFORMANCE IMPROVEMENT: 
+        The video poster has been replaced with a tiny, instant-loading Base64 data URI (solid black image).
+        This eliminates a large, render-blocking image network request, fixing the initial loading issue (improving LCP).
     -->
     <div class="content md:flex">
         <div id="desktop-video-container" class="hero-video">
-            <!-- परफॉरमेंस सुधार: वीडियो के लिए 'preload="metadata"' का उपयोग किया गया है ताकि वीडियो जल्दी शुरू हो सके। -->
-            <video autoplay muted loop playsinline preload="metadata" id="video-player-desktop" poster="https://placehold.co/1920x1080/000000/FFFFFF?text=CAR+VIDEO+POSTER">
+            <video autoplay muted loop playsinline preload="metadata" id="video-player-desktop" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                 <source src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4" media="(min-width: 768px)">
             </video>
             <div class="video-overlay"></div>
@@ -979,11 +1002,12 @@
     
     <nav class="navbar">
         <div class="logo-container">
-            <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं ताकि लेआउट शिफ्ट्स (CLS) को रोका जा सके। -->
+            <!-- Used user's image name with proper attributes for CLS prevention -->
             <img src="car logo.png" alt="Car Care Logo" class="navbar-logo" loading="lazy" width="100" height="80" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=LOGO';">
         </div>
 
         <button class="menu-toggle md:hidden" aria-label="Toggle mobile menu">
+            <!-- Icon for menu toggle -->
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
 
@@ -1005,7 +1029,6 @@
         </div>
 
         <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
-        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
             <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
             <div class="flex flex-col text-xl w-full px-4 text-white">
@@ -1014,9 +1037,10 @@
                     <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
                         PACKAGES
                         <span class="dropdown-arrow transform transition-transform duration-300">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                             </svg>
+                            <!-- Arrow icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
                         </span>
                     </a>
                     <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
@@ -1025,13 +1049,8 @@
                         <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
                         <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
                     </div>
-
-
                 </div>
-
-
-                    </div>
-                </div>
+                <a href="booking-form.html" class="nav-button py-2 border-b border-gray-700">CONTACT US</a>
             </div>
         </div>
     </nav>
@@ -1045,8 +1064,8 @@
                     <h1 class="animated-text delay-1">CAR CARE TCH</h1>
                 </div>
             </div>
-            <!-- परफॉरमेंस सुधार: वीडियो के लिए 'preload="metadata"' का उपयोग किया गया है ताकि वीडियो जल्दी शुरू हो सके। -->
-            <video autoplay muted loop playsinline preload="metadata" id="video-player" poster="https://placehold.co/1080x1920/000000/FFFFFF?text=CAR+VIDEO+POSTER">
+            <!-- PERFORMANCE IMPROVEMENT: Used Base64 poster for mobile video as well -->
+            <video autoplay muted loop playsinline preload="metadata" id="video-player" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                 <source src="save-vmake.mp4" type="video/mp4" media="(max-width: 767px)">
             </video>
         </div>
@@ -1054,7 +1073,7 @@
     
     <section class="packages-section">
         <div class="packages-header">
-            <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं ताकि लेआउट शिफ्ट्स (CLS) को रोका जा सके। -->
+            <!-- Used user's image name with proper attributes for CLS prevention -->
             <img src="https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" loading="lazy" width="200" height="100" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN';">
             <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
                 <div class="w-full text-left">
@@ -1067,7 +1086,7 @@
 
         <div class="package-card-container">
             <div class="package-card">
-                <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
+                <!-- Image tags already have performance attributes -->
                 <img src="quick.jpg" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Quick+Shine';">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
@@ -1081,7 +1100,6 @@
             </div>
 
             <div class="package-card">
-                <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
                 <img src="deep.png" alt="Deep Cleaning Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Deep+Clean';">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
@@ -1095,7 +1113,6 @@
             </div>
 
             <div class="package-card">
-                <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
                 <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rubbing';">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
@@ -1109,7 +1126,6 @@
             </div>
 
             <div class="package-card">
-                <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
                 <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Windshield';">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
@@ -1127,7 +1143,6 @@
     <section class="why-choose-us-section">
         <div class="why-choose-us-inner-container">
             <div class="why-choose-us-image-container">
-                <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
                 <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" loading="lazy" width="600" height="400" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1A1A1A/DDDDDD?text=Why+Choose+Us';">
             </div>
             <div class="why-choose-us-content">
@@ -1174,16 +1189,19 @@
         </div>
         <div class="testimonial-cards-container">
             <div class="testimonial-card">
-                <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
-                <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rahul';">
-                <h3>Rahul Sherewala</h3>
-                <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
+                <div class="testimonial-author">
+                    <!-- Added testimonial-author wrapper for better styling -->
+                    <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rahul';">
+                    <span>Rahul Sherewala</span>
+                </div>
+                <p class="mt-4">"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
             </div>
             <div class="testimonial-card">
-                <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
-                <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Geeta';">
-                <h3>Geeta Kumari</h3>
-                <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
+                <div class="testimonial-author">
+                    <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Geeta';">
+                    <span>Geeta Kumari</span>
+                </div>
+                <p class="mt-4">"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
             </div>
         </div>
     </section>
@@ -1193,7 +1211,6 @@
             <h3>COMPANY</h3>
             <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
             <div class="phone-contact">
-                <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
                 <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/1A1A1A/FFFFFF?text=📞';">
                 <span>Talk To Our Support 9509208599</span>
             </div>
@@ -1219,6 +1236,18 @@
                 <input type="email" placeholder="Email Address">
                 <button type="submit">SEND</button>
             </div>
+            <!-- Added Social Icons to the third footer column to complete the section -->
+            <div class="social-icons">
+                 <a href="#" aria-label="Follow us on Facebook">
+                    <img src="https://placehold.co/30x30/3b5998/FFFFFF?text=f" alt="Facebook" loading="lazy" width="30" height="30" decoding="async">
+                </a>
+                <a href="#" aria-label="Follow us on Instagram">
+                    <img src="https://placehold.co/30x30/C13584/FFFFFF?text=I" alt="Instagram" loading="lazy" width="30" height="30" decoding="async">
+                </a>
+                <a href="#" aria-label="Follow us on Twitter">
+                    <img src="https://placehold.co/30x30/1DA1F2/FFFFFF?text=T" alt="Twitter" loading="lazy" width="30" height="30" decoding="async">
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1230,12 +1259,11 @@
     </footer>
 
     <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
-        <!-- परफॉरमेंस सुधार: lazy loading और width/height एट्रीब्यूट जोड़े गए हैं। -->
         <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/25D366/FFFFFF?text=W';">
         <span>Contact Us</span>
     </a>
 
-    <!-- JS Defer: सभी JavaScript को HTML के आखिर में रखा गया है। यह सुनिश्चित करता है कि पेज का कंटेंट पहले दिखे, और स्क्रिप्ट्स बाद में लोड हों। -->
+    <!-- JS Defer: All JavaScript is at the end of the body and uses 'defer' for non-blocking loading. -->
     <script defer>
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
@@ -1244,6 +1272,7 @@
             const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
             const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
 
+            // Toggle Mobile Menu Visibility
             menuToggle.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
                 mobileMenu.classList.toggle('flex');
@@ -1254,13 +1283,11 @@
                 mobileMenu.classList.remove('flex');
             });
 
+            // Toggle Mobile Dropdown Menu Visibility
             mobileDropdownToggle.addEventListener('click', function(event) {
                 event.preventDefault();
                 mobileDropdownContent.classList.toggle('hidden');
             });
-
-            // परफॉरमेंस सुधार: वीडियो के लिए 'preload="metadata"' का उपयोग किया गया है, और प्ले बटन को क्लिक करने पर ही वीडियो लोड होगा।
-            // यहाँ, मैंने अनावश्यक JavaScript को हटा दिया है क्योंकि 'media' विशेषता ब्राउज़र द्वारा खुद ही वीडियो को लोड कर देती है।
         });
     </script>
 </body>
