@@ -643,12 +643,14 @@
         <div class="login-modal-content">
             <h2 class="text-2xl font-bold mb-4">Admin Login</h2>
             
-            <!-- Added label and name/autocomplete attributes for accessibility -->
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username" placeholder="Username" autocomplete="current-username">
-            
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password">
+            <!-- Wrapped inputs in a dummy form and ensured labels are present -->
+            <form onsubmit="return false;">
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" id="username" name="username" placeholder="Username" autocomplete="username">
+                
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password">
+            </form>
             
             <p id="loginError" class="text-red-500 text-sm mb-4 hidden"></p>
             <button id="loginButton" class="login-btn">Login</button>
@@ -803,7 +805,8 @@
 
                 <div class="form-group">
                     <label for="booking-date">Booking Date</label>
-                    <input type="text" id="booking-date" placeholder="Select a booking date" required autocomplete="off">
+                    <!-- Fixed non-standard autocomplete value to a valid date type -->
+                    <input type="text" id="booking-date" placeholder="Select a booking date" required autocomplete="bday">
                 </div>
 
                 <div class="form-group">
@@ -883,7 +886,7 @@
                 <div class="form-group">
                     <label>Payment Method</label>
                     <div class="payment-method-options">
-                        <!-- Added name attribute to radio buttons -->
+                        <!-- Added unique IDs and name attribute to radio buttons for accessibility -->
                         <label for="payment-cash">
                             <input type="radio" id="payment-cash" name="payment-method" value="cash" checked required>
                             Cash (Pay on Arrival)
