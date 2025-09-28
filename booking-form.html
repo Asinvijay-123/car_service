@@ -711,17 +711,17 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="Enter your name" required>
+                        <input type="text" id="name" placeholder="Enter your name" required autocomplete="name">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone No. (10 Digits)</label>
-                        <input type="tel" id="phone" placeholder="Phone number must be Exactly 10 Digits." pattern="[0-9]{10}" required>
+                        <input type="tel" id="phone" placeholder="Phone number must be Exactly 10 Digits." pattern="[0-9]{10}" required autocomplete="tel">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <input type="email" id="email" placeholder="Enter your email" required autocomplete="email">
                 </div>
 
                 <div class="form-group">
@@ -793,21 +793,22 @@
 
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <textarea id="address" placeholder="Enter your address" required></textarea>
+                    <textarea id="address" placeholder="Enter your address" required autocomplete="street-address"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="booking-date">Booking Date</label>
-                    <input type="text" id="booking-date" placeholder="Select a booking date" required>
+                    <input type="text" id="booking-date" placeholder="Select a booking date" required autocomplete="off">
                 </div>
 
                 <div class="form-group">
                     <label>Available Time Slot</label>
                     <div class="time-slot-grid">
-                        <label><input type="checkbox" name="time-slot" value="9am-11am"> 9am - 11am</label>
-                        <label><input type="checkbox" name="time-slot" value="11am-1pm"> 11am - 1pm</label>
-                        <label><input type="checkbox" name="time-slot" value="1pm-3pm"> 1pm - 3pm</label>
-                        <label><input type="checkbox" name="time-slot" value="3pm-5pm"> 3pm - 5pm</label>
+                        <!-- Added unique IDs and linked labels for accessibility -->
+                        <label for="time-9-11"><input type="checkbox" id="time-9-11" name="time-slot" value="9am-11am"> 9am - 11am</label>
+                        <label for="time-11-1"><input type="checkbox" id="time-11-1" name="time-slot" value="11am-1pm"> 11am - 1pm</label>
+                        <label for="time-1-3"><input type="checkbox" id="time-1-3" name="time-slot" value="1pm-3pm"> 1pm - 3pm</label>
+                        <label for="time-3-5"><input type="checkbox" id="time-3-5" name="time-slot" value="3pm-5pm"> 3pm - 5pm</label>
                     </div>
                 </div>
 
@@ -877,12 +878,13 @@
                 <div class="form-group">
                     <label>Payment Method</label>
                     <div class="payment-method-options">
-                        <label>
-                            <input type="radio" name="payment-method" value="cash" checked required>
+                        <!-- Radio buttons are implicitly linked by nesting, which is good practice -->
+                        <label for="payment-cash">
+                            <input type="radio" id="payment-cash" name="payment-method" value="cash" checked required>
                             Cash (Pay on Arrival)
                         </label>
-                        <label>
-                            <input type="radio" name="payment-method" value="online" required>
+                        <label for="payment-online">
+                            <input type="radio" id="payment-online" name="payment-method" value="online" required>
                             Online (Razorpay - Mocked)
                         </label>
                     </div>
@@ -1104,8 +1106,6 @@
         }
 
         // --- MOCKED Razorpay Payment Functions ---
-        // FIX: Removed mockCreateOrder as it was generating invalid order IDs causing HTTP 400.
-        // We will now rely on the Razorpay test key to open the payment window with just amount/currency.
 
         function openRazorpayCheckout(bookingData, submitBtn, loadingSpinner, rawPrice) { 
             
@@ -1298,6 +1298,7 @@
                 try {
                     if (numericPrice <= 0) { showMessageBox("Please select a package and a car type to calculate the price."); resetUIState(submitBtn, loadingSpinner); return; }
                     
+                    // The checkboxes now have IDs and are correctly linked, but we still need their values
                     const selectedTimeSlots = Array.from(timeSlotCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
                     const paymentMethod = document.querySelector('input[name="payment-method"]:checked')?.value;
                     const termsAgreed = termsCheckbox.checked;
