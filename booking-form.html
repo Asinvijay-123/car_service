@@ -1193,7 +1193,7 @@
                             saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending Payment (${bookingData.id})`);
                         } 
                         
-                        // FIX: Explicitly reset UI state here for cancellations, 
+                        // CRITICAL FIX: Explicitly reset UI state here for cancellations, 
                         // ensuring the button is always re-enabled regardless of whether saveBookingData was called.
                         resetUIState(submitBtn, loadingSpinner);
                     }
