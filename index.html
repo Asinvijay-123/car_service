@@ -981,13 +981,15 @@
 <body>
     <!-- 
         PERFORMANCE IMPROVEMENT: 
-        The video poster has been replaced with a tiny, instant-loading Base64 data URI (solid black image).
-        This eliminates a large, render-blocking image network request, fixing the initial loading issue (improving LCP).
+        1. The video poster is a minimal Base64 URI for instant hero background display.
+        2. The video source files use 'data-src' instead of 'src' to prevent immediate, render-blocking download.
+           The JavaScript below handles swapping to 'src' after the page loads.
     -->
     <div class="content md:flex">
         <div id="desktop-video-container" class="hero-video">
             <video autoplay muted loop playsinline preload="metadata" id="video-player-desktop" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                <source src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4" media="(min-width: 768px)">
+                <!-- Changed src to data-src -->
+                <source data-src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4" media="(min-width: 768px)">
             </video>
             <div class="video-overlay"></div>
         </div>
@@ -1066,7 +1068,8 @@
             </div>
             <!-- PERFORMANCE IMPROVEMENT: Used Base64 poster for mobile video as well -->
             <video autoplay muted loop playsinline preload="metadata" id="video-player" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                <source src="save-vmake.mp4" type="video/mp4" media="(max-width: 767px)">
+                <!-- Changed src to data-src -->
+                <source data-src="save-vmake.mp4" type="video/mp4" media="(max-width: 767px)">
             </video>
         </div>
     </div>
@@ -1265,6 +1268,24 @@
 
     <!-- JS Defer: All JavaScript is at the end of the body and uses 'defer' for non-blocking loading. -->
     <script defer>
+        function lazyLoadVideos() {
+            // Find all video source elements that are holding the true path in 'data-src'
+            const videoSources = document.querySelectorAll('video source[data-src]');
+            videoSources.forEach(source => {
+                source.src = source.dataset.src; // Move the path from data-src to src
+            });
+
+            // Tell the video player to load the sources now
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                // Check if any source was set before attempting to load
+                if (video.querySelector('source[src]')) {
+                    video.load(); 
+                }
+            });
+            console.log("Video sources set and videos triggered for load.");
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -1288,6 +1309,9 @@
                 event.preventDefault();
                 mobileDropdownContent.classList.toggle('hidden');
             });
+
+            // Defer loading video sources until after the main content is ready
+            lazyLoadVideos();
         });
     </script>
 </body>
