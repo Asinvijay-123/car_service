@@ -1104,64 +1104,53 @@
         }
 
         // --- MOCKED Razorpay Payment Functions ---
-
-        function mockCreateOrder(amount, receiptId) {
-            const amountInPaise = amount * 100;
-            if (isNaN(amountInPaise) || amountInPaise < 100) { 
-                throw new Error("Invalid payment amount. Amount is less than ₹1.00");
-            }
-
-            return {
-                amount: amountInPaise,
-                id: 'order_mock_' + uuidv4().replace(/-/g, ''), 
-                currency: 'INR',
-                receipt: receiptId
-            };
-        }
+        // FIX: Removed mockCreateOrder as it was generating invalid order IDs causing HTTP 400.
+        // We will now rely on the Razorpay test key to open the payment window with just amount/currency.
 
         function openRazorpayCheckout(bookingData, submitBtn, loadingSpinner, rawPrice) { 
-            let mockOrder;
             
-            try {
-                mockOrder = mockCreateOrder(rawPrice, bookingData.id);
-            } catch (error) {
-                showMessageBox(`❌ Payment failed: ${error.message}`);
+            const amountInPaise = rawPrice * 100;
+            if (isNaN(amountInPaise) || amountInPaise < 100) { 
+                showMessageBox("❌ Invalid payment amount. Amount is less than ₹1.00");
                 resetUIState(submitBtn, loadingSpinner);
                 return;
             }
 
+            // Generate a unique ID for this booking attempt to use as the receipt ID
+            const bookingAttemptId = bookingData.id;
+
             // Set the payment status to pending right before initialization
-            // This is crucial to ensure if the user closes the modal, we record the pending status.
             bookingData.paymentStatus = 'pending'; 
 
             const options = {
                 key: RAZORPAY_KEY_ID, 
-                amount: mockOrder.amount, 
-                currency: mockOrder.currency,
+                amount: amountInPaise, // Use rawPrice converted to paise
+                currency: 'INR',
                 name: 'Car Care Services',
                 description: `Service Booking: ${bookingData.service}`,
                 image: 'https://placehold.co/100x100/4CAF50/ffffff?text=C',
-                order_id: mockOrder.id, 
+                // Removed order_id property to avoid the 400 Bad Request error from mock ID
 
                 // --- HANDLER IS MOCKED ---
                 handler: function (response) {
-                    // MOCKING SUCCESSFUL PAYMENT HERE:
-                    // This function is called on successful payment.
+                    // This function is called on successful payment (or mock success).
                     bookingData.paymentStatus = 'paid';
                     bookingData.razorpayPaymentId = response ? (response.razorpay_payment_id || 'mock_pay_' + uuidv4()) : 'mock_pay_' + uuidv4();
                     
                     saveBookingData(bookingData, submitBtn, loadingSpinner, `✅ Payment successful (Mocked)! Your Booking ID is: ${bookingData.id}.`);
                 },
-
+                
+                // ADDED prefill details to enhance the mock checkout experience
                 prefill: {
                     name: bookingData.customer_name,
                     email: bookingData.email,
                     contact: bookingData.phone 
                 },
-
+                
+                // ADDED notes for context
                 notes: {
                     address: bookingData.address,
-                    booking_id: bookingData.id
+                    booking_id: bookingAttemptId
                 },
 
                 theme: {
@@ -1169,7 +1158,6 @@
                 }
             };
             
-
             try {
                 // Initialize Razorpay
                 const rzp = new Razorpay(options);
@@ -1186,9 +1174,9 @@
                 rzp.open();
                 
             } catch (e) {
-                // Catch any final initialization errors that could still happen (unlikely now)
+                // Catch any final initialization errors (less likely now, but good to have)
                 console.error('Razorpay initialization fatal error:', e);
-                showMessageBox("❌ Payment Gateway Error. Please try 'Cash' option instead.");
+                showMessageBox("❌ Payment Gateway Error. Please try 'Cash' option instead. (Check console for detail)");
                 resetUIState(submitBtn, loadingSpinner);
             }
         }
