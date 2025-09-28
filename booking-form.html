@@ -373,11 +373,15 @@
             background-color: #0c7a36;
         }
 
+        /* FIX: Reset the image size to prevent overscaling */
         .whatsapp-icon {
             height: 24px;
             width: 24px;
             object-fit: contain;
             object-position: center;
+            /* Added max-width to ensure it honors the 24px limit */
+            max-width: 24px;
+            max-height: 24px;
         }
 
         /* Footer (replicated) */
@@ -947,7 +951,7 @@
     <!-- Updated Contact Us Floating Button -->
     <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=919509208599&text=Hello,%20I'm%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
         <!-- Restored original image with fallback -->
-        <img src="OIP.webp" onerror="this.onerror=null; this.src='https://placehold.co/24x24/0F9643/ffffff?text=W';" alt="WhatsApp Icon">
+        <img src="OIP.webp" onerror="this.onerror=null; this.src='https://placehold.co/24x24/0F9643/ffffff?text=W';" alt="WhatsApp Icon" class="whatsapp-icon">
         Contact Us
     </a>
 
@@ -1110,8 +1114,9 @@
                 console.error('Error saving to local storage:', error);
                 showMessageBox('❌ An internal error occurred while saving the booking data.');
             } finally {
-                // Ensure UI state is reset here *if* it was not reset inside Razorpay's handler
-                resetUIState(submitBtn, loadingSpinner); 
+                // IMPORTANT: Do NOT call resetUIState here, as it may be called twice
+                // if payment is successful, causing flicker.
+                // The payment handlers (success or close) are now responsible for calling resetUIState.
             }
         }
 
@@ -1132,7 +1137,6 @@
             // Set the payment status to pending right before initialization
             bookingData.paymentStatus = 'pending'; 
             
-            // *IMPORTANT FIX: We pass the references to the UI elements into the RZP handler so it can reset the state directly*
             // We set a flag to prevent double-saving/double-resetting
             let paymentHandled = false;
 
@@ -1155,7 +1159,7 @@
                     bookingData.razorpayPaymentId = response ? (response.razorpay_payment_id || 'mock_pay_' + uuidv4()) : 'mock_pay_' + uuidv4();
                     
                     saveBookingData(bookingData, submitBtn, loadingSpinner, `✅ Payment successful (Mocked)! Your Booking ID is: ${bookingData.id}.`);
-                    // Note: saveBookingData already calls resetUIState
+                    resetUIState(submitBtn, loadingSpinner); // FIX: Ensure UI reset after success
                 },
                 
                 prefill: {
@@ -1180,24 +1184,23 @@
 
                 // Set callback for modal close (user clicks outside or closes it)
                 rzp.on('modal.close', () => { 
-                    // *CRITICAL FIX: Explicitly check if payment was NOT handled and perform cleanup*
+                    // *CRITICAL FIX: This path handles cancellation/closure.*
                     if (!paymentHandled) {
                         paymentHandled = true; // Mark as handled (canceled/closed)
-                        // Only save as 'pending' if it was pending
+                        
+                        // Only save as 'pending' if it was pending (i.e., not paid)
                         if (bookingData.paymentStatus === 'pending') {
                             saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending Payment (${bookingData.id})`);
-                            // saveBookingData calls resetUIState, which is necessary here.
-                        } else {
-                            // If somehow closed after payment, just reset UI
-                            resetUIState(submitBtn, loadingSpinner);
-                        }
+                        } 
+                        
+                        // FIX: Explicitly reset UI state here for cancellations, 
+                        // ensuring the button is always re-enabled regardless of whether saveBookingData was called.
+                        resetUIState(submitBtn, loadingSpinner);
                     }
                 });
 
                 // Open the checkout modal
                 rzp.open();
-                
-                // If rzp.open() throws an immediate error (very rare, but possible), it's caught below.
                 
             } catch (e) {
                 console.error('Razorpay initialization fatal error:', e);
