@@ -1110,8 +1110,8 @@
                 console.error('Error saving to local storage:', error);
                 showMessageBox('❌ An internal error occurred while saving the booking data.');
             } finally {
-                // Hide loading spinner and enable button
-                resetUIState(submitBtn, loadingSpinner);
+                // Ensure UI state is reset here *if* it was not reset inside Razorpay's handler
+                resetUIState(submitBtn, loadingSpinner); 
             }
         }
 
@@ -1131,6 +1131,11 @@
 
             // Set the payment status to pending right before initialization
             bookingData.paymentStatus = 'pending'; 
+            
+            // *IMPORTANT FIX: We pass the references to the UI elements into the RZP handler so it can reset the state directly*
+            // We set a flag to prevent double-saving/double-resetting
+            let paymentHandled = false;
+
 
             const options = {
                 key: RAZORPAY_KEY_ID, 
@@ -1139,25 +1144,26 @@
                 name: 'Car Care Services',
                 description: `Service Booking: ${bookingData.service}`,
                 image: 'https://placehold.co/100x100/4CAF50/ffffff?text=C',
-                // Removed order_id property to avoid the 400 Bad Request error from mock ID
 
                 // --- HANDLER IS MOCKED ---
                 handler: function (response) {
                     // This function is called on successful payment (or mock success).
+                    if (paymentHandled) return; // Prevent double execution
+                    paymentHandled = true; 
+
                     bookingData.paymentStatus = 'paid';
                     bookingData.razorpayPaymentId = response ? (response.razorpay_payment_id || 'mock_pay_' + uuidv4()) : 'mock_pay_' + uuidv4();
                     
                     saveBookingData(bookingData, submitBtn, loadingSpinner, `✅ Payment successful (Mocked)! Your Booking ID is: ${bookingData.id}.`);
+                    // Note: saveBookingData already calls resetUIState
                 },
                 
-                // ADDED prefill details to enhance the mock checkout experience
                 prefill: {
                     name: bookingData.customer_name,
                     email: bookingData.email,
                     contact: bookingData.phone 
                 },
                 
-                // ADDED notes for context
                 notes: {
                     address: bookingData.address,
                     booking_id: bookingAttemptId
@@ -1174,17 +1180,26 @@
 
                 // Set callback for modal close (user clicks outside or closes it)
                 rzp.on('modal.close', () => { 
-                    // Only save as 'pending' if it wasn't already marked 'paid' by the handler
-                    if (bookingData.paymentStatus === 'pending') {
-                        saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending Payment (${bookingData.id})`);
+                    // *CRITICAL FIX: Explicitly check if payment was NOT handled and perform cleanup*
+                    if (!paymentHandled) {
+                        paymentHandled = true; // Mark as handled (canceled/closed)
+                        // Only save as 'pending' if it was pending
+                        if (bookingData.paymentStatus === 'pending') {
+                            saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending Payment (${bookingData.id})`);
+                            // saveBookingData calls resetUIState, which is necessary here.
+                        } else {
+                            // If somehow closed after payment, just reset UI
+                            resetUIState(submitBtn, loadingSpinner);
+                        }
                     }
                 });
 
                 // Open the checkout modal
                 rzp.open();
                 
+                // If rzp.open() throws an immediate error (very rare, but possible), it's caught below.
+                
             } catch (e) {
-                // Catch any final initialization errors (less likely now, but good to have)
                 console.error('Razorpay initialization fatal error:', e);
                 showMessageBox("❌ Payment Gateway Error. Please try 'Cash' option instead. (Check console for detail)");
                 resetUIState(submitBtn, loadingSpinner);
