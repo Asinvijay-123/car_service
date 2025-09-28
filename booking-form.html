@@ -1130,6 +1130,10 @@
                 return;
             }
 
+            // Set the payment status to pending right before initialization
+            // This is crucial to ensure if the user closes the modal, we record the pending status.
+            bookingData.paymentStatus = 'pending'; 
+
             const options = {
                 key: RAZORPAY_KEY_ID, 
                 amount: mockOrder.amount, 
@@ -1142,10 +1146,8 @@
                 // --- HANDLER IS MOCKED ---
                 handler: function (response) {
                     // MOCKING SUCCESSFUL PAYMENT HERE:
-                    // Since the previous errors were environment-related, we mark the payment as successful 
-                    // and mark the payment as successful immediately upon modal completion.
+                    // This function is called on successful payment.
                     bookingData.paymentStatus = 'paid';
-                    // The response object might be empty, so we create a mock ID for consistency
                     bookingData.razorpayPaymentId = response ? (response.razorpay_payment_id || 'mock_pay_' + uuidv4()) : 'mock_pay_' + uuidv4();
                     
                     saveBookingData(bookingData, submitBtn, loadingSpinner, `✅ Payment successful (Mocked)! Your Booking ID is: ${bookingData.id}.`);
@@ -1167,17 +1169,14 @@
                 }
             };
             
-            bookingData.paymentStatus = 'pending';
 
             try {
                 // Initialize Razorpay
                 const rzp = new Razorpay(options);
 
                 // Set callback for modal close (user clicks outside or closes it)
-                // FIX: The correct event listener is rzp.on('modal.close', ...) 
-                // The previous code using rzp.modal.on('close', ...) caused the TypeError.
                 rzp.on('modal.close', () => { 
-                    // Only save as 'pending' if it wasn't already marked 'paid'
+                    // Only save as 'pending' if it wasn't already marked 'paid' by the handler
                     if (bookingData.paymentStatus === 'pending') {
                         saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending Payment (${bookingData.id})`);
                     }
