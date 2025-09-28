@@ -979,9 +979,21 @@
         import { getFirestore, collection, addDoc, doc, deleteDoc, onSnapshot, query, setDoc, serverTimestamp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Firebase variables
+        // --- START OF HARDCODED FIREBASE CONFIGURATION ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyC-fzkmY0_6Ko8mP8B6HM9fUxTXvIqg18s",
+            authDomain: "car-service-9dff6.firebaseapp.com",
+            projectId: "car-service-9dff6",
+            storageBucket: "car-service-9dff6.firebasestorage.app",
+            messagingSenderId: "872557668249",
+            appId: "1:872557668249:web:a60ea16a0af58d916e1508",
+            measurementId: "G-CCFLNVLTVN"
+        };
+        // The __app_id variable is still needed for the Firestore path construction.
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        const initialAuthToken = null; // No token provided in your hardcoded config
+
+        // --- END OF HARDCODED FIREBASE CONFIGURATION ---
 
         let app;
         let db;
@@ -989,7 +1001,7 @@
         let currentUserId = null;
         let isAuthReady = false;
 
-        // Firestore Collection Path
+        // Firestore Collection Path (Publicly accessible data)
         const BOOKINGS_COLLECTION_PATH = `artifacts/${appId}/public/data/bookings`;
         
         // --- Configuration ---
@@ -1059,7 +1071,12 @@
             tableBody.innerHTML = '';
             
             // Sort by timestamp descending
-            const sortedBookings = bookings.sort((a, b) => new Date(b.timestamp.toMillis()) - new Date(a.timestamp.toMillis()));
+            const sortedBookings = bookings.sort((a, b) => {
+                // Ensure timestamp is valid before comparing
+                const timeA = b.timestamp && b.timestamp.toMillis ? b.timestamp.toMillis() : 0;
+                const timeB = a.timestamp && a.timestamp.toMillis ? a.timestamp.toMillis() : 0;
+                return timeA - timeB;
+            });
 
             if (sortedBookings.length === 0) {
                 tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-500">No bookings found.</td></tr>';
@@ -1120,16 +1137,13 @@
                     userId: currentUserId || 'anonymous'
                 };
 
-                // Check if this is an update (e.g., payment status update)
-                if (data.id && data.id.startsWith('mock_')) {
-                    // Update existing document using its generated ID
-                    const docRef = doc(db, BOOKINGS_COLLECTION_PATH, data.id);
-                    await setDoc(docRef, bookingDataToSave, { merge: true });
-                } else {
-                    // New booking: Firestore will generate a new ID
-                    await addDoc(collection(db, BOOKINGS_COLLECTION_PATH), bookingDataToSave);
-                }
-
+                // Determine if we are updating an existing mock (payment path) or creating a new document
+                // Note: When creating a document via setDoc with a client-generated ID, 
+                // the document ID will be the client ID (data.id, which starts with 'mock_').
+                // When adding a doc, Firestore generates the ID.
+                const docRef = doc(db, BOOKINGS_COLLECTION_PATH, data.id);
+                await setDoc(docRef, bookingDataToSave, { merge: true });
+                
                 showMessageBox(successMessage);
 
                 // Reset the form on successful submission/update
@@ -1180,8 +1194,6 @@
                     paymentHandled = true; 
 
                     // Mock the booking ID as the Razorpay SDK doesn't return the Firestore generated ID.
-                    // We must save the booking first as 'pending' to get the actual Firestore ID.
-                    // For the mock, we assume success, so we directly update the status.
                     bookingData.paymentStatus = 'paid';
                     bookingData.razorpayPaymentId = response ? (response.razorpay_payment_id || 'mock_pay_' + uuidv4()) : 'mock_pay_' + uuidv4();
                     
@@ -1212,16 +1224,12 @@
                     if (!paymentHandled) {
                         paymentHandled = true; 
                         
-                        // Only save as 'pending' if it was pending (i.e., not paid)
                         if (bookingData.paymentStatus === 'pending') {
-                            // If user cancels, we still save the booking as PENDING.
-                            // We use setDoc with the client-generated ID to create the document if it doesn't exist
-                            // or update if it does. Here we treat it as a new pending entry.
+                            // If user cancels, we save the booking as PENDING using the client-generated ID
                             saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending Payment.`);
                             
                         } 
                         
-                        // CRITICAL FIX: Always reset UI state on close/cancellation
                         resetUIState(submitBtn, loadingSpinner);
                     }
                 });
@@ -1252,9 +1260,7 @@
             const nameInput = document.getElementById('name');
             const phoneInput = document.getElementById('phone');
             const emailInput = document.getElementById('email');
-            // ... (other element references)
-
-            // Pricing logic setup remains the same
+            
             const packageItems = document.querySelectorAll('.package-item');
             const carTypeItems = document.querySelectorAll('.car-type-item');
             const priceInput = document.getElementById('price');
@@ -1297,14 +1303,13 @@
 
             // --- FIREBASE INITIALIZATION ---
             try {
-                if (Object.keys(firebaseConfig).length > 0) {
+                // Check if the provided configuration is valid (not empty)
+                if (Object.keys(firebaseConfig).length > 0 && firebaseConfig.apiKey) {
                     app = initializeApp(firebaseConfig);
                     db = getFirestore(app);
                     auth = getAuth(app);
-                    // Enable debug logging for better development visibility
+                    
                     setLogLevel('Debug'); 
-
-                    // Set persistence to session to maintain login across tab closing
                     setPersistence(auth, browserSessionPersistence);
 
                     onAuthStateChanged(auth, (user) => {
@@ -1312,26 +1317,24 @@
                             currentUserId = user.uid;
                             userIdDisplay.textContent = `User ID: ${currentUserId}`;
                         } else {
+                            // Since we sign in anonymously below, this block is mainly for cleanup/initial state
                             currentUserId = null;
                             userIdDisplay.textContent = `User ID: Anonymous`;
                         }
                         isAuthReady = true;
-                        // Start listening to bookings once authenticated state is determined
                         setupRealtimeBookingsListener();
                     });
 
-                    // Sign in with token or anonymously
-                    if (initialAuthToken) {
-                        signInWithCustomToken(auth, initialAuthToken).catch(error => {
-                            console.error("Custom token sign-in failed:", error);
-                            signInAnonymously(auth); // Fallback to anonymous
-                        });
-                    } else {
-                        signInAnonymously(auth);
-                    }
+                    // For the provided configuration, we can only sign in anonymously 
+                    // as no custom token (initialAuthToken) was given.
+                    signInAnonymously(auth).catch(error => {
+                        console.error("Anonymous sign-in failed:", error);
+                        userIdDisplay.textContent = `User ID: Auth Failed`;
+                    });
+
                 } else {
-                    console.error("Firebase config is missing.");
-                    userIdDisplay.textContent = `User ID: Error (No Config)`;
+                    console.error("Firebase config is invalid or missing details.");
+                    userIdDisplay.textContent = `User ID: Error (Invalid Config)`;
                 }
             } catch (error) {
                 console.error("Firebase initialization failed:", error);
