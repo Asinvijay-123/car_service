@@ -946,10 +946,10 @@
 
         <!-- Admin Dashboard Section (Initially Hidden) -->
         <section id="adminDashboard" class="admin-dashboard-section hidden">
-            <h2 class="text-3xl font-bold mb-6 text-center">व्यवस्थापक डैशबोर्ड (Admin Dashboard)</h2>
+            <h2 class="text-3xl font-bold mb-6 text-center">Admin Dashboard</h2>
             <div class="admin-nav">
-                <button id="showBookingsBtn" class="active">बुकिंग देखें (View Bookings)</button>
-                <button id="showMonitorBtn" class="inactive">उपयोग मॉनिटर (Usage Monitor)</button>
+                <button id="showBookingsBtn" class="active">View Bookings</button>
+                <button id="showMonitorBtn" class="inactive">Usage Monitor</button>
             </div>
             
             <div id="bookingsView">
@@ -959,16 +959,16 @@
                         <thead class="bg-gray-100">
                             <tr>
                                 <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">ID</th>
-                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">नाम/फ़ोन (Name/Phone)</th>
-                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">दिनांक/समय (Date/Time)</th>
-                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">सर्विस/कार (Service/Car)</th>
-                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">राशि (Amount)</th>
-                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">भुगतान स्थिति (Payment Status)</th>
-                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">एक्शन (Actions)</th>
+                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Name/Phone</th>
+                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Date/Time</th>
+                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Service/Car</th>
+                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Amount</th>
+                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Payment Status</th>
+                                <th class="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="bookingsTableBody">
-                            <tr><td colspan="7" class="text-center py-4 text-gray-500">Firestore से बुकिंग लोड हो रही है...</td></tr>
+                            <tr><td colspan="7" class="text-center py-4 text-gray-500">Loading bookings from Firestore...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -976,27 +976,30 @@
 
             <!-- New Monitor Section -->
             <div id="monitorSection" class="hidden p-6 border border-gray-200 rounded-lg bg-gray-50">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Firebase उपयोग मॉनिटर (Firebase Usage Monitor)</h3>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Firebase Usage Monitor</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Booking Count Card -->
                     <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-green-500">
-                        <p class="text-sm text-gray-500">कुल बुकिंग की संख्या (Total Bookings)</p>
+                        <p class="text-sm text-gray-500">Total Bookings (Current Read Count)</p>
                         <p id="totalBookingsCount" class="text-3xl font-extrabold text-gray-900 mt-1">--</p>
                     </div>
 
                     <!-- Free Tier Limit Information -->
                     <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <p class="text-sm text-gray-500">Firestore फ्री-टियर सीमा (Free Tier Limits - Firestore)</p>
+                        <p class="text-sm text-gray-500">Firestore Free Tier Limits (Daily)</p>
                         <ul class="text-sm mt-2 space-y-1 text-gray-700 list-disc list-inside">
-                            <li>**स्टोरेज (Storage):** 1 GiB (डॉक्यूमेंट साइज 1 MB तक)</li>
-                            <li>**डॉक्यूमेंट रीड्स (Document Reads):** प्रति दिन 50,000</li>
-                            <li>**डॉक्यूमेंट राइट्स (Document Writes):** प्रति दिन 20,000</li>
-                            <li>**डॉक्यूमेंट डिलीट (Document Deletes):** प्रति दिन 20,000</li>
+                            <li>**Document Reads:** 50,000</li>
+                            <li>**Document Writes:** 20,000</li>
+                            <li>**Document Deletes:** 20,000</li>
+                            <li>**Storage:** 1 GiB (Max document size 1 MB)</li>
                         </ul>
                     </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-4">ध्यान दें: यह मॉनिटर केवल **वास्तविक बुकिंग संख्या** दिखाता है। फ्री-टियर उपयोग को ट्रैक करने के लिए आपको Firebase कंसोल का उपयोग करना होगा।</p>
+                <p class="text-xs text-gray-500 mt-4 text-red-600 font-semibold">
+                    Note: This count updates in real-time. Each update counts as a read operation toward your daily limit. 
+                    If you don't need real-time updates, switch to manual fetching (using 'getDocs' instead of 'onSnapshot') in the code to save reads.
+                </p>
             </div>
         </section>
     </main>
@@ -1028,7 +1031,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, doc, deleteDoc, onSnapshot, query, setDoc, serverTimestamp, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, doc, deleteDoc, onSnapshot, query, setDoc, serverTimestamp, setLogLevel, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Firebase variables
         // --- START OF HARDCODED FIREBASE CONFIGURATION ---
@@ -1052,6 +1055,7 @@
         let auth;
         let currentUserId = null;
         let isAuthReady = false;
+        let isRealtimeListenerActive = false; // New flag to control listener
 
         // Firestore Collection Path (Publicly accessible data)
         const BOOKINGS_COLLECTION_PATH = `artifacts/${appId}/public/data/bookings`;
@@ -1085,39 +1089,81 @@
             spinner.classList.add('hidden');
             btn.textContent = 'Submit Booking';
         }
+        
+        // Unsubscribe function placeholder
+        let unsubscribeBookings = null;
 
         // --- FIRESTORE FUNCTIONS ---
 
-        function setupRealtimeBookingsListener() {
+        // FIX: Replaced setupRealtimeBookingsListener with manual fetch to reduce read operations on Monitor page switch
+        async function fetchBookingsAndRender() {
             if (!isAuthReady || !db) {
                 console.log("Firebase not ready for listening.");
                 return;
             }
+            
+            // If the real-time listener is active (from showAdminView('bookings')), do nothing.
+            if (isRealtimeListenerActive) return;
 
             const tableBody = document.getElementById('bookingsTableBody');
-            tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-500">Connecting to real-time database...</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-500">Fetching latest bookings...</td></tr>';
             
             try {
                 const bookingsQuery = query(collection(db, BOOKINGS_COLLECTION_PATH));
                 
-                // Set up the real-time listener
-                onSnapshot(bookingsQuery, (snapshot) => {
-                    const bookings = [];
-                    snapshot.forEach((doc) => {
-                        bookings.push({ id: doc.id, ...doc.data() });
-                    });
-                    
-                    // Update Monitor Section with Total Count
-                    document.getElementById('totalBookingsCount').textContent = bookings.length;
-                    
-                    renderBookings(bookings);
-                }, (error) => {
-                    console.error("Error listening to bookings:", error);
-                    tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-500">Failed to load bookings in real-time.</td></tr>';
+                // Use getDocs instead of onSnapshot to perform a single read operation
+                const snapshot = await getDocs(bookingsQuery);
+                const bookings = [];
+                snapshot.forEach((doc) => {
+                    bookings.push({ id: doc.id, ...doc.data() });
                 });
+                
+                document.getElementById('totalBookingsCount').textContent = bookings.length;
+                renderBookings(bookings);
+                
             } catch (error) {
                  console.error("Error setting up Firestore listener:", error);
-                 tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-500">Failed to initialize database connection.</td></tr>';
+                 tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-500">Failed to fetch bookings.</td></tr>';
+            }
+        }
+        
+        // New function to start the real-time listener (used only for the Bookings View)
+        function startRealtimeListener() {
+             if (!isAuthReady || !db || isRealtimeListenerActive) return;
+             
+             const tableBody = document.getElementById('bookingsTableBody');
+             tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-500">Connecting to real-time database...</td></tr>';
+
+             try {
+                 const bookingsQuery = query(collection(db, BOOKINGS_COLLECTION_PATH));
+                 
+                 // Use onSnapshot for real-time updates
+                 unsubscribeBookings = onSnapshot(bookingsQuery, (snapshot) => {
+                     const bookings = [];
+                     snapshot.forEach((doc) => {
+                         bookings.push({ id: doc.id, ...doc.data() });
+                     });
+                     
+                     document.getElementById('totalBookingsCount').textContent = bookings.length;
+                     renderBookings(bookings);
+                 }, (error) => {
+                     console.error("Error listening to bookings:", error);
+                     tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-500">Failed to load bookings in real-time.</td></tr>';
+                 });
+                 
+                 isRealtimeListenerActive = true;
+             } catch (error) {
+                 console.error("Error starting real-time listener:", error);
+                 tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-red-500">Failed to initialize real-time connection.</td></tr>';
+             }
+        }
+        
+        // New function to stop the real-time listener
+        function stopRealtimeListener() {
+            if (unsubscribeBookings) {
+                unsubscribeBookings();
+                unsubscribeBookings = null;
+                isRealtimeListenerActive = false;
             }
         }
 
@@ -1135,18 +1181,18 @@
             });
 
             if (sortedBookings.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-500">कोई बुकिंग नहीं मिली (No bookings found).</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-gray-500">No bookings found.</td></tr>';
                 return;
             }
 
             sortedBookings.forEach(booking => {
                 let paymentStatusTag = '';
                 if (booking.paymentMethod === 'cash') {
-                    paymentStatusTag = `<span class="status-tag cash">कैश (Cash)</span>`;
+                    paymentStatusTag = `<span class="status-tag cash">Cash (Unpaid)</span>`;
                 } else if (booking.paymentStatus === 'paid') {
-                    paymentStatusTag = `<span class="status-tag paid">भुगतान किया गया (Paid)</span>`;
+                    paymentStatusTag = `<span class="status-tag paid">Paid</span>`;
                 } else {
-                    paymentStatusTag = `<span class="status-tag pending">लंबित (Pending)</span>`;
+                    paymentStatusTag = `<span class="status-tag pending">Pending</span>`;
                 }
 
                 const row = document.createElement('tr');
@@ -1159,7 +1205,7 @@
                     <td class="py-2 px-4 border-b font-semibold">${booking.price}</td>
                     <td class="py-2 px-4 border-b">${paymentStatusTag}</td>
                     <td class="py-2 px-4 border-b">
-                        <button onclick="window.deleteBooking('${booking.id}')" class="text-red-600 hover:text-red-800 font-bold text-sm transition-colors">हटाएँ (Delete)</button>
+                        <button onclick="window.deleteBooking('${booking.id}')" class="text-red-600 hover:text-red-800 font-bold text-sm transition-colors">Delete</button>
                     </td>
                 `;
                 tableBody.appendChild(row);
@@ -1171,17 +1217,17 @@
             
             try {
                 await deleteDoc(doc(db, BOOKINGS_COLLECTION_PATH, id));
-                showMessageBox(`✅ बुकिंग सफलतापूर्वक हटा दी गई (Booking deleted successfully).`);
+                showMessageBox(`✅ Booking deleted successfully.`);
                 // onSnapshot listener handles the UI update automatically
             } catch (error) {
                 console.error('Error deleting booking:', error);
-                showMessageBox(`❌ बुकिंग हटाने में त्रुटि (Error deleting booking): ${error.message}`);
+                showMessageBox(`❌ Error deleting booking: ${error.message}`);
             }
         }
         
         async function saveBookingData(data, submitBtn, loadingSpinner, successMessage) {
             if (!db) { 
-                showMessageBox('❌ डेटाबेस कनेक्शन त्रुटि (Database connection error). बुकिंग सेव नहीं की जा सकती।');
+                showMessageBox('❌ Database connection error. Cannot save booking.');
                 resetUIState(submitBtn, loadingSpinner);
                 return;
             }
@@ -1211,7 +1257,7 @@
 
             } catch (error) {
                 console.error('Error saving to Firestore:', error);
-                showMessageBox('❌ डेटाबेस में बुकिंग सेव करने में त्रुटि (Error saving booking to database).');
+                showMessageBox('❌ An error occurred while saving the booking data to the database.');
             } finally {
                 // UI reset handled by Razorpay callbacks or form logic
             }
@@ -1224,7 +1270,7 @@
             
             const amountInPaise = rawPrice * 100;
             if (isNaN(amountInPaise) || amountInPaise < 100) { 
-                showMessageBox("❌ अमान्य भुगतान राशि (Invalid payment amount). राशि ₹1.00 से कम है।");
+                showMessageBox("❌ Invalid payment amount. Amount is less than ₹1.00");
                 resetUIState(submitBtn, loadingSpinner);
                 return;
             }
@@ -1249,7 +1295,7 @@
                     bookingData.paymentStatus = 'paid';
                     bookingData.razorpayPaymentId = response ? (response.razorpay_payment_id || 'mock_pay_' + uuidv4()) : 'mock_pay_' + uuidv4();
                     
-                    saveBookingData(bookingData, submitBtn, loadingSpinner, `✅ भुगतान सफल (Payment successful)! बुकिंग ID है: ${bookingData.id}.`);
+                    saveBookingData(bookingData, submitBtn, loadingSpinner, `✅ Payment successful (Mocked)! Booking ID: ${bookingData.id}.`);
                     resetUIState(submitBtn, loadingSpinner);
                 },
                 
@@ -1277,7 +1323,7 @@
                         paymentHandled = true; 
                         
                         if (bookingData.paymentStatus === 'pending') {
-                            saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ भुगतान रद्द (Payment canceled). बुकिंग लंबित स्थिति में सेव की गई।`);
+                            saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending.`);
                             
                         } 
                         
@@ -1289,7 +1335,7 @@
                 
             } catch (e) {
                 console.error('Razorpay initialization fatal error:', e);
-                showMessageBox("❌ भुगतान गेटवे त्रुटि (Payment Gateway Error). कृपया 'कैश' विकल्प चुनें।");
+                showMessageBox("❌ Payment Gateway Error. Please try 'Cash' option instead.");
                 resetUIState(submitBtn, loadingSpinner);
             }
         }
@@ -1308,9 +1354,6 @@
             const bookingForm = document.getElementById('bookingForm');
             const submitBtn = document.getElementById('submitBtn');
             const loadingSpinner = document.getElementById('loadingSpinner');
-            const nameInput = document.getElementById('name');
-            const phoneInput = document.getElementById('phone');
-            const emailInput = document.getElementById('email');
             
             const packageItems = document.querySelectorAll('.package-item');
             const carTypeItems = document.querySelectorAll('.car-type-item');
@@ -1322,6 +1365,9 @@
             const subAreaDropdown = document.getElementById('sub-area');
             const addressInput = document.getElementById('address');
             const dateInput = document.getElementById('booking-date');
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
+            const emailInput = document.getElementById('email');
 
             const adminButton = document.getElementById('adminButton');
             const loginModal = document.getElementById('loginModal');
@@ -1337,8 +1383,13 @@
             const bookingsView = document.getElementById('bookingsView');
             const monitorSection = document.getElementById('monitorSection');
             
-            // --- Admin Navigation Logic ---
+            // --- Admin Navigation Logic (Updated to control real-time listener) ---
             function showAdminView(view) {
+                // Stop listener if switching away from bookings view
+                if (view !== 'bookings') {
+                    stopRealtimeListener();
+                }
+
                 bookingsView.classList.add('hidden');
                 monitorSection.classList.add('hidden');
                 showBookingsBtn.classList.remove('active', 'inactive');
@@ -1348,17 +1399,20 @@
                     bookingsView.classList.remove('hidden');
                     showBookingsBtn.classList.add('active');
                     showMonitorBtn.classList.add('inactive');
+                    // Start listener only when entering the bookings view
+                    startRealtimeListener();
                 } else if (view === 'monitor') {
                     monitorSection.classList.remove('hidden');
                     showBookingsBtn.classList.add('inactive');
                     showMonitorBtn.classList.add('active');
+                    // Perform a single, manual fetch for the count when entering monitor view
+                    fetchBookingsAndRender();
                 }
             }
 
             showBookingsBtn.addEventListener('click', () => showAdminView('bookings'));
             showMonitorBtn.addEventListener('click', () => showAdminView('monitor'));
-            // Default view on load
-            showAdminView('bookings');
+            // Default view on load (Listener will start once auth is ready)
 
 
             const pricing = {
@@ -1396,27 +1450,28 @@
                     onAuthStateChanged(auth, (user) => {
                         if (user) {
                             currentUserId = user.uid;
-                            userIdDisplay.textContent = `यूजर ID (User ID): ${currentUserId}`;
+                            userIdDisplay.textContent = `User ID: ${currentUserId}`;
                         } else {
                             currentUserId = null;
-                            userIdDisplay.textContent = `यूजर ID (User ID): Anonymous`;
+                            userIdDisplay.textContent = `User ID: Anonymous`;
                         }
                         isAuthReady = true;
-                        setupRealtimeBookingsListener();
+                        // Start listener by default on first load
+                        startRealtimeListener();
                     });
 
                     signInAnonymously(auth).catch(error => {
                         console.error("Anonymous sign-in failed:", error);
-                        userIdDisplay.textContent = `यूजर ID (User ID): Auth Failed`;
+                        userIdDisplay.textContent = `User ID: Auth Failed`;
                     });
 
                 } else {
                     console.error("Firebase config is invalid or missing details.");
-                    userIdDisplay.textContent = `यूजर ID (User ID): Error (Invalid Config)`;
+                    userIdDisplay.textContent = `User ID: Error (Invalid Config)`;
                 }
             } catch (error) {
                 console.error("Firebase initialization failed:", error);
-                userIdDisplay.textContent = `यूजर ID (User ID): Error (Check Console)`;
+                userIdDisplay.textContent = `User ID: Error (Check Console)`;
             }
 
             // --- Form Submission Handler (Main Logic) ---
@@ -1428,7 +1483,7 @@
                 submitBtn.textContent = 'Processing...';
 
                 try {
-                    if (numericPrice <= 0) { showMessageBox("कृपया मूल्य की गणना के लिए पैकेज और कार का प्रकार चुनें (Please select a package and a car type to calculate the price)."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (numericPrice <= 0) { showMessageBox("Please select a package and a car type to calculate the price."); resetUIState(submitBtn, loadingSpinner); return; }
                     
                     const selectedTimeSlots = Array.from(timeSlotCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
                     const paymentMethod = document.querySelector('input[name="payment-method"]:checked')?.value;
@@ -1440,7 +1495,7 @@
                     const cleanedPhone = phoneInput.value.replace(/\D/g, ''); 
                     
                     if (cleanedPhone.length !== 10 || !/^\d{10}$/.test(cleanedPhone)) { 
-                        showMessageBox("कृपया एक मान्य, 10-अंकीय फ़ोन नंबर दर्ज करें (Please enter a valid, clean 10-digit phone number)."); 
+                        showMessageBox("Please enter a valid, clean 10-digit phone number."); 
                         resetUIState(submitBtn, loadingSpinner); 
                         return; 
                     }
@@ -1464,13 +1519,13 @@
                     };
 
                     if (!bookingData.customer_name || !bookingData.email || !bookingData.subArea || !bookingData.address || !bookingData.booking_date) {
-                        showMessageBox("कृपया सभी आवश्यक संपर्क और स्थान फ़ील्ड भरें (Please fill in all required contact and location fields)."); resetUIState(submitBtn, loadingSpinner); return; 
+                        showMessageBox("Please fill in all required contact and location fields."); resetUIState(submitBtn, loadingSpinner); return; 
                     }
-                    if (selectedTimeSlots.length === 0) { showMessageBox("कृपया कम से कम एक समय स्लॉट चुनें (Please select at least one time slot)."); resetUIState(submitBtn, loadingSpinner); return; }
-                    if (!selectedPackage || !selectedCarType) { showMessageBox("कृपया पैकेज और कार का प्रकार दोनों चुनें (Please select both a package and a car type)."); resetUIState(submitBtn, loadingSpinner); return; }
-                    if (!termsAgreed) { showMessageBox("कृपया नियमों और शर्तों से सहमत हों (Please agree to the terms and conditions)."); resetUIState(submitBtn, loadingSpinner); return; }
-                    if (!waterElectricityAvailable) { showMessageBox("कृपया पानी और बिजली की उपलब्धता की पुष्टि करें (Please confirm water and electricity availability)."); resetUIState(submitBtn, loadingSpinner); return; }
-                    if (!paymentMethod) { showMessageBox("कृपया भुगतान विधि चुनें (Please select a payment method)."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (selectedTimeSlots.length === 0) { showMessageBox("Please select at least one time slot."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (!selectedPackage || !selectedCarType) { showMessageBox("Please select both a package and a car type."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (!termsAgreed) { showMessageBox("Please agree to the terms and conditions."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (!waterElectricityAvailable) { showMessageBox("Please confirm water and electricity availability."); resetUIState(submitBtn, loadingSpinner); return; }
+                    if (!paymentMethod) { showMessageBox("Please select a payment method."); resetUIState(submitBtn, loadingSpinner); return; }
 
 
                     // --- 2. Handle Payment Flow ---
@@ -1478,13 +1533,13 @@
                         openRazorpayCheckout(bookingData, submitBtn, loadingSpinner, numericPrice);
                     } else {
                         // Cash payment: save immediately to Firestore
-                        const successMessage = `✅ बुकिंग की पुष्टि हुई! भुगतान कैश में देय है।`;
+                        const successMessage = `✅ Booking confirmed! Payment is due in Cash.`;
                         await saveBookingData(bookingData, submitBtn, loadingSpinner, successMessage);
                         resetUIState(submitBtn, loadingSpinner);
                     }
                 } catch (e) {
                     console.error("Fatal error during form submission/validation:", e);
-                    showMessageBox(`❌ सबमिशन त्रुटि (Submission Error): ${e.message}. कंसोल जांचें।`);
+                    showMessageBox(`❌ Submission Error: ${e.message}. Check console for details.`);
                     resetUIState(submitBtn, loadingSpinner);
                 }
             });
@@ -1517,7 +1572,7 @@
                     document.getElementById('password').value = '';
                     showAdminDashboard();
                 } else {
-                    loginError.textContent = 'अमान्य यूजरनेम या पासवर्ड (Invalid username or password). (संकेत: admin/admin).';
+                    loginError.textContent = 'Invalid username or password. (Hint: admin/admin).';
                     loginError.classList.remove('hidden');
                 }
             });
