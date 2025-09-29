@@ -217,13 +217,16 @@
 
         .hero-content h1 {
             font-family: 'Montserrat', sans-serif;
-            /* FIXED: Applied consistent fluid font size */
+            /* FIX: Removed white-space: nowrap; to allow the text to wrap on mobile devices. */
             font-size: clamp(2.5rem, 8vw, 5rem); 
             font-weight: bold;
             margin-bottom: 1rem;
-            white-space: nowrap; 
+            
+            /* Removed single-line forcing CSS to allow wrapping on small screens */
+            /* white-space: nowrap; 
             overflow: hidden; 
-            text-overflow: ellipsis; 
+            text-overflow: ellipsis; */
+            
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
         }
         
@@ -819,7 +822,7 @@
                 <p>Follow us on Instagram for daily car care tips, before & after shots, and exclusive deals!</p>
                 <!-- Instagram Link Button -->
                 <a href="https://www.instagram.com/carcare6115/" target="_blank" class="insta-follow-btn">
-                    <!-- Instagram SVG Icon -->
+                    <!-- Instagram SVG Icon. Added width/height attributes for CLS fix. -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
