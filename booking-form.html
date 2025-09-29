@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Care Services | Online Booking</title>
+    
+    <!-- PERFORMANCE: Preload Montserrat for fast title rendering -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VlRkpnz4U.woff2" as="font" type="font/woff2" crossorigin>
+
     <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for clean typography -->
@@ -13,7 +19,7 @@
     <!-- Flatpickr CSS for the calendar widget -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     
-    <!-- Razorpay SDK - RESTORED -->
+    <!-- Razorpay SDK -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <style>
@@ -38,6 +44,7 @@
             color: white;
             justify-content: space-between;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 5rem;
         }
 
         @media (min-width: 768px) {
@@ -388,6 +395,18 @@
             transition: background-color 0.3s ease;
             z-index: 20;
         }
+        
+        /* Responsive positioning for the floating button */
+        @media (max-width: 767px) {
+            .contact-us-float {
+                bottom: 1rem; /* Adjust bottom for smaller screens */
+                left: 50%; /* Center horizontally */
+                transform: translateX(-50%); /* Adjust for centering */
+                width: auto; /* Allow width to adjust to content */
+                padding: 0.6rem 1.2rem; /* Slightly smaller padding */
+                font-size: 0.9rem; /* Smaller font size */
+            }
+        }
 
         .contact-us-float:hover {
             background-color: #0c7a36;
@@ -478,12 +497,6 @@
                 margin-left: 0;
                 margin-right: 0;
             }
-        }
-
-        .phone-contact svg {
-            width: 24px;
-            height: 24px;
-            fill: #4CAF50;
         }
 
         .phone-contact span {
@@ -595,6 +608,7 @@
             display: none;
             text-align: center;
             font-size: 1.2rem;
+            max-width: 90%;
         }
 
         .message-box button {
@@ -698,8 +712,10 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Restored original image with fallback -->
-            <img src="car logo.png" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1a1a1a/ffffff?text=LOGO';" alt="Car Care Logo" class="navbar-logo">
+            <!-- Updated HOME link to index.html -->
+            <a href="index.html">
+                <img src="car logo.png" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1a1a1a/ffffff?text=LOGO';" alt="Car Care Logo" class="navbar-logo">
+            </a>
         </div>
         
         <button class="menu-toggle md:hidden">
@@ -707,31 +723,33 @@
         </button>
 
         <div class="navbar-links hidden md:flex">
-            <!-- FIX: Added href to link to sections -->
-            <a href="#mainContent" class="nav-button">HOME</a>
+            <!-- Updated HOME link -->
+            <a href="index.html" class="nav-button">HOME</a>
             <div class="dropdown">
                 <a href="#bookingSection" class="nav-button">
                     PACKAGES
                     <span class="dropdown-arrow">&#9660;</span>
                 </a>
                 <div class="dropdown-content">
-                    <a href="#bookingSection" data-package="quick-shine">Quick Shine</a>
-                    <a href="#bookingSection" data-package="deep-cleaning">Deep Cleaning</a>
-                    <a href="#bookingSection" data-package="rubbing-polishing">Rubbing & Polishing</a>
-                    <a href="#bookingSection" data-package="windshield-polish">Windshield Polish</a>
+                    <!-- Updated Package Links -->
+                    <a href="quick-shine-page.html">Quick Shine</a>
+                    <a href="deep-cleaning-page.html">Deep Cleaning</a>
+                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
+                    <a href="windshield-polish-page.html">Windshield Polish</a>
                 </div>
             </div>
-            <a href="#footerContact" class="nav-button">CONTACT US</a>
-            <a href="#" class="nav-button admin-button" id="adminButton">ADMIN</a>
+            <!-- Updated CONTACT US link to WhatsApp -->
+            <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello,%20I'm%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="nav-button" target="_blank">CONTACT US</a>
+            <a href="#" class="nav-button admin-button hidden md:block" id="adminButton">ADMIN</a> <!-- Added hidden md:block -->
         </div>
 
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
             <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
             <div class="flex flex-col text-xl w-full px-4 text-white">
-                <!-- FIX: Added href to link to sections -->
-                <a href="#mainContent" class="nav-button py-2 border-b border-gray-700">HOME</a>
+                <!-- Updated HOME link -->
+                <a href="index.html" class="nav-button py-2 border-b border-gray-700">HOME</a>
                 <div class="dropdown-mobile w-full">
-                    <a href="#bookingSection" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
+                    <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
                         PACKAGES
                         <span class="dropdown-arrow transform transition-transform duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -740,13 +758,17 @@
                         </span>
                     </a>
                     <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
-                        <a href="#bookingSection" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
-                        <a href="#bookingSection" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Deep Cleaning</a>
-                        <a href="#bookingSection" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
-                        <a href="#bookingSection" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
+                        <!-- Updated Package Links -->
+                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
+                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
+                        <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
                     </div>
                 </div>
-                <a href="#footerContact" class="nav-button text-white">CONTACT US</a>
+                <!-- Updated CONTACT US link to WhatsApp -->
+                <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello,%20I'm%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="nav-button py-2 border-b border-gray-700" target="_blank">CONTACT US</a>
+                <!-- Admin link added to mobile menu for completeness -->
+                <a href="#" class="nav-button py-2 border-b border-gray-700" id="adminButtonMobile">ADMIN</a> 
             </div>
         </div>
     </nav>
@@ -1049,7 +1071,7 @@
     </main>
 
     <!-- Updated Contact Us Floating Button -->
-    <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=919509208599&text=Hello,%20I'm%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
+    <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=919509208599&text=Hello,%20I'm%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float" target="_blank">
         <!-- Restored original image with fallback -->
         <img src="OIP.webp" onerror="this.onerror=null; this.src='https://placehold.co/24x24/0F9643/ffffff?text=W';" alt="WhatsApp Icon" class="whatsapp-icon">
         Contact Us
@@ -1059,7 +1081,8 @@
     <footer class="copyright-footer">
         <p>© Copyright Car Care. All right reserved.</p>
         <div>
-            <a href="#">Home</a> / <a href="#">Booking</a>
+            <!-- Updated Footer Links -->
+            <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
         </div>
     </footer>
 
@@ -1105,12 +1128,12 @@
         const BOOKINGS_COLLECTION_PATH = `artifacts/${appId}/public/data/bookings`;
         
         // --- Configuration ---
-        const RAZORPAY_KEY_ID = 'rzp_test_RMGjkkPSMeksPe'; 
+        const RAZORPAY_KEY_ID = 'rzp_test_RMGjkkPSMeksPe';  // Mock Razorpay Key ID
 
         // --- Global State for Price Calculation ---
         let selectedPackage = null;
         let selectedCarType = null;
-        let numericPrice = 0; 
+        let numericPrice = 0;  
         
         // --- Utility Functions ---
 
@@ -1295,7 +1318,7 @@
                 
                 selectedPackage = null;
                 selectedCarType = null;
-                numericPrice = 0; 
+                numericPrice = 0;  
                 document.getElementById('price').value = '₹0/-';
 
             } catch (error) {
@@ -1309,31 +1332,31 @@
 
         // --- MOCKED Razorpay Payment Functions ---
 
-        function openRazorpayCheckout(bookingData, submitBtn, loadingSpinner, rawPrice) { 
+        function openRazorpayCheckout(bookingData, submitBtn, loadingSpinner, rawPrice) {  
             
             const amountInPaise = rawPrice * 100;
-            if (isNaN(amountInPaise) || amountInPaise < 100) { 
+            if (isNaN(amountInPaise) || amountInPaise < 100) {  
                 showMessageBox("❌ Invalid payment amount. Amount is less than ₹1.00");
                 resetUIState(submitBtn, loadingSpinner);
                 return;
             }
 
             const bookingAttemptId = bookingData.id;
-            bookingData.paymentStatus = 'pending'; 
+            bookingData.paymentStatus = 'pending';  
             let paymentHandled = false;
 
 
             const options = {
-                key: RAZORPAY_KEY_ID, 
-                amount: amountInPaise, 
+                key: RAZORPAY_KEY_ID,  
+                amount: amountInPaise,  
                 currency: 'INR',
                 name: 'Car Care Services',
                 description: `Service Booking: ${bookingData.service}`,
                 image: 'https://placehold.co/100x100/4CAF50/ffffff?text=C',
 
                 handler: function (response) {
-                    if (paymentHandled) return; 
-                    paymentHandled = true; 
+                    if (paymentHandled) return;  
+                    paymentHandled = true;  
 
                     bookingData.paymentStatus = 'paid';
                     bookingData.razorpayPaymentId = response ? (response.razorpay_payment_id || 'mock_pay_' + uuidv4()) : 'mock_pay_' + uuidv4();
@@ -1345,7 +1368,7 @@
                 prefill: {
                     name: bookingData.customer_name,
                     email: bookingData.email,
-                    contact: bookingData.phone 
+                    contact: bookingData.phone  
                 },
                 
                 notes: {
@@ -1361,14 +1384,14 @@
             try {
                 const rzp = new Razorpay(options);
 
-                rzp.on('modal.close', () => { 
+                rzp.on('modal.close', () => {  
                     if (!paymentHandled) {
-                        paymentHandled = true; 
+                        paymentHandled = true;  
                         
                         if (bookingData.paymentStatus === 'pending') {
                             saveBookingData(bookingData, submitBtn, loadingSpinner, `⚠️ Payment canceled. Booking saved with status: Pending.`);
                             
-                        } 
+                        }  
                         
                         resetUIState(submitBtn, loadingSpinner);
                     }
@@ -1413,6 +1436,7 @@
             const emailInput = document.getElementById('email');
 
             const adminButton = document.getElementById('adminButton');
+            const adminButtonMobile = document.getElementById('adminButtonMobile'); // Added mobile admin button reference
             const loginModal = document.getElementById('loginModal');
             const loginButton = document.getElementById('loginButton');
             const loginError = document.getElementById('loginError');
@@ -1426,6 +1450,15 @@
             const bookingsView = document.getElementById('bookingsView');
             const monitorSection = document.getElementById('monitorSection');
             
+            // Mobile Menu Elements
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
+            const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+            const dropdownArrow = document.querySelector('.dropdown-mobile .dropdown-arrow');
+
+
             // --- Admin Navigation Logic (Updated to control real-time listener) ---
             function showAdminView(view) {
                 // Stop listener if switching away from bookings view
@@ -1469,10 +1502,10 @@
                 if (selectedPackage && selectedCarType) {
                     const price = pricing[selectedPackage][selectedCarType];
                     priceInput.value = `₹${price}/-`;
-                    numericPrice = price; 
+                    numericPrice = price;  
                 } else {
                     priceInput.value = '₹0/-';
-                    numericPrice = 0; 
+                    numericPrice = 0;  
                 }
             }
 
@@ -1487,7 +1520,7 @@
                     db = getFirestore(app);
                     auth = getAuth(app);
                     
-                    setLogLevel('Debug'); 
+                    setLogLevel('Debug');  
                     setPersistence(auth, browserSessionPersistence);
 
                     onAuthStateChanged(auth, (user) => {
@@ -1535,12 +1568,12 @@
 
                     const cleanedName = nameInput.value.trim();
                     const cleanedEmail = emailInput.value.trim();
-                    const cleanedPhone = phoneInput.value.replace(/\D/g, ''); 
+                    const cleanedPhone = phoneInput.value.replace(/\D/g, '');  
                     
-                    if (cleanedPhone.length !== 10 || !/^\d{10}$/.test(cleanedPhone)) { 
-                        showMessageBox("Please enter a valid, clean 10-digit phone number."); 
-                        resetUIState(submitBtn, loadingSpinner); 
-                        return; 
+                    if (cleanedPhone.length !== 10 || !/^\d{10}$/.test(cleanedPhone)) {  
+                        showMessageBox("Please enter a valid, clean 10-digit phone number.");  
+                        resetUIState(submitBtn, loadingSpinner);  
+                        return;  
                     }
 
                     const bookingData = {
@@ -1557,12 +1590,12 @@
                         car_type: selectedCarType,
                         price: priceInput.value,
                         paymentMethod,
-                        paymentStatus: paymentMethod === 'cash' ? 'cash' : 'pending', 
+                        paymentStatus: paymentMethod === 'cash' ? 'cash' : 'pending',  
                         // timestamp will be added by Firestore
                     };
 
                     if (!bookingData.customer_name || !bookingData.email || !bookingData.subArea || !bookingData.address || !bookingData.booking_date) {
-                        showMessageBox("Please fill in all required contact and location fields."); resetUIState(submitBtn, loadingSpinner); return; 
+                        showMessageBox("Please fill in all required contact and location fields."); resetUIState(submitBtn, loadingSpinner); return;  
                     }
                     if (selectedTimeSlots.length === 0) { showMessageBox("Please select at least one time slot."); resetUIState(submitBtn, loadingSpinner); return; }
                     if (!selectedPackage || !selectedCarType) { showMessageBox("Please select both a package and a car type."); resetUIState(submitBtn, loadingSpinner); return; }
@@ -1596,12 +1629,29 @@
                 bookingSection.classList.add('hidden');
                 adminDashboard.classList.remove('hidden');
                 showAdminView('bookings');
+                // Hide mobile menu if open
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
             }
-
+            
+            // Desktop Admin Button
             adminButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 loginModal.classList.remove('hidden');
             });
+
+            // Mobile Admin Button
+            if (adminButtonMobile) {
+                adminButtonMobile.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Close the mobile menu first
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                    // Show login modal
+                    loginModal.classList.remove('hidden');
+                });
+            }
+
 
             loginButton.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1625,6 +1675,38 @@
                 if (e.target === loginModal) {
                     loginModal.classList.add('hidden');
                     loginError.classList.add('hidden');
+                }
+            });
+
+            // Mobile Menu Toggle Logic
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+
+            closeMenu.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+            
+            if (mobileDropdownToggle && mobileDropdownContent) {
+                mobileDropdownToggle.addEventListener('click', function(event) {
+                    event.preventDefault(); 
+                    mobileDropdownContent.classList.toggle('hidden');
+                    if(dropdownArrow) {
+                        dropdownArrow.classList.toggle('rotate-90');
+                    }
+                });
+            }
+
+            // Close mobile menu after clicking any link inside it, except the admin button
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                if (link.id !== 'adminButtonMobile') {
+                     link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                    });
                 }
             });
         });
