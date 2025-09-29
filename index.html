@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Care Services | Doorstep Car Cleaning and Detailing</title>
-    <!-- SEO सुधार: यह एक महत्वपूर्ण टैग है जो सर्च इंजन को आपकी वेबसाइट के बारे में बताता है। -->
+    <!-- SEO सुधार: यह एक महत्वपूर्ण टैग है जो सर्च इंजन को आपकी वेबसाइट के बारे -में बताता है। -->
     <meta name="description" content="Car Care TCH offers professional doorstep car cleaning, deep cleaning, rubbing, and polishing services. Get your car cleaned by experts right at your home.">
     <!-- SEO सुधार: कीवर्ड्स जोड़ना। -->
-    <meta name="keywords" content="car cleaning service, doorstep car wash, car detailing, car polishing, car rubbing, home car wash, Car Care TCH, Kota, Rajasthan">
+    <meta name="keywords" content="car cleaning service, doorstep car wash, car detailing, car polishing, car rubbing, home car wash, Car Care TCH, Jaipur, Rajasthan">
     <!-- Canonical Tag: यह डुप्लिकेट कंटेंट की समस्या को हल करता है। -->
     <link rel="canonical" href="https://asinvijay-123-github-io-car_service">
 
@@ -838,9 +838,14 @@
             margin-right: auto;
         }
 
+        /* NEW STYLE: Move phone contact to corner on desktop/tablet */
         @media (min-width: 768px) {
             .phone-contact {
                 justify-content: flex-start;
+                margin-left: 0;
+                margin-right: auto;
+                /* Pushed it down further for separation from paragraph */
+                margin-top: 2rem;
             }
         }
 
@@ -1163,14 +1168,17 @@
         <div class="extended-footer-column">
             <h3>COMPANY</h3>
             <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
-            <div class="phone-contact">
+            
+            <!-- UPDATED ADDRESS -->
+            <p class="mt-4">Jaipur International Airport Terminal, 2 road, Siddharth Nagar, Govind Vihar, Chainpura, Malviya Nagar, Jaipur, Rajasthan 302017</p>
+            <p>Pincode : 302017</p>
+            
+            <!-- UPDATED PHONE NUMBER -->
+            <a href="tel:+919529090074" class="phone-contact">
                 <!-- width/height and onerror added for CLS prevention -->
                 <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/1A1A1A/FFFFFF?text=📞';">
-                <span>Talk To Our Support 9509208599</span>
-            </div>
-            <p class="mt-4">3 K Shivpure Kota (Raj.),</p>
-            <p>near Saras Dairy Shivpura</p>
-            <p>Pincode : 324010</p>
+                <span>Talk To Our Support +919529090074</span>
+            </a>
         </div>
 
         <div class="extended-footer-column">
@@ -1205,7 +1213,8 @@
         </div>
     </footer>
 
-    <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
+    <!-- UPDATED WHATSAPP LINK WITH NEW PHONE NUMBER -->
+    <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
         <!-- width/height and onerror added for CLS prevention -->
         <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/25D366/FFFFFF?text=W';">
         <span>Contact Us</span>
