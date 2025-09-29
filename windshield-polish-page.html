@@ -550,6 +550,40 @@
         .copyright-footer a:hover {
             color: white;
         }
+        
+        /* FIX: Ensure floating button stays fixed and does not overlap footer boundaries */
+        .contact-us-float {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: #007F5F; /* Deep Emerald Green */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 50; /* Increased z-index to ensure it is always on top */
+            width: auto;
+        }
+
+        @media (max-width: 767px) {
+            .contact-us-float {
+                bottom: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        .contact-us-float:hover {
+            background-color: #B8F2E6;
+        }
     </style>
 </head>
 <body>
@@ -710,7 +744,8 @@
                 <p>Windshield polishing to remove minor scratches.</p>
                 <p>Application of rain repellent coating.</p>
                 <p>Wiper blade inspection and side mirror cleaning.</p>
-                <!-- UPDATED PHONE NUMBER AND LINK -->
+                
+                <!-- Phone contact block remains static content in the footer -->
                 <a href="tel:+919529090074" class="phone-contact">
                     <img src="download.webp" alt="Call Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/333/FFFFFF?text=📞';">
                     <span>Talk To Our Support<br>+919529090074</span>
@@ -749,14 +784,15 @@
                 <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
             </div>
         </footer>
-
-        <!-- Contact Us Floating Button (replicated with new number and ready message) -->
-        <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
-            <!-- Replaced SVG with WhatsApp logo image and fallback -->
-            <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/007F5F/FFFFFF?text=WA';">
-            Contact Us
-        </a>
     </main>
+    
+    <!-- Contact Us Floating Button (This is the element you want to be floating) -->
+    <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
+        <!-- Replaced SVG with WhatsApp logo image and fallback -->
+        <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/007F5F/FFFFFF?text=WA';">
+        Contact Us
+    </a>
+
 
     <script>
         // Set the hero background image immediately on load for fastest rendering
