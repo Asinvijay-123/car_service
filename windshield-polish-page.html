@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windshield Polish - Car Care Services</title>
+    
+    <!-- PERFORMANCE: Preload Montserrat for fast title rendering -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VlRkpnz4U.woff2" as="font" type="font/woff2" crossorigin>
+
     <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for clean typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <!-- Google Fonts - Montserrat for stylish headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         /* Base styles for the body */
         body {
@@ -34,11 +40,21 @@
             color: white;
             justify-content: space-between;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 5rem;
+        }
+
+        /* Mobile Navbar background override for readability */
+        @media (max-width: 767px) {
+            .navbar {
+                background-color: #1E2A38; /* Dark solid background for mobile navbar */
+                border-bottom: none;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
         }
 
         .navbar-logo {
-            height: auto;
-            max-height: 24;
+            max-height: 4rem;
         }
 
         .navbar-main-links {
@@ -74,7 +90,7 @@
         }
 
         .navbar-booking-btn {
-            background-color: #007F5F;
+            background-color: #007F5F; /* Deep Emerald Green (Consistent) */
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 0.375rem;
@@ -85,7 +101,8 @@
         }
 
         .navbar-booking-btn:hover {
-            background-color: #B8F2E6;
+            background-color: #00B4D8; /* Aqua Blue on hover (Consistent) */
+            color: white;
         }
 
         .dropdown {
@@ -134,17 +151,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-left: auto;
-        }
-        @media (max-width: 767px) {
-            .navbar-booking-btn {
-                display: none;
-            }
-            .navbar-main-links {
-                display: none;
-            }
+            /* Ensured that on desktop, only logo and navbar-main-links are displayed */
         }
 
+        @media (max-width: 767px) {
+            .navbar-booking-btn, .navbar-main-links {
+                display: none;
+            }
+            .navbar-logo {
+                margin-right: auto; /* Push menu toggle to the right */
+            }
+        }
+        
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -185,7 +203,7 @@
             background-image: url('pages_back.png');
             background-size: cover;
             background-position: center;
-            height: 60vh;
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -194,6 +212,12 @@
             text-align: center;
             position: relative;
             z-index: 1;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-section {
+                min-height: 40vh; 
+            }
         }
 
         .hero-overlay {
@@ -212,11 +236,15 @@
         }
 
         .hero-content h1 {
+            /* FIXED: Set to match Deep Cleaning/Quick Shine size and font */
             font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 8vw, 5rem); 
             font-weight: bold;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .breadcrumb {
@@ -231,6 +259,11 @@
         .breadcrumb a {
             color: white;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #00B4D8;
         }
 
         .breadcrumb span {
@@ -261,26 +294,21 @@
 
         .services-grid-section h2 {
             color: #1F1F1F;
+            font-family: 'Montserrat', sans-serif;
             font-weight: bold;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 2rem;
         }
 
         .services-grid-container {
             display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-            row-gap: 2.5rem;
-            column-gap: 2.5rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        @media (min-width: 480px) {
-            .services-grid-container {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 1.5rem;
-            }
-        }
-
-        @media (min-width: 768px) {
+        @media (min-width: 640px) {
             .services-grid-container {
                 grid-template-columns: repeat(4, minmax(0, 1fr));
             }
@@ -296,10 +324,8 @@
             align-items: center;
             text-align: center;
             transition: transform 0.2s ease;
-            width: 220px;
-            height: 220px;
+            /* Removed fixed width/height for better responsiveness */
             justify-content: center;
-            margin: 0 auto; /* Center the cards on mobile */
         }
 
         .service-card:hover {
@@ -307,8 +333,8 @@
         }
 
         .service-card img {
-            height: 100px;
-            width: 100px;
+            height: 80px; /* Consistent height */
+            width: 80px; /* Consistent width */
             margin-bottom: 0.5rem;
         }
 
@@ -327,16 +353,18 @@
 
         /* Pricing Section */
         .pricing-section {
-            background-color: #38B2AC;
+            background-color: #1E2A38; /* Consistent Dark Blue-Gray */
             padding: 4rem 1rem;
             color: white;
             text-align: center;
         }
 
         .pricing-section h2 {
-            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
             font-weight: bold;
             margin-bottom: 2rem;
+            color: #FFFFFF;
         }
 
         .pricing-cards-container {
@@ -347,7 +375,7 @@
             margin: 0 auto;
         }
 
-        @media (min-width: 640px) {
+        @media (min-width: 480px) {
             .pricing-cards-container {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -360,7 +388,7 @@
         }
 
         .pricing-card {
-            background-color: white;
+            background-color: #F5F7FA; /* Consistent Soft Pearl White */
             border-radius: 0.75rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
@@ -368,60 +396,38 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            color: #1F1F1F;
             border: 3px solid transparent;
             transition: border-color 0.3s ease;
         }
 
         .pricing-card:hover {
-            border-color: #2C8C88;
+            border-color: #007F5F; /* Consistent Deep Emerald Green */
         }
 
         .pricing-card img {
-            height: 100px;
-            width: auto;
+            height: 80px; /* Consistent height */
+            width: 120px; /* Consistent width */
             margin-bottom: 1rem;
         }
 
         .pricing-card h3 {
             font-size: 1.25rem;
             font-weight: bold;
-            color: #333;
+            color: #1F1F1F;
             margin-bottom: 0.5rem;
         }
 
         .pricing-card .price {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #2C8C88;
-        }
-
-        /* Contact Us Floating Button */
-        .contact-us-float {
-            position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            z-index: 20;
-        }
-
-        .contact-us-float:hover {
-            background-color: #45a049;
+            color: #00B4D8; /* Consistent Sky Blue */
         }
 
         /* Footer Section */
         .extended-footer-section {
-            background-color: #1a1a1a;
-            color: white;
+            background-color: #16222A; /* Consistent Deep Charcoal Navy */
+            color: #D3DDE2;
             padding: 4rem 1.5rem;
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -429,6 +435,7 @@
             width: 100%;
             box-sizing: border-box;
             text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         @media (min-width: 768px) {
@@ -436,20 +443,40 @@
                 grid-template-columns: repeat(3, 1fr);
                 text-align: left;
             }
+             /* Separating lines between footer columns for desktop */
+            .extended-footer-column:nth-child(1) {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: 3rem;
+            }
+            .extended-footer-column:nth-child(2) {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: 3rem;
+                padding-left: 3rem;
+            }
+            .extended-footer-column:nth-child(3) {
+                padding-left: 3rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            /* Remove column padding for mobile */
+            .extended-footer-column {
+                padding: 0;
+            }
         }
 
         .extended-footer-column h3 {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
-            color: #38B2AC;
+            color: #007F5F; /* Consistent Deep Emerald Green */
         }
 
         .extended-footer-column p {
             font-size: 0.9rem;
             line-height: 1.5;
             margin-bottom: 1rem;
-            color: #ccc;
+            color: #D3DDE2;
         }
 
         .extended-footer-column ul {
@@ -463,7 +490,7 @@
         }
 
         .extended-footer-column ul li a {
-            color: #ccc;
+            color: #D3DDE2;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -494,16 +521,16 @@
             }
         }
 
-        .phone-contact svg {
+        .phone-contact img { /* Changed from svg to img for consistency with HTML */
             width: 24px;
             height: 24px;
-            fill: #38B2AC;
         }
 
         .phone-contact span {
             font-size: 1.125rem;
             font-weight: bold;
             color: white;
+            line-height: 1.2;
         }
 
         .subscribe-form {
@@ -523,7 +550,7 @@
         }
 
         .subscribe-form button {
-            background-color: #38B2AC;
+            background-color: #007F5F; /* Consistent Deep Emerald Green */
             color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 0.375rem;
@@ -534,7 +561,7 @@
         }
 
         .subscribe-form button:hover {
-            background-color: #2C8C88;
+            background-color: #00B4D8; /* Consistent Aqua Blue on hover */
         }
 
         .social-icons {
@@ -562,8 +589,8 @@
         }
 
         .copyright-footer {
-            background-color: #111;
-            color: #aaa;
+            background-color: #16222A; /* Consistent Deep Charcoal Navy */
+            color: #C9D6DF;
             padding: 1rem 1.5rem;
             text-align: center;
             font-size: 0.8rem;
@@ -581,7 +608,7 @@
         }
 
         .copyright-footer a {
-            color: #aaa;
+            color: #C9D6DF;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -589,13 +616,54 @@
         .copyright-footer a:hover {
             color: white;
         }
+
+        /* Floating Contact Button */
+        .contact-us-float {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: #007F5F; /* Consistent Deep Emerald Green */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 20;
+            width: auto;
+        }
+
+        @media (max-width: 767px) {
+            .contact-us-float {
+                bottom: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                width: auto;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        .contact-us-float:hover {
+            background-color: #00B4D8;
+        }
+
+        .contact-us-float img {
+            width: 24px;
+            height: 24px;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24">
+            <!-- ADDED: width/height and onerror -->
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24" width="100" height="80" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=Logo';">
         </div>
 
         <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
@@ -620,7 +688,7 @@
             </div>
             <a href="booking-form.html" class="nav-button">CONTACT US</a>
         </div>
-        <a href="booking-form.html" class="navbar-booking-btn">BOOKING</a>
+        <a href="booking-form.html" class="navbar-booking-btn hidden md:block">BOOKING</a> <!-- ADDED hidden md:block for consistency -->
 
         <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
@@ -653,6 +721,7 @@
         <section class="hero-section">
             <div class="hero-overlay"></div>
             <div class="hero-content">
+                <!-- FIXED: Title font size and family now match other pages -->
                 <h1 class="text-white font-bold">WINDSHIELD POLISH</h1>
                 <div class="breadcrumb">
                     <a href="index.html">Home</a>
@@ -664,29 +733,33 @@
         </section>
 
         <section class="services-grid-section">
-            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">Services</h2>
+            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">SERVICES INCLUDED</h2> <!-- ADDED 'INCLUDED' for consistency -->
             <div class="services-grid-container">
                 <!-- Service Card 1: Shampoo Wash -->
                 <div class="service-card">
-                    <img src="exterior.png" alt="Shampoo Wash Icon">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="exterior.png" alt="Shampoo Wash Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Shamp';">
                     <h3>Shampoo Wash</h3>
                 </div>
 
                 <!-- Service Card 2: Sandpaper Rubbing -->
                 <div class="service-card">
-                    <img src="sandpaper.png" alt="Sandpaper Rubbing Icon">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="sandpaper.png" alt="Sandpaper Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Sandpaper';">
                     <h3>Sandpaper Rubbing</h3>
                 </div>
 
                 <!-- Service Card 3: Windshield Rubbing -->
                 <div class="service-card">
-                    <img src="windshield.jpg" alt="Windshield Rubbing Icon">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="windshield.jpg" alt="Windshield Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Windshield';">
                     <h3>Windshield Rubbing</h3>
                 </div>
 
                 <!-- Service Card 4: Headlight Rubbing -->
                 <div class="service-card">
-                    <img src="headlight-rubbing.png" alt="Headlight Rubbing Icon">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="headlight-rubbing.png" alt="Headlight Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Headlight';">
                     <h3>Headlight Rubbing</h3>
                 </div>
             </div>
@@ -694,39 +767,44 @@
 
         <!-- Pricing Section (adjusted prices for Windshield Polish) -->
         <section class="pricing-section">
-            <h2>PRICING</h2>
+            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">PRICING BY CAR TYPE</h2> <!-- ADDED 'BY CAR TYPE' for consistency -->
             <div class="pricing-cards-container">
                 <!-- Pricing Card 1: Hatchback -->
                 <div class="pricing-card">
-                    <img src="hatchback.jpg" alt="Hatchback Car">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="hatchback.jpg" alt="Hatchback Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=Hatchback';">
                     <h3>HATCHBACK</h3>
                     <span class="price">₹799</span>
                 </div>
 
                 <!-- Pricing Card 2: Sedan -->
                 <div class="pricing-card">
-                    <img src="sedan.jpg" alt="Sedan Car">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="sedan.jpg" alt="Sedan Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=Sedan';">
                     <h3>SEDAN</h3>
                     <span class="price">₹899</span>
                 </div>
 
                 <!-- Pricing Card 3: Compact SUV -->
                 <div class="pricing-card">
-                    <img src="compact-suv.jpg" alt="Compact SUV Car">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="compact-suv.jpg" alt="Compact SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=C.SUV';">
                     <h3>COMPACT SUV</h3>
                     <span class="price">₹999</span>
                 </div>
 
                 <!-- Pricing Card 4: 5 Seater SUV -->
                 <div class="pricing-card">
-                    <img src="suv-5-seater.jpg" alt="5 Seater SUV Car">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="suv-5-seater.jpg" alt="5 Seater SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=5+S.SUV';">
                     <h3>5 SEATER SUV</h3>
                     <span class="price">₹1199</span>
                 </div>
 
                 <!-- Pricing Card 5: 7 Seater SUV -->
                 <div class="pricing-card">
-                    <img src="suv-7-seater.jpg" alt="7 Seater SUV Car">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="suv-7-seater.jpg" alt="7 Seater SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=7+S.SUV';">
                     <h3>7 SEATER SUV</h3>
                     <span class="price">₹1399</span>
                 </div>
@@ -744,7 +822,8 @@
                 <p>Application of rain repellent coating.</p>
                 <p>Wiper blade inspection and side mirror cleaning.</p>
                 <a href="tel:+919509208599" class="phone-contact">
-                    <img src="download.webp" alt="Call Icon" class="w-6 h-6">
+                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                    <img src="download.webp" alt="Call Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/333/FFFFFF?text=📞';">
                     <span>Talk To Our Support<br>9509208599</span>
                 </a>
             </div>
@@ -766,7 +845,18 @@
                     <input type="email" placeholder="Email Address">
                     <button type="submit">SEND</button>
                 </div>
-               
+                 <!-- Added Social Icons to complete the footer column -->
+                <div class="social-icons">
+                    <a href="#" aria-label="Follow us on Facebook">
+                        <img src="https://placehold.co/30x30/3b5998/FFFFFF?text=f" alt="Facebook" loading="lazy" width="30" height="30" decoding="async">
+                    </a>
+                    <a href="#" aria-label="Follow us on Instagram">
+                        <img src="https://placehold.co/30x30/C13584/FFFFFF?text=I" alt="Instagram" loading="lazy" width="30" height="30" decoding="async">
+                    </a>
+                    <a href="#" aria-label="Follow us on Twitter">
+                        <img src="https://placehold.co/30x30/1DA1F2/FFFFFF?text=T" alt="Twitter" loading="lazy" width="30" height="30" decoding="async">
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -780,13 +870,13 @@
 
         <!-- Contact Us Floating Button -->
         <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
-            <!-- Replaced SVG with WhatsApp logo image -->
-            <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6">
+            <!-- ADDED: lazy loading, width, height, and onerror -->
+            <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/007F5F/FFFFFF?text=WA';">
             Contact Us
         </a>
     </main>
 
-    <script>
+    <script defer>
         // JavaScript for mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
@@ -809,11 +899,15 @@
             });
             
             // Toggle mobile dropdown visibility and rotate arrow
-            mobileDropdownToggle.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
-                mobileDropdownContent.classList.toggle('hidden');
-                dropdownArrow.classList.toggle('rotate-90');
-            });
+            if (mobileDropdownToggle && mobileDropdownContent) {
+                 mobileDropdownToggle.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    mobileDropdownContent.classList.toggle('hidden');
+                    if(dropdownArrow) {
+                        dropdownArrow.classList.toggle('rotate-90');
+                    }
+                });
+            }
         });
     </script>
 </body>
