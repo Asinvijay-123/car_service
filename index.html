@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Care Services | Doorstep Car Cleaning and Detailing</title>
-    
-    <!-- SEO & Performance Tags -->
+    <!-- SEO सुधार: यह एक महत्वपूर्ण टैग है जो सर्च इंजन को आपकी वेबसाइट के बारे में बताता है। -->
     <meta name="description" content="Car Care TCH offers professional doorstep car cleaning, deep cleaning, rubbing, and polishing services. Get your car cleaned by experts right at your home.">
+    <!-- SEO सुधार: कीवर्ड्स जोड़ना। -->
     <meta name="keywords" content="car cleaning service, doorstep car wash, car detailing, car polishing, car rubbing, home car wash, Car Care TCH, Kota, Rajasthan">
+    <!-- Canonical Tag: यह डुप्लिकेट कंटेंट की समस्या को हल करता है। -->
     <link rel="canonical" href="https://asinvijay-123-github-io-car_service">
 
-    <!-- Tailwind CSS (Render Blocking, but required for styles) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Web Fonts Preload (High Priority for LCP/Title Text) -->
+    <!-- PERFORMANCE: High-Priority Font Preload for Montserrat (Headline Font) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload the critical font (Montserrat for the main H1) -->
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VlRkpnz4U.woff2" as="font" type="font/woff2" crossorigin>
     
+    <!-- CSS Defer: सभी CSS को एक ही <style> ब्लॉक में रखा गया है। इसे minify करने के बाद, यह तेज़ी से लोड होगा। -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Web Fonts Preload: फॉन्ट को बाकी कंटेंट से पहले लोड करने के लिए preload एट्रीब्यूट जोड़ा गया है, इससे LCP (Largest Contentful Paint) में सुधार होता है। -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    
     <style>
-        /* Critical CSS: This CSS is loaded instantly for immediate visual rendering. */
+        /* Critical CSS: यह CSS तुरंत लोड होता है ताकि पेज का पहला हिस्सा जल्दी दिखे। */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
@@ -141,6 +139,7 @@
             color: #FFFFFF;
         }
 
+        /* Mobile specific styles for the video background when viewport is vertical */
         @media (max-aspect-ratio: 9/16) {
             .content {
                 display: none;
@@ -150,44 +149,42 @@
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                height: auto;
-                /* Note: Using a placeholder image for mobile background. Replace with a small, optimized image URL or Base64 if possible. */
-                background-image: url('https://placehold.co/1080x1920/F6F6F6/2B2B2B?text=Car+Care+Mobile+Background');
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
+                height: 100vh; /* Full viewport height */
+                background-color: #000; /* Black background while content loads */
                 padding-top: 0;
                 box-sizing: border-box;
+                position: relative;
             }
 
             .hero-video-box.mobile-video-position-override {
                 width: 100%;
-                /* Original background image is commented out to trust the video poster */
-                /* background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg'); */
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
                 box-shadow: none;
                 border-radius: 0;
-                position: relative;
-                padding-top: 177.77%; /* 9:16 aspect ratio (16/9 * 100) */
-                height: 0;
                 overflow: hidden;
             }
 
             .hero-video-box.mobile-video-position-override video {
                 position: absolute;
-                top: 0;
-                left: 0;
+                top: 50%;
+                left: 50%;
                 width: 100%;
                 height: 100%;
+                transform: translate(-50%, -50%);
                 object-fit: cover;
                 border-radius: 0;
+            }
+            
+            .mobile-video-position-override .video-overlay {
+                z-index: 1;
             }
 
             .hero-text-container.mobile-text-position-override {
                 position: absolute;
-                top: 25%;
+                top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 width: 100%;
@@ -197,6 +194,7 @@
                 text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
                 box-sizing: border-box;
                 z-index: 3;
+                height: auto;
             }
 
             .hero-text-container.mobile-text-position-override h4,
@@ -206,7 +204,8 @@
             }
 
             .packages-section.mobile-shift {
-                margin-top: -25rem;
+                /* Removed unnecessary negative margin if mobile hero takes up full viewport */
+                margin-top: 0;
             }
 
             .hero-text-container.desktop-text-only {
@@ -245,18 +244,19 @@
             padding: 0rem 1rem;
             z-index: 10;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 5rem;
         }
 
         @media (max-aspect-ratio: 9/16) {
             .navbar {
-                background-color: #FFFFFF;
+                background-color: #1A1A1A; /* Dark background for mobile navigation */
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
             }
             .navbar .navbar-logo {
                 filter: none;
             }
             .navbar .menu-toggle svg {
-                color: #222222;
+                color: #FFFFFF; /* White menu icon on dark background */
             }
         }
 
@@ -339,7 +339,7 @@
 
         .dropdown-content a:hover {
             background-color: #F5F5F5;
-            color: #6FCF97; /* Changed hover color to green theme */
+            color: #A0D9B4;
         }
 
         .dropdown:hover .dropdown-content {
@@ -455,7 +455,7 @@
 
         .book-now-header-btn:hover {
             background-color: #57AE73;
-            color: white; /* Added hover state to be consistent with main theme */
+            color: white;
         }
 
         .packages-header h2 {
@@ -506,12 +506,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .package-card:hover {
-             transform: translateY(-5px);
-             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         .package-card .icon {
@@ -562,13 +556,12 @@
             border-radius: 0.375rem;
             font-weight: bold;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            transition: background-color 0.3s ease;
             font-size: clamp(0.7rem, 2vw, 0.875rem);
         }
 
         .package-card-actions .book-now-btn:hover {
             background-color: #57AE73;
-            transform: scale(1.05);
         }
 
         .package-card-actions .more-link {
@@ -676,8 +669,6 @@
             background-color: #A0D9B4;
             height: 100%;
             border-radius: 4px;
-            /* Added transition for a smooth visual effect */
-            transition: width 1s ease-out;
         }
 
         .testimonials-section {
@@ -790,6 +781,34 @@
             line-height: 1.5;
             margin-bottom: clamp(0.5rem, 2vw, 1rem);
         }
+        
+        .insta-follow-btn {
+            background-color: #E1306C; /* Instagram Pink/Red */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 250px; /* Constrain button width */
+            margin-top: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        @media (min-width: 768px) {
+             .insta-follow-btn {
+                 margin-left: 0;
+             }
+        }
+
+        .insta-follow-btn:hover {
+            background-color: #C12057;
+            transform: translateY(-2px);
+        }
 
         .extended-footer-column ul {
             list-style: none;
@@ -799,13 +818,6 @@
 
         .extended-footer-column ul li {
             margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
-        }
-
-        .extended-footer-column ul li a {
-            color: #CCCCCC; /* Added explicit color */
-            text-decoration: none; /* Added explicit decoration */
-            font-size: inherit; /* Inherit size from p for consistency */
-            transition: color 0.3s ease;
         }
 
         .extended-footer-column ul li a:hover {
@@ -829,7 +841,6 @@
         @media (min-width: 768px) {
             .phone-contact {
                 justify-content: flex-start;
-                margin-left: 0;
             }
         }
 
@@ -842,66 +853,6 @@
             font-size: clamp(0.8rem, 2.5vw, 1.125rem);
             font-weight: bold;
             color: #FFFFFF;
-        }
-
-        .subscribe-form {
-            display: flex;
-            flex-direction: column;
-            gap: clamp(0.5rem, 2vw, 0.75rem);
-            margin-top: clamp(0.8rem, 3vw, 1rem);
-        }
-
-        .subscribe-form input[type="email"] {
-            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.8rem, 3vw, 1rem);
-            border-radius: 0.375rem;
-            border: 1px solid #555;
-            background-color: #333333;
-            color: white;
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
-        }
-
-        .subscribe-form input[type="email"]::placeholder {
-            color: #999;
-        }
-
-        .subscribe-form button {
-            background-color: #6FCF97;
-            color: #FFFFFF;
-            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5rem);
-            border-radius: 0.375rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
-        }
-
-        .subscribe-form button:hover {
-            background-color: #57AE73;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: clamp(0.8rem, 3vw, 1rem);
-            margin-top: clamp(1rem, 4vw, 1.5rem);
-        }
-
-        @media (min-width: 768px) {
-            .social-icons {
-                justify-content: flex-start;
-            }
-        }
-
-        .social-icons a img {
-            width: clamp(25px, 5vw, 30px);
-            height: clamp(25px, 5vw, 30px);
-            border-radius: 50%;
-            transition: transform 0.2s ease;
-        }
-
-        .social-icons a img:hover {
-            transform: scale(1.1);
         }
 
         .copyright-footer {
@@ -979,16 +930,16 @@
     </style>
 </head>
 <body>
-    <!-- 
-        PERFORMANCE IMPROVEMENT: 
-        1. The video poster is a minimal Base64 URI for instant hero background display.
-        2. The video source files use 'data-src' instead of 'src' to prevent immediate, render-blocking download.
-           The JavaScript below handles swapping to 'src' after the page loads.
+    <!--
+    PERFORMANCE OPTIMIZATION: All videos are loaded using data-src and loaded only on DOMContentLoaded,
+    preventing them from blocking the critical render path.
     -->
+    
     <div class="content md:flex">
         <div id="desktop-video-container" class="hero-video">
-            <video autoplay muted loop playsinline preload="metadata" id="video-player-desktop" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                <!-- Changed src to data-src -->
+            <!-- Used base64 encoded black image for instant poster loading (LCP improvement) -->
+            <video autoplay muted loop playsinline preload="metadata" id="video-player-desktop" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4">
+                <!-- Source now uses data-src for lazy loading -->
                 <source data-src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4" media="(min-width: 768px)">
             </video>
             <div class="video-overlay"></div>
@@ -1004,12 +955,11 @@
     
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Used user's image name with proper attributes for CLS prevention -->
+            <!-- width/height and onerror added for CLS prevention -->
             <img src="car logo.png" alt="Car Care Logo" class="navbar-logo" loading="lazy" width="100" height="80" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=LOGO';">
         </div>
 
         <button class="menu-toggle md:hidden" aria-label="Toggle mobile menu">
-            <!-- Icon for menu toggle -->
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
 
@@ -1039,7 +989,6 @@
                     <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
                         PACKAGES
                         <span class="dropdown-arrow transform transition-transform duration-300">
-                            <!-- Arrow icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                             </svg>
@@ -1066,17 +1015,17 @@
                     <h1 class="animated-text delay-1">CAR CARE TCH</h1>
                 </div>
             </div>
-            <!-- PERFORMANCE IMPROVEMENT: Used Base64 poster for mobile video as well -->
-            <video autoplay muted loop playsinline preload="metadata" id="video-player" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-                <!-- Changed src to data-src -->
+            <!-- Video uses data-src for lazy loading and fast initial page render -->
+            <video autoplay muted loop playsinline preload="metadata" id="video-player" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="save-vmake.mp4">
                 <source data-src="save-vmake.mp4" type="video/mp4" media="(max-width: 767px)">
             </video>
+            <div class="video-overlay"></div> <!-- Added overlay for mobile text visibility -->
         </div>
     </div>
     
     <section class="packages-section">
         <div class="packages-header">
-            <!-- Used user's image name with proper attributes for CLS prevention -->
+            <!-- width/height and onerror added for CLS prevention -->
             <img src="https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" loading="lazy" width="200" height="100" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN';">
             <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
                 <div class="w-full text-left">
@@ -1089,7 +1038,7 @@
 
         <div class="package-card-container">
             <div class="package-card">
-                <!-- Image tags already have performance attributes -->
+                <!-- width/height and onerror added for CLS prevention -->
                 <img src="quick.jpg" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Quick+Shine';">
                 <h3>QUICK SHINE</h3>
                 <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
@@ -1098,11 +1047,12 @@
                 </div>
                 <div class="package-card-actions">
                     <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
-                    <a href="booking-form.html" class="more-link">More</a>
+                    <a href="quick-shine-page.html" class="more-link">More</a>
                 </div>
             </div>
 
             <div class="package-card">
+                <!-- width/height and onerror added for CLS prevention -->
                 <img src="deep.png" alt="Deep Cleaning Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Deep+Clean';">
                 <h3>DEEP CLEANING</h3>
                 <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
@@ -1111,11 +1061,12 @@
                 </div>
                 <div class="package-card-actions">
                     <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
-                    <a href="booking-form.html" class="more-link">More</a>
+                    <a href="deep-cleaning-page.html" class="more-link">More</a>
                 </div>
             </div>
 
             <div class="package-card">
+                <!-- width/height and onerror added for CLS prevention -->
                 <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rubbing';">
                 <h3>RUBBING & POLISHING</h3>
                 <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
@@ -1124,11 +1075,12 @@
                 </div>
                 <div class="package-card-actions">
                     <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
-                    <a href="booking-form.html" class="more-link">More</a>
+                    <a href="rubbing-polishing-page.html" class="more-link">More</a>
                 </div>
             </div>
 
             <div class="package-card">
+                <!-- width/height and onerror added for CLS prevention -->
                 <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Windshield';">
                 <h3>WINDSHIELD POLISH</h3>
                 <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
@@ -1137,7 +1089,7 @@
                 </div>
                 <div class="package-card-actions">
                     <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
-                    <a href="booking-form.html" class="more-link">More</a>
+                    <a href="windshield-polish-page.html" class="more-link">More</a>
                 </div>
             </div>
         </div>
@@ -1146,6 +1098,7 @@
     <section class="why-choose-us-section">
         <div class="why-choose-us-inner-container">
             <div class="why-choose-us-image-container">
+                <!-- width/height and onerror added for CLS prevention -->
                 <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" loading="lazy" width="600" height="400" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1A1A1A/DDDDDD?text=Why+Choose+Us';">
             </div>
             <div class="why-choose-us-content">
@@ -1192,19 +1145,16 @@
         </div>
         <div class="testimonial-cards-container">
             <div class="testimonial-card">
-                <div class="testimonial-author">
-                    <!-- Added testimonial-author wrapper for better styling -->
-                    <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rahul';">
-                    <span>Rahul Sherewala</span>
-                </div>
-                <p class="mt-4">"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
+                <!-- width/height and onerror added for CLS prevention -->
+                <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rahul';">
+                <h3 class="testimonial-author">Rahul Sherewala</h3>
+                <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
             </div>
             <div class="testimonial-card">
-                <div class="testimonial-author">
-                    <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Geeta';">
-                    <span>Geeta Kumari</span>
-                </div>
-                <p class="mt-4">"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
+                <!-- width/height and onerror added for CLS prevention -->
+                <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Geeta';">
+                <h3 class="testimonial-author">Geeta Kumari</h3>
+                <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
             </div>
         </div>
     </section>
@@ -1214,6 +1164,7 @@
             <h3>COMPANY</h3>
             <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
             <div class="phone-contact">
+                <!-- width/height and onerror added for CLS prevention -->
                 <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/1A1A1A/FFFFFF?text=📞';">
                 <span>Talk To Our Support 9509208599</span>
             </div>
@@ -1232,25 +1183,18 @@
             </ul>
         </div>
 
+        <!-- REPLACED: SUBSCRIBE NOW column with INSTA FOLLOW US -->
         <div class="extended-footer-column">
-            <h3>SUBSCRIBE NOW </h3>
-            <p>Subscribe to our newsletter and be the first to know about exclusive deals, new services, and car care tips.</p>
-            <div class="subscribe-form">
-                <input type="email" placeholder="Email Address">
-                <button type="submit">SEND</button>
-            </div>
-            <!-- Added Social Icons to the third footer column to complete the section -->
-            <div class="social-icons">
-                 <a href="#" aria-label="Follow us on Facebook">
-                    <img src="https://placehold.co/30x30/3b5998/FFFFFF?text=f" alt="Facebook" loading="lazy" width="30" height="30" decoding="async">
-                </a>
-                <a href="#" aria-label="Follow us on Instagram">
-                    <img src="https://placehold.co/30x30/C13584/FFFFFF?text=I" alt="Instagram" loading="lazy" width="30" height="30" decoding="async">
-                </a>
-                <a href="#" aria-label="Follow us on Twitter">
-                    <img src="https://placehold.co/30x30/1DA1F2/FFFFFF?text=T" alt="Twitter" loading="lazy" width="30" height="30" decoding="async">
-                </a>
-            </div>
+            <h3>INSTA FOLLOW US</h3>
+            <p>Follow us on Instagram for daily car care tips, before & after shots, and exclusive deals!</p>
+            <!-- Instagram Link Button -->
+            <a href="https://www.instagram.com/carcare6115/" target="_blank" class="insta-follow-btn">
+                <!-- Instagram SVG Icon using inline SVG for speed and visual quality -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                FOLLOW CARCARE6115
+            </a>
         </div>
     </section>
 
@@ -1262,38 +1206,42 @@
     </footer>
 
     <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
+        <!-- width/height and onerror added for CLS prevention -->
         <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/25D366/FFFFFF?text=W';">
         <span>Contact Us</span>
     </a>
 
-    <!-- JS Defer: All JavaScript is at the end of the body and uses 'defer' for non-blocking loading. -->
+    <!-- JS Defer: सभी JavaScript को HTML के आखिर में रखा गया है। यह सुनिश्चित करता है कि पेज का कंटेंट पहले दिखे, और स्क्रिप्ट्स बाद में लोड हों। -->
     <script defer>
+        // Function to lazy load video sources
         function lazyLoadVideos() {
-            // Find all video source elements that are holding the true path in 'data-src'
-            const videoSources = document.querySelectorAll('video source[data-src]');
-            videoSources.forEach(source => {
-                source.src = source.dataset.src; // Move the path from data-src to src
-            });
-
-            // Tell the video player to load the sources now
-            const videos = document.querySelectorAll('video');
+            const videos = document.querySelectorAll('video[data-src]');
             videos.forEach(video => {
-                // Check if any source was set before attempting to load
-                if (video.querySelector('source[src]')) {
-                    video.load(); 
+                const source = video.querySelector('source[data-src]');
+                if (source) {
+                    source.src = source.getAttribute('data-src');
+                    video.load();
+                    // Remove data-src to prevent repeated loading attempts
+                    source.removeAttribute('data-src'); 
+                }
+                // Also load directly on the video tag if necessary (for unsupported browsers)
+                if (video.getAttribute('data-src')) {
+                    video.src = video.getAttribute('data-src');
+                    video.removeAttribute('data-src');
                 }
             });
-            console.log("Video sources set and videos triggered for load.");
         }
-
+        
         document.addEventListener('DOMContentLoaded', function() {
+            // Lazy load all videos on DOM content loaded (non-blocking)
+            lazyLoadVideos(); 
+
             const menuToggle = document.querySelector('.menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMenu = document.querySelector('.close-menu');
             const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
             const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
 
-            // Toggle Mobile Menu Visibility
             menuToggle.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
                 mobileMenu.classList.toggle('flex');
@@ -1304,14 +1252,10 @@
                 mobileMenu.classList.remove('flex');
             });
 
-            // Toggle Mobile Dropdown Menu Visibility
             mobileDropdownToggle.addEventListener('click', function(event) {
                 event.preventDefault();
                 mobileDropdownContent.classList.toggle('hidden');
             });
-
-            // Defer loading video sources until after the main content is ready
-            lazyLoadVideos();
         });
     </script>
 </body>
