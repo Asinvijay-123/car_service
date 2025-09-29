@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rubbing & Polishing - Car Care Services</title>
-    
-    <!-- PERFORMANCE: Preload Montserrat for fast title rendering -->
+    <!-- PERFORMANCE: High-Priority Font Preload for Montserrat (Headline Font) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VlRkpnz4U.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="pages_back.png" as="image">
 
     <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,28 +33,12 @@
             width: 100%;
             display: flex;
             align-items: center;
-            /* CORRECTED: Removed bad negative padding. Use standard padding. */
             padding: 0.5rem 2rem; 
             z-index: 10;
             background-color: transparent; 
             color: white;
             justify-content: space-between; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            min-height: 5rem;
-        }
-
-        /* Mobile Navbar background override for readability */
-        @media (max-width: 767px) {
-            .navbar {
-                background-color: #1E2A38; /* Dark solid background for mobile navbar */
-                border-bottom: none;
-                padding-top: 0.5rem;
-                padding-bottom: 0.5rem;
-            }
-        }
-
-        .navbar-logo {
-            max-height: 4rem; /* Responsive height for logo */
         }
 
         .navbar-main-links { 
@@ -89,7 +73,7 @@
             background-color: transparent;
         }
 
-        /* Styling for the green booking button */
+        /* Styling for the new green booking button */
         .navbar-booking-btn {
             background-color: #007F5F; /* Deep Emerald Green */
             color: white;
@@ -98,12 +82,11 @@
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            margin-left: auto; 
+            margin-left: auto; /* Pushes the button to the far right */
         }
 
         .navbar-booking-btn:hover {
-            background-color: #00B4D8; /* Aqua Blue on hover */
-            color: white;
+            background-color: #B8F2E6;
         }
 
 
@@ -193,13 +176,12 @@
 
         /* Hero Section Specific Styles */
         .hero-section {
-            background-image: url('pages_back.png');
             background-size: cover;
             background-position: center;
             min-height: 60vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Pushed to bottom */
+            justify-content: flex-end; 
             align-items: center;
             color: white;
             text-align: center;
@@ -212,14 +194,14 @@
         /* Responsive hero height and font sizes */
         @media (max-width: 767px) {
             .hero-section {
-                min-height: 40vh; /* Shorter height on mobile */
+                min-height: 40vh; 
                 padding-top: 5rem; 
                 padding-bottom: 3vh; 
             }
         }
         
         .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.5); /* Increased opacity to darken the image */
+            background-color: rgba(0, 0, 0, 0.5); 
             position: absolute;
             top: 0;
             left: 0;
@@ -230,12 +212,12 @@
 
         .hero-content {
             padding: 1rem;
-            padding-top: 7rem; /* Adjusted back for better vertical centering */
+            padding-top: 10rem; 
         }
 
         .hero-content h1 {
-            /* FIXED: Set to match Deep Cleaning/Quick Shine size and font */
             font-family: 'Montserrat', sans-serif;
+            /* FIXED: Applied consistent fluid font size */
             font-size: clamp(2.5rem, 8vw, 5rem); 
             font-weight: bold;
             margin-bottom: 1rem;
@@ -257,11 +239,6 @@
         .breadcrumb a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .breadcrumb a:hover {
-            color: #00B4D8;
         }
 
         .breadcrumb span {
@@ -291,14 +268,11 @@
         }
         .services-grid-section h2 {
             color: #1F1F1F; /* Charcoal Black heading */
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            margin-bottom: 2rem;
         }
 
         .services-grid-container {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 1.5rem;
             max-width: 1000px;
             margin: 0 auto;
@@ -312,6 +286,13 @@
         }
         
         @media (min-width: 768px) {
+            .services-grid-container {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            /* Adjusted to 4 columns on large screens for this page */
             .services-grid-container {
                 grid-template-columns: repeat(4, minmax(0, 1fr));
             }
@@ -334,15 +315,16 @@
         }
 
         .service-card img {
-            width: 80px; /* Explicit width for CLS */
-            height: 80px; /* Explicit height for CLS */
+            height: 80px;
+            width: 80px;
             margin-bottom: 1rem;
+            /* Added responsive image handling */
             max-width: 100%;
             height: auto;
         }
 
         .service-card h3 {
-            font-size: clamp(1rem, 3vw, 1.25rem);
+            font-size: 1.25rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
             color: #1F1F1F; /* Dark text color for contrast */
@@ -359,12 +341,11 @@
             padding: 4rem 1rem;
             color: white;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Separating line */
         }
 
         .pricing-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 2rem;
             color: #FFFFFF; /* White heading */
@@ -400,8 +381,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            color: #1F1F1F;
-            border: 3px solid transparent; 
+            border: 3px solid transparent; /* Default transparent border */
             transition: border-color 0.3s ease;
         }
 
@@ -410,9 +390,10 @@
         }
 
         .pricing-card img {
-            width: 120px; 
-            height: 80px; 
+            height: 120px; /* Increased height */
+            width: auto; /* Adjusted width to maintain aspect ratio */
             margin-bottom: 1rem;
+            /* Added responsive image handling */
             max-width: 100%;
             height: auto;
         }
@@ -420,7 +401,7 @@
         .pricing-card h3 {
             font-size: 1.25rem;
             font-weight: bold;
-            color: #1F1F1F; 
+            color: #1F1F1F; /* Dark text color */
             margin-bottom: 0.5rem;
         }
 
@@ -430,7 +411,43 @@
             color: #00B4D8; /* Sky Blue price for accent */
         }
 
-        /* Footer Section */
+        /* Contact Us Floating Button (replicated from main page) */
+        .contact-us-float {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: #007F5F; /* Deep Emerald Green */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            z-index: 20;
+            width: auto; /* Allow width to shrink to content */
+        }
+
+        /* Responsive positioning for the floating button */
+        @media (max-width: 767px) {
+            .contact-us-float {
+                bottom: 1rem; /* Adjust bottom for smaller screens */
+                left: 50%; /* Center horizontally */
+                transform: translateX(-50%); /* Adjust for centering */
+                width: auto; /* Allow width to adjust to content */
+                padding: 0.6rem 1.2rem; /* Slightly smaller padding */
+                font-size: 0.9rem; /* Smaller font size */
+            }
+        }
+
+        .contact-us-float:hover {
+            background-color: #B8F2E6;
+        }
+
+        /* Footer Section for Rubbing & Polishing Page */
         .quick-shine-footer-section {
             background-color: #16222A; /* Deep Charcoal Navy */
             color: white;
@@ -450,28 +467,24 @@
                 text-align: left;
                 gap: 3rem;
             }
-             /* Separating lines between footer columns for desktop */
+            /* Separating lines between footer columns */
             .quick-shine-footer-column:nth-child(1) {
                 border-right: 1px solid rgba(255, 255, 255, 0.1);
-                padding-right: 3rem;
             }
             .quick-shine-footer-column:nth-child(2) {
                 border-right: 1px solid rgba(255, 255, 255, 0.1);
-                padding-right: 3rem;
-                padding-left: 3rem;
             }
-            .quick-shine-footer-column:nth-child(3) {
-                padding-left: 3rem;
-            }
-        }
-        
-        @media (max-width: 767px) {
-            /* Remove column padding for mobile */
-            .quick-shine-footer-column {
-                padding: 0;
+             .quick-shine-footer-column:nth-child(3) {
+                border-right: none;
             }
         }
 
+        .quick-shine-footer-column {
+            background-color: transparent; 
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        
         .quick-shine-footer-column h3 {
             font-size: 1.5rem;
             font-weight: bold;
@@ -505,6 +518,38 @@
         .quick-shine-footer-column ul li a:hover {
             color: white;
         }
+        
+        /* New Insta Follow Button Style */
+        .insta-follow-btn {
+            background-color: #E1306C; /* Instagram Pink/Red */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 250px;
+            margin-top: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .insta-follow-btn {
+                margin-left: 0;
+                margin-right: auto;
+            }
+        }
+
+        .insta-follow-btn:hover {
+            background-color: #C12057;
+            transform: translateY(-2px);
+        }
 
         .quick-shine-phone-contact {
             display: flex;
@@ -537,62 +582,6 @@
             font-size: 1.125rem;
             font-weight: bold;
             color: white;
-            line-height: 1.2;
-        }
-
-        .quick-shine-subscribe-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .quick-shine-subscribe-form input[type="email"] {
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
-            border: 1px solid #555;
-            background-color: #333;
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        .quick-shine-subscribe-form button {
-            background-color: #007F5F; /* Deep Emerald Green */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .quick-shine-subscribe-form button:hover {
-            background-color: #00B4D8; /* Aqua Blue on hover */
-        }
-
-        .quick-shine-social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .quick-shine-social-icons {
-                justify-content: flex-start;
-            }
-        }
-
-        .quick-shine-social-icons a img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            transition: transform 0.2s ease;
-        }
-
-        .quick-shine-social-icons a img:hover {
-            transform: scale(1.1);
         }
 
         .copyright-footer {
@@ -623,54 +612,17 @@
         .copyright-footer a:hover {
             color: white;
         }
-
-        /* Floating Contact Button */
-        .contact-us-float {
-            position: fixed; 
-            bottom: 1.5rem;
-            left: 1.5rem;
-            background-color: #007F5F; 
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            z-index: 20;
-            width: auto; 
-        }
-
-        @media (max-width: 767px) {
-            .contact-us-float {
-                bottom: 1rem; 
-                left: 50%; 
-                transform: translateX(-50%); 
-                width: auto; 
-                padding: 0.6rem 1.2rem; 
-                font-size: 0.9rem; 
-            }
-        }
-
-        .contact-us-float:hover {
-            background-color: #00B4D8;
-        }
-
-        .contact-us-float img {
-            width: 24px;
-            height: 24px;
-        }
     </style>
 </head>
 <body>
+    <!-- PERFORMANCE: Background image preloading -->
+    <link rel="preload" href="pages_back.png" as="image">
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Added width/height for CLS prevention -->
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24" width="100" height="80" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=Logo';">
+            <!-- Updated logo with width/height and fallback for CLS -->
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24" loading="lazy" width="100" height="80" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/100x100/000000/FFFFFF?text=Logo';">
         </div>
 
         <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
@@ -679,7 +631,7 @@
         </button>
 
         <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
-        <div class="navbar-main-links hidden md:flex">
+        <div class="navbar-main-links hidden md:flex"> 
             <a href="index.html" class="nav-button">HOME</a>
             <div class="dropdown">
                 <a href="#" class="nav-button">
@@ -695,7 +647,7 @@
             </div>
             <a href="booking-form.html" class="nav-button">CONTACT US</a>
         </div>
-        <a href="booking-form.html" class="navbar-booking-btn hidden md:block">BOOKING</a>
+        <a href="booking-form.html" class="navbar-booking-btn hidden md:block">BOOKING</a> 
 
         <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
         <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
@@ -711,24 +663,25 @@
                             </svg>
                         </span>
                     </a>
-                    <div class="dropdown-content-mobile hidden bg-gray-800 py-2">
+                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
                         <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
                         <a href="deep-cleaning-page.html"class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Deep Cleaning</a>
                         <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
                         <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
                     </div>
                 </div>
-                <a href="booking-form.html" class="nav-button py-2 border-b border-gray-700">CONTACT US</a>
+                <!-- UPDATED WHATSAPP LINK WITH NEW NUMBER AND MESSAGE -->
+                <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="nav-button py-2 border-b border-gray-700">CONTACT US</a>
                 <a href="booking-form.html" class="nav-button py-2 border-b border-gray-700">BOOKING</a>
             </div>
         </div>
     </nav>
 
     <main>
-        <section class="hero-section">
+        <!-- Hero Section for Rubbing & Polishing - Background image handled via JS to load faster -->
+        <section class="hero-section" id="heroSection">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <!-- FIXED: Title font size and family now match other pages -->
                 <h1 class="text-white font-bold">RUBBING & POLISHING</h1>
                 <div class="breadcrumb">
                     <a href="index.html">Home</a>
@@ -740,61 +693,53 @@
         </section>
 
         <section class="services-grid-section">
-            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">SERVICES INCLUDED</h2>
+            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">SERVICES</h2>
             <div class="services-grid-container">
                 <!-- Service Card 1: Shampoo Wash -->
                 <div class="service-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="exterior.png" alt="Shampoo Wash Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Shamp';">
+                    <img src="exterior.png" alt="Shampoo Wash Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=WASH';">
                     <h3>Shampoo Wash</h3>
                 </div>
 
                 <!-- Service Card 2: Sandpaper Rubbing -->
                 <div class="service-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="sandpaper.png" alt="Sandpaper Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Sandpaper';">
+                    <img src="sandpaper.png" alt="Sandpaper Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=SAND';">
                     <h3>Sandpaper Rubbing</h3>
                 </div>
 
                 <!-- Service Card 3: Roof Buffing -->
                 <div class="service-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="roof.png" alt="Roof Buffing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Roof';">
+                    <img src="roof.png" alt="Roof Buffing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=ROOF';">
                     <h3>Roof Buffing</h3>
                 </div>
 
                 <!-- Service Card 4: Bonet Rubbing -->
                 <div class="service-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="bonnet.png" alt="Bonet Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Bonnet';">
+                    <img src="bonnet.png" alt="Bonet Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=BONET';">
                     <h3>Bonet Rubbing</h3>
                 </div>
 
                 <!-- Service Card 5: Doors Rubbing -->
                 <div class="service-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="doors.png" alt="Doors Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Doors';">
+                    <img src="doors.png" alt="Doors Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=DOOR';">
                     <h3>Doors Rubbing</h3>
                 </div>
 
                 <!-- Service Card 6: Headlight Rubbing -->
                 <div class="service-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="headlight-rubbing.png" alt="Headlight Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Headlight';">
+                    <img src="headlight-rubbing.png" alt="Headlight Rubbing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=HEAD';">
                     <h3>Headlight Rubbing</h3>
                 </div>
 
                 <!-- Service Card 7: Boot Buffing -->
                 <div class="service-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="boot.png" alt="Boot Buffing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Boot';">
+                    <img src="boot.png" alt="Boot Buffing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=BOOT';">
                     <h3>Boot Buffing</h3>
                 </div>
 
                 <!-- Service Card 8: Exterior Wax Polishing -->
                 <div class="service-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="exteriorWAX.png" alt="Exterior Wax Polishing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Wax';">
+                    <img src="exteriorWAX.png" alt="Exterior Wax Polishing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=WAX';">
                     <h3>Exterior Wax Polishing</h3>
                 </div>
             </div>
@@ -802,44 +747,39 @@
 
         <!-- Pricing Section (adjusted prices for Rubbing & Polishing) -->
         <section class="pricing-section">
-            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">PRICING BY CAR TYPE</h2>
+            <h2>PRICING</h2>
             <div class="pricing-cards-container">
                 <!-- Pricing Card 1: Hatchback -->
                 <div class="pricing-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="hatchback.jpg" alt="Hatchback Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=Hatchback';">
+                    <img src="hatchback.jpg" alt="Hatchback Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=Hatch';">
                     <h3>HATCHBACK</h3>
                     <span class="price">₹1399</span>
                 </div>
 
                 <!-- Pricing Card 2: Sedan -->
                 <div class="pricing-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="sedan.jpg" alt="Sedan Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=Sedan';">
+                    <img src="sedan.jpg" alt="Sedan Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=Sedan';">
                     <h3>SEDAN</h3>
                     <span class="price">₹1599</span>
                 </div>
 
                 <!-- Pricing Card 3: Compact SUV -->
                 <div class="pricing-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="compact-suv.jpg" alt="Compact SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=C.SUV';">
+                    <img src="compact-suv.jpg" alt="Compact SUV Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=C-SUV';">
                     <h3>COMPACT SUV</h3>
                     <span class="price">₹1799</span>
                 </div>
 
                 <!-- Pricing Card 4: 5 Seater SUV -->
                 <div class="pricing-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="suv-5-seater.jpg" alt="5 Seater SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=5+S.SUV';">
+                    <img src="suv-5-seater.jpg" alt="5 Seater SUV Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=5+SUV';">
                     <h3>5 SEATER SUV</h3>
                     <span class="price">₹1999</span>
                 </div>
 
                 <!-- Pricing Card 5: 7 Seater SUV -->
                 <div class="pricing-card">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
-                    <img src="suv-7-seater.jpg" alt="7 Seater SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=7+S.SUV';">
+                    <img src="suv-7-seater.jpg" alt="7 Seater SUV Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=7+SUV';">
                     <h3>7 SEATER SUV</h3>
                     <span class="price">₹2199</span>
                 </div>
@@ -856,10 +796,10 @@
                 <p>Application of high-quality wax for protection.</p>
                 <p>Headlight restoration (if needed).</p>
                 <p>Chrome and exterior trim polishing.</p>
-                <a href="tel:+919509208599" class="quick-shine-phone-contact">
-                    <!-- ADDED: lazy loading, width, height, and onerror -->
+                <a href="tel:+919529090074" class="quick-shine-phone-contact">
                     <img src="download.webp" alt="Call Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/333/FFFFFF?text=📞';">
-                    <span>Talk To Our Support<br>9509208599</span>
+                    <!-- UPDATED PHONE NUMBER -->
+                    <span>Talk To Our Support<br>+919529090074</span>
                 </a>
             </div>
 
@@ -873,25 +813,18 @@
                 </ul>
             </div>
 
+            <!-- REPLACED: SUBSCRIBE NOW column with INSTA FOLLOW US -->
             <div class="quick-shine-footer-column">
-                <h3>SUBSCRIBE NOW</h3>
-                <p>Subscribe to our newsletter and be the first to know about exclusive deals, new services, and car care tips.</p>
-                <div class="quick-shine-subscribe-form">
-                    <input type="email" placeholder="Email Address">
-                    <button type="submit">SEND</button>
-                </div>
-                 <!-- Added Social Icons to complete the footer column -->
-                <div class="quick-shine-social-icons">
-                    <a href="#" aria-label="Follow us on Facebook">
-                        <img src="https://placehold.co/30x30/3b5998/FFFFFF?text=f" alt="Facebook" loading="lazy" width="30" height="30" decoding="async">
-                    </a>
-                    <a href="#" aria-label="Follow us on Instagram">
-                        <img src="https://placehold.co/30x30/C13584/FFFFFF?text=I" alt="Instagram" loading="lazy" width="30" height="30" decoding="async">
-                    </a>
-                    <a href="#" aria-label="Follow us on Twitter">
-                        <img src="https://placehold.co/30x30/1DA1F2/FFFFFF?text=T" alt="Twitter" loading="lazy" width="30" height="30" decoding="async">
-                    </a>
-                </div>
+                <h3>INSTA FOLLOW US</h3>
+                <p>Follow us on Instagram for daily car care tips, before & after shots, and exclusive deals!</p>
+                <!-- Instagram Link Button -->
+                <a href="https://www.instagram.com/carcare6115/" target="_blank" class="insta-follow-btn">
+                    <!-- Instagram SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    FOLLOW CARCARE6115
+                </a>
             </div>
         </section>
 
@@ -903,17 +836,23 @@
             </div>
         </footer>
 
-        <!-- Contact Us Floating Button -->
-        <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
-            <!-- ADDED: lazy loading, width, height, and onerror -->
+        <!-- Contact Us Floating Button (replicated with new number and ready message) -->
+        <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
+            <!-- Replaced SVG with WhatsApp logo image and fallback -->
             <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/007F5F/FFFFFF?text=WA';">
             Contact Us
         </a>
     </main>
 
-    <script defer>
-        // JavaScript for mobile menu toggle
+    <script>
+        // Set the hero background image immediately on load for fastest rendering
         document.addEventListener('DOMContentLoaded', function() {
+            const heroSection = document.getElementById('heroSection');
+            if (heroSection) {
+                // Manually set the background image URL after the page structure loads
+                heroSection.style.backgroundImage = "url('pages_back.png')";
+            }
+            
             const menuToggle = document.querySelector('.menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMenu = document.querySelector('.close-menu');
@@ -934,15 +873,11 @@
             });
             
             // Toggle mobile dropdown visibility and rotate arrow
-            if (mobileDropdownToggle && mobileDropdownContent) {
-                 mobileDropdownToggle.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent default link behavior
-                    mobileDropdownContent.classList.toggle('hidden');
-                    if(dropdownArrow) {
-                        dropdownArrow.classList.toggle('rotate-90');
-                    }
-                });
-            }
+            mobileDropdownToggle.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                mobileDropdownContent.classList.toggle('hidden');
+                dropdownArrow.classList.toggle('rotate-90');
+            });
         });
     </script>
 </body>
