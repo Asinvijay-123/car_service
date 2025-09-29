@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick Shine - Car Care Services</title>
-    
-    <!-- PERFORMANCE: Preload Montserrat for fast title rendering -->
+    <!-- PERFORMANCE: High-Priority Font Preload for Montserrat (Headline Font) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VlRkpnz4U.woff2" as="font" type="font/woff2" crossorigin>
-
+    
     <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for clean typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <!-- Google Fonts - Montserrat for a more stylish heading font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700&display=swap" rel="stylesheet">
     <style>
         /* Base styles for the body */
         body {
@@ -33,32 +32,32 @@
             width: 100%;
             display: flex;
             align-items: center;
-            padding: 0 2rem; /* Adjusted padding for better fit */
+            padding: 0.5rem 2rem; 
             z-index: 10;
             background-color: transparent; /* Changed to transparent */
             color: white;
-            justify-content: space-between; 
+            justify-content: space-between; /* To push logo left and links right */
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            /* Added min-height for navbar to look better */
-            min-height: 5rem; 
         }
 
         .navbar-logo {
-            max-height: 4rem; /* Responsive height for logo */
+            /* Removed fixed height, now controlled by Tailwind classes in HTML */
+            /* height: 40px; */
         }
 
-        .navbar-main-links { 
+        .navbar-main-links { /* New class for the centered links container */
             display: flex;
             gap: 1rem;
             align-items: center;
             justify-content: center; /* Centered the navigation links */
-            flex-grow: 1; 
+            flex-grow: 1; /* Allows links container to grow and take available space */
+            /* Removed border-bottom and padding-bottom from here */
             border-bottom: none;
             padding-bottom: 0;
         }
 
         @media (min-width: 768px) {
-            .navbar-main-links { 
+            .navbar-main-links { /* Apply gap to the new container */
                 gap: 2rem;
             }
         }
@@ -88,12 +87,11 @@
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s ease;
-            margin-left: 1rem; /* Added margin for separation */
+            margin-left: auto; /* Pushes the button to the far right */
         }
 
         .navbar-booking-btn:hover {
             background-color: #B8F2E6;
-            color: #1F1F1F; /* Make text readable on hover */
         }
 
 
@@ -144,17 +142,6 @@
             align-items: center;
             justify-content: center;
         }
-        
-        /* Mobile Navbar background override */
-        @media (max-width: 767px) {
-            .navbar {
-                background-color: #1E2A38; /* Dark solid background for mobile navbar */
-                border-bottom: none;
-                padding-top: 0.5rem;
-                padding-bottom: 0.5rem;
-            }
-        }
-
 
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
@@ -194,7 +181,8 @@
 
         /* Hero Section Specific Styles */
         .hero-section {
-            background-image: url('pages_back.png');
+            /* REMOVED background-image URL from CSS to preload it faster in HTML */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='); /* Placeholder */
             background-size: cover;
             background-position: center;
             min-height: 60vh;
@@ -206,7 +194,7 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            padding-top: 7rem; 
+            padding-top: 7rem; /* Increased padding-top to give more space */
             padding-bottom: 5vh;
         }
         
@@ -220,7 +208,7 @@
         }
         
         .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.5); /* Increased opacity to darken the image for better contrast */
+            background-color: rgba(0, 0, 0, 0.35); /* Increased opacity to darken the image */
             position: absolute;
             top: 0;
             left: 0;
@@ -234,14 +222,13 @@
         }
 
         .hero-content h1 {
-             /* Using Montserrat for the title for consistency */
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 5rem); 
+            font-size: clamp(2.5rem, 8vw, 5rem); /* Consistent large and fluid size */
             font-weight: bold;
             margin-bottom: 1rem;
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
+            white-space: nowrap; /* Keep text on a single line */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Add ellipsis for overflow text */
         }
         
         .breadcrumb {
@@ -256,11 +243,6 @@
         .breadcrumb a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .breadcrumb a:hover {
-            color: #00B4D8;
         }
 
         .breadcrumb span {
@@ -290,9 +272,6 @@
         }
         .services-grid-section h2 {
             color: #1F1F1F; /* Charcoal Black heading */
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 5vw, 2.5rem);
-            margin-bottom: 2rem;
         }
 
         .services-grid-container {
@@ -340,10 +319,10 @@
         }
 
         .service-card img {
-            /* Added explicit width/height to prevent CLS */
-            width: 80px; 
             height: 80px;
+            width: 80px;
             margin-bottom: 1rem;
+            /* Added responsive image handling */
             max-width: 100%;
             height: auto;
         }
@@ -366,12 +345,11 @@
             padding: 4rem 1rem;
             color: white;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Separating line */
         }
 
         .pricing-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 2rem;
             color: #FFFFFF; /* White heading */
@@ -407,7 +385,6 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            color: #1F1F1F; /* Dark text for readability */
             border: 3px solid transparent; /* Default transparent border */
             transition: border-color 0.3s ease;
         }
@@ -417,10 +394,10 @@
         }
 
         .pricing-card img {
-            /* Added explicit width/height and loading=lazy */
-            width: 120px; 
-            height: 80px; /* Reduced height to prevent excessive card size */
+            height: 120px; /* Increased height */
+            width: auto; /* Adjusted width to maintain aspect ratio */
             margin-bottom: 1rem;
+            /* Added responsive image handling */
             max-width: 100%;
             height: auto;
         }
@@ -455,7 +432,7 @@
             font-weight: bold;
             transition: background-color 0.3s ease;
             z-index: 20;
-            width: auto; 
+            width: auto; /* Allow width to shrink to content */
         }
 
         /* Responsive positioning for the floating button */
@@ -464,25 +441,24 @@
                 bottom: 1rem; /* Adjust bottom for smaller screens */
                 left: 50%; /* Center horizontally */
                 transform: translateX(-50%); /* Adjust for centering */
-                width: auto; 
-                padding: 0.6rem 1.2rem; 
-                font-size: 0.9rem; 
+                width: auto; /* Allow width to adjust to content */
+                padding: 0.6rem 1.2rem; /* Slightly smaller padding */
+                font-size: 0.9rem; /* Smaller font size */
             }
         }
 
         .contact-us-float:hover {
-            background-color: #B8F2E6;
-            color: #1F1F1F; /* Make text readable on hover */
+            background-color: #00B4D8;
         }
 
-        /* New Footer Section for Quick Shine Page */
+        /* Footer Section for Quick Shine Page */
         .quick-shine-footer-section {
             background-color: #16222A; /* Deep Charcoal Navy */
             color: white;
             padding: 4rem 1.5rem;
             display: grid;
             grid-template-columns: repeat(1, 1fr); /* Single column on small screens */
-            gap: 1.5rem; 
+            gap: 1.5rem; /* Adjusted gap for separation */
             width: 100%;
             box-sizing: border-box;
             text-align: center;
@@ -495,28 +471,23 @@
                 text-align: left;
                 gap: 3rem;
             }
-            /* Separating lines between footer columns for desktop */
             .quick-shine-footer-column:nth-child(1) {
                 border-right: 1px solid rgba(255, 255, 255, 0.1);
-                padding-right: 3rem;
             }
             .quick-shine-footer-column:nth-child(2) {
                 border-right: 1px solid rgba(255, 255, 255, 0.1);
-                padding-right: 3rem;
-                padding-left: 3rem;
             }
             .quick-shine-footer-column:nth-child(3) {
-                padding-left: 3rem;
-            }
-        }
-        
-        @media (max-width: 767px) {
-            /* Remove column padding for mobile */
-            .quick-shine-footer-column {
-                padding: 0;
+                border-right: none;
             }
         }
 
+        .quick-shine-footer-column {
+            background-color: transparent; /* No background needed on each column with new design */
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        
         .quick-shine-footer-column h3 {
             font-size: 1.5rem;
             font-weight: bold;
@@ -550,6 +521,38 @@
         .quick-shine-footer-column ul li a:hover {
             color: white;
         }
+        
+        /* New Insta Follow Button Style */
+        .insta-follow-btn {
+            background-color: #E1306C; /* Instagram Pink/Red */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 250px;
+            margin-top: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .insta-follow-btn {
+                margin-left: 0;
+                margin-right: auto;
+            }
+        }
+        
+        .insta-follow-btn:hover {
+            background-color: #C12057;
+            transform: translateY(-2px);
+        }
 
         .quick-shine-phone-contact {
             display: flex;
@@ -582,63 +585,6 @@
             font-size: 1.125rem;
             font-weight: bold;
             color: white;
-            /* Added line-height: 1.2 to fix line break spacing */
-            line-height: 1.2; 
-        }
-
-        .quick-shine-subscribe-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .quick-shine-subscribe-form input[type="email"] {
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
-            border: 1px solid #555;
-            background-color: #333;
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        .quick-shine-subscribe-form button {
-            background-color: #007F5F; /* Deep Emerald Green */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .quick-shine-subscribe-form button:hover {
-            background-color: #00B4D8; /* Changed to Aqua Blue for consistency */
-        }
-
-        .quick-shine-social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .quick-shine-social-icons {
-                justify-content: flex-start;
-            }
-        }
-
-        .quick-shine-social-icons a img {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            transition: transform 0.2s ease;
-        }
-
-        .quick-shine-social-icons a img:hover {
-            transform: scale(1.1);
         }
 
         .copyright-footer {
@@ -672,11 +618,14 @@
     </style>
 </head>
 <body>
+    <!-- PERFORMANCE: Background image preloading -->
+    <link rel="preload" href="pages_back.png" as="image">
+
     <!-- Navigation Bar (replicated for consistency) -->
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Added width/height attributes for CLS prevention -->
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24" width="100" height="80" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=Logo';">
+            <!-- Updated logo to car logo.png and added responsive classes with fallback -->
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24" loading="lazy" width="100" height="80" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/100x100/000000/FFFFFF?text=Logo';">
         </div>
 
         <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
@@ -685,7 +634,7 @@
         </button>
 
         <!-- Desktop Navigation Links (hidden on mobile, flex on medium screens and up) -->
-        <div class="navbar-main-links hidden md:flex"> 
+        <div class="navbar-main-links hidden md:flex"> <!-- New wrapper for centered links -->
             <a href="index.html" class="nav-button">HOME</a>
             <div class="dropdown">
                 <a href="#" class="nav-button">
@@ -730,171 +679,163 @@
         </div>
     </nav>
 
-    <!-- Hero Section for Quick Shine -->
-    <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="text-white font-bold">QUICK SHINE </h1>
-            <div class="breadcrumb">
-                <a href="index.html">Home</a>
-                <span>/</span>
-                <span>Quick Shine</span>
+    <main>
+        <!-- Hero Section for Quick Shine - Background image handled via JS to load faster -->
+        <section class="hero-section" id="heroSection">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="text-white font-bold">QUICK SHINE </h1>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Quick Shine</span>
+                </div>
+                <a href="booking-form.html" class="book-now-hero-btn">BOOK NOW</a>
             </div>
-            <a href="booking-form.html" class="book-now-hero-btn">BOOK NOW</a>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Grid Section -->
-    <section class="services-grid-section">
-        <h2>SERVICES INCLUDED</h2>
-        <div class="services-grid-container">
-            <!-- Service Card 1: Vacuum Cleaning -->
-            <div class="service-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="vaccum.png" alt="Vacuum Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Vacuum';">
-                <h3>Vacuum Cleaning</h3>
+        <!-- Services Grid Section - Lazy loading applied to images -->
+        <section class="services-grid-section">
+            <h2>SERVICES</h2>
+            <div class="services-grid-container">
+                <!-- Service Card 1: Vacuum Cleaning -->
+                <div class="service-card">
+                    <img src="vaccum.png" alt="Vacuum Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=VAC';">
+                    <h3>Vacuum Cleaning</h3>
+                </div>
+
+                <!-- Service Card 2: Interior Dusting -->
+                <div class="service-card">
+                    <img src="interiorDusting.png" alt="Interior Dusting Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=DUST';">
+                    <h3>Interior Dusting</h3>
+                </div>
+
+                <!-- Service Card 3: Shampoo Washing -->
+                <div class="service-card">
+                    <img src="exterior.png" alt="Shampoo Washing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=WASH';">
+                    <h3>Shampoo Washing</h3>
+                </div>
+
+                <!-- Service Card 4: Dashboard Polishing -->
+                <div class="service-card">
+                    <img src="dashboard.png" alt="Dashboard Polishing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=DASH';">
+                    <h3>Dashboard Polishing</h3>
+                </div>
+
+                <!-- Service Card 5: Tyre Polishing -->
+                <div class="service-card">
+                    <img src="tyre.png" alt="Tyre Polishing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=TYRE';">
+                    <h3>Tyre Polishing</h3>
+                </div>
             </div>
+        </section>
 
-            <!-- Service Card 2: Interior Dusting -->
-            <div class="service-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="interiorDusting.png" alt="Interior Dusting Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Dust';">
-                <h3>Interior Dusting</h3>
+        <!-- Pricing Section - Lazy loading applied to images -->
+        <section class="pricing-section">
+            <h2>PRICING</h2>
+            <div class="pricing-cards-container">
+                <!-- Pricing Card 1: Hatchback -->
+                <div class="pricing-card">
+                    <img src="hatchback.jpg" alt="Hatchback Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=Hatch';">
+                    <h3>HATCHBACK</h3>
+                    <span class="price">₹349</span>
+                </div>
+
+                <!-- Pricing Card 2: Sedan -->
+                <div class="pricing-card">
+                    <img src="sedan.jpg" alt="Sedan Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=Sedan';">
+                    <h3>SEDAN</h3>
+                    <span class="price">₹399</span>
+                </div>
+
+                <!-- Pricing Card 3: Compact SUV -->
+                <div class="pricing-card">
+                    <img src="compact-suv.jpg" alt="Compact SUV Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=C-SUV';">
+                    <h3>COMPACT SUV</h3>
+                    <span class="price">₹399</span>
+                </div>
+
+                <!-- Pricing Card 4: 5 Seater SUV -->
+                <div class="pricing-card">
+                    <img src="suv-5-seater.jpg" alt="5 Seater SUV Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=5+SUV';">
+                    <h3>5 SEATER SUV</h3>
+                    <span class="price">₹449</span>
+                </div>
+
+                <!-- Pricing Card 5: 7 Seater SUV -->
+                <div class="pricing-card">
+                    <img src="suv-7-seater.jpg" alt="7 Seater SUV Car" loading="lazy" width="120" height="120" onerror="this.onerror=null;this.src='https://placehold.co/120x120/F5F7FA/1F1F1F?text=7+SUV';">
+                    <h3>7 SEATER SUV</h3>
+                    <span class="price">₹449</span>
+                </div>
             </div>
+        </section>
 
-            <!-- Service Card 3: Shampoo Washing -->
-            <div class="service-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="exterior.png" alt="Shampoo Washing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Wash';">
-                <h3>Shampoo Washing</h3>
-            </div>
-
-            <!-- Service Card 4: Dashboard Polishing -->
-            <div class="service-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="dashboard.png" alt="Dashboard Polishing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Dash';">
-                <h3>Dashboard Polishing</h3>
-            </div>
-
-            <!-- Service Card 5: Tyre Polishing -->
-            <div class="service-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="tyre.png" alt="Tyre Polishing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Tyre';">
-                <h3>Tyre Polishing</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing-section">
-        <h2>PRICING BY CAR TYPE</h2>
-        <div class="pricing-cards-container">
-            <!-- Pricing Card 1: Hatchback -->
-            <div class="pricing-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="hatchback.jpg" alt="Hatchback Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=Hatchback';">
-                <h3>HATCHBACK</h3>
-                <span class="price">₹349</span>
-            </div>
-
-            <!-- Pricing Card 2: Sedan -->
-            <div class="pricing-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="sedan.jpg" alt="Sedan Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=Sedan';">
-                <h3>SEDAN</h3>
-                <span class="price">₹399</span>
-            </div>
-
-            <!-- Pricing Card 3: Compact SUV -->
-            <div class="pricing-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="compact-suv.jpg" alt="Compact SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=C.SUV';">
-                <h3>COMPACT SUV</h3>
-                <span class="price">₹399</span>
-            </div>
-
-            <!-- Pricing Card 4: 5 Seater SUV -->
-            <div class="pricing-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="suv-5-seater.jpg" alt="5 Seater SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=5+S.SUV';">
-                <h3>5 SEATER SUV</h3>
-                <span class="price">₹449</span>
-            </div>
-
-            <!-- Pricing Card 5: 7 Seater SUV -->
-            <div class="pricing-card">
-                <!-- Added lazy loading and fixed dimensions for CLS prevention -->
-                <img src="suv-7-seater.jpg" alt="7 Seater SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=7+S.SUV';">
-                <h3>7 SEATER SUV</h3>
-                <span class="price">₹449</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- New Extended Footer Section for Quick Shine Page -->
-    <section class="quick-shine-footer-section">
-        <div class="quick-shine-footer-column">
-            <h3>QUICK SHINE INCLUDES</h3>
-            <p>Time - Around 1 hour process</p>
-            <p>Dust and litter on the dashboard, floor mats, seats, and floor will be removed using vacuum cleaner.</p>
-            <p>The dashboard will then be polished to restore its luster and shine.</p>
-            <p>Car Exterior will be shampoo washed including tyre polish</p>
-            <a href="tel:+919509208599" class="quick-shine-phone-contact">
-                <!-- Added width/height attributes for CLS prevention -->
-                <img src="download.webp" alt="Call Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/333/FFFFFF?text=📞';">
-                <span>Talk To Our Support<br>9509208599</span>
-            </a>
-        </div>
-
-        <div class="quick-shine-footer-column">
-            <h3>OUR SOLUTIONS</h3>
-            <ul>
-                <li><a href="quick-shine-page.html">Quick Shine</a></li>
-                <li><a href="deep-cleaning-page.html">Deep Cleaning</a></li>
-                <li><a href="rubbing-polishing-page.html">Rubbing & Polishing</a></li>
-                <li><a href="windshield-polish-page.html">Windshield Polish</a></li>
-            </ul>
-        </div>
-
-        <div class="quick-shine-footer-column">
-            <h3>SUBSCRIBE NOW</h3>
-            <p>Subscribe to our newsletter and be the first to know about exclusive deals, new services, and car care tips.</p>
-            <div class="quick-shine-subscribe-form">
-                <input type="email" placeholder="Email Address">
-                <button type="submit">SEND</button>
-            </div>
-            <div class="quick-shine-social-icons">
-                 <a href="#" aria-label="Follow us on Facebook">
-                    <img src="https://placehold.co/30x30/3b5998/FFFFFF?text=f" alt="Facebook" loading="lazy" width="30" height="30" decoding="async">
-                </a>
-                <a href="#" aria-label="Follow us on Instagram">
-                    <img src="https://placehold.co/30x30/C13584/FFFFFF?text=I" alt="Instagram" loading="lazy" width="30" height="30" decoding="async">
-                </a>
-                <a href="#" aria-label="Follow us on Twitter">
-                    <img src="https://placehold.co/30x30/1DA1F2/FFFFFF?text=T" alt="Twitter" loading="lazy" width="30" height="30" decoding="async">
+        <!-- New Extended Footer Section for Quick Shine Page -->
+        <footer class="quick-shine-footer-section">
+            <div class="quick-shine-footer-column">
+                <h3>QUICK SHINE INCLUDES</h3>
+                <p>Time - Around 1 hour process</p>
+                <p>Dust and litter on the dashboard, floor mats, seats, and floor will be removed using vacuum cleaner.</p>
+                <p>The dashboard will then be polished to restore its luster and shine.</p>
+                <p>Car Exterior will be shampoo washed including tyre polish</p>
+                <a href="tel:+919529090074" class="quick-shine-phone-contact">
+                    <img src="download.webp" alt="Call Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/333/FFFFFF?text=📞';">
+                    <!-- UPDATED PHONE NUMBER -->
+                    <span>Talk To Our Support<br>+919529090074</span>
                 </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Final Copyright Footer -->
-    <footer class="copyright-footer">
-        <p>© Copyright Car Care. All right reserved.</p>
-        <div>
-            <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
-        </div>
-    </footer>
+            <div class="quick-shine-footer-column">
+                <h3>OUR SOLUTIONS</h3>
+                <ul>
+                    <li><a href="quick-shine-page.html">Quick Shine</a></li>
+                    <li><a href="deep-cleaning-page.html">Deep Cleaning</a></li>
+                    <li><a href="rubbing-polishing-page.html">Rubbing & Polishing</a></li>
+                    <li><a href="windshield-polish-page.html">Windshield Polish</a></li>
+                </ul>
+            </div>
 
-    <!-- Contact Us Floating Button (replicated) -->
-    <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
-        <!-- Added width/height attributes for CLS prevention -->
-        <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/007F5F/FFFFFF?text=WA';">
-        Contact Us
-    </a>
+            <!-- REPLACED: SUBSCRIBE NOW column with INSTA FOLLOW US -->
+            <div class="quick-shine-footer-column">
+                <h3>INSTA FOLLOW US</h3>
+                <p>Follow us on Instagram for daily car care tips, before & after shots, and exclusive deals!</p>
+                <!-- Instagram Link Button -->
+                <a href="https://www.instagram.com/carcare6115/" target="_blank" class="insta-follow-btn">
+                    <!-- Instagram SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    FOLLOW CARCARE6115
+                </a>
+            </div>
+        </footer>
 
-    <script defer>
-        // JavaScript for mobile menu toggle
+        <!-- Final Copyright Footer -->
+        <footer class="copyright-footer">
+            <p>© Copyright Car Care. All right reserved.</p>
+            <div>
+                <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
+            </div>
+        </footer>
+
+        <!-- Contact Us Floating Button (replicated with new number and ready message) -->
+        <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
+            <!-- Replaced SVG with WhatsApp logo image and fallback -->
+            <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/007F5F/FFFFFF?text=WA';">
+            Contact Us
+        </a>
+    </main>
+
+    <script>
+        // Set the hero background image immediately on load for fastest rendering
         document.addEventListener('DOMContentLoaded', function() {
+            const heroSection = document.getElementById('heroSection');
+            if (heroSection) {
+                // Manually set the background image URL after the page structure loads
+                heroSection.style.backgroundImage = "url('pages_back.png')";
+            }
+            
             const menuToggle = document.querySelector('.menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMenu = document.querySelector('.close-menu');
@@ -915,15 +856,11 @@
             });
             
             // Toggle mobile dropdown visibility and rotate arrow
-            if (mobileDropdownToggle && mobileDropdownContent) {
-                 mobileDropdownToggle.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent default link behavior
-                    mobileDropdownContent.classList.toggle('hidden');
-                    if(dropdownArrow) {
-                        dropdownArrow.classList.toggle('rotate-90');
-                    }
-                });
-            }
+            mobileDropdownToggle.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                mobileDropdownContent.classList.toggle('hidden');
+                dropdownArrow.classList.toggle('rotate-90');
+            });
         });
     </script>
 </body>
