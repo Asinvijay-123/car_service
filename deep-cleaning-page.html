@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Cleaning - Car Care Services</title>
+    
+    <!-- PERFORMANCE: Preload Montserrat for fast title rendering -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VlRkpnz4U.woff2" as="font" type="font/woff2" crossorigin>
+
     <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for clean typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <!-- Google Fonts - Montserrat for stylish headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         /* Base styles for the body */
         body {
@@ -35,11 +41,21 @@
             color: white;
             justify-content: space-between; /* To push logo left and links right */
             border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Added white line under buttons */
+            min-height: 5rem;
+        }
+
+        /* Mobile Navbar background override */
+        @media (max-width: 767px) {
+            .navbar {
+                background-color: #1E2A38; /* Dark solid background for mobile navbar */
+                border-bottom: none;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
         }
 
         .navbar-logo {
-            /* Removed fixed height, now controlled by Tailwind classes in HTML */
-            /* height: 40px; */
+            max-height: 4rem; /* Responsive height for logo */
         }
 
         .navbar-main-links { /* New class for the centered links container */
@@ -87,7 +103,8 @@
         }
 
         .navbar-booking-btn:hover {
-            background-color: #B8F2E6; /* Soft Lime on hover */
+            background-color: #00B4D8; /* Aqua Blue on hover */
+            color: white; 
         }
 
         .dropdown {
@@ -180,7 +197,7 @@
             background-image: url('pages_back.png');
             background-size: cover;
             background-position: center;
-            height: 60vh;
+            min-height: 60vh; /* Using min-height for flexibility */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -191,6 +208,12 @@
             z-index: 1;
         }
 
+        @media (max-width: 767px) {
+            .hero-section {
+                min-height: 40vh; 
+            }
+        }
+        
         .hero-overlay {
             background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
             position: absolute;
@@ -208,11 +231,11 @@
         
         .hero-content h1 {
             font-family: 'Montserrat', sans-serif; /* Applied Montserrat font */
-            font-size: clamp(2rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: bold;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            white-space: nowrap; /* Keep text on one line */
+            white-space: nowrap; 
             overflow: hidden;
             text-overflow: ellipsis;
         }
@@ -229,6 +252,11 @@
         .breadcrumb a {
             color: white;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #00B4D8;
         }
 
         .breadcrumb span {
@@ -260,32 +288,28 @@
 
         .services-grid-section h2 {
             color: #1F1F1F;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 2rem;
         }
 
         .services-grid-container {
             display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns on mobile */
             gap: 1.5rem;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
-        @media (min-width: 480px) {
+        @media (min-width: 640px) {
             .services-grid-container {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 1.5rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .services-grid-container {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 columns on tablet/small desktop */
             }
         }
         
         @media (min-width: 1024px) {
             .services-grid-container {
-                grid-template-columns: repeat(5, minmax(0, 1fr));
+                grid-template-columns: repeat(5, minmax(0, 1fr)); /* 5 columns on large desktop */
             }
         }
         
@@ -307,16 +331,19 @@
         }
 
         .service-card img {
-            height: 80px;
-            width: 80px;
+            width: 80px; /* Explicit width for CLS */
+            height: 80px; /* Explicit height for CLS */
             margin-bottom: 0.5rem;
+            max-width: 100%;
+            height: auto;
         }
 
         .service-card h3 {
-            font-size: 1.25rem;
+            font-size: clamp(1rem, 3vw, 1.25rem); /* Responsive font size */
             font-weight: bold;
             margin-bottom: 0;
             color: #1F1F1F;
+            line-height: 1.2;
         }
 
         .service-card p {
@@ -335,7 +362,8 @@
         }
 
         .pricing-section h2 {
-            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
             font-weight: bold;
             margin-bottom: 2rem;
             color: #FFFFFF; /* White heading */
@@ -371,6 +399,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            color: #1F1F1F;
             border: 3px solid transparent; /* Default transparent border */
             transition: border-color 0.3s ease;
         }
@@ -380,9 +409,11 @@
         }
 
         .pricing-card img {
-            height: 120px;
-            width: auto;
+            width: 120px; /* Explicit width for CLS */
+            height: 80px; /* Explicit height for CLS */
             margin-bottom: 1rem;
+            max-width: 100%;
+            height: auto;
         }
 
         .pricing-card h3 {
@@ -416,6 +447,26 @@
             .extended-footer-section {
                 grid-template-columns: repeat(3, 1fr);
                 text-align: left;
+            }
+            /* Separating lines between footer columns for desktop */
+            .extended-footer-column:nth-child(1) {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: 3rem;
+            }
+            .extended-footer-column:nth-child(2) {
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: 3rem;
+                padding-left: 3rem;
+            }
+            .extended-footer-column:nth-child(3) {
+                padding-left: 3rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            /* Remove column padding for mobile */
+            .extended-footer-column {
+                padding: 0;
             }
         }
 
@@ -484,6 +535,7 @@
             font-size: 1.125rem;
             font-weight: bold;
             color: white;
+            line-height: 1.2;
         }
 
         .subscribe-form {
@@ -514,7 +566,7 @@
         }
 
         .subscribe-form button:hover {
-            background-color: #B8F2E6;
+            background-color: #00B4D8; /* Aqua Blue on hover */
         }
 
         .social-icons {
@@ -543,7 +595,7 @@
 
         .copyright-footer {
             background-color: #16222A; /* Deep Charcoal Navy */
-            color: #D3DDE2;
+            color: #C9D6DF;
             padding: 1rem 1.5rem;
             text-align: center;
             font-size: 0.8rem;
@@ -561,7 +613,7 @@
         }
 
         .copyright-footer a {
-            color: #D3DDE2;
+            color: #C9D6DF;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -591,12 +643,25 @@
             width: auto; /* Allow width to shrink to content */
         }
 
+        @media (max-width: 767px) {
+            .contact-us-float {
+                bottom: 1rem; /* Adjust bottom for smaller screens */
+                left: 50%; /* Center horizontally */
+                transform: translateX(-50%); /* Adjust for centering */
+                width: auto; 
+                padding: 0.6rem 1.2rem; 
+                font-size: 0.9rem; 
+            }
+        }
+
         .contact-us-float:hover {
             background-color: #00B4D8;
         }
 
         .contact-us-float img {
-            /* styles for the whatsapp icon */
+             /* Added explicit styles for consistency */
+            width: 24px;
+            height: 24px;
         }
     </style>
 </head>
@@ -604,8 +669,8 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
-            <!-- Updated logo to car logo.png and added responsive classes -->
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24" onerror="this.onerror=null;this.src='https://placehold.co/100x100/000000/FFFFFF?text=Logo';">
+            <!-- Added width/height attributes for CLS prevention -->
+            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo h-auto max-h-24" width="100" height="80" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=Logo';">
         </div>
 
         <!-- Hamburger Icon for Mobile (hidden on medium screens and up) -->
@@ -641,9 +706,9 @@
                     <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
                         PACKAGES
                         <span class="dropdown-arrow transform transition-transform duration-300">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                             </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
                         </span>
                     </a>
                     <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
@@ -675,65 +740,65 @@
         </section>
 
         <section class="services-grid-section">
-            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">SERVICES</h2>
+            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">SERVICES INCLUDED</h2>
             <div class="services-grid-container">
                 <!-- Service Card 1: Vaccum Cleaning -->
                 <div class="service-card">
-                    <img src="vaccum.png" alt="Vacuum Cleaning Icon">
+                    <img src="vaccum.png" alt="Vacuum Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Vac';">
                     <h3>Vaccum Cleaning</h3>
                 </div>
 
                 <!-- Service Card 2: Seats Dry Cleaning -->
                 <div class="service-card">
-                    <img src="seats.png" alt="Seats Dry Cleaning Icon">
-                    <h3>Seats DryCleaning</h3>
+                    <img src="seats.png" alt="Seats Dry Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Seats';">
+                    <h3>Seats Dry Cleaning</h3>
                 </div>
 
                 <!-- Service Card 3: Doors Dry Cleaning -->
                 <div class="service-card">
-                    <img src="doors.png" alt="Doors Dry Cleaning Icon">
-                    <h3>Doors DryCleaning</h3>
+                    <img src="doors.png" alt="Doors Dry Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Doors';">
+                    <h3>Doors Dry Cleaning</h3>
                 </div>
 
                 <!-- Service Card 4: Dashboard Dry Cleaning -->
                 <div class="service-card">
-                    <img src="dashboard.png" alt="Dashboard Dry Cleaning Icon">
-                    <h3>Dashboard DryCleaning</h3>
+                    <img src="dashboard.png" alt="Dashboard Dry Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Dash';">
+                    <h3>Dashboard Dry Cleaning</h3>
                 </div>
 
                 <!-- Service Card 5: Roof Dry Cleaning -->
                 <div class="service-card">
-                    <img src="roof.png" alt="Roof Dry Cleaning Icon">
-                    <h3>Roof DryCleaning</h3>
+                    <img src="roof.png" alt="Roof Dry Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Roof';">
+                    <h3>Roof Dry Cleaning</h3>
                 </div>
 
                 <!-- Service Card 6: Matts Dry Cleaning -->
                 <div class="service-card">
-                    <img src="matts.png" alt="Matts Dry Cleaning Icon">
-                    <h3>Matts DryCleaning</h3>
+                    <img src="matts.png" alt="Matts Dry Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Matts';">
+                    <h3>Matts Dry Cleaning</h3>
                 </div>
 
                 <!-- Service Card 7: Trunk Dry Cleaning -->
                 <div class="service-card">
-                    <img src="boot.png" alt="Trunk Dry Cleaning Icon">
-                    <h3>Trunk DryCleaning</h3>
+                    <img src="boot.png" alt="Trunk Dry Cleaning Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Trunk';">
+                    <h3>Trunk Dry Cleaning</h3>
                 </div>
 
                 <!-- Service Card 8: Shampoo Wash -->
                 <div class="service-card">
-                    <img src="exterior.png" alt="Shampoo Wash Icon">
+                    <img src="exterior.png" alt="Shampoo Wash Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Shamp';">
                     <h3>Shampoo Wash</h3>
                 </div>
 
                 <!-- Service Card 9: Interior Polishing -->
                 <div class="service-card">
-                    <img src="interiorDusting.png" alt="Interior Polishing Icon">
+                    <img src="interiorDusting.png" alt="Interior Polishing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Polish';">
                     <h3>Interior Polishing</h3>
                 </div>
 
                 <!-- Service Card 10: Tyre Polishing -->
                 <div class="service-card">
-                    <img src="tyre.png" alt="Tyre Polishing Icon">
+                    <img src="tyre.png" alt="Tyre Polishing Icon" loading="lazy" width="80" height="80" onerror="this.onerror=null;this.src='https://placehold.co/80x80/EDF6F9/1F1F1F?text=Tyre';">
                     <h3>Tyre Polishing</h3>
                 </div>
             </div>
@@ -741,39 +806,39 @@
 
         <!-- Pricing Section (replicated from Quick Shine, adjust prices if needed) -->
         <section class="pricing-section">
-            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">PRICING</h2>
+            <h2 class="font-bold mb-8 text-2xl md:text-3xl lg:text-4xl">PRICING BY CAR TYPE</h2>
             <div class="pricing-cards-container">
                 <!-- Pricing Card 1: Hatchback -->
                 <div class="pricing-card">
-                    <img src="hatchback.jpg" alt="Hatchback Car">
+                    <img src="hatchback.jpg" alt="Hatchback Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=Hatchback';">
                     <h3>HATCHBACK</h3>
                     <span class="price">₹799</span>
                 </div>
 
                 <!-- Pricing Card 2: Sedan -->
                 <div class="pricing-card">
-                    <img src="sedan.jpg" alt="Sedan Car">
+                    <img src="sedan.jpg" alt="Sedan Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=Sedan';">
                     <h3>SEDAN</h3>
                     <span class="price">₹899</span>
                 </div>
 
                 <!-- Pricing Card 3: Compact SUV -->
                 <div class="pricing-card">
-                    <img src="compact-suv.jpg" alt="Compact SUV Car">
+                    <img src="compact-suv.jpg" alt="Compact SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=C.SUV';">
                     <h3>COMPACT SUV</h3>
                     <span class="price">₹999</span>
                 </div>
 
                 <!-- Pricing Card 4: 5 Seater SUV -->
                 <div class="pricing-card">
-                    <img src="suv-5-seater.jpg" alt="5 Seater SUV Car">
+                    <img src="suv-5-seater.jpg" alt="5 Seater SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=5+S.SUV';">
                     <h3>5 SEATER SUV</h3>
                     <span class="price">₹1199</span>
                 </div>
 
                 <!-- Pricing Card 5: 7 Seater SUV -->
                 <div class="pricing-card">
-                    <img src="suv-7-seater.jpg" alt="7 Seater SUV Car">
+                    <img src="suv-7-seater.jpg" alt="7 Seater SUV Car" loading="lazy" width="120" height="80" onerror="this.onerror=null;this.src='https://placehold.co/120x80/F5F7FA/1F1F1F?text=7+S.SUV';">
                     <h3>7 SEATER SUV</h3>
                     <span class="price">₹1399</span>
                 </div>
@@ -792,7 +857,8 @@
                 <p>AC vent cleaning and sanitization.</p>
                 <p>Exterior wash, tire dressing, and window cleaning.</p>
                 <a href="tel:+919509208599" class="phone-contact">
-                    <img src="download.webp" alt="Call Icon" class="w-6 h-6">
+                    <!-- Added width/height attributes for CLS prevention -->
+                    <img src="download.webp" alt="Call Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/333/FFFFFF?text=📞';">
                     <span>Talk To Our Support<br>9509208599</span>
                 </a>
             </div>
@@ -814,7 +880,18 @@
                     <input type="email" placeholder="Email Address">
                     <button type="submit">SEND</button>
                 </div>
-
+                <!-- Added Social Icons to complete the footer column -->
+                <div class="social-icons">
+                    <a href="#" aria-label="Follow us on Facebook">
+                        <img src="https://placehold.co/30x30/3b5998/FFFFFF?text=f" alt="Facebook" loading="lazy" width="30" height="30" decoding="async">
+                    </a>
+                    <a href="#" aria-label="Follow us on Instagram">
+                        <img src="https://placehold.co/30x30/C13584/FFFFFF?text=I" alt="Instagram" loading="lazy" width="30" height="30" decoding="async">
+                    </a>
+                    <a href="#" aria-label="Follow us on Twitter">
+                        <img src="https://placehold.co/30x30/1DA1F2/FFFFFF?text=T" alt="Twitter" loading="lazy" width="30" height="30" decoding="async">
+                    </a>
+                </div>
             </div>
         </footer>
 
@@ -822,19 +899,19 @@
         <footer class="copyright-footer">
             <p>© Copyright Car Care. All right reserved.</p>
             <div>
-                <a href="index.html">Home</a> / <a href="#">Booking</a>
+                <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
             </div>
         </footer>
 
         <!-- Contact Us Floating Button -->
         <a href="https://api.whatsapp.com/send?phone=919509208599&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float">
-            <!-- Replaced SVG with WhatsApp logo image -->
-            <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6">
+            <!-- Added width/height attributes for CLS prevention -->
+            <img src="OIP.webp" alt="WhatsApp Icon" class="w-6 h-6" loading="lazy" width="24" height="24" onerror="this.onerror=null;this.src='https://placehold.co/24x24/007F5F/FFFFFF?text=WA';">
             Contact Us
         </a>
     </main>
 
-    <script>
+    <script defer>
         // JavaScript for mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
@@ -857,17 +934,16 @@
             });
             
             // Toggle mobile dropdown visibility and rotate arrow
-            mobileDropdownToggle.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
-                mobileDropdownContent.classList.toggle('hidden');
-                dropdownArrow.classList.toggle('rotate-90');
-            });
+            if (mobileDropdownToggle && mobileDropdownContent) {
+                 mobileDropdownToggle.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    mobileDropdownContent.classList.toggle('hidden');
+                    if(dropdownArrow) {
+                        dropdownArrow.classList.toggle('rotate-90');
+                    }
+                });
+            }
         });
     </script>
 </body>
 </html>
-
-
-
-
-
