@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Care Services | Doorstep Car Cleaning and Detailing</title>
     <!-- SEO सुधार: यह एक महत्वपूर्ण टैग है जो सर्च इंजन को आपकी वेबसाइट के बारे में बताता है। -->
-    <meta name="description" content="Car Care TCH offers professional doorstep car cleaning, deep cleaning, rubbing, and polishing services. Get your car cleaned by experts right at your home.">
+    <meta name="description" content="Car Care TCH offers professional doorstep car cleaning, deep cleaning, rubbing, and polishing services in Jaipur. Get your car cleaned by experts right at your home.">
     <!-- SEO सुधार: कीवर्ड्स जोड़ना। -->
-    <meta name="keywords" content="car cleaning service, doorstep car wash, car detailing, car polishing, car rubbing, home car wash, Car Care TCH, Kota, Rajasthan">
-    <!-- Canonical Tag: यह डुप्लिकेट कंटेंट की समस्या को हल करता है। -->
-    <link rel="canonical" href="https://asinvijay-123-github-io-car_service">
+    <meta name="keywords" content="car cleaning service, doorstep car wash, car detailing, car polishing, car rubbing, home car wash, Car Care TCH, Jaipur, Rajasthan">
+    <!-- Canonical Tag: Corrected to absolute path for the homepage URL structure. -->
+    <link rel="canonical" href="https://asinvijay-123.github.io/car_service/index.html">
 
     <!-- PERFORMANCE: High-Priority Font Preload for Montserrat (Headline Font) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VlRkpnz4U.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" as="video" type="video/mp4" media="(min-width: 768px)">
     
-    <!-- CSS Defer: सभी CSS को एक ही <style> ब्लॉक में रखा गया है। इसे minify करने के बाद, यह तेज़ी से लोड होगा। -->
+    <!-- CSS Defer: All CSS is in <style> or loaded via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Web Fonts Preload: फॉन्ट को बाकी कंटेंट से पहले लोड करने के लिए preload एट्रीब्यूट जोड़ा गया है, इससे LCP (Largest Contentful Paint) में सुधार होता है। -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -139,7 +139,6 @@
             color: #FFFFFF;
         }
 
-        /* Mobile specific styles for the video background when viewport is vertical */
         @media (max-aspect-ratio: 9/16) {
             .content {
                 display: none;
@@ -149,42 +148,42 @@
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                height: 100vh; /* Full viewport height */
-                background-color: #000; /* Black background while content loads */
+                height: auto;
+                background-image: url('https://placehold.co/1080x1920/F6F6F6/2B2B2B?text=Car+Care+Mobile+Background');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
                 padding-top: 0;
                 box-sizing: border-box;
-                position: relative;
             }
 
             .hero-video-box.mobile-video-position-override {
                 width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
+                background-image: url('ChatGPT Image Aug 5, 2025, 09_20_27 PM.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
                 box-shadow: none;
                 border-radius: 0;
+                position: relative;
+                padding-top: 177.77%;
+                height: 0;
                 overflow: hidden;
             }
 
             .hero-video-box.mobile-video-position-override video {
                 position: absolute;
-                top: 50%;
-                left: 50%;
+                top: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
-                transform: translate(-50%, -50%);
                 object-fit: cover;
                 border-radius: 0;
-            }
-            
-            .mobile-video-position-override .video-overlay {
-                z-index: 1;
             }
 
             .hero-text-container.mobile-text-position-override {
                 position: absolute;
-                top: 50%;
+                top: 25%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 width: 100%;
@@ -194,7 +193,6 @@
                 text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
                 box-sizing: border-box;
                 z-index: 3;
-                height: auto;
             }
 
             .hero-text-container.mobile-text-position-override h4,
@@ -204,8 +202,7 @@
             }
 
             .packages-section.mobile-shift {
-                /* Removed unnecessary negative margin if mobile hero takes up full viewport */
-                margin-top: 0;
+                margin-top: -25rem;
             }
 
             .hero-text-container.desktop-text-only {
@@ -241,22 +238,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0rem 1rem;
+            padding: 0rem 1rem; /* Corrected padding from negative value */
             z-index: 10;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            min-height: 5rem;
         }
 
         @media (max-aspect-ratio: 9/16) {
             .navbar {
-                background-color: #1A1A1A; /* Dark background for mobile navigation */
+                background-color: #FFFFFF;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.2);
             }
             .navbar .navbar-logo {
                 filter: none;
             }
             .navbar .menu-toggle svg {
-                color: #FFFFFF; /* White menu icon on dark background */
+                color: #222222;
             }
         }
 
@@ -455,7 +451,6 @@
 
         .book-now-header-btn:hover {
             background-color: #57AE73;
-            color: white;
         }
 
         .packages-header h2 {
@@ -781,34 +776,6 @@
             line-height: 1.5;
             margin-bottom: clamp(0.5rem, 2vw, 1rem);
         }
-        
-        .insta-follow-btn {
-            background-color: #E1306C; /* Instagram Pink/Red */
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            width: 100%;
-            max-width: 250px; /* Constrain button width */
-            margin-top: 1rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        
-        @media (min-width: 768px) {
-             .insta-follow-btn {
-                 margin-left: 0;
-             }
-        }
-
-        .insta-follow-btn:hover {
-            background-color: #C12057;
-            transform: translateY(-2px);
-        }
 
         .extended-footer-column ul {
             list-style: none;
@@ -824,6 +791,7 @@
             color: #A0D9B4;
         }
 
+        /* Footer: Talk to Support Block */
         .phone-contact {
             display: flex;
             align-items: center;
@@ -838,14 +806,9 @@
             margin-right: auto;
         }
 
-        /* NEW STYLE: Move phone contact to corner on desktop/tablet */
         @media (min-width: 768px) {
             .phone-contact {
                 justify-content: flex-start;
-                margin-left: 0;
-                margin-right: auto;
-                /* Pushed it down further for separation from paragraph */
-                margin-top: 2rem;
             }
         }
 
@@ -858,6 +821,38 @@
             font-size: clamp(0.8rem, 2.5vw, 1.125rem);
             font-weight: bold;
             color: #FFFFFF;
+        }
+
+        /* Footer: Instagram Follow Button */
+        .insta-follow-btn {
+            background-color: #E1306C; /* Instagram Pink/Red */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            max-width: 250px;
+            margin-top: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .insta-follow-btn {
+                margin-left: 0;
+                margin-right: auto;
+            }
+        }
+
+        .insta-follow-btn:hover {
+            background-color: #C12057;
+            transform: translateY(-2px);
         }
 
         .copyright-footer {
@@ -894,6 +889,7 @@
             color: #FFFFFF;
         }
 
+        /* Floating WhatsApp Button */
         .contact-us-float {
             position: fixed;
             bottom: 1.5rem;
@@ -911,7 +907,7 @@
         }
 
         .whatsapp-button {
-            background-color: #6FCF97;
+            background-color: #0F9643; /* Darker, more accessible green */
             color: #FFFFFF;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
@@ -925,7 +921,7 @@
         }
 
         .whatsapp-button:hover {
-            background-color: #57AE73;
+            background-color: #0c7a36;
         }
 
         .whatsapp-button img {
@@ -935,322 +931,337 @@
     </style>
 </head>
 <body>
-    <!--
-    PERFORMANCE OPTIMIZATION: All videos are loaded using data-src and loaded only on DOMContentLoaded,
-    preventing them from blocking the critical render path.
-    -->
-    
-    <div class="content md:flex">
-        <div id="desktop-video-container" class="hero-video">
-            <!-- Used base64 encoded black image for instant poster loading (LCP improvement) -->
-            <video autoplay muted loop playsinline preload="metadata" id="video-player-desktop" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4">
-                <!-- Source now uses data-src for lazy loading -->
-                <source data-src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4" media="(min-width: 768px)">
-            </video>
-            <div class="video-overlay"></div>
-        </div>
-
-        <div class="hero-text-container">
-            <div class="hero-text">
-                <h4 class="animated-text"> DOORSTEP CAR CLEANING SERVICES </h4>
-                <h1 class="animated-text delay-1">CAR CARE TCH</h1>
+    <!-- Main content starts here -->
+    <main>
+        <div class="content md:flex">
+            <div id="desktop-video-container" class="hero-video">
+                <video autoplay muted loop playsinline id="video-player-desktop" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADfwGH3XVz+AAAAABJRU5ErkJggg==" data-src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4">
+                    <source data-src="WhatsApp Video 2025-08-02 at 23.29.32_a5be0124.mp4" type="video/mp4" media="(min-width: 768px)">
+                </video>
+                <div class="video-overlay"></div>
             </div>
-        </div>
-    </div>
-    
-    <nav class="navbar">
-        <div class="logo-container">
-            <!-- width/height and onerror added for CLS prevention -->
-            <img src="car logo.png" alt="Car Care Logo" class="navbar-logo" loading="lazy" width="100" height="80" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=LOGO';">
-        </div>
 
-        <button class="menu-toggle md:hidden" aria-label="Toggle mobile menu">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-
-        <div class="navbar-links hidden md:flex">
-            <a href="index.html" class="nav-button">HOME</a>
-            <div class="dropdown">
-                <a href="#" class="nav-button">
-                    PACKAGES
-                    <span class="dropdown-arrow">&#9660;</span>
-                </a>
-                <div class="dropdown-content">
-                    <a href="quick-shine-page.html">Quick Shine</a>
-                    <a href="deep-cleaning-page.html">Deep Cleaning</a>
-                    <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
-                    <a href="windshield-polish-page.html">Windshield Polish</a>
-                </div>
-            </div>
-            <a href="booking-form.html" class="nav-button">CONTACT US</a>
-        </div>
-
-        <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center">
-            <button class="close-menu absolute top-4 right-4 text-white">&times;</button>
-            <div class="flex flex-col text-xl w-full px-4 text-white">
-                <a href="index.html" class="nav-button py-2 border-b border-gray-700">HOME</a>
-                <div class="dropdown-mobile w-full">
-                    <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700">
-                        PACKAGES
-                        <span class="dropdown-arrow transform transition-transform duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                    </a>
-                    <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
-                        <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
-                        <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Deep Cleaning</a>
-                        <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
-                        <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
-                    </div>
-                </div>
-                <!-- FIXED WHATSAPP LINK WITH NEW NUMBER AND PRE-POPULATED TEXT -->
-                <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="nav-button py-2 border-b border-gray-700">CONTACT US</a>
-            </div>
-        </div>
-    </nav>
-
-
-    <div class="mobile-hero-section-wrapper md:hidden">
-        <div id="mobile-video-container" class="hero-video-box mobile-video-position-override">
-            <div class="hero-text-container mobile-text-position-override">
+            <div class="hero-text-container">
                 <div class="hero-text">
-                    <h3 class="animated-text">DOORSTEP CAR CLEANING SERVICES</h3>
+                    <h4 class="animated-text"> DOORSTEP CAR CLEANING SERVICES </h4>
                     <h1 class="animated-text delay-1">CAR CARE TCH</h1>
                 </div>
             </div>
-            <!-- Video uses data-src for lazy loading and fast initial page render. Removed preload attribute for max performance. -->
-            <video autoplay muted loop playsinline id="video-player" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="save-vmake.mp4">
-                <source data-src="save-vmake.mp4" type="video/mp4" media="(max-width: 767px)">
-            </video>
-            <div class="video-overlay"></div> <!-- Added overlay for mobile text visibility -->
         </div>
-    </div>
-    
-    <section class="packages-section">
-        <div class="packages-header">
-            <!-- width/height and onerror added for CLS prevention -->
-            <img src="https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Tire Track" class="tire-track" loading="lazy" width="200" height="100" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN';">
-            <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
-                <div class="w-full text-left">
-                    <p class="text-sm font-semibold uppercase mb-1">OUR PACKAGES</p>
-                    <h2 class="text-white text-4xl md:text-5xl">Packages for Every Ride</h2>
-                </div>
-                <a href="booking-form.html" class="book-now-header-btn mt-4 md:mt-0">BOOK NOW</a>
-            </div>
-        </div>
-
-        <div class="package-card-container">
-            <div class="package-card">
-                <!-- width/height and onerror added for CLS prevention -->
-                <img src="quick.jpg" alt="Quick Shine Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Quick+Shine';">
-                <h3>QUICK SHINE</h3>
-                <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
-                <div class="time-price">
-                    Time :- Around 1hr <span class="price">₹349/-</span>
-                </div>
-                <div class="package-card-actions">
-                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
-                    <a href="quick-shine-page.html" class="more-link">More</a>
-                </div>
+        
+        <nav class="navbar">
+            <div class="logo-container">
+                <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                <img src="car logo.png" alt="Car Care TCH Logo" class="navbar-logo" loading="lazy" width="100" height="80" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/100x80/000000/FFFFFF?text=LOGO';">
             </div>
 
-            <div class="package-card">
-                <!-- width/height and onerror added for CLS prevention -->
-                <img src="deep.png" alt="Deep Cleaning Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Deep+Clean';">
-                <h3>DEEP CLEANING</h3>
-                <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
-                <div class="time-price">
-                    Time :- Around 2-3hrs <span class="price">₹799/-</span>
-                </div>
-                <div class="package-card-actions">
-                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
-                    <a href="deep-cleaning-page.html" class="more-link">More</a>
-                </div>
-            </div>
+            <button class="menu-toggle md:hidden" aria-label="Toggle mobile menu">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
 
-            <div class="package-card">
-                <!-- width/height and onerror added for CLS prevention -->
-                <img src="rubbing.jpg" alt="Rubbing & Polishing Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rubbing';">
-                <h3>RUBBING & POLISHING</h3>
-                <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
-                <div class="time-price">
-                    Time :- Around 2-3hrs <span class="price">₹1399/-</span>
-                </div>
-                <div class="package-card-actions">
-                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
-                    <a href="rubbing-polishing-page.html" class="more-link">More</a>
-                </div>
-            </div>
-
-            <div class="package-card">
-                <!-- width/height and onerror added for CLS prevention -->
-                <img src="windshield.jpg" alt="Windshield Polish Icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Windshield';">
-                <h3>WINDSHIELD POLISH</h3>
-                <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
-                <div class="time-price">
-                    Time :- Around 2hrs <span class="price">₹799/-</span>
-                </div>
-                <div class="package-card-actions">
-                    <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
-                    <a href="windshield-polish-page.html" class="more-link">More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="why-choose-us-section">
-        <div class="why-choose-us-inner-container">
-            <div class="why-choose-us-image-container">
-                <!-- width/height and onerror added for CLS prevention -->
-                <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Car Cleaning Image" loading="lazy" width="600" height="400" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1A1A1A/DDDDDD?text=Why+Choose+Us';">
-            </div>
-            <div class="why-choose-us-content">
-                <p class="text-sm font-semibold uppercase mb-1">CAR CARE</p>
-                <h2 class="text-4xl md:text-5xl">WHY CHOOSE US</h2>
-                <p>CAR CARE provides professional car cleaning services at your doorstep whenever you want, so you can spend your time doing the things you love.</p>
-                <div class="progress-bar-container">
-                    <div class="progress-bar-label">
-                        <span>QUALITY SERVICES</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 90%;"></div>
+            <div class="navbar-links hidden md:flex">
+                <a href="index.html" class="nav-button">HOME</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-button" aria-label="Car Service Packages Menu">
+                        PACKAGES
+                        <span class="dropdown-arrow">&#9660;</span>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="quick-shine-page.html">Quick Shine</a>
+                        <a href="deep-cleaning-page.html">Deep Cleaning</a>
+                        <a href="rubbing-polishing-page.html">Rubbing & Polishing</a>
+                        <a href="windshield-polish-page.html">Windshield Polish</a>
                     </div>
                 </div>
+                <!-- UPDATED WHATSAPP LINK WITH NEW NUMBER AND MESSAGE -->
+                <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="nav-button">CONTACT US</a>
+            </div>
 
-                <div class="progress-bar-container">
-                    <div class="progress-bar-label">
-                        <span>EXPERIENCED TECHNICIANS</span>
-                        <span>85%</span>
+            <!-- Mobile Menu Overlay (hidden by default, shown when hamburger is clicked) -->
+            <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+                <button class="close-menu absolute top-4 right-4 text-white" aria-label="Close mobile menu">&times;</button>
+                <div class="flex flex-col text-xl w-full px-4 text-white">
+                    <a href="index.html" class="nav-button py-2 border-b border-gray-700">HOME</a>
+                    <div class="dropdown-mobile w-full">
+                        <a href="#" class="nav-button py-2 flex items-center justify-between border-b border-gray-700" aria-expanded="false">
+                            PACKAGES
+                            <span class="dropdown-arrow transform transition-transform duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </a>
+                        <div class="dropdown-content-mobile hidden mt-2 bg-gray-800 rounded-lg py-2">
+                            <a href="quick-shine-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Quick Shine</a>
+                            <a href="deep-cleaning-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Deep Cleaning</a>
+                            <a href="rubbing-polishing-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700 border-b border-gray-700">Rubbing & Polishing</a>
+                            <a href="windshield-polish-page.html" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Windshield Polish</a>
+                        </div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 85%;"></div>
+                    <!-- UPDATED WHATSAPP LINK WITH NEW NUMBER AND MESSAGE -->
+                    <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="nav-button py-2 border-b border-gray-700">CONTACT US</a>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="mobile-hero-section-wrapper md:hidden">
+            <div id="mobile-video-container" class="hero-video-box mobile-video-position-override">
+                <div class="hero-text-container mobile-text-position-override">
+                    <div class="hero-text">
+                        <h3 class="animated-text">DOORSTEP CAR CLEANING SERVICES</h3>
+                        <h1 class="animated-text delay-1">CAR CARE TCH</h1>
+                    </div>
+                </div>
+                <video autoplay muted loop playsinline id="video-player" poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADfwGH3XVz+AAAAABJRU5ErkJggg==" data-src="save-vmake.mp4">
+                    <source data-src="save-vmake.mp4" type="video/mp4" media="(max-width: 767px)">
+                </video>
+            </div>
+        </div>
+        
+        <section class="packages-section">
+            <div class="packages-header">
+                <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                <img src="https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN" alt="Decorative tire track graphic" class="tire-track" loading="lazy" width="200" height="100" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/200x100/6FCF97/FFFFFF?text=TIRE+TRACK+DESIGN';">
+                <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4">
+                    <div class="w-full text-left">
+                        <p class="text-sm font-semibold uppercase mb-1">OUR PACKAGES</p>
+                        <h2 class="text-white text-4xl md:text-5xl">Packages for Every Ride</h2>
+                    </div>
+                    <a href="booking-form.html" class="book-now-header-btn mt-4 md:mt-0">BOOK NOW</a>
+                </div>
+            </div>
+
+            <div class="package-card-container">
+                <div class="package-card">
+                    <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                    <img src="quick.jpg" alt="Quick Shine car wash icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Quick+Shine';">
+                    <h3>QUICK SHINE</h3>
+                    <p>Keep your ride shining bright and rolling right with regular car cleaning!</p>
+                    <div class="time-price">
+                        Time :- Around 1hr <span class="price">₹349/-</span>
+                    </div>
+                    <div class="package-card-actions">
+                        <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                        <a href="quick-shine-page.html" class="more-link">More</a>
                     </div>
                 </div>
 
-                <div class="progress-bar-container">
-                    <div class="progress-bar-label">
-                        <span>CUSTOMER SATISFACTION</span>
-                        <span>95%</span>
+                <div class="package-card">
+                    <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                    <img src="deep.png" alt="Deep Cleaning interior car service icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Deep+Clean';">
+                    <h3>DEEP CLEANING</h3>
+                    <p>Revitalize your ride with a deep clean that'll make it shine like new!</p>
+                    <div class="time-price">
+                        Time :- Around 2-3hrs <span class="price">₹799/-</span>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 95%;"></div>
+                    <div class="package-card-actions">
+                        <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                        <a href="deep-cleaning-page.html" class="more-link">More</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                    <img src="rubbing.jpg" alt="Car rubbing and polishing service icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rubbing';">
+                    <h3>RUBBING & POLISHING</h3>
+                    <p>"Elevate your drive with detailing that brings out the best in every detail.</p>
+                    <div class="time-price">
+                        Time :- Around 2-3hrs <span class="price">₹1399/-</span>
+                    </div>
+                    <div class="package-card-actions">
+                        <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                        <a href="rubbing-polishing-page.html" class="more-link">More</a>
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                    <img src="windshield.jpg" alt="Windshield glass polish icon" class="icon" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Windshield';">
+                    <h3>WINDSHIELD POLISH</h3>
+                    <p>Clear the way to perfection with glass polishing that turns foggy into fabulous!</p>
+                    <div class="time-price">
+                        Time :- Around 2hrs <span class="price">₹799/-</span>
+                    </div>
+                    <div class="package-card-actions">
+                        <a href="booking-form.html" class="book-now-btn">BOOK NOW</a>
+                        <a href="windshield-polish-page.html" class="more-link">More</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="testimonials-section">
-        <div class="testimonials-header">
-            <p>TESTIMONIAL</p>
-            <h2>WHAT CLIENTS SAY</h2>
-        </div>
-        <div class="testimonial-cards-container">
-            <div class="testimonial-card">
-                <!-- width/height and onerror added for CLS prevention -->
-                <img src="download (1).jpeg" alt="Rahul Sherewal" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rahul';">
-                <h3 class="testimonial-author">Rahul Sherewala</h3>
-                <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
+        <section class="why-choose-us-section">
+            <div class="why-choose-us-inner-container">
+                <div class="why-choose-us-image-container">
+                    <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                    <img src="ChatGPT Image Aug 3, 2025, 04_11_01 PM.png" alt="Detail view of car cleaning in progress" loading="lazy" width="600" height="400" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1A1A1A/DDDDDD?text=Why+Choose+Us';">
+                </div>
+                <div class="why-choose-us-content">
+                    <p class="text-sm font-semibold uppercase mb-1">CAR CARE</p>
+                    <h2 class="text-4xl md:text-5xl">WHY CHOOSE US</h2>
+                    <p>CAR CARE provides professional car cleaning services at your doorstep whenever you want, so you can spend your time doing the things you love.</p>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-label">
+                            <span>QUALITY SERVICES</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-label">
+                            <span>EXPERIENCED TECHNICIANS</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-label">
+                            <span>CUSTOMER SATISFACTION</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="testimonial-card">
-                <!-- width/height and onerror added for CLS prevention -->
-                <img src="download.jpeg" alt="Geeta Kumari" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Geeta';">
-                <h3 class="testimonial-author">Geeta Kumari</h3>
-                <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
+        </section>
+
+        <section class="testimonials-section">
+            <div class="testimonials-header">
+                <p>TESTIMONIAL</p>
+                <h2>WHAT CLIENTS SAY</h2>
+            </div>
+            <div class="testimonial-cards-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-author mb-4">
+                        <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                        <img src="download (1).jpeg" alt="Portrait of Rahul Sherewal, happy client" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Rahul';">
+                        <span>Rahul Sherewala</span>
+                    </div>
+                    <p>"If you want quality service for car detailing. Then Car Care is the one where they offer high-quality services, without stressing their budget at the same time."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-author mb-4">
+                        <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                        <img src="download.jpeg" alt="Portrait of Geeta Kumari, satisfied client" class="w-12 h-12 rounded-full object-cover border-2 border-white" loading="lazy" width="50" height="50" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F5F5F5/222222?text=Geeta';">
+                        <span>Geeta Kumari</span>
+                    </div>
+                    <p>"The overall appearance of the vehicle after cleaning is very good. The attitude and professionalism of the staff is good."</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="extended-footer-section">
+            <div class="extended-footer-column">
+                <h3>COMPANY</h3>
+                <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
+                
+                <!-- Footer Contact Details -->
+                <p>Jaipur International Airport Terminal, 2 road, Siddharth Nagar, Govind Vihar, Chainpura, Malviya Nagar, Jaipur, Rajasthan 302017</p>
+
+                <a href="tel:+919529090074" class="phone-contact">
+                    <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
+                    <img src="download.webp" alt="Phone call icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/1A1A1A/FFFFFF?text=📞';">
+                    <span>Talk To Our Support<br>+919529090074</span>
+                </a>
+            </div>
+
+            <div class="extended-footer-column">
+                <h3>OUR SOLUTIONS</h3>
+                <ul>
+                    <li><a href="quick-shine-page.html">Quick Shine</a></li>
+                    <li><a href="deep-cleaning-page.html">Deep Cleaning</a></li>
+                    <li><a href="rubbing-polishing-page.html">Rubbing & Polishing</a></li>
+                    <li><a href="windshield-polish-page.html">Windshield Polish</a></li>
+                </ul>
+            </div>
+
+            <div class="extended-footer-column">
+                <h3>INSTA FOLLOW US </h3>
+                <p>Follow us on Instagram for daily car care tips, before & after shots, and exclusive deals!</p>
+                <!-- Instagram Link Button -->
+                <a href="https://www.instagram.com/carcare6115/" target="_blank" class="insta-follow-btn" aria-label="Follow us on Instagram at carcare6115">
+                    <!-- Instagram SVG Icon. Added width/height attributes for CLS fix. -->
+                    <svg role="img" aria-label="Instagram icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    FOLLOW CARCARE6115
+                </a>
+            </div>
+        </footer>
+
+        <div class="copyright-footer">
+            <p>© Copyright Car Care. All right reserved.</p>
+            <div>
+                <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
             </div>
         </div>
-    </section>
+    </main>
 
-    <section class="extended-footer-section">
-        <div class="extended-footer-column">
-            <h3>COMPANY</h3>
-            <p>Need a special car cleaning service? we are happy to fulfill every request in order to exceed your expectations</p>
-            
-            <!-- UPDATED ADDRESS: Combined address and removed separate Pincode lines -->
-            <p class="mt-4">Jaipur International Airport Terminal, 2 road, Siddharth Nagar, Govind Vihar, Chainpura, Malviya Nagar, Jaipur, Rajasthan 302017</p>
-            
-            <!-- MOVED: phone contact block here -->
-            <div class="phone-contact">
-                <!-- width/height and onerror added for CLS prevention -->
-                <img src="download.webp" alt="Phone Icon" class="w-[clamp(20px,4vw,24px)] h-[clamp(20px,4vw,24px)]" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/1A1A1A/FFFFFF?text=📞';">
-                <!-- UPDATED PHONE NUMBER -->
-                <span>Talk To Our Support +919529090074</span>
-            </div>
-        </div>
-
-        <div class="extended-footer-column">
-            <h3>OUR SOLUTIONS</h3>
-            <ul>
-                <li><a href="quick-shine-page.html">Quick Shine</a></li>
-                <li><a href="deep-cleaning-page.html">Deep Cleaning</a></li>
-                <li><a href="rubbing-polishing-page.html">Rubbing & Polishing</a></li>
-                <li><a href="windshield-polish-page.html">Windshield Polish</a></li>
-            </ul>
-        </div>
-
-        <!-- REPLACED: SUBSCRIBE NOW column with INSTA FOLLOW US -->
-        <div class="extended-footer-column">
-            <h3>INSTA FOLLOW US</h3>
-            <p>Follow us on Instagram for daily car care tips, before & after shots, and exclusive deals!</p>
-            <!-- Instagram Link Button -->
-            <a href="https://www.instagram.com/carcare6115/" target="_blank" class="insta-follow-btn">
-                <!-- Instagram SVG Icon using inline SVG for speed and visual quality -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-                FOLLOW CARCARE6115
-            </a>
-        </div>
-    </section>
-
-    <footer class="copyright-footer">
-        <p>© Copyright Car Care. All right reserved.</p>
-        <div>
-            <a href="index.html">Home</a> / <a href="booking-form.html">Booking</a>
-        </div>
-    </footer>
-
-    <!-- UPDATED WHATSAPP LINK with new phone number AND PRE-POPULATED TEXT -->
-    <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button">
-        <!-- width/height and onerror added for CLS prevention -->
+    <!-- Floating WhatsApp Button (Correctly placed outside of main/footer elements) -->
+    <a href="https://api.whatsapp.com/send?phone=919529090074&text=Hello%2C%20I%27m%20interested%20in%20your%20car%20care%20services.%20Could%20you%20please%20provide%20more%20information%3F" class="contact-us-float whatsapp-button" aria-label="Contact us via WhatsApp for booking">
+        <!-- ACCESSIBILITY/SEO: Added descriptive alt text -->
         <img src="OIP.webp" alt="WhatsApp Icon" class="whatsapp-icon" loading="lazy" width="24" height="24" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/24x24/25D366/FFFFFF?text=W';">
         <span>Contact Us</span>
     </a>
 
-    <!-- JS Defer: सभी JavaScript को HTML के आखिर में रखा गया है। यह सुनिश्चित करता है कि पेज का कंटेंट पहले दिखे, और स्क्रिप्ट्स बाद में लोड हों। -->
+    <!-- JS Defer: All JavaScript moved to the end of the body. -->
     <script defer>
-        // Function to lazy load video sources
+        // Use an Intersection Observer to lazy load videos when they enter the viewport
         function lazyLoadVideos() {
-            const videos = document.querySelectorAll('video[data-src]');
-            videos.forEach(video => {
-                const source = video.querySelector('source[data-src]');
-                if (source) {
-                    source.src = source.getAttribute('data-src');
-                    video.load();
-                    // Remove data-src to prevent repeated loading attempts
-                    source.removeAttribute('data-src'); 
-                }
-                // Also load directly on the video tag if necessary (for unsupported browsers)
-                if (video.getAttribute('data-src')) {
-                    video.src = video.getAttribute('data-src');
-                    video.removeAttribute('data-src');
-                }
+            const videoElements = document.querySelectorAll('video');
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: "0px",
+                threshold: 0.1 // load when 10% of the video is visible
+            };
+
+            const videoObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        const source = video.querySelector('source');
+
+                        // Use data-src to set the actual src attribute
+                        if (video.dataset.src) {
+                            video.src = video.dataset.src;
+                            video.load(); // Request the load
+                            video.play().catch(e => console.log("Video autoplay blocked or failed:", e));
+                            video.removeAttribute('data-src'); // Clean up
+                        }
+
+                        if (source && source.dataset.src) {
+                            source.src = source.dataset.src;
+                            video.load(); // Request the load
+                            video.play().catch(e => console.log("Video autoplay blocked or failed:", e));
+                            source.removeAttribute('data-src'); // Clean up
+                        }
+                        
+                        observer.unobserve(video);
+                    }
+                });
+            }, observerOptions);
+
+            videoElements.forEach(video => {
+                videoObserver.observe(video);
             });
         }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lazy load all videos on DOM content loaded (non-blocking)
-            lazyLoadVideos(); 
 
+        document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const closeMenu = document.querySelector('.close-menu');
             const mobileDropdownToggle = document.querySelector('.dropdown-mobile .nav-button');
             const mobileDropdownContent = document.querySelector('.dropdown-content-mobile');
+            const dropdownArrow = document.querySelector('.dropdown-mobile .dropdown-arrow');
 
             menuToggle.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
@@ -1266,6 +1277,9 @@
                 event.preventDefault();
                 mobileDropdownContent.classList.toggle('hidden');
             });
+            
+            // Start video lazy loading after DOM content loads
+            lazyLoadVideos();
         });
     </script>
 </body>
